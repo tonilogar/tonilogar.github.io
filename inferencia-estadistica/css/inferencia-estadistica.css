@@ -6,10 +6,12 @@ body {
     background-color: #f4f4f4;
     color: #333;
   }
-  .test-1-1-image-02, test-1-1-image-02 {
+  .test-1-1-image-02, .test-1-1-image-02, .front-page {
     width: 32%;
     min-width: 300px;
   }
+
+  
   h1, h2 {
     color: #004080;
   }
@@ -106,10 +108,11 @@ body {
     margin-top: 20px;
   }
   
-  footer img {
+  .bottom-page {
     display: block;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 70px;
     height: auto;
+    width: 50px;
   }
-  
+   
