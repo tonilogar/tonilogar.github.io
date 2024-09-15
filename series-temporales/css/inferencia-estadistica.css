@@ -1,0 +1,118 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  .test-1-1-image-02, .test-1-1-image-02, .front-page {
+    width: 32%;
+    min-width: 300px;
+  }
+
+  
+  h1, h2 {
+    color: #004080;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin: 15px 0;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilo para la portada */
+  .front-page {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Índice */
+  #indice {
+    background-color: #333;
+    padding: 20px;
+    color: white;
+  }
+  
+  #indice ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #indice li {
+    margin: 10px 0;
+  }
+  
+  #indice a {
+    color: white;
+  }
+  
+  #indice a:hover {
+    color: #ddd;
+  }
+  
+  /* Estilos para los artículos */
+  .article {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .article h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .article p {
+    margin: 10px 0;
+  }
+  
+  .article strong {
+    color: #004080;
+  }
+  
+  /* Estilos para imágenes dentro de las secciones */
+  .article img {
+    display: block;
+    margin: 15px 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  /* Espacios adicionales */
+  .espacio {
+    margin: 20px 0;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .bottom-page {
+    display: block;
+    margin: 0 auto;
+    max-width: 70px;
+    height: auto;
+    width: 50px;
+  }
+   
