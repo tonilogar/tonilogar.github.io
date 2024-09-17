@@ -14,11 +14,17 @@ body {
     width: 62%;
     min-width: 300px;
   }
-  
+  .dinamic-grafic {
+    width: 80%;
+    min-width: 300px;
+  }
   h1, h2 {
     color: #004080;
   }
-  
+  .image-03 {
+    width: 35%;
+    min-width: 300px;
+  }
   p {
     line-height: 1.6;
     margin: 15px 0;
