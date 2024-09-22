@@ -6,6 +6,13 @@ body {
     background-color: #f4f4f4;
     color: #333;
   }
+  .entrega-04-img-01 {
+    width: 72%;
+    min-width: 300px;
+  }
+  h1 {
+    columns: white;
+  }
   .test-1-1-image-02, .test-1-1-image-02, .front-page {
     width: 72%;
     min-width: 300px;
@@ -18,7 +25,7 @@ body {
     width: 80%;
     min-width: 300px;
   }
-  h1, h2 {
+  h2 {
     color: #004080;
   }
   .image-03 {

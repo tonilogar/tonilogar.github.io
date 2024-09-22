@@ -10,10 +10,167 @@
 </head>
 
 <body>
- <h1>series-temporales-semana-04</h1>
-  <footer class="bottom-page">
-    <img  src="img/ico-cm.png" alt="footer">
-  </footer>
+  <img class="front-page" src="img/portada_01.jpg" alt="img_01">
+  <!-- Índice -->
+  <div id="indice">
+    <ul>
+      <h1>Predicción temperaturas Barcelona 2013</h1>
+      <li><a href="#fase-01-intro">1. Introducción. Contextualización de los datos</a></li>
+      <li><a href="#fase-01-gra">2. Temperaturas medias por meses registradas en Barcelona</a></li>
+      <li><a href="#fase-01-me-pre">3. Métodos de previsión para la serie</a></li>
+      <li><a href="#fase-01-deter">4. Determinación del mejor método de predicción</a></li>
+      <li><a href="#ffase-01-predicc1">5.1. Predicción de un año (HW con Excel)</a></li>
+      <li><a href="#fase-01-predicc2">5.2. Predicción de un año (bonus SARIMA)</a></li>
+      <li><a href="#fase-01-conclusiones">6. Conclusiones</a></li>
+
+    </ul>
+  </div>
+
+
+  <article class="article">
+    <section id="fase-01-intro">
+      <h2>1. Introducción. Contextualización de los datos</h2>
+      <p>La ciudad de Barcelona, ubicada en la costa noreste de España y conocida por su clima mediterráneo, ha
+        enfrentado en los últimos años
+        desafíos importantes relacionados con las temperaturas extremas. Para abordar este fenómeno, hemos seleccionado
+        un conjunto de datos
+        proporcionado por el <strong>Servicio Meteorológico de Cataluña.</strong> Estos datos incluyen registros de
+        temperaturas diarias de diversas ciudades, pero
+        hemos filtrado el conjunto de datos para centrarnos en la ciudad de Barcelona. El conjunto de datos específico
+        utilizado pertenece a la serie
+        <strong>"Observatorio Fabra" con código de serie "Baic0008d"</strong>, que recoge temperaturas máximas y mínimas
+        diarias desde el año 1950 hasta
+        diciembre de 2023.
+      </p>
+      <div class="espacio"> </div>
+      <p>El propósito de analizar este conjunto de datos es entender cómo se han comportado las temperaturas en
+        Barcelona con sus datos
+        históricos, con el objetivo de prever la evolución climática futura. La predicción de la temperatura no solo
+        tiene implicaciones directas para la
+        vida diaria de los ciudadanos, sino que también es crucial para sectores estratégicos de la ciudad. El turismo,
+        la salud pública, la eficiencia
+        energética, la planificación urbana, la agricultura y otros sectores clave dependen de contar con datos
+        climáticos precisos para anticipar y
+        mitigar los efectos de variaciones y tendencias climáticas.</p>
+      <div class="espacio"> </div>
+      <p>Las temperaturas extremas durante los meses de verano podrían afectar negativamente a la industria turística,
+        uno de los pilares de la
+        economía local, al dificultar las actividades al aire libre. Asimismo, la salud pública podría verse
+        comprometida, especialmente en lo que
+        respecta a los colectivos más vulnerables, como los ancianos y niños, debido a olas de calor cada vez más
+        frecuentes. Además, la eficiencia
+        energética se verá afectada por el incremento de la demanda de energía para refrigeración, y las predicciones
+        ayudarán a planificar su uso de
+        manera más eficiente y sostenible. También, la planificación urbana se beneficiará de este tipo de predicciones
+        para adaptar las
+        infraestructuras y aumentar los espacios verdes, mitigando los impactos del calor urbano.</p>
+    </section>
+
+
+    <section id="fase-01-gra">
+      <h2>2. Temperaturas medias por meses registradas en Barcelona</h2>
+      <a class="link"
+        href="https://public.tableau.com/app/profile/carlos7935/viz/TemperaturasmediashistricaBCN/Dashboard1"
+        target="_blank">Link a gráfico dinámico</a>
+      <img class="dinamic-grafic" src="img/dinamic-grafic.jpg" alt="">
+    </section>
+
+    <section id="fase-01-me-pre">
+      <h2>3. Métodos de previsión para la serie</h2>
+      <p>Podemos aplicar diversos métodos de previsión, vamos a analizar los candidatos y como basándonos en la teoría
+        podrían ser candidatos para este conjunto de datos de temperaturas en Barcelona:
+      </p>
+      <div class="espacio"> </div>
+      <p>
+        • <strong>Medias Móviles</strong> al ser un método de suavizamiento simple podría ayudar a destacar la
+        tendencia, pero es probable
+        que no maneje bien la estacionalidad ni la variabilidad estocástica.
+      </p>
+      <p>• El método de <strong>descomposición</strong> podría separar la serie en tendencia, estacionalidad y ruido, lo
+        cual podría ser útil
+        para entender la estructura de los datos, aunque no ser tan eficaz para predecir cambios irregulares en el
+        futuro.
+      </p>
+      <p>• <strong>Holt-Winters</strong> suele recomendarse para series con estacionalidad regular y tendencia,
+        ajustando
+        dinámicamente los
+        datos, en este caso podría aplicar muy bien, pero sabemos que puede suavizar demasiado las fluctuaciones
+        extremas.
+      </p>
+      <p>
+        • <strong>SARIMA</strong> en teoría debería ser el modelo más robusto para capturar tanto estacionalidad como
+        fluctuaciones no
+        regulares en la serie, haciéndolo más flexible y preciso para series complejas como las de temperatura.</p>
+
+    </section>
+
+
+
+
+    <section id="fase-01-deter">
+      <h2>4. Determinación del mejor método de predicción</h2>
+      <p>Los modelos Holt-Winters o SARIMA, deberían de ser los óptimos para el conjunto de datos del que disponemos.
+        Vimos en el anterior ejercicio que estos datos tenían una clara estacionalidad y tendencia observada por el
+        histórico de
+        temperaturas de Barcelona. La elección de componentes o tipos puede llevarnos a mayor dificultad o inviabilidad
+        de
+        ejecutarlo con una hoja de cálculo común. Por ese motivo vamos a ejecutar el siguiente paso con
+        <strong>Holt-Winters.</strong>
+      </p>
+    </section>
+
+
+
+    <section id="fase-01-predicc1">
+      <h2>5. Predicción de un año (HW con Excel)</h2>
+      <p>Creamos una tabla haciendo el cálculo de Nivel (L), Tendencia (T) y Estacionalidad (S) para hacer el pronóstico
+        de temperatura, aplicando también coeficientes de
+        suavizado para cada uno de ellos.</p>
+    <p>En la imagen se puede ver también los cálculos de error medio y cuadrático medio para los datos muestrales,
+      contenidos entre el año 2008-2012.</p>
+    <p>Ajustando coeficientes, encontramos que los errores mínimos a los que llegamos con este modelo son MSE=0.85 y
+      MAE=0.95.</p>
+    <a class="link"
+      href="https://docs.google.com/spreadsheets/d/1yNlVBQDQLQrttBfGI5buEmCjvVhSM422Ym0YXU7pJj8/edit?gid=69715960#gid=69715960"
+      target="_blank">Link hoja de cálculo</a>
+      <img class="entrega-04-img-01" src="img/entrega-04-img-01.jpg" alt="">
+
+      <p>Para la predicción del año 2013, extra muestral, los errores mínimos a los que llegamos con este modelo son MSE=1.09 y MAE=1.95.</p>
+      <p>Como disponíamos de los datos observados reales de 2013 también, hemos incluido estos datos en una comparativa con la predicción usando el modelo HW, y aquí podemos 
+        comparar en esta gráfica como ha funcionado siendo la línea naranja los datos reales y la línea azul la predicción con este modelo en concreto.</p>
+
+        <img class="entrega-04-img-01" src="img/entrega-04-img-02.jpg" alt="">
+    </section>
+
+
+
+    <section id="fase-01-predicc2">
+      <h2>5.2. Predicción de un año (bonus SARIMA)</h2>
+      <p>Añadido a la petición de la actividad y extra a lo que se nos requiere, hemos querido poner en práctica otros conocimientos adquiridos este año en otras asignaturas
+        aplicada a las series temporales y probar un modelo SARIMA mediante programación.</p>
+        <img class="entrega-04-img-01" src="img/entrega-04-img-03.jpg" alt="">
+        <img class="entrega-04-img-01" src="img/entrega-04-img-04.jpg" alt="">
+    <p>Best model: ARIMA(1,0,0)(2,1,0)[12] Total fit time: 53.720 seconds
+      Mejores parámetros SARIMA encontrados: (1, 0, 0) y (2, 1, 0, 12)</p>
+    <p>Predicciones SARIMA para los siguientes 12 meses: [ 7.88597887
+      8.69242673 10.49122182 14.50556055 16.5905548 20.13550412 23.81974048
+      24.36454762 21.65547903 17.36443842 12.27402975 9.27949536]</p>
+
+      <p>Con este <a class="link"
+        href="https://colab.research.google.com/drive/1eP2DFyrUckcvv22GddSpuBh4azdgw66I?usp=sharing"
+        target="_blank">código en Python</a> hemos calculado los parámetros óptimos, ejecutado una predicción y pintado este gráfico para 2013 que en el siguiente paso compararemos con HW y con datos reales.</p>
+    </section>
+
+    
+
+
+
+
+    
+    <footer class="bottom-page">
+      <img src="img/ico-cm.png" alt="footer">
+    </footer>
+  </article>
 </body>
 
 </html>
