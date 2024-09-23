@@ -10,6 +10,10 @@ body {
     width: 72%;
     min-width: 300px;
   }
+  .entrega-04-img-python {
+    width: 60%;
+    min-width: 300px;
+  }
   h1 {
     columns: white;
   }
@@ -131,4 +135,75 @@ body {
     height: auto;
     width: 50px;
   }
-   
+  .container {
+    width: 100%; /* Ajustar al tamaño de la imagen */
+    padding-left: 10px;
+    background-color: #002855; /* Color del contenedor principal */
+    color: white;
+    border: 1px solid white;
+}
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #FFFFFF; /* Color del título principal */
+}
+.header-h2 {
+  font-size: 1.4rem;
+  color: #ffffff; /* Color gris claro */
+  margin-bottom: 15px;
+}
+.teacher {
+  background-color: white;
+  color: #002855; /* Texto oscuro */
+  display: inline-block;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+.students {
+  background-color: #f0a500; /* Fondo amarillo para alumnos */
+  color: black;
+  padding: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.university {
+  font-size: 1rem;
+  text-align: left;
+}
+
+.university span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.course-info {
+  display: flex;
+  gap: 15px;
+}
+
+.course-info span {
+  border-right: 1px solid white;
+  padding-right: 10px;
+  font-size: 0.9rem;
+}
+
+.course-info span:last-child {
+  border-right: none;
+}
+.down {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #002855;
+  color: white;
+  padding: 15px 0;
+  border-top: 2px solid #ffffff;
+}
+.course-info-span {
+  margin-right: 30px;
+}
