@@ -1,69 +1,67 @@
+/* Ajustar el cuerpo del contenido para dispositivos pequeños */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  font-size: 16px;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
-  color: #333;
+  box-sizing: border-box;
 }
 
+/* Encabezado */
 header {
-  background: #0073e6;
-  color: white;
-  padding: 1rem 2rem;
-}
-
-header h1 {
-  margin: 0;
-}
-
-main {
-  padding: 2rem;
-}
-
-section {
-  margin-bottom: 2rem;
-}
-
-h2 {
-  color: #0073e6;
-}
-
-pre {
-  background: #f4f4f4;
   padding: 1rem;
-  border: 1px solid #ddd;
-  overflow-x: auto;
-}
-
-footer {
   text-align: center;
-  padding: 1rem;
-  background: #0073e6;
-  color: white;
 }
+
+/* Tablas responsivas */
 .table-wrapper {
-  overflow-x: auto;
-  margin: 1rem 0;
+  overflow-x: auto; /* Permite el desplazamiento horizontal en dispositivos pequeños */
+  -webkit-overflow-scrolling: touch; /* Mejora la experiencia de desplazamiento en dispositivos táctiles */
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  pre {
+    font-size: 12px;
+    padding: 0.5rem;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  table th, table td {
+    padding: 6px; /* Reduce el espacio en celdas para dispositivos pequeños */
+  }
 }
 
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
+/* Ajuste adicional para pantallas muy pequeñas (teléfonos) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 
-table th {
-  background-color: #0073e6;
-  color: white;
-}
+  h2 {
+    font-size: 1.2rem;
+  }
 
-table tbody tr:nth-child(even) {
-  background-color: #f4f4f4;
+  pre {
+    font-size: 10px;
+    padding: 0.5rem;
+  }
+
+  table {
+    font-size: 10px;
+  }
+
+  table th, table td {
+    padding: 4px;
+  }
 }
