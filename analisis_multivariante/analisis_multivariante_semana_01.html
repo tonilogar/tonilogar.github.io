@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis de Datos de mtcars</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Análisis de Datos de <code>mtcars</code></h1>
+    <p>Este documento explica el proceso para detectar posibles casos atípicos de un dataset de datos en R.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Carga y Exploración del Dataset</h2>
+      <p>Primero, cargamos el dataset <code>mtcars</code> en R y lo almacenamos en un dataframe llamado <code>df</code>:
+      </p>
+      <pre><code># Cargar el dataset
+        data(mtcars)
+
+        # Guardar los datos en un dataframe
+        df <- mtcars  
+        
+        # Imprimir el dataframe
+        print(df)
+        </code></pre>
+      <p>El resultado del dataset <code>mtcars</code> es el siguiente:</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>mpg</th>
+              <th>cyl</th>
+              <th>disp</th>
+              <th>hp</th>
+              <th>drat</th>
+              <th>wt</th>
+              <th>qsec</th>
+              <th>vs</th>
+              <th>am</th>
+              <th>gear</th>
+              <th>carb</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mazda RX4</td>
+              <td>21.0</td>
+              <td>6</td>
+              <td>160.0</td>
+              <td>110</td>
+              <td>3.90</td>
+              <td>2.620</td>
+              <td>16.46</td>
+              <td>0</td>
+              <td>1</td>
+              <td>4</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Mazda RX4 Wag</td>
+              <td>21.0</td>
+              <td>6</td>
+              <td>160.0</td>
+              <td>110</td>
+              <td>3.90</td>
+              <td>2.875</td>
+              <td>17.02</td>
+              <td>0</td>
+              <td>1</td>
+              <td>4</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Datsun 710</td>
+              <td>22.8</td>
+              <td>4</td>
+              <td>108.0</td>
+              <td>93</td>
+              <td>3.85</td>
+              <td>2.320</td>
+              <td>18.61</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Hornet 4 Drive</td>
+              <td>21.4</td>
+              <td>6</td>
+              <td>258.0</td>
+              <td>110</td>
+              <td>3.08</td>
+              <td>3.215</td>
+              <td>19.44</td>
+              <td>1</td>
+              <td>0</td>
+              <td>3</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Hornet Sportabout</td>
+              <td>18.7</td>
+              <td>8</td>
+              <td>360.0</td>
+              <td>175</td>
+              <td>3.15</td>
+              <td>3.440</td>
+              <td>17.02</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Valiant</td>
+              <td>18.1</td>
+              <td>6</td>
+              <td>225.0</td>
+              <td>105</td>
+              <td>2.76</td>
+              <td>3.460</td>
+              <td>20.22</td>
+              <td>1</td>
+              <td>0</td>
+              <td>3</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Duster 360</td>
+              <td>14.3</td>
+              <td>8</td>
+              <td>360.0</td>
+              <td>245</td>
+              <td>3.21</td>
+              <td>3.570</td>
+              <td>15.84</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Merc 240D</td>
+              <td>24.4</td>
+              <td>4</td>
+              <td>146.7</td>
+              <td>62</td>
+              <td>3.69</td>
+              <td>3.190</td>
+              <td>20.00</td>
+              <td>1</td>
+              <td>0</td>
+              <td>4</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Merc 230</td>
+              <td>22.8</td>
+              <td>4</td>
+              <td>140.8</td>
+              <td>95</td>
+              <td>3.92</td>
+              <td>3.150</td>
+              <td>22.90</td>
+              <td>1</td>
+              <td>0</td>
+              <td>4</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Merc 280</td>
+              <td>19.2</td>
+              <td>6</td>
+              <td>167.6</td>
+              <td>123</td>
+              <td>3.92</td>
+              <td>3.440</td>
+              <td>18.30</td>
+              <td>1</td>
+              <td>0</td>
+              <td>4</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Merc 280C</td>
+              <td>17.8</td>
+              <td>6</td>
+              <td>167.6</td>
+              <td>123</td>
+              <td>3.92</td>
+              <td>3.440</td>
+              <td>18.90</td>
+              <td>1</td>
+              <td>0</td>
+              <td>4</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Merc 450SE</td>
+              <td>16.4</td>
+              <td>8</td>
+              <td>275.8</td>
+              <td>180</td>
+              <td>3.07</td>
+              <td>4.070</td>
+              <td>17.40</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Merc 450SL</td>
+              <td>17.3</td>
+              <td>8</td>
+              <td>275.8</td>
+              <td>180</td>
+              <td>3.07</td>
+              <td>3.730</td>
+              <td>17.60</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Merc 450SLC</td>
+              <td>15.2</td>
+              <td>8</td>
+              <td>275.8</td>
+              <td>180</td>
+              <td>3.07</td>
+              <td>3.780</td>
+              <td>18.00</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Cadillac Fleetwood</td>
+              <td>10.4</td>
+              <td>8</td>
+              <td>472.0</td>
+              <td>205</td>
+              <td>2.93</td>
+              <td>5.250</td>
+              <td>17.98</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Lincoln Continental</td>
+              <td>10.4</td>
+              <td>8</td>
+              <td>460.0</td>
+              <td>215</td>
+              <td>3.00</td>
+              <td>5.424</td>
+              <td>17.82</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Chrysler Imperial</td>
+              <td>14.7</td>
+              <td>8</td>
+              <td>440.0</td>
+              <td>230</td>
+              <td>3.23</td>
+              <td>5.345</td>
+              <td>17.42</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Fiat 128</td>
+              <td>32.4</td>
+              <td>4</td>
+              <td>78.7</td>
+              <td>66</td>
+              <td>4.08</td>
+              <td>2.200</td>
+              <td>19.47</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Honda Civic</td>
+              <td>30.4</td>
+              <td>4</td>
+              <td>75.7</td>
+              <td>52</td>
+              <td>4.93</td>
+              <td>1.615</td>
+              <td>18.52</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Toyota Corolla</td>
+              <td>33.9</td>
+              <td>4</td>
+              <td>71.1</td>
+              <td>65</td>
+              <td>4.22</td>
+              <td>1.835</td>
+              <td>19.90</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Toyota Corona</td>
+              <td>21.5</td>
+              <td>4</td>
+              <td>120.1</td>
+              <td>97</td>
+              <td>3.70</td>
+              <td>2.465</td>
+              <td>20.01</td>
+              <td>1</td>
+              <td>0</td>
+              <td>3</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Dodge Challenger</td>
+              <td>15.5</td>
+              <td>8</td>
+              <td>318.0</td>
+              <td>150</td>
+              <td>2.76</td>
+              <td>3.520</td>
+              <td>16.87</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>AMC Javelin</td>
+              <td>15.2</td>
+              <td>8</td>
+              <td>304.0</td>
+              <td>150</td>
+              <td>3.15</td>
+              <td>3.435</td>
+              <td>17.30</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Camaro Z28</td>
+              <td>13.3</td>
+              <td>8</td>
+              <td>350.0</td>
+              <td>245</td>
+              <td>3.73</td>
+              <td>3.840</td>
+              <td>15.41</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Pontiac Firebird</td>
+              <td>19.2</td>
+              <td>8</td>
+              <td>400.0</td>
+              <td>175</td>
+              <td>3.08</td>
+              <td>3.845</td>
+              <td>17.05</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Fiat X1-9</td>
+              <td>27.3</td>
+              <td>4</td>
+              <td>79.0</td>
+              <td>66</td>
+              <td>4.08</td>
+              <td>1.935</td>
+              <td>18.90</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Porsche 914-2</td>
+              <td>26.0</td>
+              <td>4</td>
+              <td>120.3</td>
+              <td>91</td>
+              <td>4.43</td>
+              <td>2.140</td>
+              <td>16.70</td>
+              <td>0</td>
+              <td>1</td>
+              <td>5</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Lotus Europa</td>
+              <td>30.4</td>
+              <td>4</td>
+              <td>95.1</td>
+              <td>113</td>
+              <td>3.77</td>
+              <td>1.513</td>
+              <td>16.90</td>
+              <td>1</td>
+              <td>1</td>
+              <td>5</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Ford Pantera L</td>
+              <td>15.8</td>
+              <td>8</td>
+              <td>351.0</td>
+              <td>264</td>
+              <td>4.22</td>
+              <td>3.170</td>
+              <td>14.50</td>
+              <td>0</td>
+              <td>1</td>
+              <td>5</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Ferrari Dino</td>
+              <td>19.7</td>
+              <td>6</td>
+              <td>145.0</td>
+              <td>175</td>
+              <td>3.62</td>
+              <td>2.770</td>
+              <td>15.50</td>
+              <td>0</td>
+              <td>1</td>
+              <td>5</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Maserati Bora</td>
+              <td>15.0</td>
+              <td>8</td>
+              <td>301.0</td>
+              <td>335</td>
+              <td>3.54</td>
+              <td>3.570</td>
+              <td>14.60</td>
+              <td>0</td>
+              <td>1</td>
+              <td>5</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>Volvo 142E</td>
+              <td>21.4</td>
+              <td>4</td>
+              <td>121.0</td>
+              <td>109</td>
+              <td>4.11</td>
+              <td>2.780</td>
+              <td>18.60</td>
+              <td>1</td>
+              <td>1</td>
+              <td>4</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </section>
+
+
+    </code></pre>
+    <p>El dataset <code>mtcars</code> contiene varias variables relacionadas con el rendimiento y las especificaciones
+      de diferentes modelos de autos.</p>
+    </section>
+
+    <section>
+      <h2>Cálculo de las Medias de las Variables</h2>
+      <pre><code># Calcular el vector de medias de las variables
+medias <- colMeans(df)
+
+# Imprimir las medias
+print(medias)
+<table>
+  <thead>
+    <tr>
+      <th>mpg</th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>wt</th>
+      <th>qsec</th>
+      <th>vs</th>
+      <th>am</th>
+      <th>gear</th>
+      <th>carb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>20.090625</td>
+      <td>6.187500</td>
+      <td>230.721875</td>
+      <td>146.687500</td>
+      <td>3.596563</td>
+      <td>3.217250</td>
+      <td>17.848750</td>
+      <td>0.437500</td>
+      <td>0.406250</td>
+      <td>3.687500</td>
+      <td>2.812500</td>
+    </tr>
+  </tbody>
+</table>
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Matriz de Covarianzas</h2>
+      <p>A continuación, se calcula la matriz de covarianza para todas las variables del dataset.</p>
+      <pre><code># Calcular la matriz de covarianza
+matriz_covarianzas <- cov(df)
+
+# Imprimir la matriz de covarianza
+print(matriz_covarianzas)
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>mpg</th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>wt</th>
+      <th>qsec</th>
+      <th>vs</th>
+      <th>am</th>
+      <th>gear</th>
+      <th>carb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>mpg</td><td>36.324103</td><td>-9.172379</td><td>-633.0972</td><td>-320.7321</td><td>2.19506351</td><td>-5.1166847</td><td>4.50914919</td><td>2.01713710</td><td>1.80393145</td><td>2.1356855</td><td>-5.36310484</td></tr>
+    <tr><td>cyl</td><td>-9.172379</td><td>3.1895161</td><td>199.66028</td><td>101.931452</td><td>-0.66836694</td><td>1.3673710</td><td>-1.88685484</td><td>-0.72983871</td><td>-0.46572581</td><td>-0.6491935</td><td>1.52016129</td></tr>
+    <tr><td>disp</td><td>-633.09721</td><td>199.6602823</td><td>15360.79983</td><td>6721.158669</td><td>-47.06401915</td><td>107.6842040</td><td>-96.05168145</td><td>-44.37762097</td><td>-36.56401210</td><td>-50.8026210</td><td>79.06875000</td></tr>
+    <tr><td>hp</td><td>-320.732056</td><td>101.9314516</td><td>6721.15867</td><td>4700.866935</td><td>-16.45110887</td><td>44.1926613</td><td>-86.77008065</td><td>-24.98790323</td><td>-8.32056452</td><td>-6.3588710</td><td>83.03629032</td></tr>
+    <tr><td>drat</td><td>2.19506351</td><td>-0.66836694</td><td>-47.064019</td><td>-16.45110887</td><td>0.28588135</td><td>-0.3727207</td><td>0.08714073</td><td>0.11864919</td><td>0.19015121</td><td>0.2759879</td><td>-0.07840726</td></tr>
+    <tr><td>wt</td><td>-5.1166847</td><td>1.3673710</td><td>107.6842040</td><td>44.1926613</td><td>-0.3727207</td><td>0.9573790</td><td>-0.30548161</td><td>-0.27366129</td><td>-0.33810484</td><td>-0.4210806</td><td>0.67579032</td></tr>
+    <tr><td>qsec</td><td>4.50914919</td><td>-1.88685484</td><td>-96.05168145</td><td>-86.77008065</td><td>0.08714073</td><td>-0.30548161</td><td>3.19316613</td><td>0.67056452</td><td>-0.20495968</td><td>-0.2804032</td><td>-1.89411290</td></tr>
+    <tr><td>vs</td><td>2.01713710</td><td>-0.72983871</td><td>-44.37762097</td><td>-24.98790323</td><td>0.11864919</td><td>-0.27366129</td><td>0.67056452</td><td>0.25403226</td><td>0.04233871</td><td>0.0766129</td><td>-0.46370968</td></tr>
+    <tr><td>am</td><td>1.80393145</td><td>-0.46572581</td><td>-36.56401210</td><td>-8.32056452</td><td>0.19015121</td><td>-0.33810484</td><td>-0.20495968</td><td>0.04233871</td><td>0.24899194</td><td>0.2923387</td><td>0.04637097</td></tr>
+    <tr><td>gear</td><td>2.1356855</td><td>-0.6491935</td><td>-50.8026210</td><td>-6.3588710</td><td>0.2759879</td><td>-0.4210806</td><td>-0.2804032</td><td>0.07661290</td><td>0.29233871</td><td>0.5443548</td><td>0.32661290</td></tr>
+    <tr><td>carb</td><td>-5.36310484</td><td>1.52016129</td><td>79.06875000</td><td>83.03629032</td><td>-0.07840726</td><td>0.67579032</td><td>-1.89411290</td><td>-0.46370968</td><td>0.04637097</td><td>0.3266129</td><td>2.60887097</td></tr>
+  </tbody>
+</table>
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Distancia de Mahalanobis</h2>
+      <p>La distancia de Mahalanobis es una medida útil para identificar casos atípicos en datos multivariantes. Se
+        define de la siguiente manera:</p>
+      <p><strong>Fórmula:</strong></p>
+      <p>D^2 = diag{ (X - X̄) S^(-1) (X - X̄)' }</p>
+      <p>X   = Vector de valores observados.</p>
+      <p>X̄  = Media (centroide) del conjunto de datos.</p>
+      <p>S^(-1) = Matriz de covarianzas inversa.</p>
+      <p>diag = Diagonal principal de la matriz resultante.</p>
+      <pre><code># Calcular distancia de Mahalanobis
+D2 <- mahalanobis(df, medias, matriz_covarianzas, inverted = FALSE)
+
+# Imprimir las distancias
+print(D2)
+<table>
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>Distancia (D2)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Mazda RX4</td><td>8.946673</td></tr>
+      <tr><td>Mazda RX4 Wag</td><td>8.287933</td></tr>
+      <tr><td>Datsun 710</td><td>8.937150</td></tr>
+      <tr><td>Hornet 4 Drive</td><td>6.096726</td></tr>
+      <tr><td>Hornet Sportabout</td><td>5.429061</td></tr>
+      <tr><td>Valiant</td><td>8.877558</td></tr>
+      <tr><td>Duster 360</td><td>9.136276</td></tr>
+      <tr><td>Merc 240D</td><td>10.030345</td></tr>
+      <tr><td>Merc 230</td><td>22.593116</td></tr>
+      <tr><td>Merc 280</td><td>12.393107</td></tr>
+      <tr><td>Merc 280C</td><td>11.058878</td></tr>
+      <tr><td>Merc 450SE</td><td>9.476126</td></tr>
+      <tr><td>Merc 450SL</td><td>5.594527</td></tr>
+      <tr><td>Merc 450SLC</td><td>6.026462</td></tr>
+      <tr><td>Cadillac Fleetwood</td><td>11.201310</td></tr>
+      <tr><td>Lincoln Continental</td><td>8.672093</td></tr>
+      <tr><td>Chrysler Imperial</td><td>12.257618</td></tr>
+      <tr><td>Fiat 128</td><td>9.078630</td></tr>
+      <tr><td>Honda Civic</td><td>14.954377</td></tr>
+      <tr><td>Toyota Corolla</td><td>10.296463</td></tr>
+      <tr><td>Toyota Corona</td><td>13.432391</td></tr>
+      <tr><td>Dodge Challenger</td><td>6.227235</td></tr>
+      <tr><td>AMC Javelin</td><td>5.786691</td></tr>
+      <tr><td>Camaro Z28</td><td>11.681526</td></tr>
+      <tr><td>Pontiac Firebird</td><td>6.718085</td></tr>
+      <tr><td>Fiat X1-9</td><td>3.645789</td></tr>
+      <tr><td>Porsche 914-2</td><td>18.356164</td></tr>
+      <tr><td>Lotus Europa</td><td>14.000669</td></tr>
+      <tr><td>Ford Pantera L</td><td>21.573003</td></tr>
+      <tr><td>Ferrari Dino</td><td>11.152850</td></tr>
+      <tr><td>Maserati Bora</td><td>19.192384</td></tr>
+      <tr><td>Volvo 142E</td><td>9.888781</td></tr>
+    </tbody>
+  </table>
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Cálculo de la Significación Estadística</h2>
+      <pre><code># Calcular los p-valores
+pvalores <- pchisq(D2, df = ncol(mtcars), lower.tail = FALSE)
+
+# Inicializar variable para casos atípicos
+hay_casos_atipicos <- FALSE
+
+# Verificar cada p-valor
+for (i in seq_along(pvalores)) {
+  print(paste("p-valor para elemento", i, ":", pvalores[i]))
+  if (pvalores[i] < 0.001) {
+    print(paste("Caso atípico detectado en el elemento", i, "con p-valor:", pvalores[i]))
+    hay_casos_atipicos <- TRUE
+  }
+}
+
+# Comprobar si se encontraron casos atípicos
+if (!hay_casos_atipicos) {
+  print("No se encuentra ningún caso atípico.")
+}
+
+<section>
+  <h2>Resultados: p-valores</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Elemento</th>
+        <th>p-valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>0.626814793272655</td></tr>
+      <tr><td>2</td><td>0.68730255517125</td></tr>
+      <tr><td>3</td><td>0.627693724281809</td></tr>
+      <tr><td>4</td><td>0.866832982960977</td></tr>
+      <tr><td>5</td><td>0.908622503177606</td></tr>
+      <tr><td>6</td><td>0.633193297550124</td></tr>
+      <tr><td>7</td><td>0.609314972177258</td></tr>
+      <tr><td>8</td><td>0.527659693078912</td></tr>
+      <tr><td>9</td><td>0.0201605479950018</td></tr>
+      <tr><td>10</td><td>0.334831368429065</td></tr>
+      <tr><td>11</td><td>0.438343906903962</td></tr>
+      <tr><td>12</td><td>0.578031268831444</td></tr>
+      <tr><td>13</td><td>0.899003940235217</td></tr>
+      <tr><td>14</td><td>0.871592789926057</td></tr>
+      <tr><td>15</td><td>0.426555606400835</td></tr>
+      <tr><td>16</td><td>0.652130411193711</td></tr>
+      <tr><td>17</td><td>0.344593779241114</td></tr>
+      <tr><td>18</td><td>0.614634517721478</td></tr>
+      <tr><td>19</td><td>0.184595108733901</td></tr>
+      <tr><td>20</td><td>0.503933836845313</td></tr>
+      <tr><td>21</td><td>0.266005907723727</td></tr>
+      <tr><td>22</td><td>0.857780183459677</td></tr>
+      <tr><td>23</td><td>0.887210816321477</td></tr>
+      <tr><td>24</td><td>0.388051627213303</td></tr>
+      <tr><td>25</td><td>0.821432466651442</td></tr>
+      <tr><td>26</td><td>0.979157957182606</td></tr>
+      <tr><td>27</td><td>0.0736758537409455</td></tr>
+      <tr><td>28</td><td>0.2329564460777</td></tr>
+      <tr><td>29</td><td>0.0278979309345972</td></tr>
+      <tr><td>30</td><td>0.430548297420681</td></tr>
+      <tr><td>31</td><td>0.0577263701654486</td></tr>
+      <tr><td>32</td><td>0.540418370341476</td></tr>
+    </tbody>
+  </table>
+</section>
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Conclusiones</h2>
+      <ul>
+        <li>La matriz de covarianzas y las medias fueron calculadas para explorar la distribución y la variabilidad de
+          las diferentes variables del dataset <code>mtcars</code>.</li>
+        <li>Se utilizó la distancia de Mahalanobis para identificar posibles observaciones atípicas.</li>
+        <li>Tras calcular los p-valores, no se encontraron casos atípicos significativos (con un nivel de significancia
+          menor a 0.001).</li>
+      </ul>
+      <p>Por lo tanto, la hipótesis nula de que no hay casos atípicos fue validada. Todos los datos observados parecen
+        ser consistentes con los valores esperados en el contexto multivariante del dataset <code>mtcars</code>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Analisis multivariante.</p>
+  </footer>
+</body>
+
+</html>
