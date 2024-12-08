@@ -648,7 +648,7 @@ head(genes_tumores)</code></pre>
         </table>
       </div>
     </section>
-    <section id="components">
+    <section id="componentes">
       <h3>4.4 Componentes principales Dim1 Dim2</h3>
       <pre><code>plot(
     pca_genes$ind$coord[, 1], # Coordenadas en Dim1
@@ -678,7 +678,7 @@ head(genes_tumores)</code></pre>
         <figcaption>Proyección de los datos en Dim1 y Dim2.</figcaption>
       </figure>
     </section>
-    <section id="variance">
+    <section id="varianza">
       <h3>4.5 Varianza de cada dimensión</h3>
       <pre><code># Representar la varianza que explica cada dimensión:
     fviz_eig(pca_genes, addlabels = TRUE, ylim = c(0, 100), barfill = 'white')</code></pre>
@@ -688,7 +688,7 @@ head(genes_tumores)</code></pre>
         <figcaption>Varianza explicada por cada dimensión.</figcaption>
       </figure>
     </section>
-    <section id="cumulative-variance">
+    <section id="varianza_acumulada">
       <h3>4.6 Varianza acumulada en cada dimensión</h3>
       <pre><code># Representar la varianza acumulada por cada dimensión:
     # Código en R pendiente</code></pre>
@@ -718,7 +718,7 @@ head(genes_tumores)</code></pre>
       </figure>
     </section>
     
-    <section id="conclusions">
+    <section id="conclusiones">
       <h3>5. Conclusiones</h3>
       <ol>
         <li>
