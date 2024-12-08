@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis de Componentes Principales</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Análisis de Componentes Principales</h1>
+    <p><strong>Asignatura:</strong> Análisis Multivariante</p>
+    <p><strong>Profesor:</strong> Laura Durán</p>
+    <p><strong>Alumnos:</strong> Steven Allus, Antonio López</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Índice</h2>
+      <ol>
+        <li><a href="#descripcion">Descripción de la actividad</a></li>
+        <li><a href="#definicion">Definición Componentes Principales</a></li>
+        <li><a href="#ejemplo">Ejemplo representación tres variables</a></li>
+        <li>
+          Código R
+          <ol>
+            <li><a href="#instalacion">Instalación librerías, carga de datos y muestra de datos</a></li>
+            <li><a href="#escalado">Escalado variables, reducción de dimensiones</a></li>
+            <li><a href="#eigenvalues">Eigenvalues</a></li>
+            <li><a href="#componentes">Componentes principales Dim1 y Dim2</a></li>
+            <li><a href="#varianza">Varianza de cada dimensión</a></li>
+            <li><a href="#varianza_acumulada">Varianza acumulada en cada dimensión</a></li>
+            <li><a href="#biplot">BIPLOT simultáneo variables e individuos</a></li>
+          </ol>
+        </li>
+        <li><a href="#conclusiones">Conclusiones</a></li>
+      </ol>
+    </section>
+
+    <section id="descripcion">
+      <h2>1. Descripción de la actividad</h2>
+      <p>En esta actividad, exploraremos el Análisis de Componentes Principales (PCA) aplicando técnicas estadísticas en R.</p>
+      <p>La tarea consiste en llevar a cabo un Análisis de Componentes Principales a partir de un estudio en el que se ha medido la expresión de los genes sobre distintos tumores. Los datos están almacenados en el archivo <code>genes_tumores.csv</code> que se puede descargar desde el aula virtual. Esta tabla contiene los valores de expresión de 12 genes medidos en 10 tumores distintos.</p>
+      <p>El objetivo del análisis será averiguar si de los 10 tumores analizados existen algunos con características comunes en cuanto a la expresión de sus genes. Los resultados del análisis deberán representarse en un biplot en el que las variables (genes) se representen como vectores y los individuos (tumores) como puntos.</p>
+      <p>Pueden seguirse los pasos explicados en clase u otros alternativos que conduzcan a las mismas conclusiones.</p>
+      <p>El trabajo es en parejas.</p>
+      <h3>Aspectos formales de las tareas</h3>
+      <p>Hay que entregar un informe con el código en R utilizado, las explicaciones pertinentes para cada paso del análisis y las conclusiones derivadas del análisis. Se recomienda usar RMarkdown.</p>
+    </section>
+
+    <section id="definicion">
+      <h2>2. Definición Componentes Principales</h2>
+      <p>Los Componentes Principales son combinaciones lineales de las variables originales diseñadas para maximizar la varianza explicada.</p>
+      <p>Datos con los que trabajar: Diez tumores con datos de doce genes.</p>
+      <p>Tenemos que reducir las variables de los tumores para representarlas visualmente siempre perdiendo información.</p>
+      <p>A partir de la combinación lineal de las doce variables obtendremos una reducción de estas que nos permitirá representarlas gráficamente.</p>
+      <p>Estas variables representadas gráficamente se llaman Componentes Principales.</p>
+    </section>
+
+    <section id="ejemplo">
+      <h2>3. Ejemplo representación tres variables</h2>
+      <p>Vamos a representar un eje de coordenadas utilizando subconjuntos de datos de los genes. Cada conjunto incluye tres genes, lo que permite una visualización tridimensional intuitiva. Los datos están representados con un gráfico interactivo que muestra cómo se distribuyen las muestras de tumores en función de las combinaciones lineales de los genes. Esta representación facilita observar similitudes o diferencias entre tumores en relación con los genes seleccionados.</p>
+      <div id="chart"></div>
+      <script src="https://cdn.plot.ly/plotly-2.25.2.min.js"></script>
+      <script>
+        // Datos para cada gen (columnas gene1 a gene12)
+        const data = [
+            {
+                x: [0.932319044, 1.061395876, 0.463766249, -1.622899242, -1.103558581, -1.095031844, 0.757300876, 1.007954667, 1.308941656, 1.574287579], // gene1
+                y: [1.211327807, 0.776226026, 1.179395648, -0.777748254, -0.951197128, -0.972204912, 0.917723413, 1.292068318, 1.157967001, 0.97696341], // gene2
+                z: [0.538368631, 0.509846302, 1.1355446, -0.786867909, -0.913169924, -0.950496638, 0.71757885, 1.004331434, 0.975247553, 0.974676741], // gene3
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 6,
+                    color: 'blue',
+                    opacity: 0.8
+                },
+                name: 'Genes 1-3'
+            },
+            {
+                x: [-0.380422396, 0.157478615, 0.154893312, -1.177129373, -1.048497397, -0.826117133, 0.949965307, 1.066075671, 1.073247602, -0.125308826], // gene4
+                y: [-0.599411701, -0.403555111, -0.731930921, -0.300773946, -0.397414855, -0.527855237, 0.671871514, 0.948338141, 1.228097375, -0.514285832], // gene5
+                z: [-0.46955658, -0.509849548, -0.42653172, 0.115912007, -0.354926099, -0.062711555, 1.126863421, 0.948195151, 1.140586293, -0.524533139], // gene6
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 6,
+                    color: 'green',
+                    opacity: 0.8
+                },
+                name: 'Genes 4-6'
+            },
+            {
+                x: [-1.067588212, -1.318833706, -1.030717559, 0.195230244, 0.232309452, -0.048470661, 1.314025865, 0.971824027, 0.697355731, -0.926259757], // gene7
+                y: [-1.236101514, -0.872488324, -1.056341396, 0.156540775, -0.226014821, 0.051248492, 0.877952299, 0.990543222, 1.220541912, -1.098760262], // gene8
+                z: [0.114524646, -0.201786253, -0.274721419, 0.788462202, 1.07592711, 1.37694909, -1.238656638, -0.806720125, -1.245381431, -0.125249397], // gene9
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 6,
+                    color: 'red',
+                    opacity: 0.8
+                },
+                name: 'Genes 7-9'
+            },
+            {
+                x: [0.89758928, 1.521082528, 1.04447944, 0.919499372, 1.115829488, 0.864374748, -0.951702928, -0.966881488, -0.974742348, 0.950384192], // gene10
+                y: [1.46242165, 1.188352815, 0.713272012, 1.061651412, 0.812175942, 0.917515509, -0.991830782, -1.120640941, -1.582603, 1.030751108], // gene11
+                z: [1.125987566, 0.97118434, 0.755050454, 0.917845473, 1.130382829, 0.601926859, -1.281319248, -1.108372113, -0.966936499, 1.268125731], // gene12
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 6,
+                    color: 'purple',
+                    opacity: 0.8
+                },
+                name: 'Genes 10-12'
+            }
+        ];
+
+        // Configuración del gráfico
+        const layout = {
+            title: 'Gráfico 3D interactivo de genes',
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 40
+            },
+            scene: {
+                xaxis: { title: 'Eje X' },
+                yaxis: { title: 'Eje Y' },
+                zaxis: { title: 'Eje Z' }
+            }
+        };
+
+        // Renderizar el gráfico en el div con id 'chart'
+        Plotly.newPlot('chart', data, layout);
+      </script>
+    </section>
+
+    <section id="instalacion">
+      <h2>4. Código R</h2>
+      <h3>4.1 Instalación librerías, carga de datos y muestra de datos</h3>
+      <pre><code># Seleccionar directorio de trabajo:
+setwd("D:/usuaris/a.lopez.g/trabajos/dataScienceCarlemany/analisis_multivariante/semana_03")
+
+# Instalar y cargar paquetes para ejecutar análisis de Componentes Principales:
+if (!require(logisticPCA)) install.packages("logisticPCA")
+if (!require(FactoMineR)) install.packages("FactoMineR")
+if (!require(factoextra)) install.packages("factoextra")
+
+library(logisticPCA)
+library(FactoMineR)
+library(factoextra)
+
+# Instalar y cargar el paquete readxl
+if (!require(readxl)) install.packages("readxl")
+
+# Importar datos desde csv:
+library(readxl)
+genes_tumores <- data.frame(read.csv("genes_tumores.csv"))
+genes_tumores <- genes_tumores[, -1] # Excluir la primera columna
+head(genes_tumores)</code></pre>
+      <p>Muestra resultados:</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>gene1</th>
+              <th>gene2</th>
+              <th>gene3</th>
+              <th>gene4</th>
+              <th>gene5</th>
+              <th>gene6</th>
+              <th>gene7</th>
+              <th>gene8</th>
+              <th>gene9</th>
+              <th>gene10</th>
+              <th>gene11</th>
+              <th>gene12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0.9323190</td>
+              <td>1.2113278</td>
+              <td>0.5383686</td>
+              <td>-0.3804224</td>
+              <td>-0.5994117</td>
+              <td>-0.46955658</td>
+              <td>-1.06758821</td>
+              <td>-1.23610151</td>
+              <td>0.1145246</td>
+              <td>0.8975893</td>
+              <td>1.4624217</td>
+              <td>1.1259876</td>
+            </tr>
+            <tr>
+              <td>1.0613959</td>
+              <td>0.7762260</td>
+              <td>0.5098463</td>
+              <td>0.1574786</td>
+              <td>-0.4035551</td>
+              <td>-0.50984955</td>
+              <td>-1.31883371</td>
+              <td>-0.87248832</td>
+              <td>-0.2017863</td>
+              <td>1.5210825</td>
+              <td>1.1883528</td>
+              <td>0.9711843</td>
+            </tr>
+            <tr>
+              <td>0.4637662</td>
+              <td>1.1793956</td>
+              <td>1.1355446</td>
+              <td>0.1548933</td>
+              <td>-0.7319309</td>
+              <td>-0.42653172</td>
+              <td>-1.03071756</td>
+              <td>-1.05634140</td>
+              <td>-0.2747214</td>
+              <td>1.0444794</td>
+              <td>0.7132720</td>
+              <td>0.7550505</td>
+            </tr>
+            <tr>
+              <td>-1.6228992</td>
+              <td>-0.7777483</td>
+              <td>-0.7868679</td>
+              <td>-1.1771294</td>
+              <td>-0.3007739</td>
+              <td>0.11591201</td>
+              <td>0.19523024</td>
+              <td>0.15654077</td>
+              <td>0.7884622</td>
+              <td>0.9194994</td>
+              <td>1.0616514</td>
+              <td>0.9178455</td>
+            </tr>
+            <tr>
+              <td>-1.1035586</td>
+              <td>-0.9511971</td>
+              <td>-0.9131699</td>
+              <td>-1.0484974</td>
+              <td>-0.3974149</td>
+              <td>-0.35492610</td>
+              <td>0.23230945</td>
+              <td>-0.22601482</td>
+              <td>1.0759271</td>
+              <td>1.1158295</td>
+              <td>0.8121759</td>
+              <td>1.1303828</td>
+            </tr>
+            <tr>
+              <td>-1.0950318</td>
+              <td>-0.9722049</td>
+              <td>-0.9504966</td>
+              <td>-0.8261171</td>
+              <td>-0.5278552</td>
+              <td>-0.06271155</td>
+              <td>-0.04847066</td>
+              <td>0.05124849</td>
+              <td>1.3769491</td>
+              <td>0.8643747</td>
+              <td>0.9175155</td>
+              <td>0.6019269</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <section id="escalado">
+        <h3>4.2 Escalado variables, reducción de dimensiones</h3>
+        <p>Este código escala todas las variables para conseguir las componentes principales y nos muestra un gráfico.</p>
+        <p>El escalado (normalización) asegura que todas las variables tengan la misma importancia en el análisis, independientemente de sus unidades o magnitudes. Esto se hace transformando cada variable para que tenga una media de 0 y una desviación estándar de 1.</p>
+        <p>Sin el escalado, las variables con valores más grandes (como pesos en kilogramos) dominarían a las variables con valores más pequeños (como proporciones o porcentajes).</p>
+        <p>Las componentes principales son combinaciones lineales de las variables originales, y el escalado garantiza que estas combinaciones no estén sesgadas por las escalas originales de las variables. Esto permite que el análisis se enfoque únicamente en las relaciones entre las variables y no en sus magnitudes.</p>
+        <pre><code># PCA -> datos escalados, con plot:
+      
+      pca_genes <- PCA(genes_tumores, scale.unit = T, graph = T)</code></pre>
+        <p>Resultados:</p>
+        <figure>
+          <img src="img/pca_coronaria.png" alt="Gráfico PCA de genes">
+          <figcaption>Gráfico de PCA mostrando la reducción de dimensiones.</figcaption>
+        </figure>
+        <h4>Conclusiones:</h4>
+        <ul>
+          <li>Dim 1 (PC1): Explica el 68.19% de la varianza.</li>
+          <li>Dim 2 (PC2): Explica el 28.26% de la varianza.</li>
+          <li>Componentes principales = 96.45% de la varianza total.</li>
+        </ul>
+        <p>Esto significa que los dos primeros componentes principales explican el 96.45% de la información contenida en los datos originales.</p>
+      </section>
+
+    <!-- Agregar subsecciones restantes de 4.3 a 4.7 aquí con el mismo formato -->
+
+    
+
+    <section id="eigenvalues">
+      <h3>4.3 Eigenvalues</h3>
+      <p>Ordena las dimensiones de mayor a menor valor de eigenvalue.</p>
+      <p><strong>Eigenvalues o valores propios:</strong> mide la cantidad de varianza explicada por esa componente.</p>
+      <pre><code># str(pca_coronaria) para ver la estructura del objeto
+    summary(pca_genes)</code></pre>
+      <p>Resultados:</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Dim.1</th>
+              <th>Dim.2</th>
+              <th>Dim.3</th>
+              <th>Dim.4</th>
+              <th>Dim.5</th>
+              <th>Dim.6</th>
+              <th>Dim.7</th>
+              <th>Dim.8</th>
+              <th>Dim.9</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Variance</td>
+              <td>8.183</td>
+              <td>3.391</td>
+              <td>0.132</td>
+              <td>0.095</td>
+              <td>0.070</td>
+              <td>0.053</td>
+              <td>0.050</td>
+              <td>0.017</td>
+              <td>0.009</td>
+            </tr>
+            <tr>
+              <td>% of var.</td>
+              <td>68.191</td>
+              <td>28.260</td>
+              <td>1.098</td>
+              <td>0.789</td>
+              <td>0.579</td>
+              <td>0.443</td>
+              <td>0.417</td>
+              <td>0.144</td>
+              <td>0.079</td>
+            </tr>
+            <tr>
+              <td>Cumulative % of var.</td>
+              <td>68.191</td>
+              <td>96.451</td>
+              <td>97.549</td>
+              <td>98.338</td>
+              <td>98.918</td>
+              <td>99.361</td>
+              <td>99.778</td>
+              <td>99.921</td>
+              <td>100.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="eigenvalues-results">
+      <h4>Individuals</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Dist</th>
+              <th>Dim.1</th>
+              <th>ctr</th>
+              <th>cos2</th>
+              <th>Dim.2</th>
+              <th>ctr</th>
+              <th>cos2</th>
+              <th>Dim.3</th>
+              <th>ctr</th>
+              <th>cos2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2.713</td>
+              <td>-1.819</td>
+              <td>4.043</td>
+              <td>0.450</td>
+              <td>1.903</td>
+              <td>10.682</td>
+              <td>0.492</td>
+              <td>-0.141</td>
+              <td>1.513</td>
+              <td>0.003</td>
+            </tr>
+            <tr>
+              <td>2.594</td>
+              <td>-1.543</td>
+              <td>2.910</td>
+              <td>0.354</td>
+              <td>1.928</td>
+              <td>10.962</td>
+              <td>0.552</td>
+              <td>0.485</td>
+              <td>17.858</td>
+              <td>0.035</td>
+            </tr>
+            <tr>
+              <td>2.494</td>
+              <td>-1.071</td>
+              <td>1.401</td>
+              <td>0.184</td>
+              <td>2.085</td>
+              <td>12.822</td>
+              <td>0.699</td>
+              <td>-0.654</td>
+              <td>32.420</td>
+              <td>0.069</td>
+            </tr>
+            <tr>
+              <td>3.363</td>
+              <td>-2.178</td>
+              <td>5.798</td>
+              <td>0.419</td>
+              <td>-2.485</td>
+              <td>18.207</td>
+              <td>0.546</td>
+              <td>-0.220</td>
+              <td>3.678</td>
+              <td>0.004</td>
+            </tr>
+            <tr>
+              <td>3.464</td>
+              <td>-2.656</td>
+              <td>8.622</td>
+              <td>0.588</td>
+              <td>-2.160</td>
+              <td>13.763</td>
+              <td>0.389</td>
+              <td>0.186</td>
+              <td>2.614</td>
+              <td>0.003</td>
+            </tr>
+            <tr>
+              <td>3.391</td>
+              <td>-2.363</td>
+              <td>6.824</td>
+              <td>0.486</td>
+              <td>-2.352</td>
+              <td>16.316</td>
+              <td>0.481</td>
+              <td>0.096</td>
+              <td>0.694</td>
+              <td>0.001</td>
+            </tr>
+            <tr>
+              <td>4.218</td>
+              <td>4.100</td>
+              <td>20.541</td>
+              <td>0.945</td>
+              <td>-0.717</td>
+              <td>1.518</td>
+              <td>0.029</td>
+              <td>-0.470</td>
+              <td>16.784</td>
+              <td>0.012</td>
+            </tr>
+            <tr>
+              <td>4.199</td>
+              <td>4.168</td>
+              <td>21.230</td>
+              <td>0.985</td>
+              <td>-0.271</td>
+              <td>0.216</td>
+              <td>0.004</td>
+              <td>-0.032</td>
+              <td>0.079</td>
+              <td>0.000</td>
+            </tr>
+            <tr>
+              <td>4.711</td>
+              <td>4.662</td>
+              <td>26.566</td>
+              <td>0.980</td>
+              <td>-0.215</td>
+              <td>0.136</td>
+              <td>0.002</td>
+              <td>0.515</td>
+              <td>20.123</td>
+              <td>0.012</td>
+            </tr>
+            <tr>
+              <td>2.697</td>
+              <td>-1.300</td>
+              <td>2.065</td>
+              <td>0.232</td>
+              <td>2.284</td>
+              <td>15.377</td>
+              <td>0.717</td>
+              <td>0.236</td>
+              <td>4.238</td>
+              <td>0.008</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="table-wrapper">
+        <h4>Variables (the 10 first)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Dim.1</th>
+              <th>ctr</th>
+              <th>cos2</th>
+              <th>Dim.2</th>
+              <th>ctr</th>
+              <th>cos2</th>
+              <th>Dim.3</th>
+              <th>ctr</th>
+              <th>cos2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>gene1</td>
+              <td>0.530</td>
+              <td>3.434</td>
+              <td>0.281</td>
+              <td>0.808</td>
+              <td>19.260</td>
+              <td>0.653</td>
+              <td>0.198</td>
+              <td>29.684</td>
+              <td>0.039</td>
+            </tr>
+            <tr>
+              <td>gene2</td>
+              <td>0.577</td>
+              <td>4.066</td>
+              <td>0.333</td>
+              <td>0.800</td>
+              <td>18.876</td>
+              <td>0.640</td>
+              <td>-0.093</td>
+              <td>6.571</td>
+              <td>0.009</td>
+            </tr>
+            <tr>
+              <td>gene3</td>
+              <td>0.595</td>
+              <td>4.321</td>
+              <td>0.354</td>
+              <td>0.787</td>
+              <td>18.268</td>
+              <td>0.620</td>
+              <td>-0.100</td>
+              <td>7.620</td>
+              <td>0.010</td>
+            </tr>
+            <tr>
+              <td>gene4</td>
+              <td>0.910</td>
+              <td>10.117</td>
+              <td>0.828</td>
+              <td>0.372</td>
+              <td>4.079</td>
+              <td>0.138</td>
+              <td>0.019</td>
+              <td>0.279</td>
+              <td>0.000</td>
+            </tr>
+            <tr>
+              <td>gene5</td>
+              <td>0.949</td>
+              <td>11.014</td>
+              <td>0.901</td>
+              <td>-0.220</td>
+              <td>1.433</td>
+              <td>0.049</td>
+              <td>0.191</td>
+              <td>27.663</td>
+              <td>0.036</td>
+            </tr>
+            <tr>
+              <td>gene6</td>
+              <td>0.917</td>
+              <td>10.278</td>
+              <td>0.841</td>
+              <td>-0.378</td>
+              <td>4.217</td>
+              <td>0.143</td>
+              <td>-0.040</td>
+              <td>1.211</td>
+              <td>0.002</td>
+            </tr>
+            <tr>
+              <td>gene7</td>
+              <td>0.707</td>
+              <td>6.114</td>
+              <td>0.500</td>
+              <td>-0.674</td>
+              <td>13.390</td>
+              <td>0.454</td>
+              <td>-0.102</td>
+              <td>7.833</td>
+              <td>0.010</td>
+            </tr>
+            <tr>
+              <td>gene8</td>
+              <td>0.781</td>
+              <td>7.449</td>
+              <td>0.610</td>
+              <td>-0.611</td>
+              <td>11.002</td>
+              <td>0.373</td>
+              <td>0.092</td>
+              <td>6.401</td>
+              <td>0.008</td>
+            </tr>
+            <tr>
+              <td>gene9</td>
+              <td>-0.867</td>
+              <td>9.185</td>
+              <td>0.752</td>
+              <td>-0.449</td>
+              <td>5.952</td>
+              <td>0.202</td>
+              <td>0.051</td>
+              <td>1.980</td>
+              <td>0.003</td>
+            </tr>
+            <tr>
+              <td>gene10</td>
+              <td>-0.963</td>
+              <td>11.328</td>
+              <td>0.927</td>
+              <td>0.198</td>
+              <td>1.154</td>
+              <td>0.039</td>
+              <td>0.064</td>
+              <td>3.090</td>
+              <td>0.004</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="components">
+      <h3>4.4 Componentes principales Dim1 Dim2</h3>
+      <pre><code>plot(
+    pca_genes$ind$coord[, 1], # Coordenadas en Dim1
+      pca_genes$ind$coord[, 2], # Coordenadas en Dim2
+      xlab = paste0("Dim 1 (", round(pca_genes$eig[1, 2], 2), "% varianza)"), 
+      ylab = paste0("Dim 2 (", round(pca_genes$eig[2, 2], 2), "% varianza)"), 
+      main = "Proyección en Dim1 y Dim2", # Título del gráfico
+      pch = 19, # Tipo de punto
+      col = "blue", # Color de los puntos
+      xlim = c(min(pca_genes$ind$coord[, 1]) - 1, max(pca_genes$ind$coord[, 1]) + 1), 
+      ylim = c(min(pca_genes$ind$coord[, 2]) - 1, max(pca_genes$ind$coord[, 2]) + 1)  )
+    
+    # Eje coordenadas
+    abline(h = 0, v = 0, col = "black", lty = 2) 
+    
+    # Etiquetas 
+    text(
+      pca_genes$ind$coord[, 1],
+      pca_genes$ind$coord[, 2],
+      labels = rownames(pca_genes$ind$coord),
+      pos = 4, # Posición del texto
+      cex = 0.7 # Tamaño del texto
+    )</code></pre>
+      <p>Resultados:</p>
+      <figure>
+        <img src="img/graf_comp_prin.PNG" alt="Gráfico de Componentes principales">
+        <figcaption>Proyección de los datos en Dim1 y Dim2.</figcaption>
+      </figure>
+    </section>
+    <section id="variance">
+      <h3>4.5 Varianza de cada dimensión</h3>
+      <pre><code># Representar la varianza que explica cada dimensión:
+    fviz_eig(pca_genes, addlabels = TRUE, ylim = c(0, 100), barfill = 'white')</code></pre>
+      <p>Resultados:</p>
+      <figure>
+        <img src="img/graf_column.PNG" alt="Gráfico de varianza por dimensión">
+        <figcaption>Varianza explicada por cada dimensión.</figcaption>
+      </figure>
+    </section>
+    <section id="cumulative-variance">
+      <h3>4.6 Varianza acumulada en cada dimensión</h3>
+      <pre><code># Representar la varianza acumulada por cada dimensión:
+    # Código en R pendiente</code></pre>
+      <p>Resultados:</p>
+      <figure>
+        <img src="img/graf_acumula.PNG" alt="Gráfico de varianza acumulada por dimensión">
+        <figcaption>Varianza acumulada explicada.</figcaption>
+      </figure>
+    </section>
+    
+    <section id="biplot">
+      <h3>4.7 BIPLOT simultáneo variables, individuos</h3>
+      <pre><code># Generar biplot simultáneo variables, individuos
+    fviz_pca_biplot(
+      pca_genes,
+      repel = TRUE, # Evitar la superposición de etiquetas
+      col.var = "blue", # Flechas de variables en azul
+      col.ind = "black", # Puntos de individuos en negro
+      arrowsize = 0.7, # Tamaño de las flechas
+      pointsize = 2, # Tamaño de los puntos
+      title = "Biplot: Variables e Individuos"
+    )</code></pre>
+      <p>Resultados:</p>
+      <figure>
+        <img src="img/biplot_var_ind.PNG" alt="Biplot variables e individuos">
+        <figcaption>Biplot mostrando simultáneamente variables e individuos.</figcaption>
+      </figure>
+    </section>
+    
+    <section id="conclusions">
+      <h3>5. Conclusiones</h3>
+      <ol>
+        <li>
+          <strong>Interpretación de los genes en las componentes principales:</strong>
+          <ul>
+            <li><strong>En Dim1 (PC1), los genes con mayor contribución son:</strong></li>
+            <ul>
+              <li><strong>gene10 (-0.963):</strong> Este gen contribuye significativamente a la explicación de la varianza en la primera dimensión, con una dirección opuesta a otros genes con contribución positiva.</li>
+              <li><strong>gene5 (0.949):</strong> Su alta contribución positiva sugiere una fuerte relación con el primer eje, siendo clave para diferenciar tumores en esta dimensión.</li>
+            </ul>
+            <li><strong>En Dim2 (PC2), los genes destacados son:</strong></li>
+            <ul>
+              <li><strong>gene1 (0.808):</strong> Su alta contribución indica que este gen tiene una influencia importante en el segundo patrón observado.</li>
+              <li><strong>gene3 (0.787):</strong> Similar al gene1, su impacto en PC2 lo hace relevante para identificar subgrupos de tumores.</li>
+            </ul>
+          </ul>
+        </li>
+        <li>
+          <strong>Análisis de los tumores en el biplot:</strong>
+          <ul>
+            <li><strong>Tumores agrupados:</strong></li>
+            <ul>
+              <li><strong>tumorG (PC1=4.100, PC2=0.717), tumorH (PC1=4.168, PC2=0.271), y tumorI (PC1=4.662, PC2=0.214):</strong> tienen posiciones cercanas en el espacio de las componentes, lo que indica similitudes significativas en su perfil genético.</li>
+            </ul>
+            <li><strong>Tumores atípicos:</strong></li>
+            <ul>
+              <li><strong>tumorD (PC1=-2.178, PC2=2.485) y tumorE (PC1=-2.656, PC2=2.160):</strong> se posicionan lejos de los demás, sugiriendo características únicas o perfiles genéticos diferenciados.</li>
+            </ul>
+          </ul>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Análisis de Componentes Principales - Trabajo de Análisis Multivariante.</p>
+  </footer>
+</body>
+
+</html>
