@@ -1,0 +1,102 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+/* Datos de la actividad */
+.datos-actividad {
+  margin-bottom: 20px;
+}
+.datos-actividad p {
+  margin: 0 0 5px;
+}
+
+/* Índice y botón */
+.indice {
+  margin-bottom: 20px;
+}
+.indice h2 {
+  display: inline-block;
+  margin: 0;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Botón para mostrar/ocultar el índice */
+.btn-toggle {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.btn-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de ejercicios (oculta al inicio) */
+#listaEjercicios {
+  list-style-type: none; 
+  margin-top: 10px;
+  padding-left: 0;
+  display: none;
+}
+#listaEjercicios li {
+  margin: 5px 0;
+}
+#listaEjercicios li a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+#listaEjercicios li a:hover {
+  text-decoration: underline;
+}
+
+/* Texto del ejercicio */
+.texto-ejercicio {
+  margin-top: 30px;
+}
+.texto-ejercicio p {
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+/* Secciones de respuesta */
+.respuesta {
+  margin-top: 40px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* ========================= */
+/*       MEDIA QUERIES       */
+/* ========================= */
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
+
+  /* El título y el botón ocupan un espacio vertical en móvil */
+  .indice h2,
+  .btn-toggle {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .btn-toggle {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  /* Margen entre items de la lista un poco mayor en móvil */
+  #listaEjercicios li {
+    margin: 10px 0;
+  }
+}
