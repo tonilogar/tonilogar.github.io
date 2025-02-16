@@ -200,7 +200,7 @@
   <div id="respuesta_03" class="respuesta">
     <h3>3 - ¿Cómo se representaría textualmente, siguiendo el modelo R(A1, A2,..)?</h3>
     <p>
-      Representación textual <strong>PERSONAS</strong>,donde la clave primaria se subraya::
+      Representación textual <strong>PERSONAS</strong>,donde la clave primaria se subraya:
     </p>
     <em>PERSONAS(<u>DNI</u>, Nombre, Apellidos, Planta, Piso, Mote)</em>
 
@@ -209,46 +209,35 @@
   <div id="respuesta_04" class="respuesta">
     <h3>4 - ¿Qué tipo de dato es cada atributo? Justifica tus elecciones.</h3>
     <p>
-      <strong>DNI:</strong> Utilizaremos <code>CHAR(9)</code> porque el formato del DNI es siempre el mismo (8
-      dígitos y una letra).
+      <strong>DNI:</strong> Utilizaremos <strong><code>VARCHAR(10)</code></strong> permite almacenar DNIs (9 caracteres) y NIEs (hasta 10 caracteres).
     </p>
 
     <p>
-      <strong>Nombre:</strong> Se utiliza <code>VARCHAR(50)</code> porque es una cadena de caracteres variable y,
+      <strong>Nombre:</strong> Se utiliza <strong><code>VARCHAR(50)</code></strong>porque es una cadena de caracteres variable y,
       generalmente, los nombres no exceden esta longitud.
     </p>
     <p>
-      <strong>Apellidos:</strong> Se define como <code>VARCHAR(100)</code> para permitir almacenar apellidos compuestos
+      <strong>Apellidos:</strong> Se define como <strong><code>VARCHAR(100)</code></strong> para permitir almacenar apellidos compuestos
       o de mayor longitud, garantizando suficiente espacio.
     </p>
     <p>
-      <strong>Planta:</strong> Se utiliza <code>INTEGER</code> ya que representa el número del piso en el edificio. (Si
-      se considerase la posibilidad de plantas no numéricas, se podría optar por un tipo de cadena, pero en este
-      ejercicio se asume numérico).
+      <strong>Planta:</strong> Se utiliza <code><strong>SMALLINT o TINYINT</strong> (para Microsoft SQL server)</code>permite hasta 32.767 plantas.</p> <p>No admite nulls. 
+      Si pudiera <strong><code>TINYINT</code></strong> la ventaja es que ocupa 1 byte en lugar de 2 <strong><code>(SMALLINT)</code></strong> o 4 <strong><code>(INT)</code></strong>, optimizando almacenamiento.</p> <p>Sería suficiente para edificios de hasta 127 plantas.
     </p>
     <p>
-      <strong>Piso:</strong> Se define también como <code>INTEGER</code>, pues identifica el número de la puerta o
-      apartamento en dicho piso.
+      <strong>Piso:</strong> <strong><code>VARCHAR(4)</code></strong>, Puede contener números y letras (Ej: “3A”, “10B”).
+    <strong><code>VARCHAR(4)</code></strong> es más flexible que <strong><code>TINYINT</code></strong> o <strong><code>SMALLINT</code></strong>.
     </p>
     <p>
-      <strong>Mote:</strong> Se utiliza <code>VARCHAR(30)</code> al ser un apodo, que normalmente es una cadena corta y
-      de longitud variable.
+      <strong>Mote:</strong> Se utiliza <strong><code>VARCHAR(50)</code></strong> permite nombres largos sin desperdiciar demasiado espacio.
+      Se permite NULL, ya que no todos los vecinos tienen mote.
     </p>
   </div>
 
 
   <div id="respuesta_05" class="respuesta">
     <h3>5 - Haz una sentencia SQL para crear la tabla en PostgreSQL.</h3>
-    <pre>
-    CREATE TABLE PERSONAS (
-      DNI CHAR(9) PRIMARY KEY,
-      Nombre VARCHAR(50) NOT NULL,
-      Apellidos VARCHAR(100) NOT NULL,
-      Planta INTEGER NOT NULL,
-      Piso INTEGER NOT NULL,
-      Mote VARCHAR(30)
-  );
-    </pre>
+    <img src="img/ask_05.jpg" alt="Insert personas">
   </div>
 
   <div id="respuesta_06" class="respuesta">
@@ -274,7 +263,7 @@
       Se pueden agregar las columnas <code>Ocupacion</code> y <code>Sexo</code> a la tabla <strong>PERSONAS</strong>
       utilizando las siguientes sentencias SQL:
     </p>
-    <img src="img/ask_09.jpg" alt="ALTER TABLE ">
+    <img src="img/ask_08.jpg" alt="ALTER TABLE ">
   </div>
   
 
