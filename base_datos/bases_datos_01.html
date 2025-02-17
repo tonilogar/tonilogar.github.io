@@ -17,7 +17,7 @@
     <p><strong>Asignatura:</strong> Bases de datos I. Primera entrega base de datos 01</p>
     <p><strong>Docente:</strong> Carlos García Calatraba</p>
     <p><strong>Alumnos:</strong> Steven Louis Allus, Antonio López García</p>
-    <p><strong>Universidad:</strong> Carlemant Bachelor de Ciencia de Datos</p>
+    <p><strong>Universidad:</strong> Carlemany Bachelor de Ciencia de Datos</p>
   </div>
 
   <!-- Contenedor del índice -->
@@ -56,7 +56,7 @@
       <li><a href="#respuesta_19">19 - ¿Qué sentencias SQL permiten borrar las tablas creadas?</a></li>
       <li><a href="#respuesta_20">20 - Reflexión final: ¿Qué opinas de las últimas palabras de Juan Cuesta?</a></li>
       <li><a href="#respuesta_reflexion1">REFLEXIÓN Y COMPROBACIÓN 1</a></li>
-      respuesta_reflexion1
+      <li><a href="#respuesta_reflexion2">REFLEXIÓN Y COMPROBACIÓN 2</a></li>
     </ul>
   </div>
 
@@ -209,8 +209,8 @@
     <p><strong>R(ID, Nombre, Edad, Ciudad)</strong></p>
     <p>Donde:</p>
     <ul>
-        <li>R es el nombre de la relación (la tabla).</li>
-        <li>(ID, Nombre, Edad, Ciudad) son los atributos de la relación.</li>
+      <li>R es el nombre de la relación (la tabla).</li>
+      <li>(ID, Nombre, Edad, Ciudad) son los atributos de la relación.</li>
     </ul>
     <p>Si ID es la clave primaria, se puede denotar como:</p>
     <p><em>R(ID, Nombre, Edad, Ciudad)*</em> (donde ID* indica la clave primaria).</p>
@@ -219,7 +219,8 @@
   <div id="respuesta_04" class="respuesta">
     <h3>4 - ¿Qué tipo de dato es cada atributo? Justifica tus elecciones.</h3>
     <p>
-      <strong>DNI_NIE:</strong> Utilizaremos <strong><code>VARCHAR(10)</code></strong> permite almacenar DNIs (9 caracteres)
+      <strong>DNI_NIE:</strong> Utilizaremos <strong><code>VARCHAR(10)</code></strong> permite almacenar DNIs (9
+      caracteres)
       y NIEs (hasta 10 caracteres).
     </p>
 
@@ -239,7 +240,8 @@
     </p>
     <p>No admite nulls.
       Si pudiera <strong><code>TINYINT</code></strong> la ventaja es que ocupa 1 byte en lugar de 2
-      <strong><code>(SMALLINT)</code></strong> o 4 <strong><code>(INT)</code></strong>, optimizando almacenamiento.</p>
+      <strong><code>(SMALLINT)</code></strong> o 4 <strong><code>(INT)</code></strong>, optimizando almacenamiento.
+    </p>
     <p>Sería suficiente para edificios de hasta 127 plantas.
     </p>
     <p>
@@ -304,8 +306,8 @@
   <div id="respuesta_13" class="respuesta">
     <h3>13 - Genera las sentencias CREATE TABLE (PERSONAS_NORM y VIVIENDAS) y relaciónalas con una FK.</h3>
     <div><img src="img/ask_13.jpg" alt="M_cuadrados "></div>
-  <div><img src="img/ask_13_01.jpg" alt="M_cuadrados "></div>
-<div><img src="img/ask_13_02.jpg" alt="M_cuadrados "></div>
+    <div><img src="img/ask_13_01.jpg" alt="M_cuadrados "></div>
+    <div><img src="img/ask_13_02.jpg" alt="M_cuadrados "></div>
   </div>
 
   <div id="respuesta_14" class="respuesta">
@@ -321,7 +323,9 @@
   <div id="respuesta_16" class="respuesta">
     <h3>16 - ¿Qué hacer con la tabla VIVIENDAS al quedar casi vacía? Explica pros/contras.</h3>
     <p>
-      Dado que los datos necesarios a añadir a la vivienda podrían cambiar en el futuro, la mejor opción es mantener la tabla <strong>VIVIENDAS</strong> y conservar la relación con <strong>PERSONAS_NORM</strong>. Aunque en este momento VIVIENDAS solo tiene Planta y Piso, es posible que en el futuro se necesite agregar atributos como:
+      Dado que los datos necesarios a añadir a la vivienda podrían cambiar en el futuro, la mejor opción es mantener la
+      tabla <strong>VIVIENDAS</strong> y conservar la relación con <strong>PERSONAS_NORM</strong>. Aunque en este
+      momento VIVIENDAS solo tiene Planta y Piso, es posible que en el futuro se necesite agregar atributos como:
     </p>
     <ul>
       <li>M2 nuevamente (si se decide cobrar cuotas por tamaño).</li>
@@ -330,35 +334,50 @@
     </ul>
     <p><strong>Pros de Mantener VIVIENDAS</strong></p>
     <ol>
-      <li><strong>Escalabilidad</strong> → Permite agregar información de cada vivienda sin afectar la estructura de PERSONAS_NORM.</li>
-      <li><strong>Integridad de Datos</strong> → Evita inconsistencias en Planta y Piso si varias personas viven en el mismo lugar.</li>
-      <li><strong>Optimización de almacenamiento</strong> → Evita repetir datos en cada persona (si se agregan atributos como m², solo se almacena una vez por vivienda).</li>
+      <li><strong>Escalabilidad</strong> → Permite agregar información de cada vivienda sin afectar la estructura de
+        PERSONAS_NORM.</li>
+      <li><strong>Integridad de Datos</strong> → Evita inconsistencias en Planta y Piso si varias personas viven en el
+        mismo lugar.</li>
+      <li><strong>Optimización de almacenamiento</strong> → Evita repetir datos en cada persona (si se agregan atributos
+        como m², solo se almacena una vez por vivienda).</li>
     </ol>
     <p><strong>Contras de Mantener VIVIENDAS</strong></p>
     <ol>
-      <li><strong>Complejidad en consultas</strong> → Se requiere JOIN para obtener información completa de personas y viviendas.</li>
-      <li><strong>Espacio en disco “desperdiciado” temporalmente</strong> → Ahora VIVIENDAS parece innecesaria, pero es una inversión a futuro.</li>
-      <li><strong>Mayor esfuerzo inicial</strong> → La estructura es más robusta, pero implica más gestión en inserciones y modificaciones.</li>
+      <li><strong>Complejidad en consultas</strong> → Se requiere JOIN para obtener información completa de personas y
+        viviendas.</li>
+      <li><strong>Espacio en disco “desperdiciado” temporalmente</strong> → Ahora VIVIENDAS parece innecesaria, pero es
+        una inversión a futuro.</li>
+      <li><strong>Mayor esfuerzo inicial</strong> → La estructura es más robusta, pero implica más gestión en
+        inserciones y modificaciones.</li>
     </ol>
     <p><strong>Conclusión:</strong></p>
     <p>
-      Juan debería mantener la tabla <strong>VIVIENDAS</strong>, aunque ahora parezca innecesaria. Dado que es una comunidad “impredecible”, en el futuro podrían necesitarse atributos adicionales por vivienda, como m2, habitaciones, baños, etc. Además, desde un enfoque de arquitectura de datos y modelado dimensional, eliminar la tabla VIVIENDAS y poner m2 en PERSONAS_NORM es una mala práctica, ya que rompe varios principios fundamentales en el diseño de bases de datos escalables y analíticas.
+      Juan debería mantener la tabla <strong>VIVIENDAS</strong>, aunque ahora parezca innecesaria. Dado que es una
+      comunidad “impredecible”, en el futuro podrían necesitarse atributos adicionales por vivienda, como m2,
+      habitaciones, baños, etc. Además, desde un enfoque de arquitectura de datos y modelado dimensional, eliminar la
+      tabla VIVIENDAS y poner m2 en PERSONAS_NORM es una mala práctica, ya que rompe varios principios fundamentales en
+      el diseño de bases de datos escalables y analíticas.
     </p>
     <p>
-      En un entorno analítico o de Data Warehouse, los datos de las viviendas pueden cambiar con el tiempo (reformas que aumentan m2 o agregan habitaciones). Si m2 estuviera en PERSONAS_NORM, cada cambio en los datos de la vivienda obligaría a actualizar múltiples filas, lo que:
+      En un entorno analítico o de Data Warehouse, los datos de las viviendas pueden cambiar con el tiempo (reformas que
+      aumentan m2 o agregan habitaciones). Si m2 estuviera en PERSONAS_NORM, cada cambio en los datos de la vivienda
+      obligaría a actualizar múltiples filas, lo que:
     </p>
     <ul>
       <li>Rompe la trazabilidad histórica si queremos ver cómo evolucionó la vivienda con el tiempo.</li>
       <li>Una vivienda en alquiler puede cambiar de personas varias veces al año.</li>
     </ul>
   </div>
-  
+
 
   <div id="respuesta_17" class="respuesta">
     <h3>17 - Dibuja el diseño de PERSONA y subclases (Portero, Alquilado, Propietario)</h3>
     <img src="img/ask_17.jpg" alt="Esquema herencia">
     <p>
-      Juan está enfrentando un caso clásico de herencia o especialización en bases de datos relacionales. Esto se llama <strong>Modelo de Herencia o Especialización</strong> (ISA Relationship en modelos E-R), donde una entidad padre (<strong>PERSONAS_NORM</strong>) comparte atributos con varias entidades hijas (<strong>PORTERO</strong>, <strong>ALQUILADO</strong> y <strong>PROPIETARIO</strong>).
+      Juan está enfrentando un caso clásico de herencia o especialización en bases de datos relacionales. Esto se llama
+      <strong>Modelo de Herencia o Especialización</strong> (ISA Relationship en modelos E-R), donde una entidad padre
+      (<strong>PERSONAS_NORM</strong>) comparte atributos con varias entidades hijas (<strong>PORTERO</strong>,
+      <strong>ALQUILADO</strong> y <strong>PROPIETARIO</strong>).
     </p>
     <p><strong>La solución:</strong></p>
     <ul>
@@ -368,26 +387,30 @@
     <p><strong>Explicación del diseño:</strong></p>
     <ul>
       <li><strong>PERSONAS_NORM</strong> es la tabla base donde se almacenan todas las personas.</li>
-      <li>Se introduce un campo <strong>Tipo</strong> para indicar si una persona es Portero, Alquilado o Propietario.</li>
-      <li>Cada subclase (<strong>PORTERO</strong>, <strong>ALQUILADO</strong>, <strong>PROPIETARIO</strong>) tiene atributos específicos, referenciando <code>DNI_NIE</code> como clave foránea.</li>
-      <li>José María se queda en <strong>PERSONAS_NORM</strong>, pero su campo <strong>Tipo</strong> será <code>NULL</code>, ya que no pertenece a ninguna especialización.</li>
+      <li>Se introduce un campo <strong>Tipo</strong> para indicar si una persona es Portero, Alquilado o Propietario.
+      </li>
+      <li>Cada subclase (<strong>PORTERO</strong>, <strong>ALQUILADO</strong>, <strong>PROPIETARIO</strong>) tiene
+        atributos específicos, referenciando <code>DNI_NIE</code> como clave foránea.</li>
+      <li>José María se queda en <strong>PERSONAS_NORM</strong>, pero su campo <strong>Tipo</strong> será
+        <code>NULL</code>, ya que no pertenece a ninguna especialización.
+      </li>
     </ul>
     <p><strong>Implementación en SQL:</strong></p>
     <img src="img/ask_17_01.jpg" alt="Implementación en SQL">
   </div>
-  
+
 
   <div id="respuesta_18" class="respuesta">
     <h3>18 - ¿Dónde representamos a José María, que no encaja en las subclases?</h3>
     <p>
-      José María no encaja en ninguna de las especializaciones (PORTERO, ALQUILADO, PROPIETARIO), 
-      pero sí es una persona que interactúa con el edificio. Por lo tanto, debe permanecer en 
-      <strong>PERSONAS_NORM</strong> sin asociarse a ninguna subclase. 
-      Si en algún momento se descubre que José María tiene un rol específico en la comunidad, 
+      José María no encaja en ninguna de las especializaciones (PORTERO, ALQUILADO, PROPIETARIO),
+      pero sí es una persona que interactúa con el edificio. Por lo tanto, debe permanecer en
+      <strong>PERSONAS_NORM</strong> sin asociarse a ninguna subclase.
+      Si en algún momento se descubre que José María tiene un rol específico en la comunidad,
       simplemente se actualiza su <code>Tipo</code> y se añade a la subtabla correspondiente.
     </p>
   </div>
-  
+
   <div id="respuesta_19" class="respuesta">
     <h3>19 - ¿Qué sentencias SQL permiten borrar las tablas creadas?</h3>
     <img src="img/ask_19.jpg" alt="Borrar clases">
@@ -396,29 +419,36 @@
   <div id="respuesta_20" class="respuesta">
     <h3>20 - Reflexión final: ¿Qué opinas de las últimas palabras de Juan Cuesta?</h3>
     <p>
-      La reflexión de Juan es acertada, pero también consideraría, según mi experiencia profesional <strong>(Steven)</strong>, que el diseño previo es crucial, 
+      La reflexión de Juan es acertada, pero también consideraría, según mi experiencia profesional
+      <strong>(Steven)</strong>, que el diseño previo es crucial,
       pero la flexibilidad y la iteración también son esenciales.
     </p>
     <p>
-      Es cierto que tener un diseño sólido desde el principio (fase de modelado conceptual y lógico) ayuda a evitar problemas. 
-      En ingeniería de software, el análisis y diseño previos (ej. diagramas E-R, normalización, especificación de requisitos) son cruciales 
+      Es cierto que tener un diseño sólido desde el principio (fase de modelado conceptual y lógico) ayuda a evitar
+      problemas.
+      En ingeniería de software, el análisis y diseño previos (ej. diagramas E-R, normalización, especificación de
+      requisitos) son cruciales
       para reducir retrabajos.
     </p>
     <p>
-      Modelos flexibles escalan mejor: En Data Warehouse y bases de datos transaccionales, se priorizan diseños modulares y escalables que 
+      Modelos flexibles escalan mejor: En Data Warehouse y bases de datos transaccionales, se priorizan diseños
+      modulares y escalables que
       faciliten cambios futuros sin grandes refactorizaciones.
     </p>
     <p>
-      Dicho esto, pienso que ningún diseño es perfecto desde el inicio; siempre habrá ajustes y mejoras. 
-      En construcción, modificar la estructura después de construirla es costoso y a veces inviable, mientras que en software, 
-      los cambios son esperables y forman parte del ciclo de vida del desarrollo. <strong>Robustez + Flexibilidad.</strong>
+      Dicho esto, pienso que ningún diseño es perfecto desde el inicio; siempre habrá ajustes y mejoras.
+      En construcción, modificar la estructura después de construirla es costoso y a veces inviable, mientras que en
+      software,
+      los cambios son esperables y forman parte del ciclo de vida del desarrollo. <strong>Robustez +
+        Flexibilidad.</strong>
     </p>
   </div>
-  
+
   <div id="respuesta_reflexion1" class="respuesta">
-    <h3>[REFLEXIÓN Y COMPROBACIÓN 1] - Restricciones en una tabla</h3>
+    <h3>[REFLEXIÓN Y COMPROBACIÓN 1]</h3>
     <p>
-      En teoría (sesión/cápsula) hemos explicado que existen dos maneras distintas para introducir restricciones a una tabla (como puede ser introducir una clave primaria). 
+      En teoría (sesión/cápsula) hemos explicado que existen dos maneras distintas para introducir restricciones a una
+      tabla (como puede ser introducir una clave primaria).
       Las dos maneras son:
     </p>
     <ol>
@@ -426,10 +456,11 @@
         <strong>Inline Constraint</strong>: Definir la restricción dentro de la declaración de la columna.
       </li>
       <li>
-        <strong>Out-of-Line Constraint</strong>: Definir la restricción como una cláusula separada al final de la declaración de la tabla.
+        <strong>Out-of-Line Constraint</strong>: Definir la restricción como una cláusula separada al final de la
+        declaración de la tabla.
       </li>
     </ol>
-    
+
     <h4>¿En qué casos sirve una y no la otra?</h4>
     <p><strong>Inline Constraint:</strong></p>
     <ul>
@@ -440,7 +471,7 @@
     <img src="img/ask_21_01.jpg" alt="KEY">
     <p>Ejemplo NO válido (clave primaria en varias columnas, inline no funciona):</p>
     <img src="img/ask_21_02.jpg" alt="KEY_01">
-    
+
     <p><strong>Out-of-Line Constraint:</strong></p>
     <ul>
       <li>Sirve cuando la restricción involucra varias columnas.</li>
@@ -451,22 +482,58 @@
     <img src="img/ask_21_03.jpg" alt="KEY_02">
     <p>Ejemplo válido (clave foránea, solo se puede definir out-of-line):</p>
     <img src="img/ask_21_04.jpg" alt="KEY_03">
-    
+
     <h4>Ejemplo de restricción explicado en clase (aparte de la clave primaria):</h4>
     <p>
-      Se utilizó la restricción <strong>CHECK</strong> para validar que los valores de una columna cumplan una condición específica.
+      Se utilizó la restricción <strong>CHECK</strong> para validar que los valores de una columna cumplan una condición
+      específica.
     </p>
     <img src="img/ask_21_05.jpg" alt="KEY_04">
     <ul>
       <li>
-      <strong>CHECK (Presupuesto > 1000)</strong> asegura que el valor de <strong>presupuesto</strong> siempre sea mayor a 1000, evitando valores inválidos como <strong>0 o -500</strong>.
+        <strong>CHECK (Presupuesto > 1000)</strong> asegura que el valor de <strong>presupuesto</strong> siempre sea
+        mayor a 1000, evitando valores inválidos como <strong>0 o -500</strong>.
       </li>
       <li>
-      <strong>CHECK (Duración > 0)</strong> asegura que la <strong>duración</strong> del proyecto siempre sea mayor a 0. Esta restricción se puede aplicar tanto de forma inline como mediante la cláusula <strong>CONSTRAINT mínimo_1_mes</strong>.
+        <strong>CHECK (Duración > 0)</strong> asegura que la <strong>duración</strong> del proyecto siempre sea mayor a
+        0. Esta restricción se puede aplicar tanto de forma inline como mediante la cláusula <strong>CONSTRAINT
+          mínimo_1_mes</strong>.
       </li>
     </ul>
   </div>
-  
+  <div id="respuesta_reflexion1" class="respuesta">
+    <h3>[REFLEXIÓN Y COMPROBACIÓN 2] - Restricciones en una tabla</h3>
+    <p>Las capsulas explican la importancia de contar con una nexo para relacionar la información común.</p>
+    <p>Ejemplo: (propietarios, alquilados, etc.), explicando .</p>
+
+    <p>
+      Se presentó el caso de la entidad <strong>Persona</strong>, que almacena la
+      información básica e identificadora (DNI) que es común a todas las personas.
+      A partir del (DNI), se derivaron subentidades que representan roles o especializaciones, como
+      <strong>Estudiante</strong> y <strong>Profesor</strong> (u otros, dependiendo del ejemplo concreto expuesto en la
+      sesión). Esto permite que, aunque cada subentidad tenga atributos específicos, todas compartan un vínculo central
+      a través de la entidad <strong>Persona</strong>.
+    </p>
+    <ul>
+      <li>
+        <strong>Definición de esquemas y claves:</strong> En la documentación se muestran
+        ejemplos de esquemas donde se definen claves primarias y foráneas. Este material resalta la importancia de
+        identificar una clave única en una entidad general (por ejemplo, en la tabla Persona) que se utiliza para
+        relacionar sus registros con las demas tablas. La clave actúa como el nexo fundamental, evitando
+        redundancia.
+      </li>
+      <li>
+        <strong>Relaciones entre tablas:</strong>
+        Se explica cómo se pueden unir y consultar datos de diferentes tablas mediante JOINs y subconsultas. Esto
+        refuerza la importancia de un diseño bien estructurado, en relaciones claras entre tablas, donde la
+        entidad general sirve de base para las especializaciones. Un nexo común permite La capacidad de hacer consultas que
+        extraigan datos de múltiples tablas relacionadas.
+      </li>
+    </ul>
+    <p>
+      La idea es el mantenimiento y simplicidad para tener claras las relaciones entre las tablas y evitar la duplicación de datos.
+    </p>
+  </div>
   <!-- =============================================================== -->
 
   <!-- Script -->
