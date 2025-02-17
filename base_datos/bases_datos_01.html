@@ -373,32 +373,7 @@
       <li>José María se queda en <strong>PERSONAS_NORM</strong>, pero su campo <strong>Tipo</strong> será <code>NULL</code>, ya que no pertenece a ninguna especialización.</li>
     </ul>
     <p><strong>Implementación en SQL:</strong></p>
-    <pre><code>
-  -- Agregar la columna Tipo a PERSONAS_NORM para identificar la especialización
-  ALTER TABLE PERSONAS_NORM ADD COLUMN Tipo VARCHAR(20);
-  
-  -- Crear la tabla PORTERO
-  CREATE TABLE PORTERO (
-    DNI_NIE VARCHAR(10) PRIMARY KEY REFERENCES PERSONAS_NORM(DNI_NIE),
-    Sueldo DECIMAL(10,2) NOT NULL
-  );
-  
-  -- Crear la tabla ALQUILADO
-  CREATE TABLE ALQUILADO (
-    DNI_NIE VARCHAR(10) PRIMARY KEY REFERENCES PERSONAS_NORM(DNI_NIE),
-    Contrato VARCHAR(50) NOT NULL
-  );
-  
-  -- Crear la tabla PROPIETARIO
-  CREATE TABLE PROPIETARIO (
-    DNI_NIE VARCHAR(10) PRIMARY KEY REFERENCES PERSONAS_NORM(DNI_NIE),
-    Escritura VARCHAR(50) NOT NULL
-  );
-  
-  -- Insertar a José María en PERSONAS_NORM sin asignarle una especialización (Tipo NULL)
-  INSERT INTO PERSONAS_NORM (DNI_NIE, Nombre, Apellidos, Tipo)
-  VALUES ('67890123F', 'José María', 'Desconocido', NULL);
-    </code></pre>
+    <img src="img/ask_17_01.jpg" alt="Implementación en SQL">
   </div>
   
 
