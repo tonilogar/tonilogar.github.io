@@ -1,0 +1,209 @@
+/* -------------------------- */
+/*  RESET / ESTILOS BÁSICOS   */
+/* -------------------------- */
+.video-ejercicio {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+/* Eliminamos margen y padding por defecto, y ajustamos box-sizing para un mejor control */
+* {
+  margin: 0;
+  padding-bottom: 20;
+  box-sizing: border-box;
+}
+
+/* -------------------------- */
+/*       ESTILOS GENERALES    */
+/* -------------------------- */
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;              /* Aumenta la legibilidad */
+  background-color: #f9f9f9;     /* Fondo suave para la página */
+  color: #333;                   /* Color de texto principal */
+}
+
+/* Contenedor central con márgenes para destacar el contenido */
+.container {
+  max-width: 1200px;            /* Ancho máximo para pantallas grandes */
+  margin: 20px auto;            /* Centrado horizontal */
+  padding: 20px;
+  background-color: #fff;       /* Fondo blanco para resaltar */
+  border-radius: 8px;           /* Esquinas redondeadas del contenedor */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* -------------------------- */
+/*     DATOS DE LA ACTIVIDAD  */
+/* -------------------------- */
+
+.datos-actividad {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-left: 4px solid #007BFF;  /* Franja de color para destacar */
+  background-color: #f0f4ff;       /* Fondo sutilmente distinto */
+}
+
+.datos-actividad p {
+  margin-bottom: 5px;
+  font-size: 0.95rem;  /* Tamaño de fuente ligeramente reducido */
+}
+
+/* -------------------------- */
+/*         ÍNDICE Y BOTÓN     */
+/* -------------------------- */
+
+.indice {
+  margin-bottom: 20px;
+}
+
+.indice h2 {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  color: #007BFF;
+}
+
+/* Botón para mostrar/ocultar el índice */
+.btn-toggle {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  vertical-align: middle;
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.btn-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de ejercicios (oculta al inicio) */
+#listaEjercicios {
+  list-style-type: none;
+  margin-top: 10px;
+  padding-left: 0;
+  display: none; /* por defecto oculto */
+}
+
+#listaEjercicios li {
+  margin: 5px 0;
+}
+
+#listaEjercicios li a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+#listaEjercicios li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* -------------------------- */
+/*       TEXTO DE EJERCICIO   */
+/* -------------------------- */
+
+.texto-ejercicio {
+  margin-top: 30px;
+}
+
+.texto-ejercicio p {
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+/* -------------------------- */
+/*    SECCIONES DE RESPUESTA  */
+/* -------------------------- */
+
+.respuesta {
+  margin-top: 40px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.05);
+}
+
+.respuesta h2,
+.respuesta h3,
+.respuesta h4 {
+  margin-top: 0;
+  color: #333;
+}
+
+.respuesta ul {
+  margin-left: 20px;  /* Espacio a la izquierda de las listas */
+}
+
+/* -------------------------- */
+/*        BLOQUES DE CÓDIGO   */
+/* -------------------------- */
+
+pre, code {
+  font-family: "Courier New", monospace;
+}
+
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+code {
+  background-color: #f5f5f5;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Estilos básicos de resaltado "manual" según el lenguaje */
+
+/* Estilo para bloques con .language-sql */
+.language-sql {
+  color: #006699;    /* Un color azul para el texto SQL */
+  font-weight: 500;  /* Un peso medio para diferenciarlo */
+}
+
+/* Estilo para bloques con .language-sh */
+.language-sh {
+  color: #CC5500;    /* Un color marrón/naranja para el texto de consola */
+  font-weight: 500;
+}
+
+/* -------------------------- */
+/*       MEDIA QUERIES        */
+/* -------------------------- */
+
+@media (max-width: 600px) {
+  /* Ajustes para pantallas pequeñas */
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .indice h2,
+  .btn-toggle {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .btn-toggle {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  #listaEjercicios li {
+    margin: 10px 0;
+  }
+}
