@@ -7,6 +7,12 @@
   max-width: 100%;
   margin-bottom: 20px;
 }
+.download {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
 /* Eliminamos margen y padding por defecto, y ajustamos box-sizing para un mejor control */
 * {
   margin: 0;
