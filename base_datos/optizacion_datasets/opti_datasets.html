@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para dispositivos móviles (responsive) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base de Datos - Ejercicios</title>
+  <!-- Vinculamos el archivo CSS -->
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+  <!-- Datos de la Actividad -->
+  <div class="datos-actividad">
+    <p><strong>Asignatura:</strong> Bases de datos I. Optimizando con datasets</p>
+    <p><strong>Docente:</strong> Carlos García Calatraba</p>
+    <p><strong>Alumnos:</strong> Antonio López García</p>
+    <p><strong>Universidad:</strong> Carlemany Bachelor de Ciencia de Datos</p>
+  </div>
+
+  <!-- Contenedor del índice -->
+  <div class="indice">
+    <h2>Índice</h2>
+    <button class="btn-toggle" onclick="toggleIndice()">
+      Mostrar/Ocultar Ejercicios
+    </button>
+
+    <!-- Lista de las 20 preguntas -->
+    <ul id="listaEjercicios">
+      <li><a href="#respuesta_01">1 - Crea una query para obtener todos los títulos con startyear entre 2000 y 2010
+          (ambos incluidos), ordenados ascendentemente.</a></li>
+      <li><a href="#respuesta_02">2 - Ejecútala, anota el tiempo de respuesta y el número de filas devueltas.</a></li>
+      <li><a href="#respuesta_03">3 - Utiliza EXPLAIN para ver el plan de ejecución. ¿Se realiza escaneo secuencial?</a>
+      </li>
+      <li><a href="#respuesta_04">4 - Identifica la columna de filtrado y crea un índice para mejorar la query.</a></li>
+      <li><a href="#respuesta_4.1">4.1 - Reflexiona sobre el coste de crear un índice y su impacto en INSERT y
+          UPDATE.</a></li>
+      <li><a href="#respuesta_05">5 - Vuelve a ejecutar la query. ¿Ha mejorado el rendimiento? Registra tiempos y
+          filas.</a></li>
+      <li><a href="#respuesta_06">6 - Usa EXPLAIN de nuevo. ¿Observas escaneo secuencial o uso de índice?</a></li>
+      <li><a href="#respuesta_07">7 - Elimina el índice con DROP INDEX.</a></li>
+      <li><a href="#respuesta_08">8 - Ejecuta la query con startyear BETWEEN 2000 AND 2008. Registra tiempos y
+          filas.</a></li>
+      <li><a href="#respuesta_09">9 - ¿Qué muestra EXPLAIN en este caso?</a></li>
+      <li><a href="#respuesta_10">10 - Crea de nuevo el índice y repite la query. ¿Se utiliza ahora el índice?</a></li>
+      <li><a href="#respuesta_11">11 - Repite y completa el análisis para distintos rangos de años. ¿Cuándo empieza a
+          ser efectivo el índice?</a></li>
+      <li><a href="#respuesta_12">12 - ¿Cuándo ha empezado a utilizar el SGBD el índice? .</a></li>
+      <li><a href="#respuesta_13">13 - Calcula el total de filas con SELECT COUNT(*).</a></li>
+      <li><a href="#respuesta_14">14 - Obtén el porcentaje de filas que devuelve cada rango consultado.</a></li>
+      <li><a href="#respuesta_15">15 - ¿En qué porcentaje el SGBD empieza a usar el índice? ¿Por qué sucede así?</a>
+      </li>
+      <li><a href="#respuesta_16">16 - Si un usuario busca películas por startyear, ¿qué conviene más, un listado fijo
+          por años o permitir rangos?</a></li>
+
+
+    </ul>
+  </div>
+
+  <!-- ==================== TEXTO DEL EJERCICIO ==================== -->
+  <div class="texto-ejercicio">
+    <h3>Descripción de la actividad</h3>
+    <p>Los índices, tal como hemos visto en la Sesión sobre Optimización y Eficiencia, ayudan a guiar el
+      SGBD hacia los datos relevantes en las diferentes queries que los involucran. Sin embargo, el
+      SGBD no está obligado a utilizarlos. De hecho, él mismo decidirá si emplearlos o no, aunque la
+      query claramente involucre un atributo que tiene asociado un índice. Uno de los factores más
+      relevantes para que un SGBD, como PostgreSQL, decida descartar el uso de un índice es el
+      tamaño del conjunto de datos que se está buscando: Si se piden muchos datos, quizás sea más
+      rápido y sencillo recorrer toda la tabla (SECUENTIAL SCAN), en lugar de ir recorriendo el índice
+      en si (meta-dato), para luego saltar a los datos que se encuentran en la tabla.</p>
+    <p>En esta actividad vamos a inspeccionar este comportamiento de PostgreSQL, para entender
+      cuando y como el SGBD decide usar los índices que creamos. Recuerda que, si se crea un índice
+      para mejorar una query, pero el SGBD descarta su uso, no solo la query no se verá beneficiada,
+      sino que el rendimiento del sistema podría empeorar, ya que el SGBD tendrá que mantener y
+      actualizar un índice inservible.</p>
+
+
+    <a href="#respuesta_01">[1]</a>
+  </div>
+  <!-- ============================================================ -->
+  <div class="texto-ejercicio">
+    <h3>Actividad Guiada</h3>
+    <p><a href="#respuesta_01">[1]</a> Programa una query en SQL que devuelva todos los títulos con startyear entre 2000
+      y 2010
+      (ambos incluidos), y ordene los resultados desde el año más pequeño al más grande, es decir,
+      de manera ascendente. Queremos mostrar todos los atributos, es decir, no es necesario que
+      realices ningún tipo de proyección en la cláusula SELECT.</p>
+    <p><a href="#respuesta_02">[2]</a> Ejecuta la query y guarda el tiempo de respuesta. Guarda también el número de
+      filas que
+      PostgreSQL ha devuelto.</p>
+    <p><a href="#respuesta_03">[3]</a> Pide a PostgreSQL el planning de ejecución (EXPLAIN) y observa como este ha
+      realizado un
+      escaneo secuencial pues, obviamente, no existe ningún índice aún.</p>
+    <p><a href="#respuesta_04">[4]</a> ¿Cuál es la variable por la que la query filtra los resultados a devolver? Crea
+      un índice para
+      intentar mejorar dicha query.</p>
+    <p>
+      <a href="#respuesta_04.1">[4.1]</a> Observa como la creación del índice no ha sido inmediata. Crear un índice es
+      costoso, y
+      implica mantener esa estructura de metadatos en memoria RAM o en disco. ¿Qué crees que
+      pasará si existe un índice y añadimos más filas a la tabla (INSERT)? Obviamente, el índice tendrá
+      que reconstruirse para poder tener en cuenta también ese nuevo dato. No se reconstruirá desde
+      cero, claro, sino que simplemente se actualizará. Si el índice es un árbol B+, es posible que haya
+      cierto balanceo en los nodos intermedios. Por tanto, cada vez que se realicé un INSERT, esta
+      operación disparará (como si de un trigger se tratase) otra operación de adaptación del índice.
+      Habremos mejorado la eficiencia de querying (quizás), pero… ¿Qué pasará con las operaciones
+      INSERT? ¿Se verán afectadas negativamente? Por otro lado, ¿qué crees que pasará con las
+      operaciones UPDATE: ¿Tendrán el mismo comportamiento? ¿En qué circunstancias un UPDATE
+      podría disparar ese mecanismo?
+    </p>
+    <p><a href="#respuesta_05">[5]</a> Ejecuta la query y guarda el tiempo de respuesta. Guarda también el número de
+      filas que
+      PostgreSQL ha devuelto. ¿Ha mejorado el tiempo de repuesta?</p>
+    <p><a href="#respuesta_06">[6]</a> Pide a PostgreSQL el planning de ejecución (EXPLAIN) y detecta que tipo de
+      operación ha
+      realizado: ¿Un escaneo secuencial, una búsqueda mediante índice? Observa cómo, que exista
+      un índice potencialmente útil para una query, no implica que el SGBD vaya a utilizarlo.</p>
+    <p><a href="#respuesta_07">[7]</a> Borra el índice, mediante un DROP INDEX.</p>
+    <p><a href="#respuesta_08">[8]</a> Vuelve a ejecutar la query, pero esta vez asegúrate que busque títulos con
+      startyear
+      BETWEEN 2000 AND 2008, en lugar de 2010. Guarda el tiempo de respuesta. Guarda también el
+      número de filas que PostgreSQL ha devuelto.</p>
+    <p><a href="#respuesta_09">[9]</a> Pide a PostgreSQL el planning de ejecución (EXPLAIN) y observa como este ha
+      realizado un
+      escaneo secuencial pues, obviamente, no existe ningún índice aún.</p>
+    <p><a href="#respuesta_10">[10]</a> Vuelve a crear el índice de antes y vuelve a ejecutar la query. Apunta el tiempo
+      de respuesta
+      y las filas devueltas. Observa mediante EXPLAIN si ha utilizado el índice o no.</p>
+    <p><a href="#respuesta_11">[11]</a> Ya hemos analizado los siguientes escenarios, marcados en azul. Completa toda la
+      tabla,
+      repitiendo los pasos anteriores, pero con diferentes años.</p>
+    <p><a href="#respuesta_12">[12]</a> ¿Cuándo ha empezado a utilizar el SGBD el índice? ¿Cómo lo has detectado? ¿Qué
+      sucede
+      cuando startyear es entre 2000 y 2000 (WHERE startyear = 2000)?</p>
+    <p><a href="#respuesta_13">[13]</a> Calcula, mediante un SELECT COUNT(*) el número total de filas de la tabla.</p>
+    <p><a href="#respuesta_14">[14]</a> Una vez obtenido el número total de filas, calcula, para cada query, el
+      porcentaje de filas
+      que dicha query devuelve, respecto al total de la base de datos. ¿En que porcentaje ha
+      comenzado a funcionar, el índice?</p>
+    <p><a href="#respuesta_15">[15]</a> Hemos visto que los índices funcionan mejor en porcentajes de retrieval pequeños
+      (en %).
+      Imagina que estas construyendo un portal web con los datos de IMDb. Planeas que cada usuario
+      pueda buscar películas mediante el año de comenzó (startyear). ¿Qué crees que sería más
+      conveniente, teniendo en cuenta este índice?</p>
+    <p><a href="#respuesta_16">[16]</a> Permitir al usuario que busque películas mediante un dropdownbox, donde cada
+      item u
+      opción sean un año específico</p>
+    <p><a href="#respuesta_17">[17]</a> Permitirle buscar por un rango de fechas (año inicio – año fin)</p>
+
+  </div>
+  <!-- =================== SECCIONES DE RESPUESTAS =================== -->
+  <!-- (Placeholder: aquí irán las respuestas definitivas más adelante) -->
+
+  <div id="respuesta_01" class="respuesta">
+    <h3>1 - Crea una query para obtener todos los títulos con startyear entre 2000 y 2010 (ambos incluidos), ordenados
+      ascendentemente.</h3>
+    <img src="img/ask_01.jpg" alt="Relación atributos">
+  </div>
+
+
+  <div id="respuesta_02" class="respuesta">
+    <h3>2 - Ejecútala, anota el tiempo de respuesta y el número de filas devueltas.</h3>
+    <img src="img/ask_02.jpg" alt="Relación atributos">
+  </div>
+
+  <div id="respuesta_03" class="respuesta">
+    <h3>3 - Utiliza EXPLAIN para ver el plan de ejecución. ¿Se realiza escaneo secuencial?</h3>
+    <p>
+      La imagen muestra un <strong>Parallel Seq Scan</strong> en la tabla <code>title_basics</code>. Esto significa que
+      PostgreSQL está realizando un escaneo secuencial sin utilizar índices, pero aprovechando la paralelización para
+      distribuir la carga de trabajo.
+    </p>
+    <p>
+      Además, se observa un <strong>Gather Merge</strong> que recoge y ordena los resultados por <code>startyear</code>,
+      y un <strong>Filter</strong> que asegura que solo se devuelven los registros con <code>startyear</code> entre 2000
+      y 2010.
+    </p>
+    <img src="img/ask_03.jpg" alt="Explain">
+  </div>
+
+  <div id="respuesta_04" class="respuesta">
+    <h3>[4] ¿Cuál es la variable por la que la query filtra los resultados a devolver? Crea un índice para intentar
+      mejorar dicha query.</h3>
+    <p>
+      La query filtra los resultados usando la variable <code>startyear</code>. Para mejorar el rendimiento de la
+      consulta, podemos crear un índice sobre la columna <code>startyear</code> de la tabla <code>title_basics</code>.
+    </p>
+    <p>
+      A continuación, se muestra la instrucción SQL para crear el índice:
+    </p>
+    <pre><code>CREATE INDEX idx_title_basics_startyear
+ON title_basics (startyear);</code></pre>
+    <p>
+      Este índice ayudará a PostgreSQL a localizar de forma más eficiente los registros que cumplen la condición de
+      filtrado en <code>startyear</code>, lo que puede mejorar el rendimiento de la consulta.
+    </p>
+  </div>
+
+
+
+  <div id="respuesta_4.1" class="respuesta">
+    <h3>4.1 - Impacto de los índices en operaciones INSERT y UPDATE</h3>
+    <p>
+      La creación y mantenimiento de un índice (como un árbol B+) implica un coste, ya que se debe almacenar y
+      actualizar una estructura adicional en disco o memoria. Cuando se realiza un INSERT, el nuevo registro se añade a
+      la tabla y, simultáneamente, se inserta su valor correspondiente en el índice. Esto puede incluir el recorrido del
+      árbol y, en algunos casos, un reequilibrio de los nodos intermedios para mantener la eficiencia del índice, lo que
+      retrasa la operación.
+    </p>
+    <p>
+      Por ello, las operaciones INSERT se verán afectadas negativamente en cuanto a rendimiento debido al coste extra de
+      actualizar el índice con cada nueva inserción.
+    </p>
+    <p>
+      En el caso de los UPDATE, el impacto dependerá de si la columna que se modifica forma parte del índice. Si se
+      actualiza una columna indexada, el índice deberá ajustarse de forma similar a un INSERT (realizando el
+      reequilibrio necesario), lo que afectará el rendimiento de esa operación. Si la columna modificada no está
+      indexada, el índice no se verá involucrado y, por tanto, el UPDATE no sufrirá ese coste adicional.
+    </p>
+    <p>
+      En resumen, aunque los índices mejoran la eficiencia de las consultas SELECT, su mantenimiento puede ralentizar
+      las operaciones INSERT y, en caso de actualizar columnas indexadas, también los UPDATE.
+    </p>
+  </div>
+
+
+  <div id="respuesta_05" class="respuesta">
+    <h3>[5] Ejecuta la query y guarda el tiempo de respuesta. Guarda también el número de filas que PostgreSQL ha
+      devuelto. ¿Ha mejorado el tiempo de respuesta?</h3>
+    <img src="img/ask_02.jpg" alt="without index">
+    <img src="img/ask_05.jpg" alt="with index">
+    <p>
+      Como se aprecia en las imágenes, antes de crear el índice la consulta tardó alrededor de <strong>9.939
+        segundos</strong>, mientras que después de crearlo, el tiempo se redujo a <strong>5.628 segundos</strong>.
+    </p>
+    <p>
+      En ambos casos, el número de filas devueltas es el mismo (<code>1746811</code>), pero la velocidad de ejecución
+      mejora sensiblemente al contar con el índice sobre <code>startyear</code>.
+    </p>
+  </div>
+
+
+  <div id="respuesta_06" class="respuesta">
+    <h3>6 - Usa EXPLAIN de nuevo. ¿Observas escaneo secuencial o uso de índice?</h3>
+    <img src="img/ask_06.jpg" alt="EXPLAIN plan with Parallel Seq Scan">
+    <p>
+      En la imagen se aprecia que el plan de ejecución realiza un <strong>Parallel Seq Scan</strong> sobre la tabla
+      <code>title_basics</code>, lo que significa que PostgreSQL ha optado por un escaneo secuencial (paralelizado) en
+      lugar de utilizar el índice creado en <code>startyear</code>.
+    </p>
+    <p>
+      Esto sucede porque el optimizador de consultas considera que, dado el rango de datos solicitado (de 2000 a 2010),
+      puede resultar más eficiente escanear la tabla completa en paralelo que recurrir a un índice. Recuerda que la
+      existencia de un índice no garantiza su uso; PostgreSQL elige la estrategia que calcula más rentable en función de
+      la selectividad y el coste estimado.
+    </p>
+  </div>
+
+  <div id="respuesta_07" class="respuesta">
+    <h3>7 - Elimina el índice con DROP INDEX</h3>
+    <p>
+      Para eliminar el índice que creaste en <code>startyear</code>, utiliza la siguiente sentencia SQL:
+    </p>
+    <pre><code>DROP INDEX IF EXISTS idx_title_basics_startyear;</code></pre>
+    <p>
+      Con esto, el índice deja de existir y PostgreSQL ya no lo tendrá en cuenta al planificar las consultas.
+    </p>
+  </div>
+
+
+  <div id="respuesta_08" class="respuesta">
+    <h3>[8] Vuelve a ejecutar la query con startyear BETWEEN 2000 AND 2008</h3>
+    <img src="img/ask_08.jpg" alt="Query result with startyear BETWEEN 2000 AND 2008">
+    <p>
+      Según los mensajes de pgAdmin4, la query se ejecutó en <strong>4 secs 403 msec</strong> y devolvió
+      <strong>1,282,841 filas</strong>.
+    </p>
+    <p>
+      Estos datos permiten evaluar el rendimiento de la consulta con el rango modificado en <code>startyear</code> y
+      compararlo con ejecuciones previas.
+    </p>
+  </div>
+
+
+
+  <div id="respuesta_09" class="respuesta">
+    <h3>[9] Pide a PostgreSQL el planning de ejecución (EXPLAIN) y observa como este ha realizado un escaneo secuencial
+    </h3>
+    <img src="img/ask_08.jpg" alt="Explain">
+
+    <p>
+      El plan de ejecución muestra un <strong>Parallel Seq Scan</strong> sobre la tabla <code>title_basics</code>. Dado
+      que no existe ningún índice en <code>startyear</code>, PostgreSQL recorre la tabla de forma secuencial para
+      satisfacer la consulta que filtra por <code>startyear BETWEEN 2000 AND 2010</code> y ordena los resultados por
+      <code>startyear</code>.
+    </p>
+  </div>
+
+
+  <div id="respuesta_10" class="respuesta">
+    <h3>10 - Crea de nuevo el índice y repite la query. ¿Se utiliza ahora el índice?</h3>
+    <p>En la primera imagen (<strong>ask_10.jpg</strong>) se ve el proceso de creación del índice en la columna
+      <code>startyear</code> y la ejecución de la consulta que filtra entre los años 2000 y 2008. Observa el tiempo de
+      respuesta y el número de filas devueltas.</p>
+    <img src="img/ask_10.jpg" alt="Creación del índice y ejecución de la consulta">
+
+    <p>En la segunda imagen (<strong>ask_10_01.jpg</strong>) se muestra el resultado de <code>EXPLAIN</code> al filtrar
+      por <code>startyear</code> entre 2000 y 2010. Vemos que PostgreSQL ha optado por un <strong>Parallel Seq
+        Scan</strong>, lo que significa que, a pesar de existir un índice, el optimizador consideró más eficiente
+      escanear la tabla de manera secuencial y paralelizada para ese rango amplio de datos.</p>
+    <img src="img/ask_10_01.jpg" alt="Plan de ejecución tras crear el índice">
+
+    <p>En conclusión, la existencia de un índice no garantiza que sea utilizado. El motor de la base de datos sopesa la
+      selectividad y el coste estimado de cada estrategia antes de elegir entre un escaneo secuencial o el uso del
+      índice.</p>
+  </div>
+
+
+  <div id="respuesta_11" class="respuesta">
+    <h3>11 - Repite y completa el análisis para distintos rangos de años. ¿Cuándo empieza a ser efectivo el índice?</h3>
+    <img src="img/ask_11.jpg" alt="Comparación índices no índices">
+  </div>
+
+  <div id="respuesta_12" <div id="respuesta_12" class="respuesta img-column">
+    <h3>[12] ¿Cuándo ha empezado a utilizar el SGBD el índice? ¿Cómo lo has detectado? ¿Qué sucede cuando startyear es
+      entre 2000 y 2000 (WHERE startyear = 2000)?</h3>
+    <img src="img/ask_12_2010.jpg" alt="Explain 2010">
+    <img src="img/ask_12_2008.jpg" alt="Explain 2008">
+    <img src="img/ask_12_2006.jpg" alt="Explain 2006">
+    <img src="img/ask_12_2004.jpg" alt="Explain 2004">
+    <img src="img/ask_12_2002.jpg" alt="Explain 2002">
+    <img src="img/ask_12_2000.jpg" alt="Explain 2000">
+    <p>
+      Al analizar los planes de ejecución (<code>EXPLAIN</code>) para cada rango, se observa que en los intervalos
+      amplios (<code>BETWEEN 2000 AND 2010</code>, <code>BETWEEN 2000 AND 2008</code> y
+      <code>BETWEEN 2000 AND 2006</code>) PostgreSQL opta por un <strong>Parallel Seq Scan</strong>. Esto indica que no
+      utiliza el índice, ya que considera más rentable (por el volumen de datos) recorrer la tabla secuencialmente de
+      forma paralela.
+    </p>
+    <p>
+      Sin embargo, cuando el rango se reduce (<code>BETWEEN 2000 AND 2004</code> o <code>BETWEEN 2000 AND 2002</code>),
+      el plan de ejecución muestra un <strong>Parallel Bitmap Heap Scan</strong> combinado con <strong>Bitmap Index
+        Scan</strong> en el índice <code>idx_title_basics_startyear</code>. Ahí es donde empieza a emplearse el índice,
+      pues la consulta abarca menos datos y el motor de la base de datos considera que es más eficiente.
+    </p>
+    <p>
+      Si restringimos aún más la consulta a un único valor (<code>WHERE startyear = 2000</code> o
+      <code>BETWEEN 2000 AND 2000</code>), el optimizador probablemente utilice un <strong>Index Scan</strong> directo
+      (o un <strong>Bitmap Index Scan</strong>) en lugar de recorrer la tabla. Con un único año, la búsqueda es muy
+      selectiva y el índice ofrece una ventaja notable.
+    </p>
+    <p>
+      En resumen, el uso del índice depende de la <em>selectividad</em> de la consulta y del coste estimado que realiza
+      el optimizador. Cuanto menor sea el rango de años, mayor es la probabilidad de que el índice se use para acelerar
+      la búsqueda.
+    </p>
+  </div>
+
+  <div id="respuesta_13" class="respuesta">
+    <h3>13 - Calcula, mediante un SELECT COUNT(*) el número total de filas de la tabla</h3>
+<img src="img/ask_13.jpg" alt="count">
+  </div>
+
+  <div id="respuesta_14" class="respuesta">
+    <h3>14 - ¿En qué porcentaje el SGBD empieza a usar el índice? ¿Por qué sucede así?</h3>
+    <p>
+      El SGBD utiliza el índice cuando la consulta es muy selectiva, es decir, cuando devuelve aproximadamente un 15% o menos del total de filas. 
+      Para rangos amplios (por ejemplo, BETWEEN 2000 AND 2010 o 2000 AND 2008) se recupera un alto porcentaje de filas y se opta por un Parallel Seq Scan; 
+      mientras que para rangos reducidos (como BETWEEN 2000 AND 2002 o WHERE startyear = 2000) el índice se usa para acelerar el acceso.
+    </p>
+  </div>
+
+  <div id="respuesta_15" class="respuesta">
+    <h3>15 - Si un usuario busca películas por startyear, ¿qué conviene más, un listado fijo por años o permitir rangos?</h3>
+    <p>
+        Permitir rangos suele ser más conveniente, ya que ofrece mayor flexibilidad. 
+        Los usuarios pueden definir períodos específicos según sus necesidades, en lugar de estar limitados a opciones predefinidas.
+    </p>
+</div>
+
+
+<div id="respuesta_16" class="respuesta">
+  <h3>16 - Dibuja el diseño de PERSONA y subclases (Portero, Alquilado, Propietario)</h3>
+  <svg width="600" height="300">
+    <!-- PERSONA -->
+    <rect x="200" y="20" width="200" height="60" fill="#cce5ff" stroke="#000" />
+    <text x="300" y="55" text-anchor="middle" font-size="16" fill="#000">PERSONA</text>
+    
+    <!-- Línea descendente desde PERSONA -->
+    <line x1="300" y1="80" x2="300" y2="100" stroke="#000" stroke-width="2"/>
+    
+    <!-- Rama a Portero -->
+    <line x1="300" y1="100" x2="100" y2="140" stroke="#000" stroke-width="2"/>
+    <rect x="50" y="140" width="100" height="60" fill="#d4edda" stroke="#000" />
+    <text x="100" y="175" text-anchor="middle" font-size="14" fill="#000">Portero</text>
+    
+    <!-- Rama a Alquilado -->
+    <line x1="300" y1="100" x2="300" y2="140" stroke="#000" stroke-width="2"/>
+    <rect x="250" y="140" width="100" height="60" fill="#f8d7da" stroke="#000" />
+    <text x="300" y="175" text-anchor="middle" font-size="14" fill="#000">Alquilado</text>
+    
+    <!-- Rama a Propietario -->
+    <line x1="300" y1="100" x2="500" y2="140" stroke="#000" stroke-width="2"/>
+    <rect x="450" y="140" width="100" height="60" fill="#fff3cd" stroke="#000" />
+    <text x="500" y="175" text-anchor="middle" font-size="14" fill="#000">Propietario</text>
+  </svg>
+  <p>
+    En este diagrama UML, <strong>PERSONA</strong> es la clase base y <strong>Portero</strong>, 
+    <strong>Alquilado</strong> y <strong>Propietario</strong> son las subclases que heredan de ella.
+  </p>
+</div>
+
+
+
+
+  <!-- =============================================================== -->
+
+  <!-- Script -->
+  <script src="js/index.js"></script>
+</body>
+
+</html>
