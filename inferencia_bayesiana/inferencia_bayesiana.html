@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Actividad 1 - Distribuciones Conjugadas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3, h4, h5 {
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    p {
+      margin: 10px 0;
+    }
+    ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .code {
+      font-family: "Courier New", Courier, monospace;
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-left: 3px solid #ccc;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Actividad 1</h1>
+    
+    <section>
+      <h2>A) Calcula las siguientes <strong>DISTRIBUCIONES CONJUGADAS</strong></h2>
+      
+      <h3>1. Distribución muestral: <span class="code">yᵢ | θ ~ Poisson(θ)</span></h3>
+      <p><strong>Distribución previa:</strong> <span class="code">θ ~ Gamma(a, b)</span></p>
+      <p><strong>Calcular la distribución posterior.</strong></p>
+      <p><em>Ejemplo de uso:</em> La Poisson es adecuada para modelar conteos de eventos (llamadas) en un intervalo de tiempo, mientras que la Gamma es una elección natural para la tasa de eventos, permitiendo actualizar la creencia sobre <span class="code">θ</span> conforme se recopilan más datos.</p>
+      
+      <h4>Datos y Parámetros Seleccionados</h4>
+      <h5>Distribución Muestral (Poisson):</h5>
+      <p>Cada observación <span class="code">yᵢ</span> sigue una Poisson con parámetro <span class="code">θ</span>.</p>
+      <p>Supongamos que contamos el número de llamadas en 5 horas y obtenemos:</p>
+      <ul>
+        <li>y₁ = 3</li>
+        <li>y₂ = 2</li>
+        <li>y₃ = 4</li>
+        <li>y₄ = 5</li>
+        <li>y₅ = 3</li>
+      </ul>
+      <p><strong>Distribución muestral = 17/5 = 3,4</strong></p>
+      
+      <h5>Distribución Previa (Gamma):</h5>
+      <p>Al no tener el "conocimiento experiencia" de esta casuística para construir una distribución previa razonable, se crean datos ficticios con una tasa promedio de llamadas aproximadamente 2 y una variabilidad moderada de 1.</p>
+      <ul>
+        <li>a = 2 (parámetro de forma)</li>
+        <li>b = 1 (parámetro de tasa)</li>
+      </ul>
+      <p><strong>Distribución previa = 2</strong></p>
+      
+      <h4>Cálculo de Verosimilitud:</h4>
+      <p><strong>1. Para y₁ = 3:</strong></p>
+      <p>P(y₁ = 3 | θ = 2) = (e⁻² · 2³) / 3! = (e⁻² × 8) / 6</p>
+      <p>P(y₁ = 3 | θ = 2) ≈ (0.1353 × 8) / 6 ≈ 1.0824 / 6 ≈ 0.1804</p>
+      
+      <p><strong>2. Para y₂ = 2:</strong></p>
+      <p>P(y₂ = 2 | θ = 2) = (e⁻² · 2²) / 2! = (e⁻² × 4) / 2</p>
+      <p>P(y₂ = 2 | θ = 2) ≈ (0.1353 × 4) / 2 ≈ 0.5412 / 2 ≈ 0.2706</p>
+      
+      <p><strong>3. Para y₃ = 4:</strong></p>
+      <p>P(y₃ = 4 | θ = 2) = (e⁻² · 2⁴) / 4! = (e⁻² × 16) / 24</p>
+      <p>P(y₃ = 4 | θ = 2) ≈ (0.1353 × 16) / 24 ≈ 2.1648 / 24 ≈ 0.0902</p>
+      
+      <p><strong>4. Para y₄ = 5:</strong></p>
+      <p>P(y₄ = 5 | θ = 2) = (e⁻² · 2⁵) / 5! = (e⁻² × 32) / 120</p>
+      <p>P(y₄ = 5 | θ = 2) ≈ (0.1353 × 32) / 120 ≈ 4.3296 / 120 ≈ 0.0361</p>
+      
+      <p><strong>5. Para y₅ = 3:</strong> Es igual a y₁.</p>
+      <p>P(y₅ = 3 | θ = 2) ≈ 0.1804</p>
+      
+      <h4>Verosimilitud Conjunta</h4>
+      <p>Se obtiene multiplicando las verosimilitudes individuales:</p>
+      <p><span class="code">L(θ = 2) = P(y₁ = 3 | θ = 2) × P(y₂ = 2 | θ = 2) × P(y₃ = 4 | θ = 2) × P(y₄ = 5 | θ = 2) × P(y₅ = 3 | θ = 2)</span></p>
+      <p>Sustituyendo los valores:</p>
+      <p>L(2) ≈ 0.1804 × 0.2706 × 0.0902 × 0.0361 × 0.1804</p>
+      <p><em>Calculémoslo paso a paso:</em></p>
+      <ul>
+        <li>Producto de los dos primeros: 0.1804 × 0.2706 ≈ 0.0488.</li>
+        <li>Multiplicando por 0.0902: 0.0488 × 0.0902 ≈ 0.0044.</li>
+        <li>Multiplicando por 0.0361: 0.0044 × 0.0361 ≈ 0.0001587.</li>
+        <li>Finalmente, multiplicando por 0.1804: 0.0001587 × 0.1804 ≈ 0.0000286.</li>
+      </ul>
+      <p>Así, la verosimilitud conjunta es aproximadamente:</p>
+      <p><strong>L(θ = 2) ≈ 2.86 × 10⁻⁵</strong></p>
+      
+      <h4>Cálculo de la Distribución Posterior</h4>
+      <p>Aplicamos el teorema de Bayes multiplicando la verosimilitud conjunta por la previa:</p>
+      <p><span class="code">p(θ | y) ∝ (θ^(17)e^(–5θ)) × (θ e^(–θ))</span></p>
+      <p>Multiplicamos los términos de <span class="code">θ</span> y los exponentes:</p>
+      <p><span class="code">p(θ | y) ∝ θ^(17+1) e^(–(5+1)θ) = θ^(18) e^(–6θ)</span></p>
+      <p>Esta forma es la de una distribución Gamma, ya que la densidad general de una Gamma es:</p>
+      <p><span class="code">p(θ) ∝ θ^(α-1)e^(–βθ)</span></p>
+      <p>Comparando, identificamos:</p>
+      <ul>
+        <li>α - 1 = 18 → α = 19</li>
+        <li>β = 6</li>
+      </ul>
+      <p>Por lo tanto, la distribución posterior es:</p>
+      <p><strong>θ | y ~ Gamma(19, 6)</strong></p>
+      
+      <h4>Resumen Ejercicio 1</h4>
+      <ul>
+        <li>Distribución muestral: 17/5 = 3,4.</li>
+        <li>Distribución previa: 2.</li>
+        <li>Distribución posterior: 19/6 = 3,17.</li>
+      </ul>
+      <p>En el caso de la distribución posterior tenemos un dato más al sumar el valor previo de 1 con el número de observaciones (5).</p>
+    </section>
+    
+    <section>
+      <h2>2. Distribución Exponencial – Gamma</h2>
+      <p><strong>Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Exponencial(θ)</span></p>
+      <p><strong>Distribución previa:</strong> <span class="code">θ ~ Gamma(a, b)</span></p>
+      <p><strong>Calcular la distribución posterior.</strong></p>
+      <p><em>Ejemplo de uso:</em> En una cafetería se mide los minutos entre la llegada de clientes. Los tiempos se modelan con una distribución <span class="code">Exponencial(θ)</span>, donde <span class="code">θ</span> representa la tasa de llegada (clientes por minuto). Observando los tiempos entre llegadas, se actualiza la tasa de llegada utilizando una distribución previa Gamma.</p>
+      
+      <h4>Datos y Parámetros Seleccionados</h4>
+      <h5>Distribución Muestral (Exponencial):</h5>
+      <p>Minutos entre llegadas:</p>
+      <ul>
+        <li>y₁ = 4</li>
+        <li>y₂ = 3</li>
+        <li>y₃ = 5</li>
+        <li>y₄ = 2</li>
+        <li>y₅ = 6</li>
+      </ul>
+      <p><strong>Σ yᵢ = 4 + 3 + 5 + 2 + 6 = 20 minutos.</strong></p>
+      
+      <h5>Distribución Previa (Gamma):</h5>
+      <p>Se asume que <span class="code">θ</span> sigue una distribución Gamma con parámetros:</p>
+      <ul>
+        <li>a = 2 (parámetro de forma)</li>
+        <li>b = 1 (parámetro de tasa)</li>
+      </ul>
+      
+      <h4>Cálculo de la verosimilitud</h4>
+      <p>Dado que <span class="code">yᵢ ~ Exponencial(θ)</span> con <span class="code">f(yᵢ | θ) = θ exp(–θ yᵢ)</span>, tenemos:</p>
+      <ul>
+        <li>Para y₁ = 4: <span class="code">f(y₁ | θ) = θ exp(–4θ)</span></li>
+        <li>Para y₂ = 3: <span class="code">f(y₂ | θ) = θ exp(–3θ)</span></li>
+        <li>Para y₃ = 5: <span class="code">f(y₃ | θ) = θ exp(–5θ)</span></li>
+        <li>Para y₄ = 2: <span class="code">f(y₄ | θ) = θ exp(–2θ)</span></li>
+        <li>Para y₅ = 6: <span class="code">f(y₅ | θ) = θ exp(–6θ)</span></li>
+      </ul>
+      
+      <h4>Verosimilitud Conjunta</h4>
+      <p>Se obtiene multiplicando las verosimilitudes individuales:</p>
+      <p><span class="code">L(θ | y) = [θ exp(–4θ)] · [θ exp(–3θ)] · [θ exp(–5θ)] · [θ exp(–2θ)] · [θ exp(–6θ)]</span></p>
+      <p>Agrupando los términos:</p>
+      <ul>
+        <li><strong>Potencia de θ:</strong> θ · θ · θ · θ · θ = θ⁵.</li>
+        <li><strong>Exponenciales:</strong> exp(–4θ) · exp(–3θ) · exp(–5θ) · exp(–2θ) · exp(–6θ) = exp[–θ(4 + 3 + 5 + 2 + 6)].</li>
+      </ul>
+      <p>Dado que 4 + 3 + 5 + 2 + 6 = 20, se tiene:</p>
+      <p><strong>L(θ | y) = θ⁵ · exp(–20θ)</strong></p>
+      
+      <h4>Distribución Posterior</h4>
+      <p>Aplicando el teorema de Bayes, la densidad posterior es proporcional a la verosimilitud multiplicada por la distribución previa:</p>
+      <p><span class="code">p(θ | y) ∝ L(θ | y) · p(θ)</span></p>
+      <p>Sustituyendo las expresiones encontradas:</p>
+      <p><span class="code">p(θ | y) ∝ [θ⁵ exp(–20θ)] · [θ exp(–θ)]</span></p>
+      <p>  ∝ θ^(5+1) · exp(–θ (20+1))</p>
+      <p>  ∝ <span class="code">θ⁶ exp(–21θ)</span></p>
+      <p>Comparando con la forma general de la densidad de una Gamma:</p>
+      <p><span class="code">p(θ) ∝ θ^(α–1) exp(–βθ)</span></p>
+      <ul>
+        <li>Identificamos: α – 1 = 6 ⟹ α = 7</li>
+        <li>β = 21</li>
+      </ul>
+      <p>Por lo tanto, la distribución posterior es:</p>
+      <p><strong>θ | y ~ Gamma(7, 21)</strong></p>
+      
+      <h4>Resumen Ejercicio 2</h4>
+      <ul>
+        <li>Distribución muestral: y₁ = 4, y₂ = 3, y₃ = 5, y₄ = 2, y₅ = 6 (Σ yᵢ = 20, n = 5).</li>
+        <li>Distribución previa: θ ~ Gamma(2, 1).</li>
+        <li>Distribución Posterior: θ | y ~ Gamma(7, 21).</li>
+        <li>La media posterior se puede calcular como α/β = 7/21 ≈ 0.33 clientes por minuto, lo que implica un tiempo medio entre llegadas de aproximadamente 1/0.33 ≈ 3 minutos.</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>3. Distribución Geométrica – Beta</h2>
+      <p><strong>Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Geométrica(θ)</span></p>
+      <p><strong>Distribución previa:</strong> <span class="code">θ ~ Beta(a, b)</span></p>
+      <p><strong>Calcular la distribución posterior.</strong></p>
+      <p><em>Ejemplo de Uso (Contexto Cotidiano):</em></p>
+      <p>Situación: Imagina que trabajas en un call center y deseas modelar el número de llamadas que se requieren para concretar la primera venta. Suponiendo que cada llamada es independiente y que la probabilidad de éxito (venta) es <span class="code">θ</span>, el número de llamadas hasta lograr una venta sigue una distribución <span class="code">Geométrica(θ)</span>.</p>
+      <p>Además, antes de recoger datos, puedes tener una creencia sobre el valor de <span class="code">θ</span> que se expresa mediante una distribución previa <span class="code">Beta(a, b)</span>. La elección de la Beta es natural porque es el conjugado del parámetro de una variable de tipo Bernoulli (y la geométrica está relacionada con ensayos de Bernoulli).</p>
+      
+      <h4>Datos y Parámetros Seleccionados</h4>
+      <h5>Distribución Muestral (Geométrica):</h5>
+      <p>La función de masa de probabilidad de la distribución geométrica (definida como el número de ensayos hasta el primer éxito, con ensayos independientes) es:</p>
+      <p class="code">P(Y=k ∣ θ)=θ(1−θ)^(k−1),  k=1,2,3,…</p>
+      <p><em>Ejemplo de datos:</em></p>
+      <ul>
+        <li>y₁ = 3</li>
+        <li>y₂ = 1</li>
+        <li>y₃ = 4</li>
+        <li>y₄ = 2</li>
+        <li>y₅ = 3</li>
+      </ul>
+      <p>Entonces, el número de observaciones es n = 5 y la suma de los datos es:</p>
+      <p><strong>∑₅ yᵢ = 3 + 1 + 4 + 2 + 3 = 13</strong></p>
+      
+      <h5>Distribución Previa (Beta):</h5>
+      <p>Se asume que la creencia previa sobre la probabilidad de éxito <span class="code">θ</span> se expresa mediante una distribución Beta con parámetros:</p>
+      <ul>
+        <li>a = 2</li>
+        <li>b = 2</li>
+      </ul>
+      <p>La densidad de la Beta es:</p>
+      <p class="code">p(θ) ∝ θ^(a−1)(1−θ)^(b−1) = θ^(2−1)(1−θ)^(2−1) = θ(1−θ)</p>
+      
+      <h4>Cálculo de la Verosimilitud</h4>
+      <ul>
+        <li>P(y₁ = 3 ∣ θ) = θ(1−θ)^(3−1) = θ(1−θ)²</li>
+        <li>P(y₂ = 1 ∣ θ) = θ(1−θ)^(1−1) = θ(1−θ)⁰ = θ</li>
+        <li>P(y₃ = 4 ∣ θ) = θ(1−θ)^(4−1) = θ(1−θ)³</li>
+        <li>P(y₄ = 2 ∣ θ) = θ(1−θ)^(2−1) = θ(1−θ)</li>
+        <li>P(y₅ = 3 ∣ θ) = θ(1−θ)^(3−1) = θ(1−θ)²</li>
+      </ul>
+      
+      <h4>Verosimilitud Conjunta</h4>
+      <p>Se obtiene multiplicando las verosimilitudes individuales:</p>
+      <p><span class="code">L(θ ∣ y) = [θ(1−θ)²] × [θ] × [θ(1−θ)³] × [θ(1−θ)] × [θ(1−θ)²]</span></p>
+      <p>La suma de los exponentes en (1−θ) es: 2 + 0 + 3 + 1 + 2 = 8, quedando:</p>
+      <p><strong>L(θ ∣ y) = θ⁵ (1−θ)⁸</strong></p>
+      
+      <h4>Multiplicación por la Previa (Teorema de Bayes)</h4>
+      <p>La densidad posterior es proporcional a la verosimilitud multiplicada por la distribución previa:</p>
+      <p><span class="code">p(θ ∣ y) ∝ L(θ ∣ y) ⋅ p(θ)</span></p>
+      <p>Sustituyendo:</p>
+      <p><span class="code">p(θ ∣ y) ∝ θ⁵ (1−θ)⁸ ⋅ θ(1−θ)</span></p>
+      <p>Agrupando los exponentes:</p>
+      <ul>
+        <li>Para θ: θ⁵ ⋅ θ = θ^(5+1) = θ⁶.</li>
+        <li>Para (1−θ): (1−θ)⁸ ⋅ (1−θ) = (1−θ)^(8+1) = (1−θ)⁹.</li>
+      </ul>
+      <p>Así:</p>
+      <p><strong>p(θ ∣ y) ∝ θ⁶ (1−θ)⁹</strong></p>
+      
+      <h4>Distribución Posterior</h4>
+      <p>La forma general de la densidad de la Beta es:</p>
+      <p class="code">p(θ) ∝ θ^(α−1)(1−θ)^(β−1)</p>
+      <p>Comparando con la expresión obtenida:</p>
+      <ul>
+        <li>α − 1 = 6 ⟹ α = 7</li>
+        <li>β − 1 = 9 ⟹ β = 10</li>
+      </ul>
+      <p>Por lo tanto, la distribución posterior es:</p>
+      <p><strong>θ ∣ y ~ Beta(7,10)</strong></p>
+      
+      <h4>Resumen Ejercicio 3</h4>
+      <ul>
+        <li>Previa: <span class="code">θ ~ Beta(2,2)</span>.</li>
+        <li>Posterior: <span class="code">θ | y ~ Beta(7,10)</span>.</li>
+      </ul>
+      <p>Este resultado refleja cómo, a partir de la información previa y de los datos observados en el call center (el número de llamadas hasta lograr una venta), se actualiza la creencia sobre la probabilidad de éxito <span class="code">θ</span>. La forma <span class="code">Beta(7,10)</span> es el balance entre la información contenida en la previa y la aportada por los datos.</p>
+    </section>
+    
+  </div>
+</body>
+</html>
