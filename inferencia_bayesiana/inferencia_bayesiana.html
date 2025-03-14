@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Meta tag para hacer la página responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actividad 1 - Distribuciones Conjugadas</title>
   <style>
     body {
@@ -13,6 +15,7 @@
     }
     .container {
       max-width: 900px;
+      width: 100%;
       margin: 0 auto;
       background-color: #fff;
       padding: 20px 40px;
@@ -48,6 +51,12 @@
       padding: 10px;
       border-left: 3px solid #ccc;
       overflow-x: auto;
+    }
+    /* Ajustes responsivos para pantallas pequeñas */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -234,7 +243,6 @@
         <li>a = 2 (parámetro de forma)</li>
         <li>b = 2 (parámetro de tasa)</li>
       </ul>
-
       
       <h4>Cálculo de la Verosimilitud</h4>
       <ul>
@@ -281,7 +289,7 @@
         <li>Distribución previa: <span class="code">θ ~ Beta(2,2)</span>.</li>
         <li>Distribución posterior: <span class="code">θ | y ~ Beta(7,10)</span>.</li>
       </ul>
-       </section>
+    </section>
     
   </div>
 </body>
