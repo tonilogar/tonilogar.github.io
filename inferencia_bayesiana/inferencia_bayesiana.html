@@ -35,6 +35,7 @@
     ul {
       margin: 10px 0;
       padding-left: 20px;
+      list-style: none;
     }
     .code {
       font-family: "Courier New", Courier, monospace;
@@ -52,20 +53,16 @@
 </head>
 <body>
   <div class="container">
-    <h1>Actividad 1</h1>
+    <h2>A) Calcula las siguientes <strong>DISTRIBUCIONES CONJUGADAS</strong></h2>
     
     <section>
-      <h2>A) Calcula las siguientes <strong>DISTRIBUCIONES CONJUGADAS</strong></h2>
-      
-      <h3>1. Distribución muestral: <span class="code">yᵢ | θ ~ Poisson(θ)</span></h3>
+      <p><strong>1.Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Poisson(θ)</span></p>
       <p><strong>Distribución previa:</strong> <span class="code">θ ~ Gamma(a, b)</span></p>
       <p><strong>Calcular la distribución posterior.</strong></p>
       <p><em>Ejemplo de uso:</em> La Poisson es adecuada para modelar conteos de eventos (llamadas) en un intervalo de tiempo, mientras que la Gamma es una elección natural para la tasa de eventos, permitiendo actualizar la creencia sobre <span class="code">θ</span> conforme se recopilan más datos.</p>
       
-      <h4>Datos y Parámetros Seleccionados</h4>
       <h5>Distribución Muestral (Poisson):</h5>
-      <p>Cada observación <span class="code">yᵢ</span> sigue una Poisson con parámetro <span class="code">θ</span>.</p>
-      <p>Supongamos que contamos el número de llamadas en 5 horas y obtenemos:</p>
+      <p>Número de llamadas en 5 horas:</p>
       <ul>
         <li>y₁ = 3</li>
         <li>y₂ = 2</li>
@@ -118,7 +115,7 @@
       <p>Así, la verosimilitud conjunta es aproximadamente:</p>
       <p><strong>L(θ = 2) ≈ 2.86 × 10⁻⁵</strong></p>
       
-      <h4>Cálculo de la Distribución Posterior</h4>
+      <h4>Distribución posterior</h4>
       <p>Aplicamos el teorema de Bayes multiplicando la verosimilitud conjunta por la previa:</p>
       <p><span class="code">p(θ | y) ∝ (θ^(17)e^(–5θ)) × (θ e^(–θ))</span></p>
       <p>Multiplicamos los términos de <span class="code">θ</span> y los exponentes:</p>
@@ -143,13 +140,11 @@
     </section>
     
     <section>
-      <h2>2. Distribución Exponencial – Gamma</h2>
-      <p><strong>Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Exponencial(θ)</span></p>
+      <p><strong>2.Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Exponencial(θ)</span></p>
       <p><strong>Distribución previa:</strong> <span class="code">θ ~ Gamma(a, b)</span></p>
       <p><strong>Calcular la distribución posterior.</strong></p>
       <p><em>Ejemplo de uso:</em> En una cafetería se mide los minutos entre la llegada de clientes. Los tiempos se modelan con una distribución <span class="code">Exponencial(θ)</span>, donde <span class="code">θ</span> representa la tasa de llegada (clientes por minuto). Observando los tiempos entre llegadas, se actualiza la tasa de llegada utilizando una distribución previa Gamma.</p>
       
-      <h4>Datos y Parámetros Seleccionados</h4>
       <h5>Distribución Muestral (Exponencial):</h5>
       <p>Minutos entre llegadas:</p>
       <ul>
@@ -162,12 +157,13 @@
       <p><strong>Σ yᵢ = 4 + 3 + 5 + 2 + 6 = 20 minutos.</strong></p>
       
       <h5>Distribución Previa (Gamma):</h5>
-      <p>Se asume que <span class="code">θ</span> sigue una distribución Gamma con parámetros:</p>
+      <p>Al no tener el "conocimiento experiencia" de esta casuística para construir una distribución previa razonable, se crean datos ficticios con una tasa promedio de 2 minutos por clientes y una variabilidad moderada de 1.</p>
       <ul>
         <li>a = 2 (parámetro de forma)</li>
         <li>b = 1 (parámetro de tasa)</li>
       </ul>
-      
+      <p><strong>Distribución previa = 2</strong></p>
+
       <h4>Cálculo de la verosimilitud</h4>
       <p>Dado que <span class="code">yᵢ ~ Exponencial(θ)</span> con <span class="code">f(yᵢ | θ) = θ exp(–θ yᵢ)</span>, tenemos:</p>
       <ul>
@@ -189,8 +185,8 @@
       <p>Dado que 4 + 3 + 5 + 2 + 6 = 20, se tiene:</p>
       <p><strong>L(θ | y) = θ⁵ · exp(–20θ)</strong></p>
       
-      <h4>Distribución Posterior</h4>
-      <p>Aplicando el teorema de Bayes, la densidad posterior es proporcional a la verosimilitud multiplicada por la distribución previa:</p>
+      <h4>Distribución posterior</h4>
+      <p>Aplicamos el teorema de Bayes multiplicando la verosimilitud conjunta por la previa:</p>
       <p><span class="code">p(θ | y) ∝ L(θ | y) · p(θ)</span></p>
       <p>Sustituyendo las expresiones encontradas:</p>
       <p><span class="code">p(θ | y) ∝ [θ⁵ exp(–20θ)] · [θ exp(–θ)]</span></p>
@@ -215,19 +211,13 @@
     </section>
     
     <section>
-      <h2>3. Distribución Geométrica – Beta</h2>
-      <p><strong>Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Geométrica(θ)</span></p>
+      <p><strong>3.Distribución muestral:</strong> <span class="code">yᵢ | θ ~ Geométrica(θ)</span></p>
       <p><strong>Distribución previa:</strong> <span class="code">θ ~ Beta(a, b)</span></p>
       <p><strong>Calcular la distribución posterior.</strong></p>
-      <p><em>Ejemplo de Uso (Contexto Cotidiano):</em></p>
-      <p>Situación: Imagina que trabajas en un call center y deseas modelar el número de llamadas que se requieren para concretar la primera venta. Suponiendo que cada llamada es independiente y que la probabilidad de éxito (venta) es <span class="code">θ</span>, el número de llamadas hasta lograr una venta sigue una distribución <span class="code">Geométrica(θ)</span>.</p>
-      <p>Además, antes de recoger datos, puedes tener una creencia sobre el valor de <span class="code">θ</span> que se expresa mediante una distribución previa <span class="code">Beta(a, b)</span>. La elección de la Beta es natural porque es el conjugado del parámetro de una variable de tipo Bernoulli (y la geométrica está relacionada con ensayos de Bernoulli).</p>
+      <p><em>Ejemplo de uso:</em>Situación: Número de llamadas que se requieren para concretar la primera venta. Suponiendo que cada llamada es independiente y que la probabilidad de éxito (venta) es <span class="code">θ</span>, el número de llamadas hasta lograr una venta sigue una distribución <span class="code">Geométrica(θ)</span>.</p></p>
       
-      <h4>Datos y Parámetros Seleccionados</h4>
       <h5>Distribución Muestral (Geométrica):</h5>
-      <p>La función de masa de probabilidad de la distribución geométrica (definida como el número de ensayos hasta el primer éxito, con ensayos independientes) es:</p>
-      <p class="code">P(Y=k ∣ θ)=θ(1−θ)^(k−1),  k=1,2,3,…</p>
-      <p><em>Ejemplo de datos:</em></p>
+      <p><em>Número de llamadas para concretar venta:</em></p>
       <ul>
         <li>y₁ = 3</li>
         <li>y₂ = 1</li>
@@ -239,18 +229,17 @@
       <p><strong>∑₅ yᵢ = 3 + 1 + 4 + 2 + 3 = 13</strong></p>
       
       <h5>Distribución Previa (Beta):</h5>
-      <p>Se asume que la creencia previa sobre la probabilidad de éxito <span class="code">θ</span> se expresa mediante una distribución Beta con parámetros:</p>
+      <p>Al no tener el "conocimiento experiencia" de esta casuística para construir una distribución previa razonable, se crean datos ficticios, 2 llamadas para concretar una venta y una variabilidad moderada de 2.</p>
       <ul>
-        <li>a = 2</li>
-        <li>b = 2</li>
+        <li>a = 2 (parámetro de forma)</li>
+        <li>b = 2 (parámetro de tasa)</li>
       </ul>
-      <p>La densidad de la Beta es:</p>
-      <p class="code">p(θ) ∝ θ^(a−1)(1−θ)^(b−1) = θ^(2−1)(1−θ)^(2−1) = θ(1−θ)</p>
+
       
       <h4>Cálculo de la Verosimilitud</h4>
       <ul>
         <li>P(y₁ = 3 ∣ θ) = θ(1−θ)^(3−1) = θ(1−θ)²</li>
-        <li>P(y₂ = 1 ∣ θ) = θ(1−θ)^(1−1) = θ(1−θ)⁰ = θ</li>
+        <li>P(y₂ = 1 ∣ θ) = θ(1−θ)^(1−1) = θ(1−θ)⁰</li>
         <li>P(y₃ = 4 ∣ θ) = θ(1−θ)^(4−1) = θ(1−θ)³</li>
         <li>P(y₄ = 2 ∣ θ) = θ(1−θ)^(2−1) = θ(1−θ)</li>
         <li>P(y₅ = 3 ∣ θ) = θ(1−θ)^(3−1) = θ(1−θ)²</li>
@@ -263,7 +252,7 @@
       <p><strong>L(θ ∣ y) = θ⁵ (1−θ)⁸</strong></p>
       
       <h4>Multiplicación por la Previa (Teorema de Bayes)</h4>
-      <p>La densidad posterior es proporcional a la verosimilitud multiplicada por la distribución previa:</p>
+      <p>Aplicamos el teorema de Bayes multiplicando la verosimilitud conjunta por la previa:</p>
       <p><span class="code">p(θ ∣ y) ∝ L(θ ∣ y) ⋅ p(θ)</span></p>
       <p>Sustituyendo:</p>
       <p><span class="code">p(θ ∣ y) ∝ θ⁵ (1−θ)⁸ ⋅ θ(1−θ)</span></p>
@@ -288,11 +277,11 @@
       
       <h4>Resumen Ejercicio 3</h4>
       <ul>
-        <li>Previa: <span class="code">θ ~ Beta(2,2)</span>.</li>
-        <li>Posterior: <span class="code">θ | y ~ Beta(7,10)</span>.</li>
+        <li>Distribución muestral: 13</li>
+        <li>Distribución previa: <span class="code">θ ~ Beta(2,2)</span>.</li>
+        <li>Distribución posterior: <span class="code">θ | y ~ Beta(7,10)</span>.</li>
       </ul>
-      <p>Este resultado refleja cómo, a partir de la información previa y de los datos observados en el call center (el número de llamadas hasta lograr una venta), se actualiza la creencia sobre la probabilidad de éxito <span class="code">θ</span>. La forma <span class="code">Beta(7,10)</span> es el balance entre la información contenida en la previa y la aportada por los datos.</p>
-    </section>
+       </section>
     
   </div>
 </body>
