@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <!-- Meta para dispositivos móviles (responsive) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base de Datos - Ejercicios</title>
+  <link rel="shortcut icon" href="img/ico-cm.png" type="image/x-icon">
+  <title>Inferencia Bayesiana segunda entrega</title>
   <!-- Vinculamos el archivo CSS -->
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -19,6 +20,9 @@
     <p><strong>Alumno:</strong> Antonio López García</p>
     <p><strong>Universidad:</strong> Carlemany Bachelor de Ciencia de Datos</p>
   </div>
+  <a class="download" href="google_colab_file.ipynb" download="google_colab_file.ipynb">Download ipynb file</a>
+  <p></p>
+  <a class="download" href="c00035a_0453.csv" download="c00035a_0453.csv">Download csv ejercicio 5</a>
 
   <!-- Contenedor del índice -->
   <div class="indice">
@@ -119,10 +123,10 @@
     <img src="img/ask_04.jpg">
     <p>
       b) Realiza una estimación por intervalos con probabilidad 95%</p>
-      <img src="img/ask_04_01.jpg">
-      <p>Intervalo de credibilidad 95%: [0.3188, 0.6996]</p>
-      <p>Existe un 95% de probabilidad de que el valor real de θ se encuentre entre 0.3188 y 0.6996.</p>
-      <img src="img/ask_04_02.jpg">
+    <img src="img/ask_04_01.jpg">
+    <p>Intervalo de credibilidad 95%: [0.3188, 0.6996]</p>
+    <p>Existe un 95% de probabilidad de que el valor real de θ se encuentre entre 0.3188 y 0.6996.</p>
+    <img src="img/ask_04_02.jpg">
     <p>
   </div>
 
@@ -135,14 +139,20 @@
     <p>Intervalo de confianza frecuentista y un intervalo de credibilidad bayesiano.</p>
 
     <p><strong>Estimación puntual frecuentista vs. bayesiana:</strong></p>
-    <p>La estimación frecuentista es un valor fijo obtenido de los datos observados)muestra). La estimación bayesiana es un valor de la distribución posterior, que se obtiene con la distribución muestral(datos objetivos) y previa(datos subjetivos).</p>
+    <p>La estimación frecuentista es un valor fijo obtenido de los datos observados)muestra). La estimación bayesiana es
+      un valor de la distribución posterior, que se obtiene con la distribución muestral(datos objetivos) y previa(datos
+      subjetivos).</p>
     <p><strong>Intervalo de confianza frecuentista vs. intervalo de credibilidad bayesiano:</strong></p>
-    <p>El intervalo de confianza frecuentista es un rango quese obtiene al repetir un experimento en condiciones controladas en un porcentaje ficjo(p.ej. 95%).</p>
-    <p>El intervalo de credibilidad bayesiano es un rango que indica la probabilidad (p.ej. 95%)de que el parámetro se encuentre dentro del intervalo, utilizando la distribución muestral(datos objetivos) y previa(datos subjetivos)</p>
-    
+    <p>El intervalo de confianza frecuentista es un rango quese obtiene al repetir un experimento en condiciones
+      controladas en un porcentaje ficjo(p.ej. 95%).</p>
+    <p>El intervalo de credibilidad bayesiano es un rango que indica la probabilidad (p.ej. 95%)de que el parámetro se
+      encuentre dentro del intervalo, utilizando la distribución muestral(datos objetivos) y previa(datos subjetivos)
+    </p>
+
 
     <h3><strong>EJEMPLO</strong></h3>
-<p>Para aclarar estas diferencias realizaremos un ejemplo práctico utilizando los mismos datos, calculando la proporción de personas con colesterol alto en Gran Canaria mediante ambos enfoques (frecuentista y bayesiano).</p>
+    <p>Para aclarar estas diferencias realizaremos un ejemplo práctico utilizando los mismos datos, calculando la
+      proporción de personas con colesterol alto en Gran Canaria mediante ambos enfoques (frecuentista y bayesiano).</p>
 
     <img src="img/ask_05.jpg" alt="Insert personas">
     <img src="img/ask_05_01.jpg" alt="Insert personas">
