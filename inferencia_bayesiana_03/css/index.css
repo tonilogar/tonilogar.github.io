@@ -45,10 +45,10 @@ pre {
   overflow-x: auto;
 }
 
-.respuesta img {
+img {
   display: block;       /* coloca las imágenes una debajo de otra */
-  width: 100%;          /* ajusta el ancho, o usa auto para el ancho original */
-  max-width: 600px;     /* limita el ancho máximo */
+  width: 120%;          /* ajusta el ancho, o usa auto para el ancho original */
+  max-width: 800px;     /* limita el ancho máximo */
   margin: 10px 0;       /* espacio vertical entre imágenes, 0 a la izquierda */
   border-radius: 4px;   /* (opcional) bordes redondeados */
 }

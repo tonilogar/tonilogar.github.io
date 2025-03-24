@@ -20,10 +20,9 @@
     <p><strong>Alumno:</strong> Steven Allus, Antonio López García</p>
     <p><strong>Universidad:</strong> Carlemany Bachelor de Ciencia de Datos</p>
   </div>
-  <a class="download" href="steven_inf_baye_003.ipynb" download="steven_inf_baye_003.ipynb">Download ipynb Steven R</a>
-  <p></p>
-  <a class="download" href="antonio_inf_baye_003.ipynb" download="antonio_inf_baye_003.ipynb">Download ipynb Antonio
-    python</a>
+  <a class="download" href="actividad_03_steven_antonio.ipynb" download="actividad_03_steven_antonio.ipynb">Download
+    ipynb </a>
+
 
   <!-- Contenedor del índice -->
   <div class="indice">
@@ -113,7 +112,7 @@
     <p>20.20, 18.48, 18.93, 19.40, 18.12, 19.18, 19.99, 18.79, 21.56, 21.63,
       22.03, 19.38, 20.98, 19.44, 19.84, 19.87, 22.29, 21.43, 20.16, 22.16</p>
     <p><strong>Cógigo python</strong></p>
-    <img src="img/ask_02x.jpg">
+    <img src="img/ask_02.jpg">
   </div>
 
   <div id="respuesta_03" class="respuesta">
@@ -122,52 +121,14 @@
       futura 𝑦∗ = 0.
     </p>
     <p>NOTA: en clase hemos calculado la distribución predictiva posterior para 𝑦∗ = 1</p>
-    <p><strong>Cógigo R</strong></p>
+    <p>Si queremos cuantificar nuestro estado de información acerca de una observación futura dado que ya tengo
+      observaciones acerca de la realidad que estamos estudiando, deberíamos obtener la distribución predictiva ya que
+      tiene por objetivo describir el comportamiento estocástico de una observación que no tuve la oportunidad de
+      observar, dado que ya observé una base de datos.</p>
+      <p>¿Cómo se escribe? y = y1, y2, ..., yn base de datos observados y* observación futura</p>
+      <p>yi siguen una Bernoulli con parámetro p. Prior de 𝑝:p ∼Beta(α,β)</p>
+      <p><strong>Distribución posterior del parámetro 𝑝</strong></p>
     <img src="img/ask_03.jpg">
-    <h2>Datos observados:</h2>
-    <ul>
-      <li>La secuencia binaria (1 0 1 0 0 1 1 0 1 1 0 1 1 1 1 0 1 1 1 0 ) representa 20 ensayos Bernoulli donde 1 indica
-        éxito y 0 indica fracaso</li>
-      <li>De estos 20 ensayos, 13 fueron éxitos (1s) y 7 fueron fracasos (0s)</li>
-      <li>La proporción de éxitos en la muestra es 13/20 = 65%</li>
-    </ul>
-
-    <h2>Resultados del análisis bayesiano:</h2>
-    <ul>
-      <li>Probabilidad predictiva posterior para y* = 0: 0.3636364 (aproximadamente 36.4%)</li>
-      <li>Probabilidad predictiva posterior para y* = 1: 0.6363636 (aproximadamente 63.6%)</li>
-    </ul>
-
-    <h2>Interpretación:</h2>
-    <ol>
-      <li>
-        Basándonos en los datos observados y asumiendo una previa Beta(1,1) (que es una previa uniforme no informativa),
-        la probabilidad de que la próxiima observación sea un fracaso (y* = 0) es aproximadamente 36.4%.
-      </li>
-      <li>
-        De manera complementaria, la probabilidad de que la próxima observación sea un éxito (y* = 1) es aproximadamente
-        63.6%.
-      </li>
-      <li>
-        Estas probabilidades predictivas son muy cercanas a la proporción observada en los datos (65% de éxitos), pero
-        están ligeramente "suavizadas" por la distribución previa. La previa Beta(1,1) añade el equivalente a un éxito y
-        un fracaso "virtuales" al conteo total.
-      </li>
-      <li>
-        La fórmula utilizada para este cálculo es:
-        <ul>
-          <li>p(y* = 0|datos) = (β + n - Σy) / (α + β + n) = (1 + 20 - 13) / (1 + 1 + 20) = 8 / 22 ≈ 0.3636</li>
-          <li>p(y* = 1|datos) = (α + Σy) / (α + β + n) = (1 + 13) / (1 + 1 + 20) = 14 / 22 ≈ 0.6364</li>
-        </ul>
-      </li>
-    </ol>
-
-    <p>
-      Estos resultados proporcionan una estimación probabilística sólida para predecir el resultado de un futuro ensayo
-      Bernoulli, tomando en cuenta tanto la información previa como los datos observados.
-    </p>
-
-
   </div>
 
   <div id="respuesta_04" class="respuesta">
@@ -176,7 +137,42 @@
     </p>
     <p>Es importante justificar cada cálculo.</p>
     <p><strong>Cógigo python</strong></p>
-    <img src="img/ask_04x.jpg">
+    <img src="img/ask_04.jpg">
+    <img src="img/ask_04_01.jpg">
+    <img src="img/ask_04_02.jpg">
+    <h2>Justificación de los cálculos:</h2>
+
+  <h3>1. Actualización de parámetros:</h3>
+  <ul>
+    <li>Para una distribución Gamma previa con parámetros (α, β) y datos Poisson, la distribución posterior es Gamma con parámetros:
+      <ul>
+        <li>α_post = α_prior + Σy (suma de todas las observaciones)</li>
+        <li>β_post = β_prior + n (número de observaciones)</li>
+      </ul>
+    </li>
+    <li>Esta actualización representa la combinación de la información previa con la información de los datos.</li>
+  </ul>
+
+  <h3>2. Distribución predictiva posterior:</h3>
+  <ul>
+    <li>Cuando integramos la verosimilitud Poisson(y*|θ) con la posterior Gamma(θ|α_post, β_post), obtenemos una distribución Binomial Negativa.</li>
+    <li>La fórmula es: P(y|datos) = ∫ P(y|θ) × P(θ|datos) dθ</li>
+    <li>Esto resulta en una Binomial Negativa con parámetros:
+      <ul>
+        <li>r = α_post</li>
+        <li>p = β_post / (β_post + 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>3. Propiedades de la predictiva posterior:</h3>
+  <ul>
+    <li>Media: α_post / β_post (la misma que la media de la posterior de θ)</li>
+    <li>Varianza: α_post(β_post + 1) / β_post² (mayor que la varianza de la posterior, reflejando la incertidumbre adicional de predecir un nuevo valor)</li>
+  </ul>
+
+  <p>Esta implementación proporciona no solo las probabilidades para diferentes valores de y*, sino también información sobre la distribución predictiva posterior completa, lo que ayuda a entender mejor el comportamiento esperado de futuras observaciones.</p>
+
   </div>
 
 
