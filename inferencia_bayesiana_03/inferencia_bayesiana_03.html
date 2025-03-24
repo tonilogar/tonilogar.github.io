@@ -56,7 +56,47 @@
     <p>𝐻0: 𝜃=340</p>
     <p>𝐻1: 𝜃 = 450</p>
     <p>Previa no informativa 𝑝(𝐻0) = 𝑝(𝐻1) = 0′5.</p>
-    <img src="img/ask_01x.jpg">
+
+    <img src="img/ask_01.jpg">
+    <img src="img/ask_01_01.jpg">
+    <p>Conslusiones de nuestro resultado:</p>
+    <ol>
+      <li>
+        <strong>Media muestral: 407.5</strong><br>
+        La media de las observaciones (407.5) esta mas cerca del valor propuesto en H₁ (θ = 450) que del valor en H₀ (θ
+        = 340), lo que ya nos da una primera pista de que H₁ podría tener mayor respaldo.
+      </li>
+      <li>
+        <strong>Log Factor de Bayes (log B10): 42.23051</strong><br>
+        El logaritmo del factor de Bayes es positivo y muy grande, indicando fuerte evidencia a favor de H1.
+      </li>
+      <li>
+        <strong>Factor de Bayes (B10): 2.190146e+18</strong><br>
+        Según la escala de Kass y Raftery, cualquier valor mayor a 150 se considera evidencia "muy fuerte" a favor de la
+        hipótesis alternativa.<br>
+        Este factor tan elevado indica que los datos observados son 2.19 quintillones de veces mas probables bajo la
+        hipótesis H₁ que bajo H₀.
+      </li>
+      <li>
+        <strong>Probabilidad a posteriori de H0: 4.565869e-19</strong><br>
+        Esta probabilidad es prácticamente cero.
+      </li>
+      <li>
+        <strong>Probabilidad a posteriori de H1: 1</strong><br>
+        Esto indica que, después de considerar los datos, la probabilidad de que H₁ sea cierta es prácticamente 1 (o
+        100%).
+      </li>
+    </ol>
+
+    <p><strong>Conclusión:</strong> Hay una evidencia abrumadora para rechazar H₀ (θ = 340) y aceptar H₁ (θ = 450). Los
+      datos de visitas observados apoyan fuertemente la hipótesis de que el parámetro θ de la distribución Poisson es
+      450 y no 340.</p>
+
+    <p>Este resultado es consistente con los datos observados, que incluyen valores altos como 950 y 725, los cuales son
+      mas probables si θ = 450 que si θ = 340. La combinación de todos los datos proporciona una evidencia estadística
+      muy fuerte a favor de la hipótesis alternativa.</p>
+
+
   </div>
 
 
@@ -72,6 +112,7 @@
     <p>BASE DE DATOS:</p>
     <p>20.20, 18.48, 18.93, 19.40, 18.12, 19.18, 19.99, 18.79, 21.56, 21.63,
       22.03, 19.38, 20.98, 19.44, 19.84, 19.87, 22.29, 21.43, 20.16, 22.16</p>
+    <p><strong>Cógigo python</strong></p>
     <img src="img/ask_02x.jpg">
   </div>
 
@@ -81,7 +122,52 @@
       futura 𝑦∗ = 0.
     </p>
     <p>NOTA: en clase hemos calculado la distribución predictiva posterior para 𝑦∗ = 1</p>
-    <img src="img/ask_03x.jpg">
+    <p><strong>Cógigo R</strong></p>
+    <img src="img/ask_03.jpg">
+    <h2>Datos observados:</h2>
+    <ul>
+      <li>La secuencia binaria (1 0 1 0 0 1 1 0 1 1 0 1 1 1 1 0 1 1 1 0 ) representa 20 ensayos Bernoulli donde 1 indica
+        éxito y 0 indica fracaso</li>
+      <li>De estos 20 ensayos, 13 fueron éxitos (1s) y 7 fueron fracasos (0s)</li>
+      <li>La proporción de éxitos en la muestra es 13/20 = 65%</li>
+    </ul>
+
+    <h2>Resultados del análisis bayesiano:</h2>
+    <ul>
+      <li>Probabilidad predictiva posterior para y* = 0: 0.3636364 (aproximadamente 36.4%)</li>
+      <li>Probabilidad predictiva posterior para y* = 1: 0.6363636 (aproximadamente 63.6%)</li>
+    </ul>
+
+    <h2>Interpretación:</h2>
+    <ol>
+      <li>
+        Basándonos en los datos observados y asumiendo una previa Beta(1,1) (que es una previa uniforme no informativa),
+        la probabilidad de que la próxiima observación sea un fracaso (y* = 0) es aproximadamente 36.4%.
+      </li>
+      <li>
+        De manera complementaria, la probabilidad de que la próxima observación sea un éxito (y* = 1) es aproximadamente
+        63.6%.
+      </li>
+      <li>
+        Estas probabilidades predictivas son muy cercanas a la proporción observada en los datos (65% de éxitos), pero
+        están ligeramente "suavizadas" por la distribución previa. La previa Beta(1,1) añade el equivalente a un éxito y
+        un fracaso "virtuales" al conteo total.
+      </li>
+      <li>
+        La fórmula utilizada para este cálculo es:
+        <ul>
+          <li>p(y* = 0|datos) = (β + n - Σy) / (α + β + n) = (1 + 20 - 13) / (1 + 1 + 20) = 8 / 22 ≈ 0.3636</li>
+          <li>p(y* = 1|datos) = (α + Σy) / (α + β + n) = (1 + 13) / (1 + 1 + 20) = 14 / 22 ≈ 0.6364</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p>
+      Estos resultados proporcionan una estimación probabilística sólida para predecir el resultado de un futuro ensayo
+      Bernoulli, tomando en cuenta tanto la información previa como los datos observados.
+    </p>
+
+
   </div>
 
   <div id="respuesta_04" class="respuesta">
@@ -89,6 +175,7 @@
     <p>Calcula la Distribución Predictiva Posterior del Model Gamma-Poisson.
     </p>
     <p>Es importante justificar cada cálculo.</p>
+    <p><strong>Cógigo python</strong></p>
     <img src="img/ask_04x.jpg">
   </div>
 
@@ -99,8 +186,51 @@
     </p>
     <p>Explica brevemente las principales diferencias entre las pruebas de hipótesis bajo un enfoque frecuentista y uno
       bayesiano.</p>
-<p>Las pruebas de hipótesis frecuentistas y bayesianas representan dos enfoques fundamentalmente distintos para evaluar evidencia estadística:</p>
+    <p>Las pruebas de hipótesis frecuentistas y bayesianas representan dos enfoques fundamentalmente distintos para
+      evaluar evidencia estadística:</p>
+    <h2>Diferencias entre pruebas de hipótesis frecuentistas y bayesianas</h2>
+    <p>Las pruebas de hipótesis frecuentistas y bayesianas representan dos enfoques fundamentalmente distintos para
+      evaluar evidencia estadística:</p>
 
+    <h3>Enfoque frecuentista</h3>
+    <ol>
+      <li><strong>Interpretación de probabilidad:</strong> Se basa en la frecuencia relativa a largo plazo de eventos en
+        experimentos repetidos.</li>
+      <li><strong>Hipótesis fijas, datos aleatorios:</strong> Considera los parámetros como valores fijos desconocidos,
+        y los datos como aleatorios.</li>
+      <li><strong>Valor p:</strong> Calcula la probabilidad de obtener datos tan o más extremos que los observados,
+        asumiendo que la hipótesis nula es cierta: P(datos|H₀).</li>
+      <li><strong>Decisión binaria:</strong> Típicamente resulta en rechazar o no rechazar la hipótesis nula basándose
+        en un umbral predefinido (p &lt; 0.05).</li>
+      <li><strong>Información previa:</strong> No incorpora formalmente conocimiento previo o creencias sobre los
+        parámetros.</li>
+    </ol>
+
+    <h3>Enfoque bayesiano</h3>
+    <ol>
+      <li><strong>Interpretación de probabilidad:</strong> Representa el grado de creencia o estado de conocimiento
+        sobre una hipótesis.</li>
+      <li><strong>Datos fijos, hipótesis aleatorias:</strong> Una vez observados los datos, calcula probabilidades sobre
+        las hipótesis.</li>
+      <li><strong>Probabilidad posterior:</strong> Calcula directamente la probabilidad de la hipótesis dados los datos:
+        P(H | datos).</li>
+      <li><strong>Medición de evidencia:</strong> Utiliza factores de Bayes o probabilidades posteriores para
+        cuantificar la evidencia relativa entre hipótesis.</li>
+      <li><strong>Información previa:</strong> Incorpora explícitamente el conocimiento o creencias previas a través de
+        distribuciones a priori.</li>
+    </ol>
+
+    <h3>Diferencias clave</h3>
+    <ul>
+      <li>El enfoque frecuentista responde “¿Cuán probable son estos datos si la hipótesis nula es cierta?”, mientras
+        que el bayesiano responde “¿Cuán probable es esta hipótesis dados los datos observados?”</li>
+      <li>El bayesiano permite actualizar continuamente el conocimiento a medida que llegan nuevos datos, mientras que
+        el frecuentista trata cada prueba como un evento independiente.</li>
+      <li>El enfoque bayesiano cuantifica directamente la incertidumbre sobre los parámetros y evalúa hipótesis de
+        manera probabilística, en lugar de ofrecer decisiones binarias.</li>
+      <li>Los métodos bayesianos integran información previa, lo que puede ser una ventaja cuando hay conocimiento
+        experto disponible, pero también introduce subjetividad en la elección de las distribuciones previas.</li>
+    </ul>
   </div>
 
 
