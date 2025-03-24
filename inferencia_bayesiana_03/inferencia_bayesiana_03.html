@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para dispositivos móviles (responsive) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/ico-cm.png" type="image/x-icon">
+  <title>Inferencia Bayesiana segunda entrega</title>
+  <!-- Vinculamos el archivo CSS -->
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+  <!-- Datos de la Actividad -->
+  <div class="datos-actividad">
+    <p><strong>Asignatura:</strong> Inferencia bayesiana. Tercera entrega</p>
+    <p><strong>Docente:</strong> Diana Herrero Coronel</p>
+    <p><strong>Alumno:</strong> Steven Allus, Antonio López García</p>
+    <p><strong>Universidad:</strong> Carlemany Bachelor de Ciencia de Datos</p>
+  </div>
+  <a class="download" href="steven_inf_baye_003.ipynb" download="steven_inf_baye_003.ipynb">Download ipynb Steven R</a>
+  <p></p>
+  <a class="download" href="antonio_inf_baye_003.ipynb" download="antonio_inf_baye_003.ipynb">Download ipynb Antonio
+    python</a>
+
+  <!-- Contenedor del índice -->
+  <div class="indice">
+    <h2>Índice</h2>
+    <button class="btn-toggle" onclick="toggleIndice()">
+      Mostrar/Ocultar Ejercicios
+    </button>
+
+    <!-- Lista de las 20 preguntas -->
+    <ul id="listaEjercicios">
+      <li><a href="#respuesta_01">Actividad 1.</a></li>
+      <li><a href="#respuesta_02">Actividad 2.</a></li>
+      <li><a href="#respuesta_03">Actividad 3.</a></li>
+      <li><a href="#respuesta_04">Actividad 4.</a></li>
+      <li><a href="#respuesta_05">Actividad 5.</a></li>
+    </ul>
+  </div>
+
+  <!-- =================== SECCIONES DE RESPUESTAS =================== -->
+
+  <div id="respuesta_01" class="respuesta">
+    <h3>Actividad 1</h3>
+    <p>Un determinado medio de comunicación desea llevar a cabo un estudio para saber cuál es el interés que despierta
+      entre sus lectores las noticias relacionadas directamente con conflictos bélicos. Para ello contabilizará el
+      número de visitas en su canal de comunicación online. El número de visitas sigue una distribución Poisson(𝜃).
+    </p>
+    <p>El estudio se realizó durante 10 meses y el número medio de visitas mensuales fueron las siguientes: </p>
+    <p>Se desea contrastar:</p>
+    <p>320, 360,950, 400, 370, 75, 725, 120, 380, 375.</p>
+    <p>𝐻0: 𝜃=340</p>
+    <p>𝐻1: 𝜃 = 450</p>
+    <p>Previa no informativa 𝑝(𝐻0) = 𝑝(𝐻1) = 0′5.</p>
+    <img src="img/ask_01x.jpg">
+  </div>
+
+
+  <div id="respuesta_02" class="respuesta">
+    <h3>Actividad 2</h3>
+    <p>Un grupo de expertos sobre el Cambio Climático investigan sobre el calentamiento global. Disponen de i = 1, … . ,
+      20 observaciones que se distribuyen 𝑦𝑖|𝜃~N(20, σ2). Los expertos están interesados en realizar el siguiente
+      test de hipótesis y no disponen de información previa respecto a las hipótesis:
+    </p>
+    <p>𝐻0: σ2 =1</p>
+    <p>𝐻1 σ2 = 3</p>
+    <p>Calcula el 𝐵10.</p>
+    <p>BASE DE DATOS:</p>
+    <p>20.20, 18.48, 18.93, 19.40, 18.12, 19.18, 19.99, 18.79, 21.56, 21.63,
+      22.03, 19.38, 20.98, 19.44, 19.84, 19.87, 22.29, 21.43, 20.16, 22.16</p>
+    <img src="img/ask_02x.jpg">
+  </div>
+
+  <div id="respuesta_03" class="respuesta">
+    <h3>Actividad 3</h3>
+    <p>Calcular la Distribución Predictiva Posterior del modelo Bernoulli-Beta (Binomial-Beta) para una observación
+      futura 𝑦∗ = 0.
+    </p>
+    <p>NOTA: en clase hemos calculado la distribución predictiva posterior para 𝑦∗ = 1</p>
+    <img src="img/ask_03x.jpg">
+  </div>
+
+  <div id="respuesta_04" class="respuesta">
+    <h3>Actividad 4</h3>
+    <p>Calcula la Distribución Predictiva Posterior del Model Gamma-Poisson.
+    </p>
+    <p>Es importante justificar cada cálculo.</p>
+    <img src="img/ask_04x.jpg">
+  </div>
+
+
+  <div id="respuesta_05" class="respuesta">
+    <h3>Actividad 5</h3>
+    <p>Pregunta teórica:
+    </p>
+    <p>Explica brevemente las principales diferencias entre las pruebas de hipótesis bajo un enfoque frecuentista y uno
+      bayesiano.</p>
+<p>Las pruebas de hipótesis frecuentistas y bayesianas representan dos enfoques fundamentalmente distintos para evaluar evidencia estadística:</p>
+
+  </div>
+
+
+  <!-- =============================================================== -->
+
+  <!-- Script -->
+  <script src="js/index.js"></script>
+</body>
+
+</html>
