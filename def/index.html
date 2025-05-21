@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Visor 3D</title>
+
+    <!-- Importa el componente model-viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Evita barras de scroll */
+            background-color: #282c34; /* Un fondo oscuro */
+            display: flex; /* Para centrar */
+            justify-content: center; /* Para centrar */
+            align-items: center; /* Para centrar */
+        }
+
+        model-viewer {
+            width: 90vw; /* 90% del ancho de la ventana */
+            height: 90vh; /* 90% del alto de la ventana */
+            border: 1px solid #555; /* Un borde sutil para ver los límites */
+        }
+    </style>
+</head>
+<body>
+    <model-viewer
+        id="miModelo"
+        src="tmppkxt36k9.glb"
+        alt="Modelo 3D de prueba"
+        camera-controls <!-- ESTE ES EL ATRIBUTO CLAVE PARA LA INTERACCIÓN -->
+        auto-rotate
+        environment-image="neutral"
+        shadow-intensity="1"
+        exposure="1">
+    </model-viewer>
+
+    <script>
+        // Solo para verificar que el script de model-viewer se carga
+        // y el elemento está disponible.
+        const viewer = document.getElementById('miModelo');
+        if (viewer) {
+            viewer.addEventListener('load', () => {
+                console.log('Modelo cargado en el visor de prueba.');
+            });
+            viewer.addEventListener('error', (event) => {
+                console.error('Error al cargar el modelo en el visor de prueba:', event.detail);
+            });
+        } else {
+            console.error('Elemento model-viewer no encontrado.');
+        }
+    </script>
+</body>
+</html>
