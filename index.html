@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bachelor en Ciencia de Datos — Universitat Carlemany | Antonio López García</title>
+  <link rel="stylesheet" href="index/styles.css" />
 </head>
-
 <body>
-    <div class="botones-centrales">
-        <button onclick="location.href='destination-earth.html'">Destination earth</button>
-        <button onclick="location.href='entrega.html'">Lovelace Babbage</button>
-        <button onclick="location.href='inferencia-estadistica/inferencia-estadistica.html'">Inferencia E</button>
-        <button onclick="location.href='series-temporales/series-temporales.html'">Series temp</button>
-        <button onclick="location.href='series-temporales-semana-04/series-temporales-semana-04.html'">Trabajo series
-            temp</button>
-        <button onclick="location.href='analisis_multivariante/analisis_multivariante_semana_01.html'">Análisis
-            multivariante 01</button>
-        <button onclick="location.href='analisis_multivariante/analisis_multivariante_semana_03.html'">Componentes
-            Principales</button>
-        <button onclick="location.href='analisis_multivariante/analisis_multivariante_semana_04.html'">ANOVA
-            MANOVA</button>
-        <button onclick="location.href='base_datos/bases_datos_01.html'">BASE DATOS SQL 01</button>
-        <button onclick="location.href='base_datos/los_cinco/los_cinco.html'">SQL IMDb</button>
-        <button onclick="location.href='base_datos/optizacion_datasets/optimizacion_datasets.html'">ejercicio
-        <button onclick="location.href='inferencia_bayesiana/inferencia_bayesiana.html'">inferencia bayesiana_01</button>
-        <button onclick="location.href='inferencia_bayesiana_02/inferencia_bayesiana_02.html'">inferencia bayesiana_02</button>
-        <button onclick="location.href='inferencia_bayesiana_03/inferencia_bayesiana_03.html'">inferencia bayesiana_03</button>
-        <button onclick="location.href='etica/week_01/etica_week_01.html'">Ètica</button>
-        
-
-
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Bachelor en Ciencia de Datos — Universitat Carlemany</h1>
+      <p class="site-subtitle">Antonio López García</p>
     </div>
-    <script src="script.js"></script>
-</body>
+  </header>
 
+  <main class="container">
+    <section class="toolbar" aria-label="Herramientas">
+      <label for="search" class="sr-only">Buscar</label>
+      <input id="search" type="search" placeholder="Filtrar páginas…" autocomplete="off" />
+    </section>
+
+    <nav class="grid" aria-label="Accesos rápidos">
+      <a class="card" href="destination-earth.html">Destination Earth</a>
+      <a class="card" href="entrega.html">Lovelace Babbage</a>
+      <a class="card" href="inferencia-estadistica/inferencia-estadistica.html">Inferencia E</a>
+      <a class="card" href="series-temporales/series-temporales.html">Series temporales</a>
+      <a class="card" href="series-temporales-semana-04/series-temporales-semana-04.html">Trabajo series temp</a>
+      <a class="card" href="analisis_multivariante/analisis_multivariante_semana_01.html">Análisis multivariante 01</a>
+      <a class="card" href="analisis_multivariante/analisis_multivariante_semana_03.html">Componentes principales</a>
+      <a class="card" href="analisis_multivariante/analisis_multivariante_semana_04.html">ANOVA / MANOVA</a>
+      <a class="card" href="base_datos/bases_datos_01.html">Base de datos SQL 01</a>
+      <a class="card" href="base_datos/los_cinco/los_cinco.html">SQL IMDb</a>
+      <a class="card" href="base_datos/optizacion_datasets/optimizacion_datasets.html">Optimización datasets</a>
+      <a class="card" href="inferencia_bayesiana/inferencia_bayesiana.html">Inferencia bayesiana 01</a>
+      <a class="card" href="inferencia_bayesiana_02/inferencia_bayesiana_02.html">Inferencia bayesiana 02</a>
+      <a class="card" href="inferencia_bayesiana_03/inferencia_bayesiana_03.html">Inferencia bayesiana 03</a>
+      <a class="card" href="etica/week_01/etica_week_01.html">Ética — Week 01</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Bachelor en Ciencia de Datos — Universitat Carlemany</small>
+    </div>
+  </footer>
+
+  <script src="index/script.js"></script>
+</body>
 </html>
