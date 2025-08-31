@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ética, privacidad y protección de datos — Semana 1</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --fg: #222;
+      --muted: #666;
+      --card: #fff;
+      --brand: #1f2937; /* gris oscuro */
+      --accent: #2563eb; /* azul */
+      --radius: 12px;
+      --shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 24px;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .title {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      color: var(--brand);
+      letter-spacing: .2px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta strong { color: var(--fg); font-weight: 600; }
+
+    .actions { margin-top: 12px; }
+    .btn-download {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--brand);
+      color: #fff; text-decoration: none; font-weight: 600;
+    }
+    .btn-download:hover { filter: brightness(0.95); }
+
+    nav.indice {
+      background: var(--card);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 16px 0 20px 0;
+    }
+    nav.indice h2 { margin: 0 0 12px 0; color: var(--brand); font-size: 20px; }
+
+    .btn-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--brand);
+      border: 1px solid #e5e7eb; border-radius: 10px;
+      padding: 8px 12px; cursor: pointer; font-weight: 600;
+    }
+
+    #listaCasos {
+      margin: 14px 0 0 0; padding-left: 0; list-style: none;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 14px;
+    }
+    #listaCasos a { text-decoration: none; color: var(--accent); }
+    #listaCasos a:hover { text-decoration: underline; }
+
+    main .caso {
+      background: var(--card);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .caso h3 { margin-top: 0; color: var(--brand); }
+    .badge { display:inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background:#eef2ff; color:#3730a3; margin-left:6px; }
+
+    .bloque { margin: 6px 0 10px 0; }
+    .bloque strong { display:block; font-weight:700; color:#111; margin-bottom: 2px; }
+
+    footer {
+      text-align: center; color: var(--muted);
+      margin: 24px 0 8px 0; font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 16px; }
+      .meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">Ética, privacidad y protección de datos — Semana 1</h1>
+      <div class="meta">
+        <div><strong>Profesora:</strong> Laura Abad Herrero</div>
+        <div><strong>Grupo:</strong> 8</div>
+        <div><strong>Alumnado:</strong>Pablo Edgardo Martínez Chimenti • Carlos Iglesias Vicente</div>
+        <div><strong>Alumnado:</strong> Steven Louis Allus • Antonio López García</div>
+      </div>
+      
+    </header>
+
+    <nav class="indice" aria-label="Índice de casos">
+      <h2>Índice</h2>
+      <button class="btn-toggle" aria-controls="listaCasos" aria-expanded="true" id="btnToggle">
+        Mostrar / Ocultar casos
+      </button>
+      <ul id="listaCasos">
+        <li><a href="#casoA">Caso A: Marketing con datos sin consentimiento</a></li>
+        <li><a href="#casoB">Caso B: Modelo de contratación discriminatorio</a></li>
+        <li><a href="#casoC">Caso C: Uso de datos personales sensibles en salud</a></li>
+        <li><a href="#casoD">Caso D: Omitir resultados en un informe de inversión</a></li>
+        <li><a href="#casoE">Caso E: Venta de datos de localización sin informar</a></li>
+        <li><a href="#casoF">Caso F: Ocultar correlación ingresos–enfermedades</a></li>
+        <li><a href="#casoG">Caso G: Amplificación de contenido sensacionalista</a></li>
+        <li><a href="#casoH">Caso H: Modelo de préstamos con datos sensibles</a></li>
+        <li><a href="#casoI">Caso I: Análisis de navegación de estudiantes sin informar</a></li>
+        <li><a href="#casoJ">Caso J: App de salud mental que reutiliza datos</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- CASO A -->
+      <section id="casoA" class="caso" aria-labelledby="tA">
+        <h3 id="tA">Caso A: Marketing con datos sin consentimiento <span class="badge">A</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una empresa utiliza el historial de navegación y compras de sus clientes para crear perfiles detallados y enviarles publicidad dirigida, sin haber obtenido un permiso claro y explícito para este fin.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Consentimiento, Transparencia y Limitación de la finalidad.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          Es una vulneración de la autonomía del usuario. Los datos fueron recogidos para una finalidad (p. ej., procesar una compra) y se reutilizan para otra (marketing) sin permiso. La falta de transparencia sobre cómo se usan los datos socava la confianza y vulnera la privacidad.
+        </p>
+      </section>
+
+      <!-- CASO B -->
+      <section id="casoB" class="caso" aria-labelledby="tB">
+        <h3 id="tB">Caso B: Modelo de contratación discriminatorio <span class="badge">B</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Un algoritmo de selección de personal, entrenado con datos históricos, descarta sistemáticamente currículums de mujeres para roles de ingeniería porque en el pasado la mayoría de los contratados fueron hombres.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Equidad (fairness), No discriminación y Rendición de cuentas.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          El modelo no es objetivo: automatiza y amplifica un sesgo histórico. Es una práctica discriminatoria que perpetúa la desigualdad. La responsabilidad es de la empresa por desarrollar e implementar una herramienta que genera un impacto social negativo y predecible.
+        </p>
+      </section>
+
+      <!-- CASO C -->
+      <section id="casoC" class="caso" aria-labelledby="tC">
+        <h3 id="tC">Caso C: Uso de datos personales sensibles en salud <span class="badge">C</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una aplicación móvil de salud mental recopila datos sobre estado de ánimo, diagnósticos y tratamientos de sus usuarios. Posteriormente, vende estos datos, supuestamente anonimizados, a empresas farmacéuticas para investigación de mercado.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Protección de categorías especiales de datos, Confidencialidad e Integridad, Limitación de la finalidad.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          La comercialización de datos de salud vulnera gravemente la privacidad y la confidencialidad. Incluso anonimizados, estos datos pueden reidentificarse, exponiendo a estigmas o discriminación. Esta práctica erosiona la confianza y vulnera la ética en el tratamiento de información sensible.
+        </p>
+      </section>
+
+      <!-- CASO D -->
+      <section id="casoD" class="caso" aria-labelledby="tD">
+        <h3 id="tD">Caso D: Omitir resultados en un informe de inversión <span class="badge">D</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Un científico de datos recibe presión para eliminar de un informe estadístico resultados que muestran riesgos financieros para una empresa, con el fin de no afectar sus perspectivas de inversión.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Transparencia, Responsabilidad, Integridad científica, No maleficencia.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          Descartar información relevante es una falta grave de responsabilidad y transparencia. Las decisiones empresariales requieren análisis veraces; la manipulación puede generar daños económicos a medio y largo plazo. La ética profesional exige reportar resultados completos y verificables.
+        </p>
+      </section>
+
+      <!-- CASO E -->
+      <section id="casoE" class="caso" aria-labelledby="tE">
+        <h3 id="tE">Caso E: Venta de datos de localización sin informar <span class="badge">E</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una empresa de apps recopila datos de geolocalización para mejorar el servicio, pero además los vende a terceros sin informar ni pedir consentimiento.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Privacidad, Autonomía, Transparencia, Limitación de la finalidad, No maleficencia.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          El uso secundario de datos sin informar ni obtener consentimiento vulnera la privacidad. La ubicación es sensible, pues permite inferir hábitos y horarios. Los datos deben usarse con el fin declarado, siendo transparentes y con consentimiento del usuario.
+        </p>
+      </section>
+
+      <!-- CASO F -->
+      <section id="casoF" class="caso" aria-labelledby="tF">
+        <h3 id="tF">Caso F: Ocultar correlación ingresos–enfermedades <span class="badge">F</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Un científico de datos encuentra correlación entre bajos ingresos y mayor probabilidad de desarrollar ciertas enfermedades, pero decide no divulgarlo por temor a causar alarma social.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Beneficencia, No maleficencia, Responsabilidad social, Justicia.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          El temor a generar alarma es comprensible, pero ocultar información impide actuar. El deber ético es comunicar resultados de forma responsable, explicando análisis, limitaciones y contexto. La solución es una comunicación transparente y cuidadosa, no silenciar los datos.
+        </p>
+      </section>
+
+      <!-- CASO G -->
+      <section id="casoG" class="caso" aria-labelledby="tG">
+        <h3 id="tG">Caso G: Amplificación de contenido sensacionalista <span class="badge">G</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Un bot con un sistema de recomendación amplifica contenido sensacionalista (titulares alarmistas, polarización), maximizando interacciones sin verificar calidad ni posible daño (desinformación, adicción, afectación a menores).
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Responsabilidad social, Transparencia, Justicia/No discriminación, Explicabilidad.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          El caso de uso no es neutral: incorpora incentivos de negocio (engagement) que fomentan manipulación, lo que es éticamente inaceptable. No se deben promover adicción ni prácticas opacas que erosionen la confianza pública. Se exige trazabilidad de criterios de ranking y evaluación del impacto social; si no se puede rediseñar objetivo y función de pérdida para mitigar daños, no debe desplegarse.
+        </p>
+      </section>
+
+      <!-- CASO H -->
+      <section id="casoH" class="caso" aria-labelledby="tH">
+        <h3 id="tH">Caso H: Modelo de préstamos con datos sensibles <span class="badge">H</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una entidad financiera entrena un modelo de riesgo de crédito usando, además de datos financieros, señales de apps de salud, localización, redes sociales o proxies que revelan información sensible (salud, religión, afiliación).
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Protección de categorías especiales de datos, Privacidad, Justicia/No discriminación, Minimización y Limitación de la finalidad, Transparencia/Explicabilidad, Rendición de cuentas.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          No es legítimo usar datos sensibles para conceder o denegar crédito. Se debe limitar a datos necesarios y pertinentes (financieros), aplicar métricas de equidad, documentar razones comprensibles y ofrecer revisión humana. Sin estas salvaguardas, el modelo no debe desplegarse.
+        </p>
+      </section>
+
+      <!-- CASO I -->
+      <section id="casoI" class="caso" aria-labelledby="tI">
+        <h3 id="tI">Caso I: Análisis de navegación de estudiantes sin informar <span class="badge">I</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una universidad analiza patrones de navegación en su plataforma educativa para predecir abandono, sin informar claramente a los estudiantes sobre este análisis.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Autonomía (consentimiento informado), Privacidad, Transparencia, Responsabilidad, No maleficencia, Explicabilidad.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          Analizar conductas sin informar ni ofrecer elección vulnera la autonomía y la privacidad del alumnado. Los procesos deben ser transparentes y comprensibles para que sepan qué datos se recogen y con qué fin; además, hay riesgo de daño por falsos positivos.
+        </p>
+      </section>
+
+      <!-- CASO J -->
+      <section id="casoJ" class="caso" aria-labelledby="tJ">
+        <h3 id="tJ">Caso J: App de salud mental que reutiliza datos <span class="badge">J</span></h3>
+        <p class="bloque"><strong>Identificación</strong>
+          Una start‑up desarrolla una app de salud mental que analiza mensajes escritos para detectar depresión, pero parte de esos datos se utiliza también para entrenar modelos comerciales de análisis de sentimiento sin conocimiento del usuario.
+        </p>
+        <p class="bloque"><strong>Principios aplicables</strong>
+          Privacidad, Confidencialidad, Autonomía (consentimiento explícito), Transparencia, Responsabilidad, No maleficencia.
+        </p>
+        <p class="bloque"><strong>Justificación</strong>
+          Los datos de salud son especialmente sensibles; usarlos con una finalidad distinta y sin conocimiento del usuario vulnera privacidad y confidencialidad, y requiere consentimiento específico e informado. Incluso con anonimización hay riesgo de reidentificación y daño; la empresa debe asumir responsabilidad y limitar usos.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      © Semana 1 — Ética, privacidad y protección de datos
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('btnToggle');
+      const list = document.getElementById('listaCasos');
+      btn?.addEventListener('click', () => {
+        const isHidden = getComputedStyle(list).display === 'none';
+        list.style.display = isHidden ? 'grid' : 'none';
+        btn.setAttribute('aria-expanded', String(isHidden));
+      });
+    })();
+  </script>
+</body>
+</html>
