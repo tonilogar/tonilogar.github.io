@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ética, privacidad y protección de datos — Semana 1</title>
+  <title>Ética, privacidad y protección de datos — Semana 2</title>
+  <meta name="description" content="Casos prácticos de la asignatura Ética, privacidad y protección de datos — Semana 2." />
   <style>
     :root {
       --bg: #f7f7f7;
@@ -16,6 +17,9 @@
       --shadow: 0 2px 10px rgba(0,0,0,.08);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
     html { scroll-behavior: smooth; }
     body {
       margin: 0; padding: 24px;
@@ -23,11 +27,9 @@
       color: var(--fg);
       font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1000px; margin: 0 auto; }
 
     header {
       background: var(--card);
@@ -52,16 +54,7 @@
       font-size: 14px;
     }
     .meta strong { color: var(--fg); font-weight: 600; }
-
-    .actions { margin-top: 12px; }
-    .btn-download {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: var(--brand);
-      color: #fff; text-decoration: none; font-weight: 600;
-    }
-    .btn-download:hover { filter: brightness(0.95); }
+    .meta .full { grid-column: 1 / -1; }
 
     nav.indice {
       background: var(--card);
@@ -85,6 +78,7 @@
     }
     #listaCasos a { text-decoration: none; color: var(--accent); }
     #listaCasos a:hover { text-decoration: underline; }
+    .is-hidden { display: none !important; }
 
     main .caso {
       background: var(--card);
@@ -94,11 +88,15 @@
       margin-bottom: 16px;
     }
 
-    .caso h3 { margin-top: 0; color: var(--brand); }
-    .badge { display:inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background:#eef2ff; color:#3730a3; margin-left:6px; }
+    .caso h3 { margin-top: 0; color: var(--brand); display:flex; align-items:center; gap:8px; }
+    .badge { display:inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background:#eef2ff; color:#3730a3; }
 
     .bloque { margin: 6px 0 10px 0; }
     .bloque strong { display:block; font-weight:700; color:#111; margin-bottom: 2px; }
+
+    .volver-indice { margin-top: 12px; }
+    .back-index { font-size: 14px; color: var(--accent); text-decoration: none; }
+    .back-index:hover { text-decoration: underline; }
 
     footer {
       text-align: center; color: var(--muted);
@@ -112,21 +110,18 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="top">
     <header>
-      <h1 class="title">Ética, privacidad y protección de datos — Semana 1</h1>
-      <div class="meta">
-        <div><strong>Profesora:</strong> Laura Abad Herrero
-        <strong>Grupo:</strong> 8
-        <div><strong>Alumnado:</strong></div>
-        <p>Pablo Edgardo Martínez Chimenti • Carlos Iglesias Vicente</p> 
-        <p>Steven Louis Allus • Antonio López García</p> 
+      <h1 class="title">Ética, privacidad y protección de datos — Semana 2</h1>
+      <div class="meta" aria-label="Metadatos de la actividad">
+        <div><strong>Profesora:</strong> Laura Abad Herrero</div>
+        <div><strong>Grupo:</strong> 8</div>
+        <div class="full"><strong>Alumnado:</strong> Pablo Edgardo Martínez Chimenti • Carlos Iglesias Vicente • Steven Louis Allus • Antonio López García</div>
       </div>
-      
     </header>
 
     <nav class="indice" aria-label="Índice de casos">
-      <h2>Índice</h2>
+      <h2 id="indice">Índice</h2>
       <button class="btn-toggle" aria-controls="listaCasos" aria-expanded="true" id="btnToggle">
         Mostrar / Ocultar casos
       </button>
@@ -275,7 +270,7 @@
       <section id="casoJ" class="caso" aria-labelledby="tJ">
         <h3 id="tJ">Caso J: App de salud mental que reutiliza datos <span class="badge">J</span></h3>
         <p class="bloque"><strong>Identificación</strong>
-          Una start‑up desarrolla una app de salud mental que analiza mensajes escritos para detectar depresión, pero parte de esos datos se utiliza también para entrenar modelos comerciales de análisis de sentimiento sin conocimiento del usuario.
+          Una start-up desarrolla una app de salud mental que analiza mensajes escritos para detectar depresión, pero parte de esos datos se utiliza también para entrenar modelos comerciales de análisis de sentimiento sin conocimiento del usuario.
         </p>
         <p class="bloque"><strong>Principios aplicables</strong>
           Privacidad, Confidencialidad, Autonomía (consentimiento explícito), Transparencia, Responsabilidad, No maleficencia.
@@ -287,18 +282,34 @@
     </main>
 
     <footer>
-      © Semana 1 — Ética, privacidad y protección de datos
+      © Semana 2 — Ética, privacidad y protección de datos
     </footer>
   </div>
 
   <script>
-    (function(){
+    (function () {
       const btn = document.getElementById('btnToggle');
       const list = document.getElementById('listaCasos');
-      btn?.addEventListener('click', () => {
-        const isHidden = getComputedStyle(list).display === 'none';
-        list.style.display = isHidden ? 'grid' : 'none';
-        btn.setAttribute('aria-expanded', String(isHidden));
+
+      if (btn && list) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          list.classList.toggle('is-hidden', expanded);
+        });
+      }
+
+      // Añade "↑ Volver al índice" al final de cada caso
+      document.querySelectorAll('section.caso').forEach(sec => {
+        const p = document.createElement('p');
+        p.className = 'volver-indice';
+        const a = document.createElement('a');
+        a.href = '#indice';
+        a.className = 'back-index';
+        a.textContent = '↑ Volver al índice';
+        p.appendChild(a);
+        sec.appendChild(p);
       });
     })();
   </script>

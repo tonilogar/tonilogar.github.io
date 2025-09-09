@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Informe del Caso — Dilema Ético en el Uso de Datos Sensibles en Ciencia de Datos en Andorra</title>
+  <meta name="description" content="Conversión a web del informe de caso: Dilema Ético en el Uso de Datos Sensibles en Ciencia de Datos en Andorra." />
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --fg: #222;
+      --muted: #666;
+      --card: #fff;
+      --brand: #1f2937; /* gris oscuro */
+      --accent: #2563eb; /* azul */
+      --radius: 12px;
+      --shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0; padding: 24px;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    header {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .title { margin: 0 0 8px 0; font-size: 24px; color: var(--brand); letter-spacing: .2px; }
+
+    .meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;
+      color: var(--muted); font-size: 14px;
+    }
+    .meta strong { color: var(--fg); font-weight: 600; }
+    .meta .full { grid-column: 1 / -1; }
+
+    .actions { margin-top: 10px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid #e5e7eb; text-decoration:none; font-weight:600; }
+    .btn.primary { background: var(--brand); color:#fff; border-color: transparent; }
+
+    nav.indice {
+      background: var(--card);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 16px 0 20px 0;
+    }
+    nav.indice h2 { margin: 0 0 12px 0; color: var(--brand); font-size: 20px; }
+
+    .btn-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--brand);
+      border: 1px solid #e5e7eb; border-radius: 10px;
+      padding: 8px 12px; cursor: pointer; font-weight: 600;
+    }
+
+    #lista { margin: 14px 0 0 0; padding-left: 0; list-style: none;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 14px; }
+    #lista a { text-decoration: none; color: var(--accent); }
+    #lista a:hover { text-decoration: underline; }
+    .is-hidden { display: none !important; }
+
+    main .card {
+      background: var(--card);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .card h3 { margin-top: 0; color: var(--brand); }
+    .card h4 { margin-bottom: 6px; color: #111; }
+
+    .volver { margin-top: 12px; }
+    .back-index { font-size: 14px; color: var(--accent); text-decoration: none; }
+    .back-index:hover { text-decoration: underline; }
+
+    footer { text-align: center; color: var(--muted); margin: 24px 0 8px 0; font-size: 13px; }
+
+    @media (max-width: 640px) {
+      body { padding: 16px; }
+      .meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="top">
+    <header>
+      <h1 class="title">Informe del Caso — Dilema Ético en el Uso de Datos Sensibles en Ciencia de Datos en Andorra</h1>
+      <div class="meta" aria-label="Metadatos del informe">
+        <div><strong>Asignatura:</strong> Ética, privacidad y protección de datos</div>
+        <div><strong>Fecha:</strong> 09 de septiembre de 2025</div>
+        <div class="full"><strong>Miembros del grupo:</strong> Antonio López • Carlos Iglesias • Pablo Martínez • Steven Allus</div>
+      </div>
+      <div class="actions">
+        <!-- Enlace opcional al PDF de referencia si está disponible en el mismo directorio -->
+        <a class="btn" href="#indice">Ir al índice</a>
+      </div>
+    </header>
+
+    <nav class="indice" aria-label="Índice del informe">
+      <h2 id="indice">Índice</h2>
+      <button class="btn-toggle" id="btnToggle" aria-controls="lista" aria-expanded="true">Mostrar / Ocultar índice</button>
+      <ul id="lista">
+        <li><a href="#sec1">1. Identificación de los problemas éticos, legales y de privacidad</a></li>
+        <li><a href="#sec2">2. Consentimiento explícito y transparencia</a></li>
+        <li><a href="#sec3">3. Riesgos de privacidad y cumplimiento de la securización</a></li>
+        <li><a href="#sec4">4. Análisis de las posibles soluciones (A, B, C)</a></li>
+        <li><a href="#sec5">5. Ética profesional e implicaciones sociales</a></li>
+        <li><a href="#sec6">6. Recomendación final y gobernanza</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- 1 -->
+      <section id="sec1" class="card" aria-labelledby="t1">
+        <h3 id="t1">1. Identificación de los problemas éticos, legales y de privacidad</h3>
+        <h4>Problemas legales</h4>
+        <ul>
+          <li><strong>Violación del consentimiento explícito:</strong> obtención de datos mediante acuerdos opacos y términos poco claros, contraviniendo la normativa andorrana (consentimiento explícito e informado para fines específicos).</li>
+          <li><strong>Tratamiento ilícito de datos sensibles:</strong> uso de datos de salud sin consentimiento expreso ni medidas de seguridad adecuadas (anonimización/seudonimización).</li>
+          <li><strong>Incumplimiento del principio de minimización:</strong> no se justifica usar datos de salud para un modelo de recomendación de compra.</li>
+        </ul>
+        <h4>Problemas éticos</h4>
+        <ul>
+          <li><strong>Manipulación y engaño:</strong> ocultación del verdadero alcance del uso de datos, vulnerando la autonomía de los usuarios.</li>
+          <li><strong>Potencial de daño y discriminación:</strong> perfiles que pueden discriminar (p. ej., precios u ofertas según condiciones de salud inferidas).</li>
+          <li><strong>Abuso de confianza:</strong> explotación de la confianza depositada en apps de bienestar para fines puramente comerciales.</li>
+        </ul>
+        <h4>Problemas de privacidad</h4>
+        <ul>
+          <li><strong>Invasión del espacio personal:</strong> acceso y análisis de datos de salud (ámbito altamente sensible).</li>
+          <li><strong>Alto riesgo de re-identificación:</strong> combinación de variables (edad, sexo, estado civil, salud) puede reidentificar personas concretas.</li>
+        </ul>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+
+      <!-- 2 -->
+      <section id="sec2" class="card" aria-labelledby="t2">
+        <h3 id="t2">2. Consentimiento explícito y transparencia</h3>
+        <p><strong>Conclusión:</strong> La empresa no cumple con ninguno de los dos principios.</p>
+        <h4>Consentimiento explícito — requisitos mínimos</h4>
+        <p>El consentimiento válido exige una acción afirmativa e informada tras explicar, de forma clara:</p>
+        <ul>
+          <li>Qué datos se recogen.</li>
+          <li>Para qué finalidad exacta se usarán.</li>
+          <li>Con quién se compartirán.</li>
+          <li>Durante cuánto tiempo se conservarán.</li>
+        </ul>
+        <h4>Transparencia</h4>
+        <p>La organización actúa con opacidad: oculta acuerdos con terceros y no informa del tratamiento de datos de salud con fines de marketing. La transparencia exige comunicación honesta, clara y accesible.</p>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+
+      <!-- 3 -->
+      <section id="sec3" class="card" aria-labelledby="t3">
+        <h3 id="t3">3. Riesgos de privacidad y cumplimiento de la securización</h3>
+        <h4>Riesgos potenciales</h4>
+        <ul>
+          <li><strong>Fuga de datos:</strong> al no anonimizar ni seudonimizar, una brecha expondría información extremadamente sensible.</li>
+          <li><strong>Uso indebido por terceros:</strong> posible venta/cesión a aseguradoras o empleadores para discriminar a usuarios.</li>
+          <li><strong>Vigilancia y manipulación:</strong> explotación de vulnerabilidades (p. ej., dirigir publicidad nociva a colectivos vulnerables).</li>
+        </ul>
+        <h4>Incumplimiento de seguridad</h4>
+        <p>La falta de medidas técnicas y organizativas viola el principio de <em>privacidad desde el diseño y por defecto</em> (medidas desde el inicio del proyecto).</p>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+
+      <!-- 4 -->
+      <section id="sec4" class="card" aria-labelledby="t4">
+        <h3 id="t4">4. Análisis de las posibles soluciones</h3>
+        <article>
+          <h4>Solución A — Usar todos los datos sin medidas adicionales</h4>
+          <p><strong>Inaceptable.</strong> Prioriza el beneficio comercial sobre la legalidad y la ética.</p>
+          <ul>
+            <li><strong>Riesgos legales:</strong> sanciones y demandas.</li>
+            <li><strong>Riesgos éticos:</strong> violación de la deontología profesional y daño real a usuarios.</li>
+            <li><strong>Riesgos reputacionales:</strong> pérdida de confianza de clientes e inversores.</li>
+          </ul>
+        </article>
+        <article>
+          <h4>Solución B — Anonimizar y garantizar consentimiento explícito</h4>
+          <p><strong>Recomendada.</strong> Corrige fallas de consentimiento y seguridad, manteniendo el objetivo comercial.</p>
+          <ul>
+            <li><strong>Ventajas:</strong> cumplimiento legal/ético, construcción de confianza, viabilidad del modelo con técnicas robustas de anonimización.</li>
+            <li><strong>Desventajas:</strong> reducción del dataset (no todos consentirán) y mayor esfuerzo/tiempo de implementación.</li>
+          </ul>
+        </article>
+        <article>
+          <h4>Solución C — No usar datos sensibles y buscar alternativas</h4>
+          <p>Ética y segura, pero puede comprometer el objetivo del proyecto.</p>
+          <ul>
+            <li><strong>Ventajas:</strong> minimiza riesgos y es más simple de implementar.</li>
+            <li><strong>Desventajas:</strong> pérdida significativa de poder predictivo; posible inviabilidad comercial.</li>
+          </ul>
+        </article>
+        <p><strong>Elección razonada:</strong> B es la única opción profesionalmente defendible. C sería válida si el proyecto resultase inviable; intentar reconducir por la vía correcta demuestra mayor responsabilidad.</p>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+
+      <!-- 5 -->
+      <section id="sec5" class="card" aria-labelledby="t5">
+        <h3 id="t5">5. Ética profesional e implicaciones sociales</h3>
+        <p><strong>Responsabilidades sociales y profesionales:</strong> no basta con maximizar la precisión del modelo; debemos salvaguardar a las personas por encima de los objetivos comerciales (<em>primum non nocere</em>).</p>
+        <h4>Papel del científico de datos</h4>
+        <ul>
+          <li><strong>Educar:</strong> explicar riesgos legales y éticos a la dirección y a <em>stakeholders</em>.</li>
+          <li><strong>Abogar:</strong> implantar <em>Privacidad desde el Diseño</em>, anonimización y cifrado.</li>
+          <li><strong>Rechazar:</strong> negarse a proyectos manifiestamente ilegales o nocivos.</li>
+        </ul>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+
+      <!-- 6 -->
+      <section id="sec6" class="card" aria-labelledby="t6">
+        <h3 id="t6">6. Recomendación final y gobernanza</h3>
+        <h4>a) Cómo proceder (Plan inmediato)</h4>
+        <ol>
+          <li><strong>Purgar datos ilegales:</strong> eliminar datos personales sin consentimiento explícito.</li>
+          <li><strong>Rediseñar el consentimiento:</strong> flujo claro, granular y transparente (qué, para qué, con quién, cuánto tiempo).</li>
+          <li><strong>Aplicar técnicas de anonimización:</strong> k-anonimidad, l-diversidad, privacidad diferencial sobre datos sensibles recabados con consentimiento.</li>
+          <li><strong>Relanzar el proyecto:</strong> reanudar con base de datos legal/ética y medidas de seguridad implantadas.</li>
+        </ol>
+        <h4>b) Estrategias de cumplimiento y mejora</h4>
+        <ol>
+          <li><strong>Nombrar un DPD:</strong> responsable de cumplimiento y enlace con autoridades/usuarios.</li>
+          <li><strong>Realizar EIPD:</strong> evaluar riesgos de privacidad antes de nuevos tratamientos.</li>
+          <li><strong>Privacidad desde el diseño y por defecto:</strong> integrar protección de datos en todas las fases.</li>
+          <li><strong>Formación continua:</strong> programa obligatorio para equipos de datos y desarrollo.</li>
+          <li><strong>Auditorías externas:</strong> verificaciones periódicas por terceros independientes.</li>
+        </ol>
+        <p class="volver"><a class="back-index" href="#indice">↑ Volver al índice</a></p>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 — Informe del Caso (Andorra) · Ética, privacidad y protección de datos
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('btnToggle');
+      const list = document.getElementById('lista');
+      if (btn && list) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          list.classList.toggle('is-hidden', expanded);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
