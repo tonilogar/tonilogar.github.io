@@ -1,0 +1,138 @@
+.app {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6fb;
+}
+
+.view {
+    display: none;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    gap: 1.25rem;
+}
+
+.view.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.lead {
+    color: #5f6b7d;
+    margin: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+label {
+    text-align: left;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+input[type="text"] {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.card button[type="submit"] {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.card button[type="submit"]:hover {
+    background: #1d4ed8;
+}
+
+.btn {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.btn:hover {
+    background: #0f9d6a;
+}
+
+.btn.secondary {
+    background: #2563eb;
+}
+
+.btn.secondary:hover {
+    background: #1d4ed8;
+}
+
+.btn.link {
+    background: transparent;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.btn.link:hover {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.feedback {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111827;
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.feedback.visible {
+    opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+    .app {
+        padding: 2rem 1rem;
+    }
+
+    .view {
+        padding: 1.5rem;
+    }
+}

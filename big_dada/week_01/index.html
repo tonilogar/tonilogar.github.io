@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app">
+        <section id="homeView" class="view active">
+            <h1>Bienvenido</h1>
+            <p class="lead">Introduce tu nombre para registrarte.</p>
+            <form id="registerForm" class="card">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                <button type="submit">Registrarse</button>
+            </form>
+            <button id="goToContent" class="btn secondary">Contenido para usuarios</button>
+        </section>
+
+        <section id="welcomeView" class="view">
+            <h1>Es un placer tenerte con nosotros, <span id="welcomeName"></span>.</h1>
+            <div class="actions">
+                <button id="backToHome" class="btn">Registrar otro nombre</button>
+                <button id="welcomeToContent" class="btn secondary">Contenido para usuarios</button>
+            </div>
+        </section>
+
+        <section id="contentView" class="view">
+            <h1>Contenido para usuarios</h1>
+            <p class="lead">Comprueba si tu nombre está registrado.</p>
+            <form id="verifyForm" class="card">
+                <label for="verificacion">Nombre</label>
+                <input type="text" id="verificacion" name="verificacion" placeholder="Introduce tu nombre" required>
+                <button type="submit">Verificar acceso</button>
+            </form>
+            <button id="contentBackHome" class="btn link">Volver al inicio</button>
+        </section>
+
+        <section id="registeredView" class="view">
+            <h1>Lo siento, <span id="registeredName"></span>, de momento no hay contenido disponible.</h1>
+            <h2>En cuanto envies un jamón al profesor de Big Data podrás acceder al contenido</h2>
+            <div class="actions">
+                <button id="registeredToContent" class="btn secondary">Volver a contenido</button>
+                <button id="registeredToHome" class="btn link">Inicio</button>
+            </div>
+        </section>
+
+        <section id="notRegisteredView" class="view">
+            <h1>No puedo mostrarte el contenido sin saber quién eres.</h1>
+            <p class="lead">El nombre <span id="notRegisteredName"></span> no está registrado. Por favor, regístrate primero.</p>
+            <div class="actions">
+                <button id="notRegisteredToHome" class="btn">Ir a la página principal</button>
+                <button id="notRegisteredToContent" class="btn secondary">Volver a contenido</button>
+            </div>
+        </section>
+
+        <p id="feedback" class="feedback" role="status"></p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
