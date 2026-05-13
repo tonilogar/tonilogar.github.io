@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Algoritmos y Estructura de Datos — Antonio López García</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <h1 class="main-title">Algoritmos y Estructura de Datos</h1>
+  <p class="subtitle">Antonio López García</p>
+
+  <nav id="indice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#semana01">1. Semana 01 — Serie de Padovan</a></li>
+      <li><a href="#entrega03">2. Entrega 03 — Lista enlazada y Fibonacci recursivo</a></li>
+      <li><a href="#entrega04">3. Entrega 04 — Búsqueda binaria iterativa</a></li>
+      <li><a href="#entrega06">4. Entrega 06 — Árboles binarios, AVL y heap</a></li>
+      <li><a href="#entrega07">5. Entrega 07/08 — Blockchain, hash tables y P vs NP</a></li>
+      <li><a href="#eval05">6. Evaluación Tema 05 — P vs NP</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 01 -->
+  <!-- ============================================================ -->
+  <article id="semana01" class="article">
+    <h2>1. Semana 01 — Serie de Padovan</h2>
+
+    <div class="buttons">
+      <a class="btn" href="entrega-semana-01.pdf" download>Descargar PDF</a>
+      <a class="btn" href="entrega_semana_01.ipynb" download>Descargar .ipynb</a>
+    </div>
+
+    <p>La <strong>serie de Padovan</strong> es una sucesión de números naturales definida por los valores iniciales P(0)=P(1)=P(2)=1, y la relación de recurrencia para n ≥ 3: <strong>P(n) = P(n−2) + P(n−3)</strong>.</p>
+
+    <table>
+      <tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th></tr>
+      <tr><td>P(n)</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>12</td><td>16</td></tr>
+    </table>
+
+    <p><strong>Pseudocódigo:</strong></p>
+    <pre><code>Inicializar P(0) = 1
+Inicializar P(1) = 1
+Inicializar P(2) = 1
+Para n desde 3 hasta N hacer:
+    P(n) = P(n-2) + P(n-3)
+Imprimir los valores P(0) a P(N)</code></pre>
+
+    <img src="img/entrega-semana-01_-002.jpg" alt="Desarrollo serie Padovan" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 03 -->
+  <!-- ============================================================ -->
+  <article id="entrega03" class="article">
+    <h2>2. Entrega 03 — Lista enlazada y Fibonacci recursivo</h2>
+
+    <div class="buttons">
+      <a class="btn" href="entrega-ejercicio-03.pdf" download>Descargar PDF</a>
+      <a class="btn" href="entrega_ejercicio_03.ipynb" download>Descargar .ipynb</a>
+    </div>
+
+    <h3>Ejercicio: Lista enlazada — borrar nodo en posición específica</h3>
+    <p>Función <code>deleteNode(position)</code> sobre la clase LinkedList:</p>
+    <ul>
+      <li><strong>Operación:</strong> Borra un nodo en la posición que se pasa por parámetro.</li>
+      <li><strong>Coste temporal:</strong> <strong>O(N)</strong> donde N es el número de nodos a recorrer.</li>
+    </ul>
+    <p><strong>Código:</strong></p>
+    <pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def deleteNode(self, position):
+        if self.head is None:
+            return
+        if position == 0:
+            self.head = self.head.next
+            return self.head
+        index = 0
+        current = self.head
+        prev = self.head
+        temp = self.head
+        while current is not None:
+            if index == position:
+                temp = current.next
+                break
+            prev = current
+            current = current.next
+            index += 1
+        prev.next = temp
+        return prev</code></pre>
+
+    <h3>Ejercicio: Fibonacci recursivo optimizado</h3>
+    <p>Algoritmo recursivo con <strong>coste O(N)</strong> (más eficiente que el recursivo básico, menos que el de matrices O(log n)).</p>
+    <pre><code>def fibonacci(n, second_last, last):
+    if n - 1 == 0:
+        return second_last
+    else:
+        new_last = second_last + last
+        second_last = last
+        return fibonacci(n - 1, second_last, new_last)
+
+print(fibonacci(21, 0, 1))  # 6765</code></pre>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 04 -->
+  <!-- ============================================================ -->
+  <article id="entrega04" class="article">
+    <h2>3. Entrega 04 — Búsqueda binaria iterativa</h2>
+
+    <div class="buttons">
+      <a class="btn" href="entrega-ejercicio-04.pdf" download>Descargar PDF</a>
+      <a class="btn" href="entrega_ejercicio_04.ipynb" download>Descargar .ipynb</a>
+    </div>
+
+    <p>Implementación del algoritmo de <strong>búsqueda binaria</strong> mediante un proceso iterativo.</p>
+    <p>La función busca un elemento en una lista ordenada dividiéndola repetidamente en mitades. Comienza calculando el punto medio y comparando su valor con el elemento buscado. Si coincide, devuelve su índice; si es menor, ignora la mitad izquierda; si es mayor, ignora la derecha. Se repite hasta encontrar el elemento o hasta que no queden elementos.</p>
+
+    <pre><code>def binarySearch(arr, l, r, x):
+    while l <= r:
+        mid = l + (r - l) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return -1
+
+arr = [2, 3, 4, 10, 40]
+x = 10
+result = binarySearch(arr, 0, len(arr)-1, x)</code></pre>
+    <p><strong>Resultado:</strong> Elemento encontrado en la posición 3.</p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 06 -->
+  <!-- ============================================================ -->
+  <article id="entrega06" class="article">
+    <h2>4. Entrega 06 — Árboles binarios, AVL y heap</h2>
+
+    <div class="buttons">
+      <a class="btn" href="entrega_06.ipynb" download>Descargar .ipynb</a>
+    </div>
+
+    <h3>Algoritmo iterativo para recorrer un árbol (inorden)</h3>
+    <ol>
+      <li>Creamos una pila vacía S.</li>
+      <li>Añadimos (push) el nodo actual a la pila. Nos movemos al extremo izquierdo hasta llegar a extremo vacío.</li>
+      <li>Si hemos llegado al extremo (y la pila no está vacía), mostramos el elemento superior de la pila. Nos movemos a la derecha.</li>
+      <li>Volvemos al paso 2.</li>
+      <li>Finalizamos cuando el nodo está vacío y la pila está también vacía.</li>
+    </ol>
+    <p><strong>Ejemplo en inorden:</strong> 4 2 5 1 3.</p>
+
+    <h3>Árbol AVL</h3>
+    <p>Árbol binario de búsqueda siempre balanceado. <strong>Factor de equilibrio</strong> = Altura(subárbol derecho) − Altura(subárbol izquierdo). Debe ser -1, 0 o 1.</p>
+    <p><strong>Rotaciones:</strong> simple derecha, simple izquierda, doble derecha, doble izquierda.</p>
+
+    <h3>Árbol Heap</h3>
+    <p><strong>Max-Heap:</strong> cada nodo tiene valor mayor o igual que sus hijos (raíz es el máximo).</p>
+    <p><strong>Min-Heap:</strong> cada nodo tiene valor menor o igual que sus hijos (raíz es el mínimo).</p>
+    <p>Es un árbol binario completo: todos los niveles están llenos excepto el último, que se llena de izquierda a derecha.</p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 07/08 -->
+  <!-- ============================================================ -->
+  <article id="entrega07" class="article">
+    <h2>5. Entrega 07/08 — Blockchain, hash tables y P vs NP</h2>
+
+    <div class="buttons">
+      <a class="btn" href="entrega_07_08.pdf" download>Descargar PDF</a>
+    </div>
+
+    <h3>Estructura de datos en la Blockchain de Bitcoin</h3>
+    <ul>
+      <li><strong>Bloques:</strong> contienen lista de transacciones, puntero hash al bloque anterior, timestamp y nonce. Crean una cadena inmutable.</li>
+      <li><strong>Árbol de Merkle:</strong> organiza las transacciones para verificar eficientemente la existencia de una transacción sin revisar toda la cadena.</li>
+      <li><strong>Tabla Hash:</strong> almacena direcciones y claves para búsqueda rápida de saldos y transacciones.</li>
+    </ul>
+
+    <h3>Algoritmos clave</h3>
+    <ul>
+      <li><strong>SHA-256:</strong> genera hashes únicos para bloques y transacciones.</li>
+      <li><strong>Prueba de Trabajo (PoW):</strong> resuelve un problema criptográfico para añadir bloques.</li>
+      <li><strong>Distribución P2P:</strong> cada nodo mantiene una copia de la blockchain; consenso via PoW.</li>
+    </ul>
+
+    <h3>Implicaciones de P vs NP</h3>
+    <p>La seguridad de la blockchain se basa en que resolver problemas criptográficos es mucho más difícil que verificar su solución. Si P = NP, esta seguridad podría verse comprometida.</p>
+
+    <h3>Proyecto: Votaciones descentralizadas</h3>
+    <p>Blockchain aplicado a votaciones: los votos se registran como transacciones en bloques (inmutabilidad), un árbol de Merkle verifica validez, y la cadena pública permite auditoría en tiempo real.</p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- EVALUACION 05 -->
+  <!-- ============================================================ -->
+  <article id="eval05" class="article">
+    <h2>6. Evaluación Tema 05 — P vs NP</h2>
+
+    <div class="buttons">
+      <a class="btn" href="evaluacion_tema_05.pdf" download>Descargar PDF</a>
+    </div>
+
+    <h3>¿En qué consiste P = NP?</h3>
+    <p><strong>P:</strong> problemas que se pueden resolver eficientemente (tiempo polinómico).</p>
+    <p><strong>NP:</strong> problemas cuyos resultados pueden verificarse eficientemente, aunque no necesariamente resolverse rápidamente.</p>
+    <p>La incógnita: ¿Todo problema verificable eficientemente (NP) también puede resolverse eficientemente (P)?</p>
+    <ul>
+      <li><strong>Ejemplo P:</strong> suma de números grandes.</li>
+      <li><strong>Ejemplo NP:</strong> problema del viajante de comercio (verificar es fácil, resolver requiere probar todas las combinaciones).</li>
+    </ul>
+
+    <h3>Aplicaciones prácticas</h3>
+    <ul>
+      <li><strong>Criptografía:</strong> seguridad de contraseñas y cifrado (bancos, comunicaciones) basada en problemas NP.</li>
+      <li><strong>Logística:</strong> optimización de rutas de reparto (viajante de comercio).</li>
+      <li><strong>Medicina:</strong> plegamiento de proteínas para diseño de medicamentos.</li>
+    </ul>
+
+    <h3>Problema: suma de subconjunto</h3>
+    <p>Conjunto {-2, -3, 8, 15, -10}. ¿Existe un subconjunto que sume 0? <strong>Sí: {-2, -3, -10, 15}.</strong></p>
+    <p>Para n grande, este problema es NP: requiere probar todas las combinaciones posibles (complejidad exponencial).</p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <footer>
+    <p>Algoritmos y Estructura de Datos — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

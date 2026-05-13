@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redes de Computadores — Antonio López García</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <h1 class="main-title">Introducción a los Computadores y Redes</h1>
+  <p class="subtitle">Antonio López García</p>
+
+  <nav id="indice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#entrega1">1. Actividad 1 — Representación de la información</a></li>
+      <li><a href="#entrega2">2. Actividad 2 — Redes de procesamiento de datos</a></li>
+      <li><a href="#entrega3">3. Actividad 3 — Configuración y auditoría forense</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 1 -->
+  <!-- ============================================================ -->
+  <article id="entrega1" class="article">
+    <h2>1. Actividad 1 — Representación de la información en el computador</h2>
+
+    <div class="buttons">
+      <a class="btn" href="01_redes_compu.pdf" download>Descargar PDF</a>
+    </div>
+
+    <p><strong>Fecha de entrega:</strong> 27/11/2023 &mdash; <strong>Dr. Juan Pedro Cerro Martínez</strong></p>
+
+    <h3>Parte 1: Carga de programas como procesos</h3>
+    <p><strong>a) Aplicación CON hilos de ejecución:</strong> Google Chrome &mdash; PID desde interfaz gráfica: <strong>8184</strong>.</p>
+    <p><strong>b) Aplicación SIN hilos de ejecución:</strong> Blender &mdash; PIDs desde consola: <strong>11432</strong> y <strong>25508</strong>.</p>
+
+    <h3>Parte 2: Hackeando archivos</h3>
+    <p>Identificación de archivos mediante análisis de cabeceras hexadecimales. La fecha de modificación es un metadato independiente del contenido binario; un editor de texto plano no puede modificarlo. Se necesita PowerShell o software especializado (FileAlyzer).</p>
+
+    <h3>Parte 3: Sistemas de numeración</h3>
+    <p>Conversión de hexadecimal (42, 60, 71, 6F, 64, 1F, 43, 68, 64, 6C) a decimal y binario, con su equivalencia ASCII: <strong>B ` q o d US C h d l</strong>.</p>
+    <p>Ejemplo: 42₁₆ = 4×16¹ + 2×16⁰ = 66₁₀ = 1000010₂ → <strong>B</strong> en ASCII.</p>
+
+    <h3>Imágenes</h3>
+    <img src="img/01_-002.jpg" alt="Procesos en sistema operativo" />
+    <img src="img/01_-004.jpg" alt="Análisis de archivos" />
+    <img src="img/01_-006.jpg" alt="Editor hexadecimal" />
+    <img src="img/01_-010.jpg" alt="Sistemas de numeración" />
+    <img src="img/01_-012.jpg" alt="Conversiones decimal" />
+    <img src="img/01_-016.jpg" alt="Tabla ASCII" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 2 -->
+  <!-- ============================================================ -->
+  <article id="entrega2" class="article">
+    <h2>2. Actividad 2 — Introducción a las redes de procesamiento de datos</h2>
+
+    <div class="buttons">
+      <a class="btn" href="Actividad_2/Actividad%202%20-%20ICR%20-%20Plantilla%20de%20Respuesta.pdf" download>Descargar PDF</a>
+      <a class="btn" href="Actividad_2/entrega_02.pkt" download>Descargar .pkt (Packet Tracer)</a>
+      <a class="btn" href="Actividad_2/presupuestoRedLan.ods" download>Descargar presupuesto (.ods)</a>
+    </div>
+
+    <p><strong>Fecha de entrega:</strong> 05/12/2023</p>
+
+    <h3>Parte 1: Modelado de redes</h3>
+    <p>Se diseña una <strong>topología en estrella</strong> para una universidad con tres departamentos: Inteligencia de Negocios, Secretaría Académica (conexión Ethernet cableada) y Recepción (WiFi 802.11).</p>
+    <p>Servidor centralizado HOST con 4TB y RAID5. Un único switch para minimizar complejidad y coste. Ethernet soporta desde 10 Mbps hasta 100 Gbps, facilitando la escalabilidad.</p>
+
+    <h3>Parte 2: Presupuesto</h3>
+    <p>Se presupuestan todos los componentes: ETDs, ETCDs, medios de transmisión e IGI andorrano. Los equipos de Inteligencia de Negocios llevan procesador Xeon, SSD 1TB y Linux; los de Secretaría, Intel Core i5-13500T y Windows 11; Recepción usa portátiles.</p>
+
+    <h3>Parte 3: Protocolos de comunicación</h3>
+    <table>
+      <tr><th>Protocolo</th><th>Capa TCP/IP</th><th>Descripción</th></tr>
+      <tr><td>Ethernet</td><td>Enlace</td><td>Comunicación en LAN mediante direcciones MAC y CSMA/CD.</td></tr>
+      <tr><td>DNS</td><td>Aplicación</td><td>Traduce nombres de dominio a direcciones IP.</td></tr>
+      <tr><td>TCP</td><td>Transporte</td><td>Conexión fiable con control de flujo y corrección de errores.</td></tr>
+      <tr><td>HTTP</td><td>Aplicación</td><td>Transferencia de páginas web, imágenes, vídeos (GET, POST, PUT, DELETE).</td></tr>
+      <tr><td>ICMP</td><td>Internet</td><td>Notificación de errores de transmisión en la red.</td></tr>
+      <tr><td>FTP</td><td>Aplicación</td><td>Transferencia de archivos entre sistemas (versiones seguras: FTPS, SFTP).</td></tr>
+      <tr><td>NAT</td><td>Internet</td><td>Permite compartir una IP pública entre múltiples dispositivos (estática, dinámica, PAT).</td></tr>
+    </table>
+    <p>La solución diseñada es una <strong>LAN</strong> (Red de Área Local), por su área geográfica limitada, topología en estrella, combinación Ethernet/WiFi y servidor centralizado.</p>
+
+    <img src="img/02_-002.jpg" alt="Modelo de red en Packet Tracer" />
+    <img src="img/02_-009.jpg" alt="Presupuesto de red" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- ENTREGA 3 -->
+  <!-- ============================================================ -->
+  <article id="entrega3" class="article">
+    <h2>3. Actividad 3 — Configuración y auditoría forense de computadores en red</h2>
+
+    <div class="buttons">
+      <a class="btn" href="actividad_03/Actividad%203%20-%20ICR%20-%20Plantilla%20de%20Respuesta.pdf" download>Descargar PDF</a>
+      <a class="btn" href="actividad_03/entrega_03.pkt" download>Descargar .pkt (Packet Tracer)</a>
+      <a class="btn" href="actividad_03.zip" download>Descargar ZIP (actividad_03)</a>
+    </div>
+
+    <p><strong>Fecha de entrega:</strong> 11/12/2023</p>
+
+    <h3>Parte 1: Configuración de un entorno en red</h3>
+    <p>Asignación de direcciones IP en dos subredes (/24):</p>
+    <table>
+      <tr><th>Subred</th><th>Dispositivos</th><th>Rango IP</th></tr>
+      <tr><td>192.168.1.0/24</td><td>PC1, PC2, IMP1, HOST</td><td>.10 – .13</td></tr>
+      <tr><td>192.168.12.0/24</td><td>PC3–PC5, IMP2–IMP3, PORTATIL1–2, WEBCAM</td><td>.10 – .17</td></tr>
+    </table>
+    <p>Puerta de enlace: 192.168.1.1 (subred 1) y 192.168.12.1 (subred 2). Máscara: 255.255.255.0.</p>
+
+    <h3>Parte 2: Análisis forense</h3>
+    <ul>
+      <li><strong>Fecha y hora de captura:</strong> 2023-01-13 13:15:40</li>
+      <li><strong>Duración:</strong> 00:05:22</li>
+      <li><strong>Interfaz:</strong> Wi-Fi</li>
+      <li><strong>Paquetes capturados:</strong> 59.109</li>
+      <li><strong>Bytes capturados:</strong> 59.473.704</li>
+      <li><strong>Equipos destino desde 192.168.0.30:</strong> 131</li>
+      <li><strong>Bytes totales enviados:</strong> 2.465.901</li>
+      <li><strong>Tasa media:</strong> 11.855,06 bits/s</li>
+      <li><strong>Pico máximo:</strong> 273.488,84 bits/s</li>
+      <li><strong>Rangos de longitud más usados:</strong> 1280–2559, 40–79, 80–159</li>
+    </ul>
+    <p><strong>Protocolo más utilizado:</strong> UDP (presenta más picos altos en la gráfica). El tráfico <strong>no es homogéneo</strong>; los protocolos DNS, TCP y UDP muestran picos en distintos momentos. No se observa relación directa entre tráfico DNS y UDP: operan en capas diferentes (aplicación vs. transporte).</p>
+
+    <img src="img/03_-004.jpg" alt="Análisis de fuentes - direcciones IP" />
+    <img src="img/03_-007.jpg" alt="Gráfica de tráfico DNS, TCP, UDP" />
+    <img src="img/03_-010.jpg" alt="Estadísticas de longitud de paquete" />
+    <img src="img/03_-011.jpg" alt="Tabla de protocolos" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <footer>
+    <p>Introducción a los Computadores y Redes — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

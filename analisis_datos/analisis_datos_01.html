@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de Datos 01 — Estadística Descriptiva (HDI)</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <h1 class="main-title">Análisis de Datos 01 — Estadística Descriptiva</h1>
+  <p class="subtitle">Ciencia de datos, Universitat Carlemany</p>
+  <p class="subtitle">Alumno: Antonio López García</p>
+
+  <div id="indice">
+    <ul>
+      <li><a href="#datos">1 — Carga de datos</a></li>
+      <li><a href="#histogramas">2 — Histogramas</a></li>
+      <li><a href="#densidad">3 — Gráficos de densidad (KDE)</a></li>
+      <li><a href="#estadisticos">4 — Estadísticos descriptivos</a></li>
+      <li><a href="#conclusiones">5 — Conclusiones</a></li>
+    </ul>
+  </div>
+
+  <article class="article">
+
+    <p><strong>Dataset:</strong> HDI 2021 (Índice de Desarrollo Humano) por país.</p>
+    <p><strong>Variables:</strong> HDI 2021, Crecimiento anual promedio (2010–2021).</p>
+
+    <a class="download-link" href="entrega_actividad_01.ipynb" target="_blank">📓 Descargar notebook .ipynb</a>
+
+    <section id="datos">
+      <h2>1 — Carga de datos</h2>
+      <p>Se carga un archivo Excel con las columnas <em>Nation</em>, <em>HDI 2021</em> y <em>Average annual growth (2010–2021)</em>. Se eliminan valores nulos y se multiplica el crecimiento por 100 para expresarlo en porcentaje. Se incluye un visor interactivo por fragmentos con <code>ipywidgets</code>.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="histogramas">
+      <h2>2 — Histogramas</h2>
+      <p><strong>HDI 2021:</strong> Distribución de frecuencias del índice de desarrollo humano (10 bins).</p>
+      <img src="img/entrega_actividad_01_0.png" alt="Histograma HDI 2021" />
+      <p><strong>Crecimiento anual promedio:</strong> Distribución de frecuencias del crecimiento porcentual (10 bins).</p>
+      <img src="img/entrega_actividad_01_1.png" alt="Histograma crecimiento anual" />
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="densidad">
+      <h2>3 — Gráficos de densidad (KDE)</h2>
+      <p>Estimación de densidad kernel (<em>gaussian_kde</em>) para ambas variables con 200 puntos de evaluación.</p>
+      <img src="img/entrega_actividad_01_2.png" alt="KDE HDI 2021" />
+      <img src="img/entrega_actividad_01_3.png" alt="KDE crecimiento anual" />
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="estadisticos">
+      <h2>4 — Estadísticos descriptivos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Estadístico</th>
+            <th>HDI 2021</th>
+            <th>Crecimiento anual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Media</td><td>0.716</td><td>0.446%</td></tr>
+          <tr><td>Mediana</td><td>0.731</td><td>0.390%</td></tr>
+          <tr><td>Desv. estándar</td><td>0.156</td><td>0.459</td></tr>
+          <tr><td>Coef. variación</td><td>0.218</td><td>1.027</td></tr>
+          <tr><td>RIC</td><td>0.249</td><td>0.500</td></tr>
+          <tr><td>Mínimo</td><td>0.385</td><td>-1.21%</td></tr>
+          <tr><td>Máximo</td><td>0.962</td><td>1.94%</td></tr>
+        </tbody>
+      </table>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="conclusiones">
+      <h2>5 — Conclusiones</h2>
+      <p><strong>HDI 2021:</strong> Media ≈ Mediana → distribución simétrica. Baja desviación estándar (0.156) y CV (0.218) indican poca variabilidad entre países. Rango de 0.577 muestra gran diferencia entre extremos.</p>
+      <p><strong>Crecimiento anual:</strong> Media (0.446) ligeramente superior a mediana (0.39) → asimetría positiva por países de alto crecimiento. Alta desviación estándar (0.459) y CV (1.027) indican variabilidad significativa. Rango de 3.15 confirma grandes diferencias entre países.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+  </article>
+
+  <footer class="bottom-page">
+    <p>Análisis de Datos — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

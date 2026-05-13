@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Proyectos 03 — StreamNow</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <h1 class="main-title">Gestión de Proyectos 03 — StreamNow</h1>
+  <p class="subtitle">Ciencia de datos, Universitat Carlemany</p>
+  <p class="subtitle">Alumno: Antonio López García</p>
+
+  <div id="indice">
+    <ul>
+      <li><a href="#estado">1 — Análisis del estado del proyecto</a></li>
+      <li><a href="#problemas">2 — Identificación de problemas</a></li>
+      <li><a href="#acciones">3 — Propuesta de acciones</a></li>
+      <li><a href="#comunicacion">4 — Comunicación profesional</a></li>
+      <li><a href="#comunicacion-stakeholders">4.1 — Stakeholders de negocio</a></li>
+      <li><a href="#comunicacion-tecnico">4.2 — Equipo técnico</a></li>
+      <li><a href="#belbin">5 — Gestión de equipos — Roles de Belbin</a></li>
+      <li><a href="#conflictos">6 — Gestión de conflictos</a></li>
+    </ul>
+  </div>
+
+  <article class="article">
+
+    <section id="estado">
+      <h2>1 — Análisis del estado del proyecto</h2>
+      <p><strong>Analizar si el proyecto se encuentra alineado con la planificación inicial:</strong></p>
+      <p>El proyecto <strong>NO</strong> se encuentra alineado respecto a la planificación inicial. El retraso acumulado en la limpieza de datos impide que el Data Scientist inicie el Feature Engineering, que compromete los plazos de entrega.</p>
+      <p><strong>Identificar las desviaciones existentes:</strong></p>
+      <p>Acumulamos un retraso, con la limpieza de datos aún abierta. El Data Scientist tiene una desviación de ejecución del 100%. Ahora mismo el proyecto está parado.</p>
+      <p><strong>Justificar el impacto de dichas desviaciones en el desarrollo del proyecto:</strong></p>
+      <p>Este retraso supone una parada del proyecto, quiere decir que los tiempos se alargan. Cuando se solucione la parada si no se recortan tiempos en otras fases el proyecto ya supera el tiempo estimado subiendo todas las horas de trabajo, el presupuesto aumenta con más horas de trabajo.</p>
+      <img src="img/03_img-000.jpg" alt="Análisis de desviaciones" />
+      <img src="img/03_img-001.jpg" alt="Impacto de desviaciones" />
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="problemas">
+      <h2>2 — Identificación de problemas</h2>
+      <p><strong>Dependencias entre tareas. Posibles cuellos de botella.</strong></p>
+      <p><strong>Impacto de la carga de trabajo en los recursos.</strong> Cuanto más tiempo esté parado el proyecto más suben los costes y lo más preocupante la incertidumbre y las rencillas entre secciones que tienen que compartir los datos para que el proyecto fluya. Por esta misma razón se creó la alianza objetivo 3% y los almuerzos/reunión diaria. No dejar ningún problema para más tarde, trabajo conjunto y ágil a primera hora de la mañana, mentes frescas y con ganas de avanzar.</p>
+      <p><strong>Riesgos activos derivados de la situación actual.</strong> El retraso acumulado en la Épica 2 empuja todo el calendario. El tiempo se alarga, el presupuesto sube. Se tiene que seguir todos los estándares de calidad y no dejarse llevar por las prisas: la calidad de los datos será el éxito del proyecto.</p>
+      <p>Datos limpios con calidad = probabilidad alta de proyecto exitoso. Datos limpios con poca calidad = probabilidad alta de proyecto fallido.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="acciones">
+      <h2>3 — Propuesta de acciones</h2>
+      <p>Se deberán proponer acciones concretas que permitan mejorar la situación del proyecto.</p>
+      <p>Convocar una sesión de emergencia dentro del marco de Sincronización Diaria (T1.2) "almuerzo conjunto" involucrando al Responsable de IT de StreamNow. El Data Scientist de Tech_assistant coge las riendas para desbloquear el proyecto, al mando del equipo de StreamNow.</p>
+      <p><strong>Acción:</strong> Implementar una estrategia de <strong>"Dataset Mínimo Viable" (DMV)</strong>. En lugar de esperar a limpiar el 100% de los datos, se priorizará la limpieza de una muestra representativa.</p>
+      <p><strong>Justificación:</strong> Esto permite que el Data Scientist inicie el Feature Engineering (T3.1) en paralelo sobre ese subconjunto, mientras el Data Engineer completa el resto de la limpieza.</p>
+      <p><strong>Impacto:</strong> Recuperación de horas de retraso acumuladas, solapando fases que antes eran secuenciales.</p>
+      <p>Demostración a los equipos de StreamNow de que Tech_assistant viene a aportar y trabajar juntos y que solo se podrá conseguir el objetivo trabajando juntos. Cuando se logre el objetivo, este método de trabajo y solución en esta zona de los proyectos estará añadido a la mecánica de trabajo de esta sección. Mismo problema, misma solución.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="comunicacion">
+      <h2>4 — Comunicación profesional</h2>
+
+      <section id="comunicacion-stakeholders">
+        <h3>4.1 — Comunicación 1: Stakeholders de negocio</h3>
+        <p><strong>Asunto:</strong> Informe de situación: Optimización de plazos y activación de protocolo de aceleración.</p>
+        <p>Les informo sobre el avance del proyecto.</p>
+        <p>Tras finalizar la fase inicial de extracción, la complejidad de los datos históricos de StreamNow requiere un esfuerzo de depuración superior al previsto, lo que ha generado una parada en la fase T2.2.</p>
+        <p>Para que esto no afecte en tiempo y dinero a la finalización del proyecto, Tech_assistant ha tomado las siguientes decisiones estratégicas:</p>
+        <p><strong>1. Priorización de Datos Críticos:</strong> Hemos implementado una estrategia de "Dataset Mínimo Viable". En lugar de procesar toda la base de datos de forma lineal, estamos priorizando la información con mayor impacto predictivo para que el modelo de Inteligencia Artificial empiece a trabajar de inmediato.</p>
+        <p><strong>2. Liderazgo Activo:</strong> Nuestro experto en Ciencia de Datos ha tomado el mando de la fase de preparación para coordinarse directamente con el equipo de IT de la casa, asegurando que la calidad de la información sea la adecuada desde el primer minuto.</p>
+        <p><strong>3. Seguimiento en "La Alianza 3%":</strong> Aprovechamos nuestras sesiones diarias de coordinación para supervisar este avance minuto a minuto, garantizando una respuesta ágil ante cualquier nuevo imprevisto.</p>
+        <p>Estamos convencidos de que este ajuste no solo protege la fecha de entrega, sino que establece un método de trabajo más eficiente para los futuros proyectos de datos en la compañía.</p>
+        <p>Atentamente,<br />Lead Project Manager – Tech_assistant</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+
+      <section id="comunicacion-tecnico">
+        <h3>4.2 — Comunicación 2: Equipo técnico</h3>
+        <p><strong>Asunto:</strong> Coordinación técnica: Implementación de estrategia DMV y desbloqueo de la T2.2</p>
+        <p>Hola equipo,</p>
+        <p>Como hemos analizado en el seguimiento de Jira, la tarea T2.2 (Limpieza de datos) presenta una total parada debido a problemas imprevistos. Este bloqueo está impidiendo que iniciemos el Feature Engineering.</p>
+        <p>Es el momento de demostrar la capacidad técnica de "La Alianza 3%". Para convertir este obstáculo en una ventaja competitiva, a partir de hoy pasamos a la ofensiva con estos cambios:</p>
+        <p><strong>Estrategia DMV (Dataset Mínimo Viable):</strong> No esperaremos a la limpieza total del histórico. Vamos a definir una muestra representativa crítica. El Data Scientist de Tech_assistant liderará la definición de este subconjunto para asegurar que el modelo pueda entrenarse en paralelo a la limpieza del resto de datos.</p>
+        <p><strong>Coordinación con IT:</strong> Necesitamos que el equipo de IT de StreamNow nos apoye en la validación rápida de estos campos clave para evitar retrabajos.</p>
+        <p><strong>Próximos pasos (Sincronización T1.2):</strong> Mañana, durante nuestro "almuerzo conjunto de la Alianza", definiremos técnicamente las tablas y variables que formarán parte de este primer bloque de trabajo.</p>
+        <p>El objetivo es solapar fases para recuperar el tiempo perdido. Una vez validada esta mecánica, la integraremos como el estándar de trabajo para esta sección en futuras iteraciones.</p>
+        <p>Contamos con vuestra experiencia para sacar esto adelante con éxito. Hagamos que ocurra compañeros.</p>
+        <p>Antonio López – Tech_assistant</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="belbin">
+      <h2>5 — Gestión de equipos — Roles de Belbin</h2>
+      <p><strong>Roles Mentales (Cerebro, Monitor Evaluador, Especialista):</strong> Aportan el conocimiento crítico y el análisis. En nuestro equipo, están representados por el Data Scientist y el Responsable de IT.</p>
+      <p><strong>Roles Sociales (Coordinador, Investigador de Recursos, Cohesionador):</strong> Facilitan la comunicación y la unión. Representados por el Lead PM (Antonio) y Marketing.</p>
+      <p><strong>Roles de Acción (Impulsor, Implementador, Finalizador):</strong> Se centran en la ejecución y el cumplimiento de plazos. Representados por el Data Engineer y el perfil híbrido de Antonio.</p>
+      <img src="img/03_img-002.jpg" alt="Roles de Belbin" />
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="conflictos">
+      <h2>6 — Gestión de conflictos</h2>
+      <p>Aplicamos técnicas de teoría de juegos y de "el adulto en la máquina". Para resolver este conflicto, vamos a aplicar un enfoque donde la objetividad técnica elimine la carga emocional. El objetivo es que el Dato mate al Relato y alcancemos un equilibrio donde ambos ganen, <em>win to win</em>.</p>
+
+      <p><strong>1. Identificación del Origen del Conflicto (El "Relato") — Atribución de culpa.</strong></p>
+      <p>El relato del Data Scientist (DS): "No puedo trabajar porque el dato es basura" (Posición defensiva/crítica).</p>
+      <p>El relato del Data Engineer (DE): "El dato está así porque nadie me dijo cómo lo querían" (Posición reactiva/evasiva).</p>
+      <p>El origen real: Una ruptura en la transacción de comunicación y un juego de "suma cero" donde admitir un error se percibe como una derrota profesional.</p>
+
+      <p><strong>2. Análisis de Impacto</strong></p>
+      <p><strong>Parálisis Crítica:</strong> El 100% de la Épica 3 (Modelado) está bloqueada.</p>
+      <p><strong>Degradación de la Cultura:</strong> Si el equipo de "La Alianza" se divide en "bandos", el modelo híbrido de Tech_assistant fracasa.</p>
+      <p><strong>Coste de Oportunidad:</strong> Cada día de discusión son clientes que abandonan StreamNow sin que la IA pueda predecirlo.</p>
+
+      <p><strong>3. Estrategia de Gestión: "El Adulto en la Máquina" y Teoría de Juegos</strong></p>
+      <p><strong>Adulto en la máquina:</strong> Convocar una reunión de "Sincronización Técnica de Datos". Intervención: qué datos necesitamos, cómo los conseguimos.</p>
+      <p><strong>Teoría de Juegos: Hacia el Equilibrio de Cooperación Win-Win.</strong> Actualmente, el DS y el DE están en un "Dilema del Prisionero": si ambos se culpan, el proyecto muere. Si ambos colaboran, el proyecto se salva.</p>
+      <p><strong>La Solución:</strong></p>
+      <p>1. El DS (Experto) define qué 5 variables son estrictamente necesarias para empezar (Dato).</p>
+      <p>2. El DE se compromete a limpiar solo esas 5 variables en un sprint de 48 horas.</p>
+      <p><strong>Resultado:</strong> El DS puede trabajar (Gana) y el DE reduce su carga de trabajo inmediata (Gana). El "Relato" de los requisitos pasados se vuelve irrelevante frente al "Dato" de la necesidad actual.</p>
+      <p><strong>Conclusión de la Estrategia:</strong> Al aplicar el Adulto en la Máquina, eliminamos el ruido emocional. Al aplicar la Teoría de Juegos, incentivamos la cooperación sobre la culpa.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+  </article>
+
+  <footer class="bottom-page">
+    <p>Gestión de Proyectos — StreamNow © 2024 Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

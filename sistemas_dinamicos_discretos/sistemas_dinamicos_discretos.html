@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistemas Dinámicos Discretos — Antonio López García</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <h1 class="main-title">Sistemas Dinámicos Discretos</h1>
+  <p class="subtitle">Antonio López García</p>
+
+  <nav id="indice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#actividad1">1. Actividad 1 — Gimnasio, producción y equilibrio</a></li>
+      <li><a href="#semana2">2. Semana 02 — Cadenas de Markov y modelo de Lefkovitch</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ACTIVIDAD 1 -->
+  <!-- ============================================================ -->
+  <article id="actividad1" class="article">
+    <h2>1. Actividad 1 — Sistemas dinámicos discretos</h2>
+
+    <div class="buttons">
+      <a class="btn" href="Actividad_1_Sistemas_dinamicos_discretos.pdf" download>Descargar PDF</a>
+      <a class="btn" href="ejercicio_2_primera_entrega.py" download>Descargar Python (ejercicio 2)</a>
+    </div>
+
+    <h3>Ejercicio 1 — Gimnasio Poincaré</h3>
+    <p>Sistema dinámico discreto de socios: <strong>N<sub>n+1</sub> = 0,95 N<sub>n</sub> + 5</strong> (5% de bajas, 5 altas mensuales).</p>
+    <p><strong>Solución general explícita:</strong> N<sub>n</sub> = (N₀ − 100)(0,95)ⁿ + 100.</p>
+    <p><strong>Punto de equilibrio:</strong> N<sub>e</sub> = 100. Como 0,95 &lt; 1, el equilibrio es <strong>estable</strong>.</p>
+    <p><strong>Puntos periódicos:</strong> No hay puntos periódicos distintos del punto de equilibrio (N=100).</p>
+    <p><strong>Ingresos a largo plazo:</strong> 100 socios × 25 € = <strong>2.500 €/mes</strong>.</p>
+
+    <h3>Ejercicio 2 — Producción fabril</h3>
+    <p>Función: <strong>f(Q) = D · sin(Q / C)</strong> con D=12, C=5.</p>
+    <p>Puntos de equilibrio en [0, 5π]: <strong>Q ≈ 0,0</strong> (inestable) y <strong>Q ≈ 10,43564</strong> (inestable).</p>
+    <p>Órbitas de periodo 2: (0,0) repulsora, (15,70796, 15,70796) repulsora. A largo plazo la producción se estabiliza según el valor inicial Q₀, tendiendo a un equilibrio u oscilando entre dos valores.</p>
+
+    <h4>Código Python (ejercicio 2)</h4>
+    <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import newton
+
+def f(Q):
+    return 12 * np.sin(Q / 5)
+
+def f_prime(Q):
+    return 12 / 5 * np.cos(Q / 5)
+
+def ff(Q):
+    return f(f(Q))
+
+def ff_prime(Q):
+    return f_prime(f(Q)) * f_prime(Q)
+
+def find_equilibrium_points():
+    Q_values = np.linspace(0, 5 * np.pi, 1000)
+    tolerance = 1e-5
+    equilibrium_points = []
+    for Q0 in Q_values:
+        try:
+            root = newton(func=lambda Q: f(Q) - Q,
+                          fprime=lambda Q: f_prime(Q) - 1, x0=Q0, tol=tolerance)
+            if all(abs(root - eq) > tolerance for eq in equilibrium_points):
+                equilibrium_points.append(root)
+        except (RuntimeError, OverflowError):
+            continue
+    return equilibrium_points</code></pre>
+
+    <h3>Ejercicio 3 — Equilibrios paramétricos</h3>
+    <p>Estudio de equilibrios del sistema en función del parámetro real µ. Cuando no aplica el criterio analítico, se usa cobweb-plot para analizar la dinámica.</p>
+
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-002.jpg" alt="Ejercicio 1 - desarrollo" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-003.jpg" alt="Ejercicio 1 - fórmula explícita" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-004.jpg" alt="Ejercicio 1 - punto equilibrio" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-007.jpg" alt="Ejercicio 2 - código y puntos equilibrio" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-009.jpg" alt="Ejercicio 2 - órbitas periodo 2" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-010.jpg" alt="Ejercicio 2 - cobweb plots" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-013.jpg" alt="Ejercicio 3 - página 1" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-014.jpg" alt="Ejercicio 3 - página 2" />
+    <img src="img/Actividad_1_Sistemas_dinamicos_discretos_-015.jpg" alt="Ejercicio 3 - página 3" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 02 -->
+  <!-- ============================================================ -->
+  <article id="semana2" class="article">
+    <h2>2. Semana 02 — Cadenas de Markov y modelo de Lefkovitch</h2>
+
+    <div class="buttons">
+      <a class="btn" href="semana_02.pdf" download>Descargar PDF</a>
+      <a class="btn" href="untitled0.pdf" download>Descargar código Python (Colab)</a>
+    </div>
+
+    <h3>Ejercicio 1 — Cadenas de Markov (compañías telefónicas)</h3>
+    <p>Tres compañías (A, B, C) compiten. La matriz de transición refleja la fidelidad de usuarios tras cada campaña publicitaria:</p>
+    <pre><code>T = [[0.85, 0.05, 0.075],
+     [0.05, 0.85, 0.075],
+     [0.10, 0.10, 0.85 ]]</code></pre>
+    <p>Estado inicial x⁽⁰⁾ = (0.6, 0.2, 0.2).</p>
+    <p><strong>Variación tras 3 campañas:</strong> usuarios de A pasan de 60% a 44,46% → <strong>−25,9%</strong>.</p>
+    <p><strong>Distribución a largo plazo:</strong> Autovalor dominante λ=1. Vector propio normalizado: <strong>40% A, 30% B, 30% C</strong>.</p>
+
+    <h3>Ejercicio 2 — Modelo de Lefkovitch (población vegetal)</h3>
+    <p>Tres clases: plántulas, plantas jóvenes, plantas adultas. Matriz de transición:</p>
+    <pre><code>M = [[0.5, 2,   1  ],
+     [0.3, 0.6, 0  ],
+     [0,   0.4, 0.9]]</code></pre>
+    <p>Población inicial: (100 plántulas, 50 jóvenes, 20 adultas).</p>
+    <p><strong>Pasados 4 meses:</strong> ≈ 514 plántulas, 181 jóvenes, 128 adultas.</p>
+    <p>Las plantas jóvenes y adultas aportan plántulas, aumentando su número con el tiempo.</p>
+
+    <h4>Código Python (Colab)</h4>
+    <pre><code>import numpy as np
+
+T = np.array([[0.85, 0.05, 0.075],
+              [0.05, 0.85, 0.075],
+              [0.1,  0.1,  0.85 ]])
+
+# Distribución tras 3 campañas
+T_3 = np.linalg.matrix_power(T, 3)
+x0 = np.array([0.60, 0.20, 0.20])
+x3 = np.dot(T_3, x0)
+print('Distribución tras 3 campañas:', x3)
+
+# Distribución a largo plazo
+eigenvalues, eigenvectors = np.linalg.eig(T)
+stationary = eigenvectors[:, np.argmax(eigenvalues)]
+stationary = stationary / np.sum(stationary)
+print('Largo plazo:', stationary)
+
+# Modelo Lefkovitch
+M = np.array([[0.5, 2, 1],
+              [0.3, 0.6, 0],
+              [0, 0.4, 0.9]])
+init = np.array([100, 50, 20])
+pop_4 = init @ np.linalg.matrix_power(M, 4)
+print('Población tras 4 meses:', pop_4)</code></pre>
+
+    <img src="img/semana_02_-002.jpg" alt="Diagrama de estados y matriz" />
+    <img src="img/semana_02_-005.jpg" alt="Ejercicio 1 - variación porcentual" />
+    <img src="img/semana_02_-006.jpg" alt="Ejercicio 1 - largo plazo" />
+    <img src="img/semana_02_-007.jpg" alt="Modelo de Lefkovitch" />
+    <img src="img/semana_02_-010.jpg" alt="Población tras 4 meses" />
+    <img src="img/semana_02_-011.jpg" alt="Evolución población" />
+    <img src="img/semana_02_-012.jpg" alt="Desarrollo ejercicio 1 - página 1" />
+    <img src="img/semana_02_-013.jpg" alt="Desarrollo ejercicio 1 - página 2" />
+    <img src="img/semana_02_-014.jpg" alt="Desarrollo ejercicio 2" />
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <footer>
+    <p>Sistemas Dinámicos Discretos — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

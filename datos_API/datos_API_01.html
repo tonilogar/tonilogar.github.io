@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datos API — Inversión Sostenible con ESG</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <h1 class="main-title">Datos API — Inversión Sostenible (ESG) con yfinance</h1>
+  <p class="subtitle">Ciencia de datos, Universitat Carlemany</p>
+  <p class="subtitle">Alumno: Antonio López García — Grupo 15 (con Steven Allus)</p>
+
+  <div id="indice">
+    <ul>
+      <li><a href="#tema">1 — Selección de Tema y Fuente</a></li>
+      <li><a href="#datos">2 — Descripción de Datos y Metadatos</a></li>
+      <li><a href="#api">3 — Funcionamiento de la API yfinance</a></li>
+      <li><a href="#programa">4 — Desarrollo del Programa en Python</a></li>
+      <li><a href="#resultados">5 — Resultados de Rentabilidad</a></li>
+    </ul>
+  </div>
+
+  <article class="article">
+
+    <a class="download-link" href="UCMA_CDDS_Actividad_2_GRUPO_15_StevenAntonio.pdf" target="_blank">📄 Descargar PDF original</a>
+
+    <section id="tema">
+      <h2>1 — Selección de Tema y Fuente de Información</h2>
+      <p><strong>Tema Elegido:</strong> Inversión Sostenible (criterios ESG).</p>
+      <p>La inversión con criterios ESG es crucial para el desarrollo sostenible, alineándose con los ODS 7 (Energía asequible y no contaminante), ODS 13 (Acción por el clima) y ODS 11 (Ciudades y comunidades sostenibles).</p>
+      <p><strong>5 puntos clave para grandes rentabilidades en fondos ESG:</strong></p>
+      <p><strong>1. Demanda liderada por inversores:</strong> Más de $500 mil millones invertidos en fondos ESG en 2021 (+55% en activos bajo gestión).</p>
+      <p><strong>2. Innovación tecnológica:</strong> La IA facilita el análisis de grandes volúmenes de datos sobre sostenibilidad.</p>
+      <p><strong>3. Acción corporativa:</strong> Empresas adoptando medidas ESG para crecimiento sostenible a largo plazo.</p>
+      <p><strong>4. Investigación en resultados sostenibles:</strong> Marcos de investigación ESG para apoyar la gestión de inversiones sostenibles.</p>
+      <p><strong>5. Transición energética:</strong> Nuevos riesgos y oportunidades hacia una economía baja en carbono.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="datos">
+      <h2>2 — Descripción de Datos y Metadatos</h2>
+      <p><strong>Fuente de Datos:</strong> Yahoo Finance API (<code>yfinance</code> en Python).</p>
+      <p>La API <code>yfinance</code> ofrece datos sobre acciones: cotizaciones históricas, dividendos, splits, resúmenes financieros, etc. Los metadatos incluyen ticker, rango de fechas, volumen negociado, precios de apertura/cierre/máximo/mínimo.</p>
+      <p>Estos metadatos son fundamentales para evaluar la estabilidad y el crecimiento a largo plazo de las inversiones ESG, permitiendo correlacionar con indicadores de sostenibilidad y evaluar su alineación con los ODS.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="api">
+      <h2>3 — Funcionamiento de la API yfinance</h2>
+      <p><code>yfinance</code> es una biblioteca de Python que extrae datos financieros de Yahoo Finance programáticamente mediante solicitudes HTTP. Los datos se recuperan en formato JSON y se convierten a DataFrames de pandas.</p>
+      <p><strong>Manejo de errores comunes:</strong></p>
+      <p><strong>Ticker no válido:</strong> Validar tickers antes de consultar.</p>
+      <p><strong>Problemas de Conectividad:</strong> Implementar reintentos automáticos.</p>
+      <p><strong>Límites de tasa (429 Too Many Requests):</strong> Implementar retrasos entre solicitudes.</p>
+      <p><strong>Mejores prácticas:</strong> Validación de tickers, manejo de excepciones, uso de caché local, configuración de timeout.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="programa">
+      <h2>4 — Desarrollo del Programa en Python</h2>
+      <p><strong>Objetivo:</strong> Comparar la inversión en el S&P 500 con alternativas ESG sostenibles.</p>
+      <p><strong>Índices y ETFs seleccionados:</strong></p>
+      <table>
+        <thead>
+          <tr><th>Ticker</th><th>Fondo / Índice</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ESG</td><td>S&P 500 ESG Index</td></tr>
+          <tr><td>ESGU</td><td>iShares ESG Aware MSCI USA ETF</td></tr>
+          <tr><td>SUSA</td><td>iShares MSCI USA ESG Select ETF</td></tr>
+          <tr><td>SPY</td><td>S&P 500 (referencia de mercado)</td></tr>
+        </tbody>
+      </table>
+      <p>Se ha creado una <strong>aplicación interactiva Streamlit</strong> para comparar la rentabilidad histórica: <a href="https://fondosods.streamlit.app" target="_blank">fondosods.streamlit.app</a></p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="resultados">
+      <h2>5 — Resultados de Rentabilidad</h2>
+      <img src="img/img-000.jpg" alt="Tabla de rentabilidad ESG" />
+      <table>
+        <thead>
+          <tr><th>Ticker</th><th>Rentabilidad (%)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ESG</td><td>108.17%</td></tr>
+          <tr><td>ESGU</td><td>106.16%</td></tr>
+          <tr><td>SPY</td><td>106.16%</td></tr>
+          <tr><td>SUSA</td><td>109.83%</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Análisis y Discusión:</strong> Los fondos ESG (ESG, ESGU, SUSA) han tenido un rendimiento ligeramente superior o comparable al S&P 500 (SPY) en los últimos 5 años. SUSA lidera con 109.83%, seguido de ESG con 108.17%. Esto sugiere que las inversiones responsables no solo son competitivas, sino que pueden ofrecer retornos ligeramente superiores.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+  </article>
+
+  <footer class="bottom-page">
+    <p>Datos API — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

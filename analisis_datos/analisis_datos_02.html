@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de Datos 02 — Diamantes (Precio vs Calidad)</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <h1 class="main-title">Análisis de Datos 02 — Diamantes: Precio vs Calidad</h1>
+  <p class="subtitle">Ciencia de datos, Universitat Carlemany</p>
+  <p class="subtitle">Alumno: Antonio López García</p>
+
+  <div id="indice">
+    <ul>
+      <li><a href="#datos">1 — Carga de datos</a></li>
+      <li><a href="#precio-cut">2 — Precio vs Calidad del corte</a></li>
+      <li><a href="#interpretacion">3 — Interpretación</a></li>
+      <li><a href="#precio-carat">4 — Precio vs Quilates (carat)</a></li>
+      <li><a href="#precio-carat-cut">5 — Precio vs Quilates por corte</a></li>
+      <li><a href="#regresion">6 — Regresión lineal por corte</a></li>
+    </ul>
+  </div>
+
+  <article class="article">
+
+    <p><strong>Dataset:</strong> <code>diamonds</code> de seaborn (53.940 observaciones, 10 variables).</p>
+    <p><strong>Variables:</strong> carat, cut, color, clarity, depth, table, price, x, y, z.</p>
+
+    <a class="download-link" href="entrega_semana_04.ipynb" target="_blank">📓 Descargar notebook .ipynb</a>
+
+    <section id="datos">
+      <h2>1 — Carga de datos</h2>
+      <p>Se carga el dataset mediante <code>seaborn.load_dataset('diamonds')</code>. Contiene 53.940 observaciones con 10 variables: quilates, calidad del corte, color, claridad, profundidad, tabla, precio y dimensiones (x, y, z).</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="precio-cut">
+      <h2>2 — Precio vs Calidad del corte</h2>
+      <p><strong>Boxplot</strong> de precio segmentado por calidad del corte (Fair, Good, Very Good, Premium, Ideal).</p>
+      <img src="img/entrega_semana_04_0.png" alt="Boxplot precio por corte" />
+      <p><strong>Barplot</strong> con intervalos de confianza del 95% para la media del precio por corte.</p>
+      <img src="img/entrega_semana_04_1.png" alt="Barplot precio por corte" />
+      <p><strong>ANOVA (OLS):</strong> Se ajusta un modelo <code>price ~ C(cut)</code>. η² = <strong>0.0129</strong>, lo que indica que el corte explica aproximadamente el 1.3% de la varianza del precio.</p>
+      <table>
+        <thead>
+          <tr><th>Corte</th><th>N</th><th>Precio medio</th><th>Desv. estándar</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ideal</td><td>21.551</td><td>3.457,54 $</td><td>3.808,40 $</td></tr>
+          <tr><td>Premium</td><td>13.791</td><td>4.584,26 $</td><td>4.349,20 $</td></tr>
+          <tr><td>Very Good</td><td>12.082</td><td>3.981,76 $</td><td>3.935,86 $</td></tr>
+          <tr><td>Good</td><td>4.906</td><td>3.928,86 $</td><td>3.681,59 $</td></tr>
+          <tr><td>Fair</td><td>1.610</td><td>4.358,76 $</td><td>3.560,39 $</td></tr>
+        </tbody>
+      </table>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="interpretacion">
+      <h2>3 — Interpretación</h2>
+      <p>Existe una relación significativa entre la calidad del corte y el precio. Sin embargo, η² = 0.0129 indica que el corte tiene un impacto moderado; otras variables (como quilates) explican en mayor medida la varianza del precio.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="precio-carat">
+      <h2>4 — Precio vs Quilates (carat)</h2>
+      <p><strong>Gráfico de dispersión</strong> con recta de regresión. Se observa una clara relación positiva.</p>
+      <img src="img/entrega_semana_04_2.png" alt="Scatter price vs carat" />
+      <p><strong>Correlación de Pearson:</strong> r = <strong>0.9216</strong> — correlación positiva muy fuerte.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="precio-carat-cut">
+      <h2>5 — Precio vs Quilates por corte</h2>
+      <p>Cinco gráficos de dispersión separados por categoría de corte.</p>
+      <img src="img/entrega_semana_04_3.png" alt="Scatter price vs carat por corte" />
+      <table>
+        <thead>
+          <tr><th>Corte</th><th>Correlación (r)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ideal</td><td>0.931</td></tr>
+          <tr><td>Premium</td><td>0.925</td></tr>
+          <tr><td>Very Good</td><td>0.926</td></tr>
+          <tr><td>Good</td><td>0.922</td></tr>
+          <tr><td>Fair</td><td>0.859</td></tr>
+        </tbody>
+      </table>
+      <p>Todas las correlaciones son muy altas, confirmando que el peso en quilates es un fuerte determinante del precio.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="regresion">
+      <h2>6 — Regresión lineal por corte</h2>
+      <p>Modelos OLS separados (<code>price ~ carat</code>) para cada categoría de corte.</p>
+      <img src="img/entrega_semana_04_4.png" alt="Regresión lineal por corte" />
+      <ul>
+        <li>Todos los modelos presentan R² muy alto (0.738 — 0.867).</li>
+        <li>Coeficientes para <code>carat</code> entre ~5.924 (Fair) y ~8.192 (Ideal).</li>
+        <li>Todos los p-valores son 0.000, confirmando significación estadística.</li>
+      </ul>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+  </article>
+
+  <footer class="bottom-page">
+    <p>Análisis de Datos — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
