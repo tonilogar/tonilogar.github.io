@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Proyectos — StreamNow</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <h1 class="main-title">Gestión de Proyectos — StreamNow</h1>
+  <p class="subtitle">Ciencia de datos, Universitat Carlemany</p>
+  <p class="subtitle">Alumno: Antonio López García</p>
+
+  <!-- Índice -->
+  <div id="indice">
+    <ul>
+      <li><a href="#contexto">1 — Análisis del contexto empresarial</a></li>
+      <li><a href="#definicion-problema">2 — Definición del problema</a></li>
+      <li><a href="#objetivos">3 — Objetivos del proyecto</a></li>
+      <li><a href="#objetivo-negocio">3.1 — Objetivo Principal de Negocio</a></li>
+      <li><a href="#objetivos-tecnicos">3.2 — Objetivos Técnicos</a></li>
+      <li><a href="#stakeholders">4 — Identificación y análisis de stakeholders</a></li>
+      <li><a href="#matriz-stakeholders">4.1 — Matriz de Poder e Interés</a></li>
+      <li><a href="#conflictos">4.2 — Análisis de Conflictos</a></li>
+      <li><a href="#datos">5 — Análisis preliminar de datos</a></li>
+      <li><a href="#dafo">6 — Análisis DAFO del proyecto</a></li>
+      <li><a href="#enfoque">7 — Propuesta inicial de enfoque del proyecto</a></li>
+      <li><a href="#justificacion">7.1 — Justificación del enfoque</a></li>
+      <li><a href="#mensaje">7.2 — Un mensaje para cada pieza del motor</a></li>
+      <li><a href="#etapas">7.3 — Las 7 Etapas Técnicas</a></li>
+    </ul>
+  </div>
+
+  <article class="article">
+
+    <section id="contexto">
+      <h2>1 — Análisis del contexto empresarial</h2>
+      <p><strong>Situación Actual y Evolución.</strong> StreamNow se encuentra en una fase crítica económica, tras un
+        periodo de crecimiento acelerado desde su fundación en 2018. Aunque la base de clientes ha alcanzado los 250.000
+        usuarios en 2024, la empresa ha pasado de generar beneficios de +2,5M€ en 2021 a registrar pérdidas de -0,5M€ en
+        el último ejercicio.</p>
+      <p><strong>Análisis de Factores Clave.</strong></p>
+      <p><strong>Aumento de abandono:</strong> Ha escalado del 3% al 5%. En un modelo de suscripción, este incremento no
+        solo supone pérdida de ingresos recurrentes, sino que obliga a aumentar la inversión en marketing para captar
+        nuevos usuarios, cuyos costes de adquisición son cada vez más elevados.</p>
+      <p><strong>Ineficiencia Operativa:</strong> El incremento sostenido de los costes que no es absorbido por los
+        ingresos con el modelo de crecimiento actual.</p>
+      <p><strong>Fragmentación Organizativa:</strong> Existe una falta de coordinación fluida entre los departamentos de
+        Marketing, Datos e IT. Esta desconexión impide que la "recomendación inteligente", que es parte de la propuesta
+        de valor original, evolucione al ritmo que exige la competencia.</p>
+      <p><strong>Conclusión del Contexto.</strong> El problema no es la falta de clientes, sino la incapacidad de
+        retenerlos de forma rentable. El entorno competitivo y el cambio en los hábitos de consumo hacia
+        micro-contenidos obligan a StreamNow a pasar de una estrategia de expansión masiva a una de fidelización basada
+        en datos.</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="definicion-problema">
+      <h2>2 — Definición del problema</h2>
+      <p><strong>Reacción tardía, estructura no flexible.</strong></p>
+      <p><strong>El Problema de Negocio.</strong> StreamNow está perdiendo rentabilidad debido a un incremento del 66%
+        en la tasa de abandono de clientes (pasando del 3% al 5%) en un entorno de costes operativos crecientes y
+        competencia agresiva. Actualmente, la organización carece de una capacidad reactiva y preventiva para identificar
+        a los usuarios con alta probabilidad de fuga antes de que cancelen su suscripción.</p>
+      <p><strong>Traducción a Problema de Ciencia de Datos.</strong> Desde la perspectiva de los datos, el reto se
+        traduce en un problema de riesgo binario. El objetivo técnico es desarrollar un modelo predictivo que, analizando
+        el comportamiento histórico de los usuarios (logs de navegación, patrones de pago, interacción con el catálogo y
+        datos demográficos), asigne una probabilidad de abandono a cada cliente activo.</p>
+      <p><strong>Enfoque:</strong> Identificar los <em>drivers</em> o variables que más influyen en la fuga (latencia en
+        la plataforma, falta de contenido afín, precio del plan) para que el equipo de Marketing pueda ejecutar campañas
+        de retención personalizadas y optimizadas en coste.</p>
+      <p><strong>Datos:</strong> ¿Se necesitan nuevos datos aparte de los que tenemos para este enfoque?</p>
+      <p><strong>Objetivo:</strong> Abandono (1: Sí, 0: No).</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="objetivos">
+      <h2>3 — Objetivos del proyecto</h2>
+      <p>Objetivos concretos en tiempo y cifras, el dato mata al relato. Definimos objetivos bajo la metodología SMART
+        (Específicos, Medibles, Alcanzables, Relevantes y Temporales).</p>
+
+      <section id="objetivo-negocio">
+        <h3>3.1 — Objetivo Principal de Negocio (Fidelización y Rentabilidad)</h3>
+        <p><strong>Objetivo:</strong> Reducir la tasa de abandono mensual (<em>churn rate</em>) de StreamNow del 5%
+          actual al 3% en un periodo de 6 meses tras la implementación del modelo predictivo.</p>
+        <p><strong>Justificación SMART:</strong></p>
+        <p><strong>Específico:</strong> Se centra exclusivamente en la recuperación de clientes y la reducción del
+          abandono.</p>
+        <p><strong>Medible:</strong> El éxito se evalúa mediante la métrica porcentual de bajas mensuales registrada en
+          la plataforma.</p>
+        <p><strong>Alcanzable:</strong> Se busca retornar al nivel operativo del 3% que la empresa ya demostró ser capaz
+          de mantener en 2021-2022.</p>
+        <p><strong>Relevante:</strong> Es crítico para frenar las pérdidas financieras y estabilizar el margen de
+          beneficio.</p>
+        <p><strong>Temporal:</strong> El plazo establecido para observar este impacto es de un semestre igual a la fecha
+          en que se registró el problema.</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+
+      <section id="objetivos-tecnicos">
+        <h3>3.2 — Objetivos Técnicos (Ciencia de Datos)</h3>
+        <p><strong>Modelado Predictivo:</strong> Desarrollar un modelo de clasificación que identifique a los usuarios
+          con alta probabilidad de fuga con una precisión (AUC-ROC) superior a 0,80.</p>
+        <p><strong>Limpieza e Integración:</strong> Unificar las fuentes de datos de IT, Marketing y Logs en un único
+          repositorio analítico en un plazo máximo de 8 semanas para eliminar los silos actuales.</p>
+        <p><strong>Operativización de Resultados:</strong> Automatizar la generación semanal de listados de clientes "en
+          riesgo" para que el equipo de Marketing pueda ejecutar campañas de retención personalizadas de forma inmediata.
+        </p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="stakeholders">
+      <h2>4 — Identificación y análisis de stakeholders</h2>
+      <p>El éxito depende de gestionar las expectativas de los actores clave de StreamNow.</p>
+
+      <section id="matriz-stakeholders">
+        <h3>4.1 — Matriz de Poder e Interés</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Stakeholder</th>
+              <th>Poder</th>
+              <th>Interés</th>
+              <th>Estrategia de Gestión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dirección / CEO</td>
+              <td>Alto</td>
+              <td>Alto</td>
+              <td>Gestionar de cerca: Informes de ROI y progreso de la retención.</td>
+            </tr>
+            <tr>
+              <td>Equipo de IT</td>
+              <td>Alto</td>
+              <td>Medio</td>
+              <td>Mantener satisfechos: Asegurar que el proyecto no comprometa la estabilidad de la plataforma.</td>
+            </tr>
+            <tr>
+              <td>Equipo de Marketing</td>
+              <td>Bajo</td>
+              <td>Alto</td>
+              <td>Mantener informados: Son los usuarios finales; necesitan formación y datos accionables.</td>
+            </tr>
+            <tr>
+              <td>Atención al Cliente</td>
+              <td>Bajo</td>
+              <td>Medio</td>
+              <td>Monitorizar: Informar sobre cambios en la estrategia que afecten al trato con el usuario.</td>
+            </tr>
+          </tbody>
+        </table>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+
+      <section id="conflictos">
+        <h3>4.2 — Análisis de Conflictos y Desalineaciones</h3>
+        <p><strong>IT vs. Ciencia de Datos:</strong> El equipo de IT puede mostrar resistencia al cambio o priorizar la
+          seguridad de la plataforma frente a la necesidad de extraer datos masivos para el modelo.</p>
+        <p><strong>Marketing vs. Realidad de los Datos:</strong> Marketing puede esperar resultados inmediatos ("la IA
+          mágica"), mientras que el equipo técnico necesita tiempo para la limpieza y validación de los datos, lo que
+          requiere gestionar expectativas de tiempos desde el inicio.</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="datos">
+      <h2>5 — Análisis preliminar de datos</h2>
+      <p><strong>Fuentes de información identificadas:</strong></p>
+      <p><strong>Logs de plataforma:</strong> Datos sobre la frecuencia de uso, duración de sesiones y puntos de
+        abandono en la reproducción.</p>
+      <p><strong>Historial transaccional:</strong> Patrones de pago, métodos fallidos y tipos de suscripción contratada.
+      </p>
+      <p><strong>Interacción con el catálogo:</strong> Preferencias de contenido y efectividad actual de las
+        recomendaciones.</p>
+      <p><strong>Soporte técnico:</strong> Registro de incidencias y quejas que suelen preceder a la baja del servicio.
+      </p>
+      <p><strong>Limitaciones y riesgos asociados:</strong></p>
+      <p><strong>Silos de información:</strong> La falta de coordinación entre IT y Marketing sugiere que los datos
+        podrían no estar integrados ni normalizados, dificultando una visión 360 del cliente.</p>
+      <p><strong>Calidad y veracidad:</strong> Existe el riesgo de encontrar datos incompletos o ruidosos que penalicen
+        la precisión del modelo predictivo.</p>
+      <p><strong>Restricciones legales:</strong> La normativa RGPD limita el uso de ciertos datos personales para el
+        entrenamiento de modelos, lo que requiere un enfoque de "privacidad desde el diseño".</p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="dafo">
+      <h2>6 — Análisis DAFO del proyecto</h2>
+      <p><strong>Fortalezas (Internas):</strong></p>
+      <p>Disponibilidad de una base de datos amplia (250.000 clientes activos) para el entrenamiento de modelos de
+        Machine Learning.</p>
+      <p>Propuesta de valor original basada en la "recomendación inteligente", lo que implica una infraestructura
+        tecnológica ya orientada a datos.</p>
+      <p><strong>Debilidades (Internas):</strong></p>
+      <p>Falta de alineación estratégica y comunicación fluida entre los departamentos de Marketing, IT y Datos.</p>
+      <p>Estructura de costes crecientes que limita el presupuesto disponible para experimentación técnica extensa.</p>
+      <p><strong>Oportunidades (Externas):</strong></p>
+      <p>Recuperación de la rentabilidad financiera mediante la vuelta al nivel histórico de <em>churn</em> del 3%.</p>
+      <p>Fidelización de usuarios mediante una personalización real que mejore la experiencia frente a la saturación del
+        mercado.</p>
+      <p><strong>Amenazas (Externas):</strong></p>
+      <p>Competencia agresiva con algoritmos de recomendación más avanzados y presupuestos de marketing superiores.</p>
+      <p>Posibles cambios regulatorios en privacidad de datos que restrinjan la capacidad predictiva de los algoritmos.
+      </p>
+      <a class="back" href="#indice">↑ Volver al índice</a>
+    </section>
+
+    <section id="enfoque">
+      <h2>7 — Propuesta inicial de enfoque del proyecto</h2>
+
+      <section id="justificacion">
+        <h3>7.1 — Justificación del enfoque: Agilidad y Unidad como Estrategia de Supervivencia</h3>
+        <p>Para el proyecto de retención de StreamNow, se propone un enfoque iterativo y ágil. En este momento crítico,
+          con pérdidas de -0,5M€ y un <em>churn</em> del 5%, no estamos ante un simple proyecto técnico, sino ante el
+          plan de rescate de nuestra organización.</p>
+        <p>La metodología ágil es la única que nos permite trabajar como un solo bloque, rompiendo los silos que nos han
+          frenado hasta ahora. Para garantizar que esta sinergia sea real y no solo teórica, se creará el grupo
+          <strong>"Alianza Objetivo 3%: Sinergia para el Cambio"</strong>.</p>
+        <p>Este grupo estará integrado por un representante de cada sección clave (IT, Datos, Marketing y Atención al
+          Cliente) en contacto continuo. Además, para forjar una confianza inquebrantable, este equipo desayunará unido
+          cada mañana de 9:00 a 10:00, transformando la rutina en un espacio de intercambio de ideas y resolución de
+          bloqueos en tiempo real.</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+
+      <section id="mensaje">
+        <h3>7.2 — Un mensaje para cada pieza del motor</h3>
+        <p><strong>Equipo de Marketing:</strong> Sois nuestra punta de lanza. Vuestra creatividad será lo que transforme
+          un dato predictivo en un cliente que decide quedarse con nosotros.</p>
+        <p><strong>Equipo de IT:</strong> Sois nuestra infraestructura vital. Vuestra rapidez en asegurar una plataforma
+          fluida es la que garantiza que el cliente sienta que StreamNow es la mejor opción tecnológica.</p>
+        <p><strong>Equipo de Datos:</strong> Sois los arquitectos de nuestra brújula. Tenéis la responsabilidad de
+          convertir millones de logs en una verdad accionable que nos saque de la incertidumbre.</p>
+        <p><strong>Atención al Cliente:</strong> Sois nuestra voz humana. Los datos os darán el contexto, pero vuestra
+          empatía será el filtro definitivo para salvar cada suscripción.</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+
+      <section id="etapas">
+        <h3>7.3 — Las 7 Etapas Técnicas: El camino hacia el 3%</h3>
+        <p>Nuestra interacción ágil nos permitirá alcanzar el objetivo de volver al 3% de <em>churn</em> y devolver a
+          StreamNow a la rentabilidad.</p>
+        <p><strong>1. Comprensión del Negocio</strong> (Líderes: Marketing y Dirección). Se definirá el éxito desde la
+          perspectiva financiera y de usuario, alineando las expectativas de todas las áreas con la realidad del mercado.
+        </p>
+        <p><em>Hito:</em> Documento de requisitos aprobado y compromiso firme de todas las secciones con el objetivo del
+          3%.</p>
+        <p><strong>2. Comprensión de los Datos</strong> (Líderes: Ciencia de Datos e IT). Auditoría profunda de los
+          silos actuales para identificar qué información de logs, pagos y comportamiento es realmente útil.</p>
+        <p><em>Hito:</em> Mapa de datos unificado y diagnóstico de calidad de las fuentes de información finalizado.</p>
+        <p><strong>3. Preparación de los Datos</strong> (Líder: Ciencia de Datos). Fase técnica de limpieza,
+          normalización y creación de variables (<em>features</em>) que alimentarán la inteligencia del modelo.</p>
+        <p><em>Hito:</em> Dataset maestro consolidado y listo para la fase de entrenamiento.</p>
+        <p><strong>4. Modelado</strong> (Líder: Ciencia de Datos). Selección y entrenamiento de los algoritmos de
+          clasificación para asignar una probabilidad de fuga a cada usuario.</p>
+        <p><em>Hito:</em> Prototipo funcional de predicción de riesgo de abandono (<em>churn</em>).</p>
+        <p><strong>5. Evaluación</strong> (Líderes: Ciencia de Datos y Marketing). Validación de los resultados. El
+          equipo de datos asegura la precisión técnica, mientras Marketing valida que la información es útil para sus
+          campañas.</p>
+        <p><em>Hito:</em> Modelo validado con una precisión (AUC-ROC) superior a 0,80 y aceptado formalmente por
+          negocio.</p>
+        <p><strong>6. Despliegue / Implantación</strong> (Líder: IT). Integración del modelo en la infraestructura
+          productiva de StreamNow para que las alertas lleguen en tiempo real a los equipos operativos.</p>
+        <p><em>Hito:</em> Sistema de alertas de riesgo integrado y operativo en el entorno de producción.</p>
+        <p><strong>7. Seguimiento</strong> (Líderes: Dirección, Marketing y Atención al Cliente). Monitorización
+          constante del impacto del proyecto en la cuenta de resultados y en la fidelidad de los usuarios.</p>
+        <p><em>Hito:</em> Informe de impacto final que certifique la reducción de la tasa de <em>churn</em> al 3% y la
+          recuperación de la estabilidad financiera.</p>
+        <p>Señores, si trabajamos juntos, desayunamos juntos y remamos en la misma dirección, la Alianza Objetivo 3%
+          hará que StreamNow vuelva a ser el líder indiscutible del mercado.</p>
+        <a class="back" href="#indice">↑ Volver al índice</a>
+      </section>
+    </section>
+
+  </article>
+
+  <div class="article" style="text-align:center;">
+    <img src="public/img/01_week_img.jpg" alt="StreamNow — Gestión de Proyectos" />
+  </div>
+
+  <footer class="bottom-page">
+    <p>Gestión de Proyectos — StreamNow © 2024 Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
