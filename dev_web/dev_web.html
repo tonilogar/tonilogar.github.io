@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desarrollo Web — Antonio López García</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    code {
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
+    .pdf-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="main-title">Desarrollo Web</h1>
+  <p class="subtitle">Antonio López García</p>
+
+  <nav id="indice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#semana01">1. Semana 01 — Arquitectura de Aplicaciones Web</a></li>
+      <li><a href="#semana02">2. Semana 02 — Modelado SQL y API CRUD</a></li>
+      <li><a href="#semana03">3. Semana 03 — DataOps ETL y CQRS</a></li>
+      <li><a href="#semana04">4. Semana 04 — Frontend, Dockerización y Despliegue</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 01 -->
+  <!-- ============================================================ -->
+  <article id="semana01" class="article">
+    <h2>1. Semana 01 — Arquitectura de Aplicaciones Web - Caso Práctico</h2>
+
+    <div class="buttons">
+      <a class="btn" href="data/antonio_lopez_week_01.pdf" download>Descargar PDF</a>
+    </div>
+
+    <p><strong>Alumno:</strong> Antonio López García</p>
+
+    <h3>TAREA 1 — DIAGRAMA DE ARQUITECTURA (Draw.io)</h3>
+    <img src="img/antonio_lopez_week_01_p1_i1.png" alt="Diagrama de Arquitectura" class="pdf-img">
+
+    <h3>TAREA 2 — DIAGRAMA DE AUTENTICACIÓN</h3>
+    
+    <h4>Autenticación humano:</h4>
+    <ol>
+        <li>El usuario interactúa con el Frontend (Svelte) e introduce sus credenciales. Estas se envían al servicio de autenticación.</li>
+        <li>El servicio de autenticación verifica la identidad y devuelve al Frontend un token JWT. Dentro de la de este token, va el rol del usuario.</li>
+        <li>Para cargar los datos, el Frontend hace peticiones Backend adjuntando el JWT en las cabeceras HTTP .</li>
+        <li>El Backend verifica el token, extrae el rol. Si el rol tiene los permisos adecuados, autoriza la operación y devuelve la información en formato JSON (200 OK). Si no tiene permisos para esa acción, rechaza la petición (403 Forbidden).</li>
+    </ol>
+
+    <h4>Autenticación no humano:</h4>
+    <p>Credenciales externas / Token de acceso temporal (Comunicación Machine-to-Machine).<br>
+    Para descargar los pesados ficheros de datos meteorológicos (ZIP), necesita acceder a la API externa de Copernicus Hub.</p>
+    <ol>
+        <li>El script ETL realiza una petición inicial a la API externa proporcionando sus propias credenciales o API Key.</li>
+        <li>Copernicus Hub valida la solicitud y devuelve un Token temporal. El ETL inyecta este Token en las cabeceras de sus peticiones HTTP posteriores para autorizar la descarga continua de los ficheros ZIP.</li>
+        <li>La descarga y procesamiento de grandes volúmenes de datos puede ser un proceso prolongado, el proceso ETL está diseñado para monitorizar el tiempo de vida de este token y gestionar su renovación de forma transparente, evitando así cortes de conexión o respuestas.</li>
+    </ol>
+
+    <h3>TAREA 3 — TRAZA HTTP REAL (POSTMAN)</h3>
+    <h4>GET 200</h4>
+    <p>Al pedir la información de <code>/pokemon/pikachu</code>, el servidor la encuentra y nos responde con un código 200 OK, entregándonos los datos solicitados.</p>
+    <img src="img/antonio_lopez_week_01_p3_i1.png" alt="Traza HTTP GET 200 Postman" class="pdf-img">
+    <p>Esto demuestra una comunicación correcta entre quien pide la información (el cliente) y quien la tiene (el servidor). Si llevamos este ejemplo a DataSphere, esta es la respuesta que queremos ver cuando nuestro sistema consulta datos del clima a un proveedor externo.<br>
+    Significa que el proveedor ha entendido la petición y nos envía la información (como predicciones o coordenadas) para que podamos seguir analizando los riesgos sin problemas.</p>
+
+    <h4>GET 404</h4>
+    <p>Al cambiar la dirección hacia algo que no existe (<code>/pokemon/pikachu_001</code>), el servidor nos contesta con un código 404 Not Found.</p>
+    <img src="img/antonio_lopez_week_01_p4_i1.png" alt="Traza HTTP GET 404 Postman" class="pdf-img">
+    <p>Lo importante aquí es entender que esto no es un fallo de internet ni del propio servidor; la comunicación ha funcionado perfectamente, pero el servidor nos está diciendo "no tengo lo que buscas".</p>
+    <p>En DataSphere, nuestro sistema tiene que estar preparado para estas situaciones. Si le pedimos datos externos sobre un huracán y recibimos un 404, nuestra aplicación no debe bloquearse. Simplemente debe tomar nota de que ese dato no está disponible y continuar trabajando con el siguiente, para no detener de golpe todo el análisis.</p>
+
+    <h3>TAREA 4 — GIT STRATEGY + HISTORIAL</h3>
+    <img src="img/antonio_lopez_week_01_p4_i2.png" alt="Historial de Git" class="pdf-img">
+    <p>La gestión del control de versiones de este proyecto se ha ejecutado aplicando buenas prácticas y estándares profesionales. Tal y como refleja el árbol del historial adjunto, el flujo de trabajo se basa en los siguientes puntos:</p>
+    <ul>
+        <li><strong>Commits Atómicos y Semánticos:</strong> Se ha registrado en transacciones independientes utilizando Conventional Commits (por ejemplo, <code>docs(architecture): add system diagram</code>). Esto genera un historial predecible y fácil de auditar.</li>
+        <li>Se simuló la subida errónea de un archivo con información sensible y se solucionó aplicando el comando <code>git revert</code>. Esta práctica revierte los cambios de forma segura sin alterar ni destruir la historia previa del repositorio.</li>
+        <li>Se implementó un flujo de trabajo basado en ramas. Se creó una rama secundaria (<code>main_dev_pro</code>) donde se versionó el entregable definitivo de forma aislada. Posteriormente, este trabajo se integró en la rama principal (<code>main</code>) mediante un <code>merge</code>.</li>
+    </ul>
+    <p><strong>Repositorio online:</strong><br>
+    <a href="https://github.com/tonilogardev/entrega-arquitectura-datasphere" target="_blank">https://github.com/tonilogardev/entrega-arquitectura-datasphere</a></p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 02 -->
+  <!-- ============================================================ -->
+  <article id="semana02" class="article">
+    <h2>2. Semana 02 — Modelado SQL y API CRUD de activos</h2>
+
+    <div class="buttons">
+      <a class="btn" href="data/antonio_lopez_week_02.pdf" download>Descargar PDF</a>
+    </div>
+
+    <p>Para la realización de la actividad he construido una herramienta con docker compose 4 contenedores:</p>
+    <ul>
+        <li>1- Base de datos postgresql</li>
+        <li>2- Backend en nodejs + typescript</li>
+        <li>3- Frontend en vite + svelte + ts + maplibre</li>
+        <li>4- Pgadmin4 para visualizar y testearar la base de datos</li>
+    </ul>
+    <p>La herramienta esta alojada en:<br>
+    <a href="https://dev-web.tonilogar.com/#login" target="_blank">https://dev-web.tonilogar.com/#login</a></p>
+    
+    <p>La herramienta tiene dos roles de ususario.</p>
+    <p>Solo tiene permisos de lectura.<br>
+    usuario: <code>user_read</code> contraseña: <code>321</code></p>
+    <p>Tiene permisos para crear y borrar activos.<br>
+    usuario: <code>user_write</code> contraseña: <code>123</code></p>
+
+    <img src="img/antonio_lopez_week_02_p1_i1.png" alt="Frontend UI" class="pdf-img">
+
+    <h3>TAREA 1 — Modelado SQL</h3>
+    <p><strong>Enunciado:</strong><br>
+    Diseña e implementa un modelo relacional en una base de datos local que permita a DataSphere calcular la exposición al riesgo de sus activos frente a distintos peligros naturales. El modelo debe incluir al menos 4–5 tablas (como las que Viktor ha descrito: activos, categorías, peligros y la relación entre activos y peligros, más condiciones si lo consideras necesario), de forma que sea posible responder preguntas como:</p>
+    <ul>
+      <li>“¿Cuál es el valor total expuesto ante un tipo de peligro concreto?”</li>
+      <li>“¿Qué activos están más expuestos a tornados en una región determinada?”</li>
+    </ul>
+
+    <h4>1. Captura del modelo (tablas y relaciones)</h4>
+    <img src="img/antonio_lopez_week_02_p2_i1.png" alt="Esquema Relacional PgAdmin" class="pdf-img">
+
+    <h4>2. Captura de init.sql</h4>
+    <p>Código SQL para estructurar la base de datos e insertar los datos iniciales:</p>
+    <img src="img/antonio_lopez_week_02_p3_i1.png" alt="Código SQL init.sql 1" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p3_i2.png" alt="Código SQL init.sql 2" class="pdf-img">
+
+    <h4>3. Registros en las tablas</h4>
+    <p>Registros de 10 activos reales de España con valores económicos y vulnerabilidades específicas:</p>
+    <img src="img/antonio_lopez_week_02_p4_i1.png" alt="Registros de base de datos 1" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p5_i1.png" alt="Registros de base de datos 2" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p6_i1.png" alt="Registros de base de datos 3" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p7_i1.png" alt="Registros de base de datos 4" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p8_i1.png" alt="Registros de base de datos 5" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p9_i1.png" alt="Registros de base de datos 6" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p10_i1.png" alt="Registros de base de datos 7" class="pdf-img">
+
+    <h4>4. Justificación Técnica de las Decisiones de Modelado</h4>
+    <h5>A. Tipos de Datos: Decimal vs Float</h5>
+    <ul>
+        <li><strong>DOUBLE PRECISION (Float) para Coordenadas:</strong> Las columnas latitude y longitude utilizan precisión de coma flotante porque es el estándar en GIS para posicionamiento espacial.</li>
+        <li><strong>DECIMAL(15,2) para Valores Económicos:</strong> Para las columnas base_value y exposure_value (el dinero en riesgo), nunca se debe usar Float. Los procesadores aproximan los Floats, lo que puede causar errores en cálculos financieros. Se ha usado un numérico exacto de 15 dígitos y 2 decimales para asegurar una contabilidad estricta sin pérdidas de céntimos en agregaciones.</li>
+    </ul>
+
+    <h5>B. Tablas de Relación (Muchos a Muchos)</h5>
+    <p>Se ha implementado la tabla puente <code>AssetHazardExposure</code> porque un activo puede estar expuesto a múltiples peligros a la vez, y un mismo peligro puede afectar a muchos activos.</p>
+
+    <h5>C. Claves e Índices (Constraints)</h5>
+    <ol>
+        <li><strong>Restricción Única (UNIQUE):</strong> En la tabla AssetHazardExposure hemos añadido una restricción explícita <code>UNIQUE(asset_id, hazard_id)</code>. Esto garantiza que sea imposible asignar dos veces el mismo peligro natural al mismo activo.</li>
+        <li><strong>Claves Foráneas (Foreign Keys) con Cascadas:</strong> Se ha aplicado <code>ON DELETE CASCADE</code> en las relaciones. Si en el futuro un administrador decide borrar un activo, automáticamente se borrarán también todos sus registros de exposición de riesgo huérfanos, manteniendo la base de datos limpia.</li>
+    </ol>
+
+    <h3>TAREA 2 — Construcción de la API CRUD de activos</h3>
+    <p><strong>Enunciado:</strong><br>
+    Construir una API REST mínima que permita gestionar activos del sistema (CRUD) y responder una consulta agregada de exposición. El diseño debe reflejar el uso profesional de una capa de acceso a datos mediante Repository Pattern + Unit of Work, y debe incluir 1–2 tests unitarios sencillos.</p>
+
+    <h4>1. Código de los endpoints (AssetController)</h4>
+    <p>Se ha implementado un controlador (<code>AssetController.ts</code>) que expone los endpoints requeridos para el CRUD básico y la consulta agregada, delegando toda la lógica de persistencia al UnitOfWork.</p>
+    <img src="img/antonio_lopez_week_02_p12_i1.png" alt="AssetController Code 1" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p13_i1.png" alt="AssetController Code 2" class="pdf-img">
+
+    <h4>2. Patrón de Repositorio y Unit of Work</h4>
+    <p>Para abstraer el acceso a datos y asegurar consistencia transaccional, se ha implementado el <strong>Repository Pattern</strong> junto con el <strong>Unit of Work</strong>.</p>
+    <ul>
+      <li><strong>Repository Pattern:</strong> Centraliza las consultas a la base de datos (mediante Prisma ORM), aislando la capa de presentación de la capa de datos.</li>
+      <li><strong>Unit of Work:</strong> Actúa como coordinador, permitiendo agrupar múltiples operaciones transaccionales y asegurar que se completen atómicamente antes de hacer commit().</li>
+    </ul>
+    <img src="img/antonio_lopez_week_02_p13_i2.png" alt="Repository y UoW" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p14_i1.png" alt="AssetRepository Code 1" class="pdf-img">
+    <img src="img/antonio_lopez_week_02_p14_i2.png" alt="AssetRepository Code 2" class="pdf-img">
+
+    <h4>3. Pruebas Unitarias (Jest)</h4>
+    <p>Se han desarrollado pruebas unitarias automatizadas (utilizando el entorno Jest con mocks) para validar de manera aislada la lógica del repositorio:</p>
+    <img src="img/antonio_lopez_week_02_p15_i1.png" alt="Resultados Jest" class="pdf-img">
+
+    <h4>4. Pruebas de funcionamiento en Vivo (Postman)</h4>
+    <p>Se demuestra su correcto funcionamiento en un entorno vivo mediante la creación de un nuevo activo (POST) y la consulta de activos (GET):</p>
+    <p><strong>A. Operación CRUD: Creación de un activo (POST)</strong><br>
+    Petición a <code>/api/assets</code> devolviendo una respuesta HTTP 201 Created tras insertar correctamente un activo (ficticio) superando las validaciones del backend.</p>
+    <img src="img/antonio_lopez_week_02_p15_i2.png" alt="Operación POST" class="pdf-img">
+    
+    <p><strong>B. Consulta Agregada: Exposición Total (GET)</strong><br>
+    El endpoint <code>/api/assets/total-exposure</code> devuelve correctamente la suma de todos los valores de riesgo, delegando la agregación matemática directamente a nivel de base de datos para máxima eficiencia.</p>
+    <img src="img/antonio_lopez_week_02_p16_i1.png" alt="Operación GET Total Exposure" class="pdf-img">
+
+    <h3>TAREA 3 — Seguridad aplicada</h3>
+    <p><strong>Enunciado:</strong><br>
+    Aplica autenticación y autorización a uno o más endpoints críticos, simulando la protección de información sensible dentro de DataSphere. Protege el endpoint con un rol específico (ej. RiskAnalyst) y demuestra con Postman una petición denegada seguida de una petición permitida.</p>
+
+    <h4>1. Protección del Endpoint con JWT y Roles</h4>
+    <p>Para proteger los valores económicos sensibles de la base de datos (como estipula el ingeniero de seguridad Samir), hemos implementado un middleware de autenticación por JWT (<code>authenticateJWT</code>) y un middleware de autorización estricta basada en roles (<code>requireRole</code>).</p>
+    <p>Específicamente, hemos restringido la creación, actualización y borrado de activos al rol especializado <strong>RiskAnalyst</strong>. El código en nuestro enrutador (<code>asset.routes.ts</code>) ha sido blindado de la siguiente manera:</p>
+<pre><code>// Rutas protegidas con alta seguridad para operaciones de escritura
+router.get('/', assetController.getAll);
+router.post('/', requireRole('RiskAnalyst'), assetController.create);
+router.get('/:id', assetController.getById);
+router.put('/:id', requireRole('RiskAnalyst'), assetController.update);
+router.delete('/:id', requireRole('RiskAnalyst'), assetController.delete);
+</code></pre>
+
+    <h4>2. Demostración del flujo de seguridad (Postman)</h4>
+    <p>A continuación se demuestra el funcionamiento real de esta capa de seguridad en la API mediante dos peticiones consecutivas al endpoint protegido POST <code>/api/assets</code>.</p>
+    <p><strong>A. Petición Denegada (403 Forbidden)</strong><br>
+    Se intenta insertar un activo utilizando un token JWT estructuralmente válido, pero que pertenece a un usuario que no tiene el rol de RiskAnalyst (un usuario estándar). La API bloquea la transacción instantáneamente por seguridad y devuelve el error de permisos insuficientes.</p>
+    <img src="img/antonio_lopez_week_02_p17_i1.png" alt="Petición Denegada" class="pdf-img">
+    
+    <p><strong>B. Petición Permitida (201 Created)</strong><br>
+    Tras iniciar sesión con un usuario que sí posee el rol de RiskAnalyst, el sistema expide un nuevo JWT con los "claims" autorizados. Al inyectar este nuevo token en las cabeceras (Bearer Token), el middleware aprueba la validación y permite la ejecución del controlador. El activo se registra exitosamente.</p>
+    <img src="img/antonio_lopez_week_02_p18_i1.png" alt="Petición Permitida" class="pdf-img">
+
+    <h3>TAREA 4 — Git Strategy corporativa y ciclo de despliegue</h3>
+    <p><strong>Enunciado:</strong><br>
+    Diseñar una estrategia de ramas en Git que permita a varios desarrolladores trabajar en paralelo, integrar cambios de forma controlada y realizar despliegues mensuales de la aplicación.</p>
+
+    <h4>1. Diagrama de la Estrategia Git</h4>
+    <img src="img/diagrama_001.png" alt="Diagrama de Estrategia Git" class="pdf-img">
+
+    <h4>2. Explicación del Flujo de Trabajo</h4>
+    <p>Este flujo de trabajo se basa en un modelo de ramas tipo GitFlow simplificado, ideal para equipos que requieren un entorno de pruebas compartido y despliegues programados en fechas concretas.</p>
+    <ul>
+        <li><strong>Dónde trabajan los desarrolladores:</strong> Nunca se trabaja directamente sobre <code>main</code> ni <code>dev</code>. Cuando un programador recibe una tarea, crea una rama efímera basada en <code>dev</code> (por ejemplo, <code>feature/nuevo-modelo</code> para una nueva funcionalidad, o <code>bugfix/error-auth</code> para solucionar un error urgente de código). Aquí es donde ocurre la programación en paralelo sin bloquear a los demás compañeros.</li>
+        <li><strong>Dónde se integran los cambios:</strong> Una vez finalizada la tarea, el código no se empuja directamente. El desarrollador abre un Pull Request (PR) hacia la rama <code>dev</code>. Esto permite que otros miembros del equipo revisen el código (Code Review). Si todo es correcto, se acepta el PR y el código se fusiona (merge) de vuelta hacia la rama <code>dev</code>. La rama <code>dev</code> actúa como un entorno de Integración Continua (CI), donde se junta el código de todos los miembros del equipo y se realizan las pruebas internas.</li>
+        <li><strong>Cuándo se libera una versión estable y qué ocurre con main:</strong> Al finalizar el ciclo de 30 días, se fusiona el código estabilizado de <code>dev</code> hacia la rama <code>main</code>. En ese instante se genera un "Tag" (etiqueta de versión, ej. v1.1), lo que acciona el sistema automático para enviar el código a los servidores en vivo.</li>
+    </ul>
+
+    <h4>3. Relación con el Despliegue Mensual</h4>
+    <ul>
+        <li><strong>Cuándo se decide cerrar una versión:</strong> Se produce un "Code Freeze" a final de mes. Todo el código que haya logrado ser integrado y probado en <code>dev</code> para esa fecha formará parte de la nueva versión. Lo que no esté terminado se quedará en su rama <code>feature/</code> esperando al ciclo del mes siguiente.</li>
+        <li><strong>Qué rama se considera "lista para producción":</strong> La rama <code>main</code> es estrictamente un reflejo del código que están usando los clientes reales. Todo lo que entra a <code>main</code> se considera 100% probado y listo.</li>
+        <li><strong>Por qué este modelo facilita los despliegues controlados:</strong> Al separar <code>main</code> de <code>dev</code>, el equipo puede seguir programando el Día 1 del mes siguiente sin miedo a romper el servidor de producción. Toda la inestabilidad propia del desarrollo ocurre lejos de los clientes, garantizando una liberación mensual segura y sin estrés.</li>
+    </ul>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 03 -->
+  <!-- ============================================================ -->
+  <article id="semana03" class="article">
+    <h2>3. Semana 03 — DataOps ETL y CQRS en DataSphere</h2>
+
+    <div class="buttons">
+      <a class="btn" href="data/antonio_lopez_week_03.pdf" download>Descargar PDF</a>
+    </div>
+
+    <p><strong>Alumno:</strong> Antonio López<br>
+    <strong>Asignatura:</strong> Desarrollo Web</p>
+
+    <h3>Introducción</h3>
+    <p>En esta actividad, se ha simulado la ingesta automatizada de datos (ETL) y se ha aplicado el patrón de diseño CQRS en el backend.<br>
+    Se ha diseñado e implementado un contenedor independiente (<code>010_etl_worker</code>) encargado de simular el proceso de extracción, transformación y carga mediante llamadas Service-to-Service protegidas por API Keys. En el backend, se ha separado estrictamente la lógica de escritura (comandos) de la de lectura (consultas).</p>
+    <p><a href="https://tonilogar.com/" target="_blank">https://tonilogar.com/</a><br>
+    <a href="https://dev-web.tonilogar.com/" target="_blank">https://dev-web.tonilogar.com/</a></p>
+
+    <h3>Tarea 1: Diseño del Flujo ETL (Extract, Transform, Load)</h3>
+    <p>Para la automatización de la recolección de datos, se ha desplegado un <strong>Worker programado con Cron en un contenedor Docker independiente</strong> (<code>010_etl_worker</code>). En un entorno de producción real, este worker se conectaría a APIs meteorológicas o sísmicas (ej. OpenWeather). En este caso simulamos el proceso ETL leyendo dos ficheros <code>.txt</code>.</p>
+
+    <h4>Fase 1: Extract (Datos Ficticios)</h4>
+    <p>Se han generado los siguientes archivos en la ruta <code>010_etl_worker/data/</code>:</p>
+<pre><code>assets.txt (Activos Físicos)
+1,Sede Central,40.4168,-3.7038,ES-MD,50000000
+2,Almacen Norte,41.3851,2.1734,ES-CT,20000000
+3,Data Center Sur,37.3891,-5.9845,ES-AN,80000000
+4,Oficina Valencia,39.4699,-0.3763,ES-VC,15000000
+
+conditions.txt (Condiciones por peligro)
+1,1,Tornado,3,2
+2,1,Earthquake,4,1
+3,2,Rainstorm,2,4
+4,3,Hurricane,5,3
+5,4,Volcano,1,1
+</code></pre>
+
+    <h4>Fase 2: Transform</h4>
+    <p>Una vez leídos los archivos en memoria, el Worker aplica el ETL:</p>
+    <ol>
+        <li>Filtra y <strong>descarta</strong> cualquier peligro con una severidad inferior a 3.</li>
+        <li>Calcula el <strong>RiskScore</strong> multiplicando <code>SeverityLevel * ProbabilityScore</code>.</li>
+        <li>Se añade dinámicamente la fecha y hora de ejecución al nombre del activo (ej: "Sede Central - 2026-06-07 19:15").</li>
+    </ol>
+    <p>Un Cron Job se ejecuta <strong>cada 15 minutos entre las 19:00 y las 19:59</strong> de forma autónoma.</p>
+    
+    <img src="img/antonio_lopez_week_03_p2_i1.png" alt="Diagrama de Flujo ETL" class="pdf-img">
+
+    <h3>Tarea 2: Comando de Ingestión de Datos (Command - CQRS)</h3>
+    <p>El script del ETL realiza el cálculo del RiskScore y envía los datos transformados a un nuevo endpoint en el backend protegido.<br>
+    En el backend, el archivo <code>IngestRiskDataCommand.ts</code> recibe esta información y, <strong>mediante una transacción controlada de Prisma</strong>, asegura la integridad de los datos en la base de datos PostgreSQL, insertando en las tablas Asset, Hazard y AssetHazardExposure.</p>
+
+    <p><strong>IngestRiskDataCommand.ts</strong></p>
+<pre><code>import { PrismaClient } from '@prisma/client';
+
+export interface IngestPayload {
+ assetName: string;
+ latitude: number;
+ longitude: number;
+ assetValue: number;
+ hazardName: string;
+ riskScore: number;
+}
+
+export class IngestRiskDataCommand {
+ private prisma: PrismaClient;
+
+ constructor(prisma: PrismaClient) {
+ this.prisma = prisma;
+ }
+
+ async execute(payload: IngestPayload): Promise&lt;boolean&gt; {
+ console.log(`[Command] Procesando ingesta para activo: ${payload.assetName}`);
+
+ try {
+ await this.prisma.$transaction(async (tx) =&gt; {
+ // Categoría por defecto
+ const category = await tx.category.upsert({
+ where: { name: 'Desconocida' },
+ update: {},
+ create: { name: 'Desconocida' }
+ });
+
+ // Peligro (Hazard)
+ const hazard = await tx.hazard.upsert({
+ where: { name: payload.hazardName },
+ update: {},
+ create: { name: payload.hazardName }
+ });
+
+ // Nuevo Activo 
+ const asset = await tx.asset.create({
+ data: {
+ name: payload.assetName,
+ latitude: payload.latitude,
+ longitude: payload.longitude,
+ base_value: payload.assetValue,
+ category_id: category.id
+ }
+ });
+
+ // RiskScore como exposure_value
+ await tx.assetHazardExposure.create({
+ data: {
+ asset_id: asset.id,
+ hazard_id: hazard.id,
+ exposure_value: payload.riskScore
+ }
+ });
+ });
+
+ return true;
+ } catch (error) {
+ console.error("[Command Error] Falla al insertar en base de datos:", error);
+ throw error;
+ }
+ }
+}
+</code></pre>
+
+    <h4>Pruebas de Ejecución del ETL (Logs)</h4>
+    <p>El worker se ejecuta automáticamente a las 6:00 AM mediante la librería node-cron.<br>
+    La siguiente captura corresponde a una prueba manual:</p>
+<pre><code>cker exec dev_web_etl_worker npx ts-node src/index.ts run-now"
+
+[ETL Worker] Inicializado. API_URL: http://dev-web-backend:3000
+[ETL Worker] Inicializado. API_URL: http://dev-web-backend:3000
+[ETL Worker] Cron schedule configurado: */15 17 * * *
+
+--- COMENZANDO FLUJO ETL ---
+[ETL] Iniciando extracción (Extract)...
+[ETL] Extraídos 4 activos y 5 condiciones.
+[ETL] Iniciando transformación (Transform)...
+[ETL] Transformación completa. 3 registros listos para inserción.
+[ETL] Iniciando carga (Load) hacia el Backend...
+[ETL] Carga finalizada. Éxitos: 3, Errores: 0
+--- FLUJO ETL COMPLETADO CON ÉXITO ---
+</code></pre>
+
+    <h3>Tarea 3: Desarrollo de Consultas (Query - CQRS)</h3>
+    <p>La lógica de lectura ha sido separada totalmente. Para responder a preguntas de negocio como <em>"¿Cuáles son los activos con mayor riesgo de exposición?"</em> hemos creado <code>GetHighRiskAssetsQuery.ts</code>.</p>
+    <p>Esta query utiliza directamente a la base de datos pidiendo únicamente los campos necesarios y filtrando activos con un valor de exposición superior a un límite crítico (ej: > 10.000.000).</p>
+
+    <p><strong>Código Relevante: GetHighRiskAssetsQuery.ts</strong></p>
+<pre><code>import { PrismaClient } from '@prisma/client';
+
+export class GetHighRiskAssetsQuery {
+ private prisma: PrismaClient;
+
+ constructor(prisma: PrismaClient) {
+ this.prisma = prisma;
+ }
+
+ // CQRS QUERY: Solo lee datos de forma optimizada, no modifica estado
+ async execute() {
+ console.log("[Query] Obteniendo activos con alto riesgo de exposición");
+
+ // Una consulta compleja para analistas, ejecutada directamente sobre la base de datos
+ const highRiskAssets = await this.prisma.asset.findMany({
+ where: {
+ AssetHazardExposure: {
+ some: {
+ // Filtrar activos que tengan alguna exposición mayor a 10 millones
+ exposure_value: { gt: 10000000 }
+ }
+ }
+ },
+ include: {
+ AssetHazardExposure: {
+ include: {
+ Hazard: true
+ }
+ }
+ },
+ orderBy: {
+ base_value: 'desc'
+ },
+ // Optimización de lectura: solo cogemos los primeros 50
+ take: 50
+ });
+
+ // Proyectar a un DTO limpio para la vista
+ return highRiskAssets.map(asset =&gt; ({
+ assetId: asset.id,
+ name: asset.name,
+ value: Number(asset.base_value),
+ criticalExposures: asset.AssetHazardExposure
+ .filter(exp =&gt; Number(exp.exposure_value) &gt; 10000000)
+ .map(exp =&gt; ({
+ hazard: exp.Hazard.name,
+ riskCost: Number(exp.exposure_value)
+ }))
+ }));
+ }
+}
+</code></pre>
+
+    <h4>Prueba de los Endpoints de Lectura</h4>
+    <p>Para probar que ambas Queries CQRS funcionan correctamente en nuestro servidor de producción:</p>
+    <p><strong>1. Test Query A (Alto Riesgo):</strong></p>
+    <img src="img/antonio_lopez_week_03_p5_i1.png" alt="Get Query A Postman" class="pdf-img">
+
+<pre><code>import { PrismaClient } from '@prisma/client';
+
+export class GetTotalValueExposedByHazardQuery {
+ private prisma: PrismaClient;
+
+ constructor(prisma: PrismaClient) {
+ this.prisma = prisma;
+ }
+
+ // CQRS QUERY: Solo lee datos de forma optimizada, no modifica estado
+ async execute() {
+ console.log("[Query] Calculando valor total expuesto agrupado por peligro");
+
+ // (Query SQL nativa de agrupación)
+ const exposures = await this.prisma.assetHazardExposure.groupBy({
+ by: ['hazard_id'],
+ _sum: {
+ exposure_value: true,
+ },
+ orderBy: {
+ _sum: {
+ exposure_value: 'desc'
+ }
+ }
+ });
+
+ const hazards = await this.prisma.hazard.findMany();
+
+ // Proyectar limpio
+ return exposures.map(exp =&gt; {
+ const hazardName = hazards.find(h =&gt; h.id === exp.hazard_id)?.name || 'Unknown';
+ return {
+ hazard: hazardName,
+ totalExposedValue: exp._sum.exposure_value ? Number(exp._sum.exposure_value) : 0
+ };
+ });
+ }
+}
+</code></pre>
+
+    <p><strong>2. Test Query B (Valor Total Expuesto):</strong></p>
+    <img src="img/antonio_lopez_week_03_p6_i1.png" alt="Get Query B Postman" class="pdf-img">
+
+    <h3>Tarea 4: Autenticación Servicio a Servicio (API Keys)</h3>
+    <p>Al separar la plataforma en dos contenedores (Backend y ETL Worker), se hacía necesario proteger el endpoint de ingesta contra peticiones externas maliciosas, ya que este endpoint no usa tokens JWT de un usuario, sino comunicación "Machine to Machine" (M2M).</p>
+    <p>Implementando un middleware específico en Express (<code>apiKeyAuth.ts</code>) que comprueba que la cabecera <code>x-api-key</code> contenga un token pre-compartido de forma segura a través de las variables de entorno de Docker Compose.</p>
+
+    <p><strong>Código Relevante: Middleware apiKeyAuth.ts</strong></p>
+<pre><code>import { Request, Response, NextFunction } from 'express';
+
+const API_KEY_HEADER = 'x-api-key';
+const EXPECTED_API_KEY = process.env.ETL_API_KEY || 'default-secret-key';
+
+export const apiKeyAuth = (req: Request, res: Response, next: NextFunction) =&gt; {
+ const apiKey = req.header(API_KEY_HEADER);
+
+ if (!apiKey) {
+ return res.status(401).json({ error: 'Falta la API Key en las cabeceras (x-api-key).' });
+ }
+
+ if (apiKey !== EXPECTED_API_KEY) {
+ return res.status(403).json({ error: 'API Key inválida. Acceso denegado.' });
+ }
+
+ // Si la clave es correcta, pasa al siguiente middleware/controlador
+ next();
+};
+</code></pre>
+
+    <h4>Pruebas de Seguridad en Postman</h4>
+    <p><strong>1. Intento sin API Key (Acceso Denegado)</strong></p>
+    <img src="img/antonio_lopez_week_03_p8_i1.png" alt="Acceso Denegado API Key" class="pdf-img">
+    
+    <p><strong>2. Ingesta Correcta con API Key</strong></p>
+    <img src="img/antonio_lopez_week_03_p9_i1.png" alt="Ingesta Correcta API Key" class="pdf-img">
+
+    <h3>Conclusión</h3>
+    <p>El diseño de una arquitectura orientada a microservicios con un orquestador Docker nos ha permitido aislar el trabajo pesado de transformación de datos (ETL) en un entorno seguro y cronometrado. Al aplicar CQRS, hemos garantizado que las ráfagas de lectura que harán los analistas para ver los activos en peligro no bloqueen la base de datos ni los modelos de escritura de la ingesta de datos. Finalmente, asegurar el perímetro M2M con API Keys asienta unas bases fundamentales de DataOps y Ciberseguridad en arquitecturas distribuidas.</p>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- SEMANA 04 -->
+  <!-- ============================================================ -->
+  <article id="semana04" class="article">
+    <h2>4. Semana 04 — Frontend, Dockerización y Despliegue en la Nube</h2>
+
+    <div class="buttons">
+      <a class="btn" href="data/antonio_lopez_week_04.pdf" download>Descargar PDF</a>
+    </div>
+
+    <p><strong>Alumno:</strong> Antonio López</p>
+    <p>Para la realización de las 4 actividades he creado una aplicación web que permite gestionar los activos de una empresa y sus riesgos asociados. La aplicación está dividida en 4 módulos:</p>
+    <ul>
+        <li><strong>Frontend:</strong> Interfaz de usuario interactiva.</li>
+        <li><strong>Backend:</strong> Servidor API REST.</li>
+        <li><strong>ETL Worker:</strong> Servicio en segundo plano para la ingesta automatizada de datos.</li>
+        <li><strong>Base de Datos:</strong> Sistema gestor de base de datos relacional.</li>
+    </ul>
+    <p>La he alojado dentro de mi web construida con docker compose. En la web aprovecho para mostrar y aprender sobre desarrollo de software gis devops etc..<br>
+    <a href="https://tonilogar.com/" target="_blank">https://tonilogar.com/</a></p>
+    <p>La herramienta de la asignatura es:<br>
+    <a href="https://dev-web.tonilogar.com/" target="_blank">https://dev-web.tonilogar.com/</a></p>
+
+    <h3>Tarea 1: Frontend con Mapa y Filtro Reactivo</h3>
+    <p>El frontend se ha construido utilizando <strong>Svelte con VITE</strong> para manejar la reactividad de los elementos del frontend. El objetivo principal ha sido consumir los datos de la API (Backend) e interactuar con ellos.</p>
+
+    <h4>1.1 Filtrado Reactivo (Client-Side)</h4>
+    <p>He implementado un sistema de filtrado en cliente.<br>
+    Al arrancar la aplicación (<code>Dashboard.svelte</code>), se obtiene el listado completo de activos con una única llamada a la API:</p>
+<pre><code>let assets: any[] = [];
+// Variable reactiva para almacenar el hazard seleccionado
+let selectedHazardId: number = 0;
+
+// Filtra dinámicamente sin mutar el array original ni recargar
+$: filteredAssets = selectedHazardId === 0
+ ? assets 
+ : assets.filter(a =&gt; a.AssetHazardExposure?.some((exp: any) =&gt; exp.hazard_id === selectedHazardId || exp.Hazard?.id === selectedHazardId));
+</code></pre>
+
+    <h4>1.2 El Mapa (MapLibre)</h4>
+    <p>Para la visualización de los activos he utilizado la librería <strong>MapLibre</strong>. El componente del mapa recibe el array <code>filteredAssets</code>. Cuando Svelte detecta que el usuario cambia el selector de peligro, la variable <code>filteredAssets</code> se actualiza instantáneamente y muestra solo los que cumplen el filtro.</p>
+
+    <h4>1.3 Variables de Entorno</h4>
+    <p>En este proyecto se usan ficheros <code>.env</code> para configurar variables tanto en desarrollo como en producción.</p>
+    <ul>
+        <li><code>.env.development</code></li>
+        <li><code>.env.production</code></li>
+    </ul>
+    <p>Cuando se levanta la herramienta con docker-compose en local, se utilizan las variables de <code>.env.development</code>. Cuando se hace un push, se utilizan las variables de <code>.env.production</code> alojadas en GitHub Secrets para el despliegue automático.</p>
+    <p>Ejemplo:<br>
+    <strong>.env.development (Entorno Local)</strong></p>
+<pre><code># 3. DOCKER COMPOSE ROUTING (Parametrización Traefik Local)
+DOMAIN_NAME=localhost
+TRAEFIK_HTTP_PORT=8001
+SENTINEL_URL=http://sentinel.localhost:8001/
+CASSINI_URL=http://cassini.localhost:8001/
+DEV_WEB_URL=http://dev-web.localhost:8001/
+DEV_WEB_API_URL=http://api.dev-web.localhost:8001
+ETL_API_KEY=xxxxxxxxxxxxxxxx
+</code></pre>
+
+    <p><strong>.env.production (Entorno Cloud / VPS)</strong></p>
+<pre><code># Entorno de Producción (Hetzner VPS) - CI/CD
+# Estas variables serán leídas nativamente por /docker-compose.yml al orquestar Traefik.
+DOMAIN_NAME=tonilogar.com
+TRAEFIK_HTTP_PORT=80
+SENTINEL_URL=https://sentinel.tonilogar.com/
+CASSINI_URL=https://cassini.tonilogar.com/
+DEV_WEB_URL=https://dev-web.tonilogar.com/
+DEV_WEB_API_URL=https://api.dev-web.tonilogar.com
+ETL_API_KEY=xxxxxxxxxxxxxxxxx
+</code></pre>
+
+    <h3>Tarea 2: Dockerización de DataSphere</h3>
+    <p>Para preparar la aplicación para producción, el frontend no se puede servir simplemente con el servidor de desarrollo (<code>npm run dev</code>). Es necesario construir una imagen estática y servirla de forma eficiente.</p>
+    <p>Para ello, se utiliza un <strong>Dockerfile Multi-Stage (Multietapa)</strong>:</p>
+
+<pre><code># Etapa 1: Build (Node.js)
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+# Se inyecta la URL de la API mediante argumentos de build
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+# Se compila el código (HTML, CSS, JS minificado en la carpeta /dist)
+RUN npm run build
+
+# Etapa 2: Producción con Nginx
+FROM nginx:alpine
+# Copiar configuración personalizada para SPA (Single Page Applications)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copiar los archivos estáticos generados en la etapa anterior
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+</code></pre>
+    <p><strong>Ventajas de este enfoque:</strong></p>
+    <ol>
+        <li><strong>Seguridad y Peso:</strong> La imagen final solo contiene Nginx y archivos estáticos. No hay rastro de Node.js, npm, ni del código fuente original. Esto hace que la imagen pese unos pocos megabytes.</li>
+        <li><strong>Eficiencia:</strong> Nginx está optimizado para servir archivos estáticos (<code>.html</code>, <code>.js</code>, <code>.css</code>).</li>
+    </ol>
+
+    <h3>Tarea 3: Despliegue en la Nube y Arquitectura Global</h3>
+    <h4>3.1 Proceso de Despliegue en la Nube (Práctica Real con CI/CD)</h4>
+    <p>En lugar de un despliegue manual teórico, el proyecto DataSphere se despliega de forma totalmente automatizada en un VPS de <strong>Hetzner</strong> mediante flujos de Integración y Despliegue Continuo (CI/CD) utilizando <strong>GitHub Actions</strong>.</p>
+    <p>La infraestructura global gestiona el ciclo de vida completo de la aplicación:</p>
+    <ol>
+        <li><strong>Aprovisionamiento como Código (IaC):</strong> La infraestructura del servidor en Hetzner está construida con <strong>Terraform</strong>, parametrizando todas las variables posibles a través del fichero <code>.env.development</code> (como el tipo de máquina <code>TF_VAR_server_type</code> o el sistema operativo <code>TF_VAR_image</code>). Terraform se encarga de aprovisionar la máquina física, instalar Ubuntu, asignar una IP pública fija y blindar el acceso configurando claves criptográficas SSH, permitiendo una conexión M2M (Machine to Machine) segura.</li>
+        <li><strong>Repositorio y Secretos:</strong> El código fuente está en GitHub. Las variables de producción (<code>.env.production</code> como <code>DEV_WEB_DB_URL</code>, <code>ETL_API_KEY</code>) no se suben al código, sino que están en GitHub Secrets (ej. <code>PROD_ENV_FILE</code>, <code>VPS_IP</code>, <code>VPS_SSH_KEY</code>).</li>
+        <li><strong>Pipeline de CI/CD (GitHub Actions):</strong>
+            <ul>
+                <li>A través del fichero de workflow <code>production-deploy.yml</code>, se define un proceso que se dispara automáticamente con cada push hacia las ramas <code>main</code> o <code>main_dev_pro</code>.</li>
+                <li>Cuando GitHub Actions detecta el push, se conecta vía SSH al servidor de Hetzner usando las claves guardadas en los Secrets.</li>
+                <li>Transfiere el código actualizado descartando ficheros innecesarios según <code>.gitignore</code>.</li>
+                <li>Docker se encarga de recompilar el Frontend (con su multi-stage build), el Backend y el Worker, reiniciando los servicios de manera controlada sin intervención manual.</li>
+            </ul>
+        </li>
+        <li><strong>Orquestación, Enrutamiento y SSL (Traefik):</strong> Dentro del VPS, Traefik actúa como el único punto de entrada público (Reverse Proxy). Enrutando las peticiones, Traefik se comunica automáticamente con Let's Encrypt para solicitar, generar y renovar certificados SSL Wildcard (ej. <code>*.tonilogar.com</code>). Esto garantiza que cualquier subdominio tenga HTTPS de forma totalmente autónoma.</li>
+    </ol>
+
+    <h4>3.2 Diagrama de Arquitectura Global</h4>
+    <img src="img/diagrama_002.png" alt="Diagrama de Arquitectura Global" class="pdf-img">
+    <p>El ecosistema completo se comunica de la siguiente manera:</p>
+    <ol>
+        <li><strong>Navegador del Cliente:</strong> El usuario accede a la web pública. <em>Peticiones seguras (HTTPS)</em></li>
+        <li><strong>Traefik (Reverse Proxy):</strong> Recibe todo el tráfico externo en el VPS, resuelve el cifrado SSL y enruta la petición hacia la red privada de contenedores. <em>Red Interna Docker</em></li>
+        <li><strong>Backend Express (API REST):</strong> Contenedor Node.js/TypeScript que procesa las peticiones de los usuarios, gestiona las operaciones CQRS y protege el acceso a la base de datos. <em>Consultas SQL (Prisma ORM)</em></li>
+        <li><strong>Base de Datos PostgreSQL + PostGIS:</strong> Contenedor maestro que centraliza toda la persistencia de datos (Activos, Peligros, Exposición). <em>Llamadas M2M seguras (API Keys)</em></li>
+        <li><strong>ETL TypeScript Worker:</strong> Contenedor independiente ejecutando un Cron Job (node-cron con TypeScript). Lee datos crudos, los transforma y los inyecta periódicamente llamando al Backend.</li>
+    </ol>
+
+    <a class="back" href="#indice">↑ Volver al índice</a>
+  </article>
+
+  <footer>
+    <p>Desarrollo Web — Antonio López García</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
