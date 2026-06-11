@@ -83,12 +83,12 @@
 
     <h3>2. Objetivos del TFB</h3>
     <ul>
-      <li><strong>2.1. Objetivo general:</strong> Desarrollar un <em>pipeline</em> geoespacial integral (Web y QGIS) que permita extraer, almacenar, procesar (ML) y visualizar interactiva y dinámicamente datos satelitales Sentinel-2.</li>
+      <li><strong>2.1. Objetivo general:</strong> Validar la viabilidad de un <em>entorno escalable (pipeline geoespacial)</em> para imágenes Sentinel-2, diseñado arquitectónicamente para poder integrar y ejecutar cualquier modelo de Machine Learning previamente entrenado. Como demostrador práctico (Proof of Concept) de este entorno, se implementará y validará un caso de uso específico para la detección del nivel de los embalses catalanes.</li>
       <li><strong>2.2. Objetivos específicos:</strong>
         <ul>
-          <li>Integrar la API de Copernicus para visualización <em>on the fly</em>.</li>
-          <li>Diseñar una arquitectura de base de datos basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
-          <li>Entrenar un modelo de Machine Learning con series temporales para calcular la lámina de agua de 5 embalses catalanes.</li>
+          <li>Construir la infraestructura base integrando la API de Copernicus para visualización <em>on the fly</em> tanto en plataforma Web como en Plugin de QGIS.</li>
+          <li>Diseñar una arquitectura de base de datos orientada a la nube basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
+          <li>Desarrollar, entrenar e integrar un modelo de Machine Learning con series temporales (como caso de uso demostrativo del pipeline) para calcular la lámina de agua de 5 embalses.</li>
           <li>Implementar un modelo de roles y pasarela de pago para la persistencia de datos y ejecución de algoritmos backend.</li>
         </ul>
       </li>
