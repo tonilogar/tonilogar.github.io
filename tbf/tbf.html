@@ -90,13 +90,18 @@
   <article id="entrega1" class="article">
     <h2>3. Entrega 1: PROPUESTA INICIAL</h2>
     
+    <p><strong>A continuación, indica aquella información necesaria para que el docente de la UdA y tu tutor/a puedan tener una primera idea de tu proyecto y podáis asentar las primeras bases para avanzar en tu TFB. Recuerda que es un primer borrador y que tu tutor/a te acompañará para definir con mayor concreción estas primeras ideas.</strong><br>
+    <strong>Es recomendable enviar a tu tutor/a este documento antes de tu primer contacto o tutoría.</strong></p>
+
     <h3 id="e1-titulo">1. Título propuesto</h3>
+    <p><strong>En general, el título debe ser concreto y debe permitir al lector saber de qué va a tratar tu TFB. En esta primera propuesta, trata de proponer un título acotando la temática y permitiendo al lector conocer la finalidad de este TFB. No debe ser excesivamente extenso.</strong></p>
     <p><em>Plataforma Geoespacial Escalable para la Monitorización y Procesamiento de Datos Satelitales (Copernicus Sentinel-2): Predicción de la Recuperación de Masas Forestales Post-Incendio.</em></p>
 
     <h3 id="e1-objetivos">2. Objetivos del TFB</h3>
+    <p><strong>¿Qué objetivo general tiene el TFB? ¿Se pueden definir objetivos específicos que con su cumplimiento permitan conseguir el objetivo general?</strong></p>
     <ul>
-      <li><strong>2.1. Objetivo general:</strong> Validar la viabilidad de un entorno escalable (pipeline geoespacial) para imágenes Sentinel-2, diseñado arquitectónicamente para integrar y ejecutar modelos de Machine Learning / Deep Learning. Como demostrador práctico (Proof of Concept), se implementará un modelo avanzado para la cuantificación, monitorización y predicción de la dinámica de recuperación de la masa forestal tras Eventos de Incendios Forestales Extremos (EWE).</li>
-      <li><strong>2.2. Objetivos específicos:</strong>
+      <li><strong>2.1. Objetivo general:</strong><br><strong>Definir el propósito principal del Trabajo Final de Título, indicando qué se pretende lograr con su realización.</strong><br>Validar la viabilidad de un entorno escalable (pipeline geoespacial) para imágenes Sentinel-2, diseñado arquitectónicamente para integrar y ejecutar modelos de Machine Learning / Deep Learning. Como demostrador práctico (Proof of Concept), se implementará un modelo avanzado para la cuantificación, monitorización y predicción de la dinámica de recuperación de la masa forestal tras Eventos de Incendios Forestales Extremos (EWE).</li>
+      <li><strong>2.2. Objetivos específicos:</strong><br><strong>Establecer los objetivos concretos que, de manera progresiva, permitan alcanzar el objetivo general. Estos deben ser claros, medibles y coherentes con la temática del TFT.</strong>
         <ul>
           <li>2.2.1. Construir la infraestructura tecnológica completa (repositorio, servidor online, prácticas DevOps, frontend, backend y bases de datos), integrando la API de Copernicus para la visualización <em>on the fly</em> en una plataforma Web interactiva.</li>
           <li>2.2.2. Identificar, seleccionar y extraer las fuentes de datos satelitales (Copernicus Sentinel-2, Copernicus DEM) y de <em>Ground Truth</em> (perímetros de grandes incendios), diseñando y desarrollando procesos ETL (Extract, Transform, Load) para su armonización y preparación.</li>
@@ -107,6 +112,11 @@
     </ul>
 
     <h3 id="e1-justificacion">3. Breve justificación de la propuesta</h3>
+    <p><strong>¿Qué necesidades cubre tu TFB, qué problema resuelve, a qué le estás dando solución?</strong><br>
+    <strong>¿Cómo contribuye a la comunidad, qué valor aporta?</strong><br>
+    <strong>Puedes incluir datos de la problemática detectada, situaciones que conoces, en qué contexto aporta valor tu proyecto, etc.</strong><br>
+    <strong>Incluye entre 2 y 4 códigos UNESCO de la guía docente.</strong><br>
+    <strong>Asimismo, se podrá hacer referencia experiencias previas o situaciones observadas que fundamenten la pertinencia del estudio, así como a los Objetivos de Desarrollo Sostenible (ODS) con los que el trabajo se relaciona.</strong></p>
     <ul>
       <li><strong>Problema que resuelve:</strong> Los Eventos de Incendios Forestales Extremos (EWE) suponen un grave riesgo de colapso ecológico y socioeconómico. Tras su extinción, es vital conocer la capacidad de resiliencia del ecosistema para discriminar zonas que se recuperarán naturalmente frente a aquellas en riesgo de degradación crónica (ej. erosión del suelo). Este TFB desarrolla una herramienta basada en Inteligencia Artificial y Observación de la Tierra para analizar y predecir esta sucesión ecológica.</li>
       <li><strong>Valor aportado y Alineación Estratégica:</strong> Este trabajo se alinea intrínsecamente con los objetivos del proyecto europeo Horizonte 2020 <strong>FIRE-RES</strong>, que promueve la innovación tecnológica para crear territorios resilientes al fuego. La herramienta actuará como un <em>Decision Support System (DSS)</em>, proporcionando predicciones que informen a los equipos gestores sobre dónde es urgente aplicar silvicultura preventiva o repoblaciones. Además, su metodología tiene potencial directo para ser integrada de forma práctica en los <em>Living Labs</em> impulsados por FIRE-RES en toda Europa.</li>
@@ -115,6 +125,7 @@
     </ul>
 
     <h3 id="e1-indice">4. Propuesta de índice de TFB</h3>
+    <p><strong>Desarrolla un primer borrador de índice adecuando la propuesta, teniendo en cuenta el índice incluido en el plan docente.</strong></p>
     <ol>
       <li>Introducción, contextualización y objetivos (Alineación Estratégica FIRE-RES)</li>
       <li>Fundamentación teórica (Observación de la Tierra y Deep Learning)</li>
@@ -126,12 +137,15 @@
     </ol>
 
     <h3 id="e1-alcance">5. Alcance previo</h3>
+    <p><strong>Incluye el alcance del proyecto, tanto el positivo (qué se va a realizar) como el negativo (qué no se va a realizar, pero podría malinterpretarse como que sí, al ser “frontera”).</strong></p>
     <ul>
       <li><strong>Alcance positivo (Qué se hará):</strong> Desarrollo web interactivo, Extracción de series temporales Copernicus Sentinel-2 y modelo de elevación DEM, Modelo de Deep Learning aplicado a polígonos de grandes incendios históricos (ej. Cataluña desde 2015) y visualización web con COG/PMTiles.</li>
       <li><strong>Alcance negativo (Qué NO se hará):</strong> No se desarrollarán modelos predictivos para otro tipo de catástrofes (inundaciones, terremotos) ni se utilizarán imágenes de radar (Sentinel-1). Tampoco se entrará a analizar biomasa o química del suelo mediante sensores físicos <em>in situ</em>.</li>
     </ul>
 
     <h3 id="e1-competencias">6. Competencias que desarrollar</h3>
+    <p><strong>Incluye un listado de todas las competencias específicas, y el nivel de detalle esperado para cada una de ellas (1-5). Recuerda que debes desarrollar todas las competencias. Algunas más que otras, pero todas deben tener un mínimo.</strong><br>
+    <strong>Recuerda que esto debe ser diverso. Es impensable un nivel 4-5 en todas ellas.</strong></p>
     <div style="overflow-x: auto;">
       <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; background-color: white;">
         <thead>
@@ -154,6 +168,9 @@
     </div>
 
     <h3 id="e1-datos">7. Listado de datos necesarios</h3>
+    <p><strong>Todo proyecto de Ciencia e Ingeniería de datos parte de un mismo origen: Los datos.</strong><br>
+    <strong>Sin ellos, no somos capaces de obtener resultados, a pesar de contar con capacidad técnica o infraestructura.</strong><br>
+    <strong>¿Tienes los datos? ¿Cuáles son y en qué formato? ¿Son públicos? ¿Son de la empresa en la que trabajas? ¿Cómo esperas obtenerlos? ¿Hay algún condicionante técnico o legal?</strong></p>
     <div style="overflow-x: auto;">
       <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; background-color: white;">
         <thead>
@@ -171,14 +188,17 @@
         </tbody>
       </table>
     </div>
+    <p><strong>Las solicitudes de TFB deberán tener, como mínimo, un origen de dato público y disponible. Si estas contienen datos privados y/o no disponibles (por el momento), será considerado un riesgo. Deberás detallar esto, junto con otros posibles, en la siguiente sección.</strong></p>
 
     <h3 id="e1-riesgos">8. Análisis de riesgos</h3>
+    <p><strong>Haz una lista de posibles riesgos que pueden impactar negativamente el desarrollo de tu proyecto y, para cada uno, una posible manera de solucionarlo, o una alternativa que lo evite.</strong></p>
     <ul>
       <li><strong>Riesgo 1: Limitación de cuotas de la API de Copernicus en la extracción de series temporales extensas.</strong><br><em>Mitigación:</em> Trabajar prioritariamente con imágenes Cloud Optimized GeoTIFF (COG) procesadas <em>on the fly</em> o, en su defecto, utilizar formatos estáticos orientados a la nube (PMTiles) o desplegar un servidor de teselas ráster (MBTiles).</li>
       <li><strong>Riesgo 2: Interferencias atmosféricas (nubosidad) en las imágenes satelitales que generen ruido estocástico en la fenología anual.</strong><br><em>Mitigación:</em> Aplicar filtros de nubosidad estrictos integrados en el preprocesamiento ETL y utilizar la agregación mensual para suavizar anomalías. En casos extremos de ausencia prolongada de datos útiles de Sentinel-2, se utilizarán imágenes del programa Landsat como fuente de datos complementaria.</li>
     </ul>
 
     <h3 id="e1-cronograma">9. Planificación y cronograma de trabajo</h3>
+    <p><strong>Propón una planificación para el desarrollo del TFB. Para ello, puedes definir un cronograma en el que se incluyan las acciones necesarias y las fechas límites para el cumplimiento de dichas acciones. Compartir y consensuar esta información con tu tutor/a os permitirá coordinaros y trabajar de manera más cómoda y óptima.</strong></p>
     <p>El desarrollo del proyecto se ha estructurado siguiendo un enfoque ágil (por <em>sprints</em> o fases de ingeniería), enlazando directamente los hitos técnicos de programación e investigación con las ventanas de entrega exigidas por la Universitat Carlemany (Edición 2510).</p>
 
     <h4>Fase 1: Planificación, Diseño Arquitectónico y Fundamentación Teórica</h4>
