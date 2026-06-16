@@ -16,7 +16,20 @@
     <ul>
       <li><a href="#seccion1">1. Resumen Ejecutivo del Proyecto</a></li>
       <li><a href="#seccion2">2. Calendario de Entregas</a></li>
-      <li><a href="#entrega1">3. Entrega 1: PROPUESTA INICIAL</a></li>
+      <li>
+        <a href="#entrega1">3. Entrega 1: PROPUESTA INICIAL</a>
+        <ul>
+          <li><a href="#e1-titulo">3.1. Título propuesto</a></li>
+          <li><a href="#e1-objetivos">3.2. Objetivos del TFB</a></li>
+          <li><a href="#e1-justificacion">3.3. Breve justificación de la propuesta</a></li>
+          <li><a href="#e1-indice">3.4. Propuesta de índice de TFB</a></li>
+          <li><a href="#e1-alcance">3.5. Alcance previo</a></li>
+          <li><a href="#e1-competencias">3.6. Competencias que desarrollar</a></li>
+          <li><a href="#e1-datos">3.7. Listado de datos necesarios</a></li>
+          <li><a href="#e1-riesgos">3.8. Análisis de riesgos</a></li>
+          <li><a href="#e1-cronograma">3.9. Planificación y cronograma de trabajo</a></li>
+        </ul>
+      </li>
       <li><a href="#entrega2">4. Entrega 2: DESARROLLO DEL MARCO TEÓRICO Y METODOLOGÍA (60% del avance)</a></li>
       <li><a href="#entrega3">5. Entrega 3: ENTREGA COMPLETA DEL TFT (100% del avance)</a></li>
       <li><a href="#entrega4">6. Entrega 4: DEPÓSITO FINAL EN 1a DEFENSA</a></li>
@@ -77,59 +90,70 @@
   <article id="entrega1" class="article">
     <h2>3. Entrega 1: PROPUESTA INICIAL</h2>
     
-    <h3>1. Título propuesto</h3>
-    <p><em>Plataforma Geoespacial Escalable para la Monitorización y Procesamiento de Datos Satelitales (Copernicus Sentinel-2): Caso de Uso Aplicado a los Embalses Catalanes.</em></p>
-    <p><strong>En desarrollo:</strong> <a href="https://sentinel.tonilogar.com/" target="_blank">https://sentinel.tonilogar.com/</a></p>
+    <h3 id="e1-titulo">1. Título propuesto</h3>
+    <p><em>Plataforma Geoespacial Escalable para la Monitorización y Procesamiento de Datos Satelitales (Copernicus Sentinel-2): Predicción de la Recuperación de Masas Forestales Post-Incendio.</em></p>
 
-    <h3>2. Objetivos del TFB</h3>
+    <h3 id="e1-objetivos">2. Objetivos del TFB</h3>
     <ul>
-      <li><strong>2.1. Objetivo general:</strong> Validar la viabilidad de un <em>entorno escalable (pipeline geoespacial)</em> para imágenes Sentinel-2, diseñado arquitectónicamente para poder integrar y ejecutar cualquier modelo de Machine Learning previamente entrenado. Como demostrador práctico (Proof of Concept) de este entorno, se implementará y validará un caso de uso específico para la detección del nivel de los embalses catalanes.</li>
+      <li><strong>2.1. Objetivo general:</strong> Validar la viabilidad de un entorno escalable (pipeline geoespacial) para imágenes Sentinel-2, diseñado arquitectónicamente para integrar y ejecutar modelos de Machine Learning / Deep Learning. Como demostrador práctico (Proof of Concept), se implementará un modelo avanzado para la cuantificación, monitorización y predicción de la dinámica de recuperación de la masa forestal tras Eventos de Incendios Forestales Extremos (EWE).</li>
       <li><strong>2.2. Objetivos específicos:</strong>
         <ul>
-          <li>Construir la infraestructura base integrando la API de Copernicus para visualización <em>on the fly</em> tanto en plataforma Web como en Plugin de QGIS.</li>
-          <li>Diseñar una arquitectura de base de datos orientada a la nube basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
-          <li>Desarrollar, entrenar e integrar un modelo de Machine Learning con series temporales (como caso de uso demostrativo del pipeline) para calcular la lámina de agua de 5 embalses.</li>
-          <li>Implementar un modelo de roles y pasarela de pago para la persistencia de datos y ejecución de algoritmos backend.</li>
+          <li>2.2.1. Construir la infraestructura tecnológica completa (repositorio, servidor online, prácticas DevOps, frontend, backend y bases de datos), integrando la API de Copernicus para la visualización <em>on the fly</em> en una plataforma Web interactiva.</li>
+          <li>2.2.2. Identificar, seleccionar y extraer las fuentes de datos satelitales (Copernicus Sentinel-2, Copernicus DEM) y de <em>Ground Truth</em> (perímetros de grandes incendios), diseñando y desarrollando procesos ETL (Extract, Transform, Load) para su armonización y preparación.</li>
+          <li>2.2.3. Diseñar una arquitectura de base de datos orientada a la nube basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
+          <li>2.2.4. Desarrollar, entrenar y validar un modelo de Deep Learning para series temporales espaciales, capaz de evaluar la severidad inicial, mapear la resiliencia y proyectar la recuperación natural del manto vegetal.</li>
         </ul>
       </li>
     </ul>
 
-    <h3>3. Breve justificación de la propuesta</h3>
+    <h3 id="e1-justificacion">3. Breve justificación de la propuesta</h3>
     <ul>
-      <li><strong>Problema que resuelve (Visión Global y Proof of Concept):</strong> Si bien existen sensores físicos de alta precisión en zonas controladas, el verdadero valor de este TFB es crear una herramienta de bajo coste y alta escalabilidad. Los embalses catalanes se utilizarán como <strong>Laboratorio de Pruebas (Proof of Concept)</strong>, aprovechando los datos exactos de la ACA (Ground Truth) para validar matemáticamente el modelo. Una vez validado, el sistema podrá desplegarse en zonas remotas del planeta (países en vías de desarrollo, zonas de conflicto) donde no existe infraestructura de medición, permitiendo a ONGs y gobiernos monitorizar reservas hídricas usando únicamente datos espaciales abiertos.</li>
-      <li><strong>Extensibilidad del Pipeline:</strong> Más allá del caso del agua, la arquitectura está diseñada para demostrar que <strong>el flujo de datos (pipeline) funciona de principio a fin</strong>. Cambiando únicamente el modelo de Machine Learning en el backend, esta misma plataforma es capaz de resolver otros problemas globales utilizando la constelación Copernicus: control de la deforestación, seguimiento de plagas agrícolas, expansión de zonas urbanas, etc.</li>
-      <li><strong>Códigos UNESCO sugeridos:</strong> 1203 (Ciencia de los ordenadores), 2505 (Geografía), 3329 (Planificación urbana y regional).</li>
-      <li><strong>ODS:</strong> ODS 6 (Agua limpia y saneamiento) y ODS 13 (Acción por el clima).</li>
+      <li><strong>Problema que resuelve:</strong> Los Eventos de Incendios Forestales Extremos (EWE) suponen un grave riesgo de colapso ecológico y socioeconómico. Tras su extinción, es vital conocer la capacidad de resiliencia del ecosistema para discriminar zonas que se recuperarán naturalmente frente a aquellas en riesgo de degradación crónica (ej. erosión del suelo). Este TFB desarrolla una herramienta basada en Inteligencia Artificial y Observación de la Tierra para analizar y predecir esta sucesión ecológica.</li>
+      <li><strong>Valor aportado y Alineación Estratégica:</strong> Este trabajo se alinea intrínsecamente con los objetivos del proyecto europeo Horizonte 2020 <strong>FIRE-RES</strong>, que promueve la innovación tecnológica para crear territorios resilientes al fuego. La herramienta actuará como un <em>Decision Support System (DSS)</em>, proporcionando predicciones que informen a los equipos gestores sobre dónde es urgente aplicar silvicultura preventiva o repoblaciones. Además, su metodología tiene potencial directo para ser integrada de forma práctica en los <em>Living Labs</em> impulsados por FIRE-RES en toda Europa.</li>
+      <li><strong>Códigos UNESCO:</strong> 1203 (Ciencia de los Ordenadores), 2505 (Geografía), 2417 (Biología Vegetal / Ecología Forestal).</li>
+      <li><strong>ODS:</strong> ODS 13 (Acción por el clima) y ODS 15 (Vida de ecosistemas terrestres).</li>
     </ul>
 
-    <h3>4. Propuesta de índice de TFB</h3>
+    <h3 id="e1-indice">4. Propuesta de índice de TFB</h3>
     <ol>
-      <li>Introducción</li>
-      <li>Estado del Arte</li>
-      <li>Arquitectura y Tecnologías</li>
-      <li>Metodología (Machine Learning y ETL)</li>
-      <li>Resultados</li>
-      <li>Conclusiones y Trabajo Futuro</li>
+      <li>Introducción, contextualización y objetivos (Alineación Estratégica FIRE-RES)</li>
+      <li>Fundamentación teórica (Observación de la Tierra y Deep Learning)</li>
+      <li>Metodología aplicada y justificación (Pipeline Geoespacial, ETL y Entrenamiento del Modelo)</li>
+      <li>Resultados (Mapeo de Resiliencia y Proyección Vegetal)</li>
+      <li>Análisis, interpretación y discusión</li>
+      <li>Conclusiones y aportaciones (Integración en Living Labs)</li>
+      <li>Referencias bibliográficas y citas</li>
     </ol>
 
-    <h3>5. Alcance previo</h3>
+    <h3 id="e1-alcance">5. Alcance previo</h3>
     <ul>
-      <li><strong>Alcance positivo (In-scope):</strong> Desarrollo web interactivo, Plugin QGIS, Extracción Copernicus Sentinel-2, Modelo ML para 5 embalses catalanes, visualización web con COG/PMTiles, Sistema de Auth/Pagos básico.</li>
-      <li><strong>Alcance negativo (Out-of-scope):</strong> No se desarrollarán modelos predictivos para otras zonas del mundo ni para otros usos que no sean la detección de cuerpos de agua. No se procesarán imágenes de radar (Sentinel-1).</li>
+      <li><strong>Alcance positivo (Qué se hará):</strong> Desarrollo web interactivo, Extracción de series temporales Copernicus Sentinel-2 y modelo de elevación DEM, Modelo de Deep Learning aplicado a polígonos de grandes incendios históricos (ej. Cataluña desde 2015) y visualización web con COG/PMTiles.</li>
+      <li><strong>Alcance negativo (Qué NO se hará):</strong> No se desarrollarán modelos predictivos para otro tipo de catástrofes (inundaciones, terremotos) ni se utilizarán imágenes de radar (Sentinel-1). Tampoco se entrará a analizar biomasa o química del suelo mediante sensores físicos <em>in situ</em>.</li>
     </ul>
 
-    <h3>6. Competencias que desarrollar</h3>
-    <ul>
-      <li><strong>CE2 (Estructurar información):</strong> Nivel 4</li>
-      <li><strong>CE3 (Diseño BD y almacenamiento - COG/PMTiles):</strong> Nivel 5</li>
-      <li><strong>CE4 (Machine learning y toma de decisiones):</strong> Nivel 4</li>
-      <li><strong>CE5 (Modelización estadística):</strong> Nivel 3</li>
-      <li><strong>CE8 (Gestión integral del proyecto):</strong> Nivel 4</li>
-      <li><strong>CE10 (Legislación y normativa):</strong> Nivel 2</li>
-      <li><strong>CE11 (Visualización interactiva):</strong> Nivel 5</li>
-    </ul>
+    <h3 id="e1-competencias">6. Competencias que desarrollar</h3>
+    <div style="overflow-x: auto;">
+      <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; background-color: white;">
+        <thead>
+          <tr style="background-color: #003366; color: white;">
+            <th style="padding: 10px;">CE</th>
+            <th style="padding: 10px;">DEFINICIÓN</th>
+            <th style="padding: 10px;">NIVEL ESPERADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 8px;">CE2</td><td style="padding: 8px;">Estructurar la información en base a conocimientos y de principios de la ciencia de datos para un uso posterior.</td><td style="padding: 8px;">4</td></tr>
+          <tr><td style="padding: 8px;">CE3</td><td style="padding: 8px;">Diseñar y gestionar sistemas de información para el almacenamiento y el tratamiento de datos.</td><td style="padding: 8px;">5</td></tr>
+          <tr><td style="padding: 8px;">CE4</td><td style="padding: 8px;">Escoger y utilizar técnicas de aprendizaje automático y construir sistemas que empleen para la toma de decisiones.</td><td style="padding: 8px;">4</td></tr>
+          <tr><td style="padding: 8px;">CE5</td><td style="padding: 8px;">Escoger y utilizar técnicas de modelización estadística y análisis de datos para la toma de decisiones.</td><td style="padding: 8px;">3</td></tr>
+          <tr><td style="padding: 8px;">CE8</td><td style="padding: 8px;">Gestionar de forma integral proyectos relacionados con la información, utilizando técnicas vinculadas a la ciencia de datos.</td><td style="padding: 8px;">4</td></tr>
+          <tr><td style="padding: 8px;">CE10</td><td style="padding: 8px;">Desarrollar las tareas profesionales de gestión y de explotación de datos respetando la legislación, la normativa y las especificaciones vigentes.</td><td style="padding: 8px;">2</td></tr>
+          <tr><td style="padding: 8px;">CE11</td><td style="padding: 8px;">Visualizar la información a fin de facilitar la exploración y el análisis de datos para que el usuario final pueda tomar decisiones.</td><td style="padding: 8px;">5</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>7. Listado de datos necesarios</h3>
+    <h3 id="e1-datos">7. Listado de datos necesarios</h3>
     <div style="overflow-x: auto;">
       <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; background-color: white;">
         <thead>
@@ -141,20 +165,129 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td style="padding: 8px;">1</td><td style="padding: 8px;">Imágenes Sentinel-2 (Copernicus API)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
-          <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">Histórico de capacidad de embalses (ACA) para Ground Truth</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
+          <tr><td style="padding: 8px;">1</td><td style="padding: 8px;">Imágenes multiespectrales Sentinel-2 (Copernicus API) para la extracción de índices espectrales (NDVI, NBR) a través de series temporales.</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
+          <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">Copernicus DEM (Modelo de Elevación Digital) para incluir la topografía (altitud, pendiente, orientación) como co-variable predictora crítica.</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
+          <tr><td style="padding: 8px;">3</td><td style="padding: 8px;">Perímetros históricos de grandes incendios (ej: Cataluña desde 2015) para acotar las zonas de estudio y servir de Ground Truth del ciclo temporal completo.</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>8. Análisis de riesgos</h3>
+    <h3 id="e1-riesgos">8. Análisis de riesgos</h3>
     <ul>
-      <li><strong>Riesgo 1: Limitación de cuotas de la API Copernicus.</strong><br><em>Mitigación:</em> Implementar caché local de teselas y aplicar limitación de peticiones por usuario.</li>
-      <li><strong>Riesgo 2: Falta de precisión del modelo ML por nubes.</strong><br><em>Mitigación:</em> Aplicar filtros de nubosidad estrictos en el <em>pipeline</em> de extracción antes de la inferencia.</li>
+      <li><strong>Riesgo 1: Limitación de cuotas de la API de Copernicus en la extracción de series temporales extensas.</strong><br><em>Mitigación:</em> Trabajar prioritariamente con imágenes Cloud Optimized GeoTIFF (COG) procesadas <em>on the fly</em> o, en su defecto, utilizar formatos estáticos orientados a la nube (PMTiles) o desplegar un servidor de teselas ráster (MBTiles).</li>
+      <li><strong>Riesgo 2: Interferencias atmosféricas (nubosidad) en las imágenes satelitales que generen ruido estocástico en la fenología anual.</strong><br><em>Mitigación:</em> Aplicar filtros de nubosidad estrictos integrados en el preprocesamiento ETL y utilizar la agregación mensual para suavizar anomalías. En casos extremos de ausencia prolongada de datos útiles de Sentinel-2, se utilizarán imágenes del programa Landsat como fuente de datos complementaria.</li>
     </ul>
 
-    <h3>9. Planificación y cronograma de trabajo</h3>
-    <p>El desarrollo se ajustará a los hitos marcados en el <strong>Calendario de Entregas (Edición 2510)</strong> documentado en la sección anterior.</p>
+    <h3 id="e1-cronograma">9. Planificación y cronograma de trabajo</h3>
+    <p>El desarrollo del proyecto se ha estructurado siguiendo un enfoque ágil (por <em>sprints</em> o fases de ingeniería), enlazando directamente los hitos técnicos de programación e investigación con las ventanas de entrega exigidas por la Universitat Carlemany (Edición 2510).</p>
+
+    <h4>Fase 1: Planificación, Diseño Arquitectónico y Fundamentación Teórica</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 15 de Junio – 10 de Julio</li>
+      <li><strong>Hito Académico:</strong> Entrega 1: Propuesta Inicial (22/06 - 28/06) y validación con la tutora (2ª Tutoría).</li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Revisión exhaustiva de la literatura (Fundamentación Teórica) enfocada en Observación de la Tierra, Deep Learning y el proyecto FIRE-RES.</li>
+          <li>Definición formal de la arquitectura Cloud (Cloud Optimized GeoTIFF y PMTiles).</li>
+          <li>Selección de los perímetros de grandes incendios en Cataluña (Ground Truth).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fase 2: Ingeniería de Datos y Desarrollo del ETL</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 11 de Julio – 26 de Julio</li>
+      <li><strong>Hito Académico:</strong> Entrega 2: Desarrollo del Marco Teórico y Metodología - 60% avance (20/07 - 26/07).</li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Conexión a la API de Copernicus para la descarga de series temporales (Sentinel-2) y elevación (Copernicus DEM).</li>
+          <li>Programación del pipeline ETL (Extract, Transform, Load).</li>
+          <li>Limpieza de ruido (filtros de nubosidad) y agregación temporal mensual.</li>
+          <li>Armonización espacial de las capas ópticas y topográficas para la creación de los tensores de datos.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fase 3: Modelado de Deep Learning (Entrenamiento y Validación)</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 27 de Julio – 15 de Agosto</li>
+      <li><strong>Hito Académico:</strong> Trabajo de campo y validación teórica.</li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Diseño de la arquitectura de la red neuronal (convolucional/recurrente) para series temporales espaciales.</li>
+          <li>Entrenamiento del modelo utilizando los índices espectrales y datos topográficos.</li>
+          <li>Evaluación del rendimiento, cálculo de métricas de error y ajuste de hiperparámetros.</li>
+          <li>Generación de las inferencias finales: Mapas de resiliencia y predicción de recuperación vegetal.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fase 4: Despliegue de Infraestructura y Frontend Web</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 16 de Agosto – 31 de Agosto</li>
+      <li><strong>Hito Académico:</strong> Entrega 3: Entrega Completa del TFT - 100% avance (31/08 - 06/09).</li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Conversión de los resultados matriciales (mapas) a formatos estáticos orientados a la nube (COG/PMTiles).</li>
+          <li>Desarrollo del frontend: plataforma web interactiva con mapas dinámicos.</li>
+          <li>Integración del backend para servir los datos geoespaciales.</li>
+          <li>Redacción de los capítulos de Resultados, Conclusiones y Trabajo Futuro en la memoria oficial.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fase 5: Revisión, Pulido y Depósito Final</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 1 de Septiembre – 20 de Septiembre</li>
+      <li><strong>Hito Académico:</strong> Entrega 4: Depósito Final en 1ª Defensa (14/09 - 20/09).</li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Incorporación del <em>feedback</em> de la tutora tras la Entrega 3.</li>
+          <li>Corrección de formato (Normativa APA) y revisión bibliográfica.</li>
+          <li>Pruebas finales de estrés y usabilidad de la plataforma web.</li>
+          <li>Generación de la versión definitiva (PDF) para el tribunal.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fase 6: Preparación de la Defensa</h4>
+    <ul>
+      <li><strong>Fechas:</strong> 21 de Septiembre – 25 de Octubre</li>
+      <li><strong>Hitos Académicos:</strong>
+        <ul>
+          <li>Entrega PPT Defensa: 05/10 - 11/10</li>
+          <li>Primera Defensa ante el Tribunal: 12/10 - 25/10</li>
+        </ul>
+      </li>
+      <li><strong>Tareas Técnicas:</strong>
+        <ul>
+          <li>Síntesis del proyecto en un PowerPoint visual y de alto impacto.</li>
+          <li>Preparación de una "Live Demo" segura y fluida de la plataforma web para enseñarla en vivo al tribunal.</li>
+          <li>Ensayos de oratoria (ajustando la presentación al tiempo límite de 10-15 minutos).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Resumen del Cronograma</h4>
+    <div style="overflow-x: auto;">
+      <table border="1" style="width: 100%; border-collapse: collapse; text-align: left; background-color: white;">
+        <thead>
+          <tr style="background-color: #003366; color: white;">
+            <th style="padding: 10px;">Fechas</th>
+            <th style="padding: 10px;">Hito Académico (Entrega)</th>
+            <th style="padding: 10px;">Tareas Técnicas / Desarrollo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 8px;"><strong>15 Jun - 10 Jul</strong></td><td style="padding: 8px;"><strong>Entrega 1: Propuesta Inicial</strong> (22/06 - 28/06)</td><td style="padding: 8px;">Fundamentación teórica, diseño de arquitectura y selección de zonas de estudio.</td></tr>
+          <tr><td style="padding: 8px;"><strong>11 Jul - 26 Jul</strong></td><td style="padding: 8px;"><strong>Entrega 2: Metodología (60%)</strong> (20/07 - 26/07)</td><td style="padding: 8px;">Conexión a Sentinel-2 y DEM, programación ETL y armonización de datos.</td></tr>
+          <tr><td style="padding: 8px;"><strong>27 Jul - 15 Ago</strong></td><td style="padding: 8px;"><em>Trabajo de campo intensivo</em></td><td style="padding: 8px;">Diseño de red neuronal (Deep Learning), entrenamiento, validación e inferencias.</td></tr>
+          <tr><td style="padding: 8px;"><strong>16 Ago - 31 Ago</strong></td><td style="padding: 8px;"><strong>Entrega 3: Entrega Completa (100%)</strong> (31/08 - 06/09)</td><td style="padding: 8px;">Creación de PMTiles/COG, desarrollo plataforma Web interactiva y redacción final.</td></tr>
+          <tr><td style="padding: 8px;"><strong>1 Sep - 20 Sep</strong></td><td style="padding: 8px;"><strong>Entrega 4: Depósito Final</strong> (14/09 - 20/09)</td><td style="padding: 8px;">Correcciones APA, pruebas de estrés de la Web e incorporación de feedback.</td></tr>
+          <tr><td style="padding: 8px;"><strong>21 Sep - 25 Oct</strong></td><td style="padding: 8px;"><strong>Primera Defensa y PPT</strong> (12/10 - 25/10)</td><td style="padding: 8px;">Preparación de PowerPoint, ensayos de oratoria y montaje de la <em>Live Demo</em>.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <a class="back" href="#indice">↑ Volver al índice</a>
   </article>
