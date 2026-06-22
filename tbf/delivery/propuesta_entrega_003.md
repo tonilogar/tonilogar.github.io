@@ -6,7 +6,7 @@ Para facilitar la lectura a evaluadores y personas no especialistas en Sistemas 
 
 
 * **Sentinel-2:** Misión de satélites ópticos de alta resolución (10 metros) perteneciente al programa europeo Copernicus.
-* **Sen2Cor:** Algoritmo oficial de la Agencia Espacial Europea (ESA) utilizado para procesar imágenes satelitales y eliminar efectos atmosféricos (incluye un detector de nubes básico que este proyecto pretende mejorar).
+* **Sen2Cor:** Software de la Agencia Espacial Europea (ESA) para la corrección admosferica (incluye un detector de nubes básico que este proyecto pretende mejorar).
 * **Tiling:** Técnica geoespacial que consiste en "trocear" imágenes satelitales gigantes en cuadrados más pequeños para que el ordenador pueda procesarlos sin saturar la memoria RAM.
 * **OOM:** *Out of Memory* (Fuera de memoria). Colapso del ordenador por intentar cargar demasiados datos gráficos a la vez.
 * **COG:** *Cloud Optimized GeoTIFF*. Formato de imagen satelital optimizado para ser consultado y procesado de forma rápida y directa en la nube.
@@ -17,7 +17,6 @@ Para facilitar la lectura a evaluadores y personas no especialistas en Sistemas 
 * **ESA:** *European Space Agency* (Agencia Espacial Europea).
 * **ACA:** Agencia Catalana del Agua.
 * **ICGC:** Instituto Cartográfico y Geológico de Cataluña.
-
 
 ---
 
@@ -40,10 +39,15 @@ Repositorio, servidor online, prácticas DevOps, frontend, backend y bases de da
 
 ## 3. Breve justificación de la propuesta
 
-* **Problema que resuelve:** La generación de mosaicos cartográficos limpios a partir de satélites se ve constantemente truncada por las nubes. Los procesadores estándar actuales (como el algoritmo Sen2Cor de la ESA) cometen graves errores ópticos: confunden habitualmente el agua oscura profunda del mar con sombras de nubes, y la nieve de los Pirineos con nubosidad espesa. Este TFB soluciona este problema mediante Inteligencia Artificial adaptativa.
+* **Problema que resuelve:** La generación de mosaicos cartográficos limpios a partir de satélites se ve constantemente truncada por las nubes. Los procesadores estándar actuales (como el algoritmo Sen2Cor de la ESA) cometen graves errores ópticos: confunden habitualmente el agua oscura profunda del mar con sombras de nubes, y la nieve de los Pirineos con nubosidad espesa. Este TFB soluciona este problema mediante Inteligencia Artificial adaptativa, centrandose en una zona concreta "Cataluña"
 * **Valor aportado y Alineación Estratégica:** Al crear modelos "especialistas" (un modelo experto en escenarios con nieve y otro para escenarios sin nieve) concretamente en Cataluña, se elimina la generalización estadística. El mismo trabajo se puede aplicar a los nuevos satelites catalanes.
-* **Códigos UNESCO:** 1203 (Ciencia de los Ordenadores), 2505 (Geografía), 3320 (Tecnología de los Sensores Ópticos).
-* **ODS:** ODS 9 (Industria, Innovación e Infraestructura) y ODS 13 (Acción por el clima).
+* **Códigos UNESCO:**
+  * **1207.94 (Aprendizaje automático):** Justificado por el entrenamiento de modelos de Inteligencia Artificial (Redes Neuronales U-Net) para la segmentación semántica de imágenes satelitales.
+  * **1203.93 (Cloud Computing):** Aplicado en el diseño y despliegue del entorno escalable (pipeline geoespacial) y la infraestructura de procesamiento online.
+  * **1203.96 (Bases de Datos):** Requerido para la orquestación y estructuración de la arquitectura orientada a la nube mediante formatos optimizados (Cloud Optimized GeoTIFF y PMTiles).
+* **Objetivos de Desarrollo Sostenible (ODS):** 
+  * **ODS 9 (Industria, Innovación e Infraestructura):** El proyecto construye una infraestructura tecnológica geoespacial innovadora que mejora las capacidades de procesamiento y análisis de datos de la industria satelital.
+  * **ODS 13 (Acción por el clima):** La monitorización precisa de la superficie terrestre (diferenciando de forma fiable la nieve de la nubosidad) proporciona datos limpios y veraces, fundamentales para evaluar el impacto del cambio climático y la gestión de recursos hídricos en Cataluña.
 
 ## 4. Propuesta de índice de TFB
 
