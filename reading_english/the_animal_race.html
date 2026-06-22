@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read 'The Animal Race', an English story for level A2 practicing Comparatives and Superlatives.">
+    <title>The Animal Race - Reading English A2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Animal Race</h1>
+            <p>Level: A2 (Elementary) | Focus: Comparatives & Superlatives</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            <p>Once upon a time, in the middle of a vast jungle, the animals argued about who was <strong>the best</strong>. The lion, the king of the jungle, decided to organize a competition. "We will have a great <em>race</em>," the lion roared. "The <em>winner</em> will be <strong>the greatest</strong> animal of all." Every animal wanted to participate.</p>
+
+            <p>The <em>cheetah</em> was very confident. "I am <strong>faster than</strong> everyone," he said. "I am <strong>the fastest</strong> animal in the world. This race will be <strong>easier than</strong> catching a mouse." The turtle heard him and smiled slowly. "You are <strong>faster than</strong> me, but I am <strong>more patient than</strong> you," she said.</p>
+
+            <p>The <em>elephant</em> was <strong>the largest</strong> competitor. "I am <strong>heavier than</strong> the cheetah, and I am <strong>stronger than</strong> the tiger," he proclaimed. "I am <strong>the strongest</strong> animal in the forest. Nothing can stop me." The monkey laughed from a tree. "But you are <strong>slower than</strong> me! I can climb <strong>higher than</strong> anyone. I am <strong>the most agile</strong>!"</p>
+
+            <p>The race began the next morning. The path went through the jungle, across a <em>deep</em> river, and up a <em>high</em> mountain. The cheetah started first. He ran <strong>faster than</strong> the wind. He was <strong>the quickest</strong> runner, but when he reached the river, he stopped. The river was <strong>too deep</strong>, and he was a terrible swimmer.</p>
+
+            <p>The elephant arrived at the river. He was <strong>heavier than</strong> the water, so he walked straight through it. He was <strong>the most powerful</strong> animal, but when he reached the mountain, he could not climb the rocks. The monkey climbed the mountain easily because he was <strong>lighter than</strong> the elephant, but he got lost in the forest.</p>
+
+            <p>In the end, no single animal could finish the race alone. The eagle, who flew <strong>higher than</strong> all of them, watched from the sky. "Do you see?" the eagle called out. "The cheetah is <strong>the fastest</strong>, the elephant is <strong>the strongest</strong>, and the monkey is <strong>the most agile</strong>. Every animal is <strong>better than</strong> the others at something. We are all <strong>the best</strong> in our own way."</p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Who thought the race would be easier than catching a mouse?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">The cheetah</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The turtle</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The lion</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What did the elephant say about himself?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He is the fastest</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He is heavier than the cheetah and the strongest</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He is the most agile</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why did the cheetah stop at the river?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he was tired</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he got lost</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because the river was deep and he is a terrible swimmer</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What was the lesson of the story?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">That the cheetah is the king</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">That every animal is the best at something</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">That turtles are faster than monkeys</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+    <script src="js/translator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'race', es: 'carrera' },
+                { id: '2', en: 'cheetah', es: 'guepardo' },
+                { id: '3', en: 'elephant', es: 'elefante' },
+                { id: '4', en: 'heavy', es: 'pesado' },
+                { id: '5', en: 'fast', es: 'rápido' },
+                { id: '6', en: 'slow', es: 'lento' },
+                { id: '7', en: 'strong', es: 'fuerte' },
+                { id: '8', en: 'high', es: 'alto' },
+                { id: '9', en: 'deep', es: 'profundo' },
+                { id: '10', en: 'winner', es: 'ganador' }
+            ];
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
