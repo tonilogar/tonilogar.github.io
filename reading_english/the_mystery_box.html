@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read 'The Mystery Box' - An A2 English reading exercise focusing on the Past Simple (Irregular Verbs).">
+    <title>The Mystery Box - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Back to Home</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Mystery Box</h1>
+            <p>Level: A2 (Elementary) | Focus: Past Simple (Irregular Verbs)</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <p>Alex and his sister, Mia, often visited their grandparents. Their grandparents lived in a large, old house in the countryside. The house had many rooms and a very big attic. One Saturday, their grandmother asked them for help. "Can you clean the attic, please?" she said. The children agreed and ran upstairs.</p>
+            <p>The attic was dark and dusty. There were old chairs, broken lamps, and many boxes. Alex and Mia started to move the boxes. Suddenly, Alex saw something unusual in the corner. It was a small wooden box with a beautiful lock. "Look at this," Alex told his sister. Mia came over and looked at the box. It felt very heavy.</p>
+            <p>They tried to open it, but the lock was closed. "We need a key," Mia said. They looked everywhere. They searched under the old chairs, inside the broken lamps, and behind the big mirror. Finally, Alex found a small, rusty key inside a dusty tea cup. He took the key and put it in the lock. <em>Click.</em> The box opened.</p>
+            <p>Inside the box, they found many interesting things. They saw a silver compass, an old map, and a small leather book. Mia took the book and opened it. "It is a diary," she said. The diary belonged to their great-grandfather, Arthur. He wrote about his adventures around the world. The children read the first page. It said: "The greatest treasure is hidden under the old oak tree."</p>
+            <p>"The old oak tree!" Alex shouted. "I know that tree. It is in the forest behind the house." The children took the compass and the map. They ran downstairs and went outside. They ran through the garden and entered the dark forest. They walked for twenty minutes. The trees were tall, and the path was difficult.</p>
+            <p>Finally, they came to the center of the forest. There, standing tall and strong, was the giant oak tree. "This is it," Mia said. They looked at the ground near the roots of the tree. They saw a loose rock. Alex pulled the rock away and dug into the dirt with his hands. Soon, his fingers felt something hard. It was another box! This one was made of metal.</p>
+            <p>They pulled the metal box out of the ground. It was locked too, but the lock was broken from the years in the ground. Mia opened the lid carefully. They looked inside and gasped. The box did not have gold or diamonds. Instead, it was full of beautiful, colourful stones and a very old letter.</p>
+            <p>The letter said: "To my family, these stones come from all the countries I visited in my life. Every stone is a memory. Memories are the real treasure." Alex and Mia felt very happy. They took the box of stones and went back to their grandparents' house. They showed the treasure to their grandmother. She smiled and told them amazing stories about their great-grandfather for the rest of the afternoon.</p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where did the children find the first wooden box?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the forest</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the garden</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">In the attic</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What was inside the first wooden box?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Gold and diamonds</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A compass, a map, and a diary</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Colourful stones and a letter</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Where did the children go to find the second box?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">To the old oak tree in the forest</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">To their great-grandfather's house</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">To the attic again</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What was the real treasure, according to the letter?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The silver compass</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">The stones and memories</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The map of the world</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: 1, en: "Went", es: "Fue / Fueron" },
+                { id: 2, en: "Saw", es: "Vio / Vieron" },
+                { id: 3, en: "Found", es: "Encontró / Encontraron" },
+                { id: 4, en: "Took", es: "Tomó / Llevaron" },
+                { id: 5, en: "Came", es: "Vino / Vinieron" },
+                { id: 6, en: "Read", es: "Leyó / Leyeron" },
+                { id: 7, en: "Felt", es: "Sintió / Sintieron" },
+                { id: 8, en: "Told", es: "Contó / Dijo" },
+                { id: 9, en: "Attic", es: "Desván / Ático" },
+                { id: 10, en: "Dusty", es: "Polvoriento" }
+            ];
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
