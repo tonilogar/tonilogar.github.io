@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSelection(e) {
         // If the user is clicking on the tooltip itself, don't interfere!
-        if (tooltip && tooltip.contains(e.target)) {
+        if (e && e.target && tooltip && tooltip.contains(e.target)) {
             return;
         }
 
