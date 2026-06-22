@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseup', handleSelection);
     document.addEventListener('touchend', handleSelection);
 
+    // On mobile, dragging selection handles intercepts touchend, so we must rely on selectionchange
+    let selectionTimeout;
+    document.addEventListener('selectionchange', () => {
+        clearTimeout(selectionTimeout);
+        // Wait 500ms after the selection stops changing before attempting to show the tooltip
+        selectionTimeout = setTimeout(handleSelection, 500);
+    });
+
     // Hide tooltip on click outside
     document.addEventListener('mousedown', (e) => {
         if (tooltip && !tooltip.contains(e.target)) {
