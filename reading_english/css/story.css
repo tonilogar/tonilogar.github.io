@@ -188,6 +188,22 @@
     }
 }
 
+/* --- Instruction Notice --- */
+.instruction-notice {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+}
+.instruction-notice a {
+    color: #60a5fa;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 /* --- Post-reading Recall Test --- */
 .recall-controls {
     display: flex;
