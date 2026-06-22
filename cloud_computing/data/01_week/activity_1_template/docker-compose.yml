@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   carlemany-backend:
     build:
@@ -15,14 +13,16 @@ services:
     networks:
       - carlemany-net
 
-  black:
-    image: carlemany-backend-base:latest
+  format:
+    build:
+      context: .
+      target: carlemany-backend-dev
+    image: carlemany-backend-dev:latest
     volumes:
       - type: bind
         source: ./
         target: /carlemany-backend
-        read_only: true
-    entrypoint: sh -c "black --config .black --check --diff ."
+    entrypoint: sh -c "black --config .black . && ruff check --fix"
 
   test: &test
     image: carlemany-backend-dev:latest
