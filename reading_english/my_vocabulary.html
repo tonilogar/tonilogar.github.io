@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My Vocabulary - Your personal English learning dictionary.">
+    <title>My Vocabulary - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header" style="min-height: 40vh;">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html" style="color: #fff;">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>My Vocabulary</h1>
+            <p>Practice the words you've saved while reading.</p>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="recall-controls" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <button class="recall-toggle-btn" id="toggleLangBtn" style="margin-bottom: 2rem;">
+                Mode: Translate to Spanish 🔄
+            </button>
+        </div>
+        <div id="vocab-container" class="recall-list" style="max-width: 800px; margin: 0 auto;">
+            <!-- Words will be injected here via JS -->
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('vocab-container');
+            const toggleBtn = document.getElementById('toggleLangBtn');
+            let targetLanguage = 'es'; // 'es' or 'en'
+            
+            // Helper to normalize strings: lowercase, remove accents, trim
+            const normalize = str => {
+                return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+            };
+
+            function renderVocab() {
+                const vocab = JSON.parse(localStorage.getItem('myVocab') || '[]');
+                
+                if (vocab.length === 0) {
+                    toggleBtn.style.display = 'none';
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h2>Your vocabulary list is empty!</h2>
+                            <p>Go read a story, select any word you don't know, and click the translate button to save it.</p>
+                            <a href="index.html" class="cta-button" style="display: inline-block; margin-top: 1rem; text-decoration: none;">Start Reading</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                toggleBtn.style.display = 'inline-block';
+                toggleBtn.innerHTML = `Mode: Translate to ${targetLanguage === 'es' ? 'Spanish' : 'English'} 🔄`;
+
+                // Sort by newest first
+                vocab.sort((a, b) => b.date - a.date);
+
+                let html = '';
+                vocab.forEach(v => {
+                    const displayWord = targetLanguage === 'es' ? v.en : v.es;
+                    const targetWord = targetLanguage === 'es' ? v.es : v.en;
+                    
+                    html += `
+                        <div class="recall-item">
+                            <div class="recall-word">${displayWord}</div>
+                            <div class="recall-input-container">
+                                <input type="text" class="recall-input" data-answer="${targetWord}" placeholder="Type translation...">
+                                <button class="recall-hint-btn" title="Show hint">👁</button>
+                                <button class="recall-check-btn" title="Check">Check</button>
+                                <button class="delete-btn" onclick="deleteWord(${v.date})" title="Delete word" style="margin-left: 10px;">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+                attachEvents();
+            }
+
+            function attachEvents() {
+                const items = container.querySelectorAll('.recall-item');
+                items.forEach(item => {
+                    const input = item.querySelector('.recall-input');
+                    const checkBtn = item.querySelector('.recall-check-btn');
+                    const hintBtn = item.querySelector('.recall-hint-btn');
+
+                    const verifyAnswer = () => {
+                        const answer = input.getAttribute('data-answer');
+                        const possibleAnswers = answer.split('/').map(ans => normalize(ans));
+                        const userAnswer = normalize(input.value);
+
+                        input.classList.remove('correct', 'incorrect');
+                        if (userAnswer === '') return;
+
+                        if (possibleAnswers.includes(userAnswer)) {
+                            input.classList.add('correct');
+                            checkBtn.classList.add('correct');
+                            checkBtn.innerHTML = '✓';
+                            input.disabled = true;
+                            checkBtn.disabled = true;
+                            hintBtn.disabled = true;
+                        } else {
+                            input.classList.add('incorrect');
+                        }
+                    };
+
+                    checkBtn.addEventListener('click', verifyAnswer);
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') verifyAnswer();
+                    });
+
+                    hintBtn.addEventListener('click', () => {
+                        input.value = input.getAttribute('data-answer').split('/')[0];
+                        verifyAnswer();
+                    });
+                });
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                targetLanguage = targetLanguage === 'es' ? 'en' : 'es';
+                renderVocab();
+            });
+
+            window.deleteWord = function(dateId) {
+                let vocab = JSON.parse(localStorage.getItem('myVocab') || '[]');
+                vocab = vocab.filter(v => v.date !== dateId);
+                localStorage.setItem('myVocab', JSON.stringify(vocab));
+                renderVocab();
+            }
+
+            renderVocab();
+        });
+    </script>
+</body>
+</html>

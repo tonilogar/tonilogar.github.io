@@ -241,3 +241,93 @@ p {
 .story-item:hover .story-arrow {
     transform: translateX(5px);
 }
+
+/* --- Translator Tooltip --- */
+#translator-tooltip {
+    position: absolute;
+    background-color: #1e293b;
+    border: 1px solid #3b82f6;
+    color: #f8fafc;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeInTooltip 0.2s ease-out;
+    transition: background-color 0.2s;
+}
+
+#translator-tooltip:hover {
+    background-color: #334155;
+}
+
+#translator-tooltip.success {
+    background-color: #22c55e;
+    border-color: #16a34a;
+    color: #fff;
+}
+
+@keyframes fadeInTooltip {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- My Vocabulary Page --- */
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.vocab-card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform var(--transition-speed);
+}
+
+.vocab-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.vocab-word {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.vocab-translation {
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 1.25rem;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #64748b;
+}
