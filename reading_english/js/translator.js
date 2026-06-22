@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Slight delay to let the browser finish selection on touchend
+        // Slight delay to let the browser finish selection on touchend/mouseup
         setTimeout(() => {
             const selection = window.getSelection();
             const text = selection.toString().trim();
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (rect.width === 0 || rect.height === 0) return;
 
             showTooltip(text, rect);
-        }, 10);
+        }, 150);
     }
 
     function showTooltip(text, rect) {
@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
         
-        tooltip.style.top = `${rect.top + scrollTop - 45}px`;
+        // Place tooltip below the selected text to avoid overlapping with native mobile selection menus
+        tooltip.style.top = `${rect.bottom + scrollTop + 15}px`;
         tooltip.style.left = `${rect.left + scrollLeft + (rect.width / 2)}px`;
         tooltip.style.transform = 'translateX(-50%)';
 
