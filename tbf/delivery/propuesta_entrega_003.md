@@ -1,5 +1,7 @@
 # Propuesta del Trabajo Final de Bàtxelor (TFB)
 
+> **🌍 Disponible Online:** Puedes consultar esta propuesta de forma interactiva en la página web del proyecto: [https://tonilogar.github.io/tbf/tbf.html#e1-titulo](https://tonilogar.github.io/tbf/tbf.html#e1-titulo)
+
 ## Índice de Acrónimos y Glosario Técnico
 
 Para facilitar la lectura a evaluadores y personas no especialistas en Sistemas de Información Geográfica (GIS) se definen los siguientes términos clave utilizados en este documento:
