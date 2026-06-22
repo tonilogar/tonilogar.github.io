@@ -1,50 +1,34 @@
-# Actividad 1 - Cloud Computing: Containerization with Docker and FastAPI project setup
+# Checklist Entrega 1 - Cloud Computing
 
-**Alumno:** Antonio López García
-**Profesor:** Ramon Amela Milian
-**Fecha de entrega:** 22-06-2026
+A continuación se detalla todo lo que pide el enunciado de la entrega y el estado actual de cada tarea:
 
-## Tareas a realizar y progreso
+## 1. Git (25% de la nota)
+- [ ] Crear cuenta en GitHub para los participantes del proyecto (si no se tiene).
+- [ ] Crear un repositorio privado en GitHub.
+![Create repo git hub](./img/cloud_computing_001.png)
+- [ ] Invitar al usuario `@ramonamela` como colaborador al repositorio creado.
+![Invite collaborator](./img/cloud_computing_002.png)
+- [ ] Mover la plantilla (`activity_1_template`) al nuevo repositorio e inicializarlo con Git.
+- [x] Hacer el primer commit con el mensaje "First commit". *(El código ya lo tiene preparado, solo faltará hacerlo al subirlo al repo definitivo)*.
 
-### 1. Git (25%)
-- [ ] Crear repositorio privado en GitHub e inicializarlo con el código base.
-- [ ] Invitar al usuario `@ramonamela` como colaborador.
-- [ ] Copiar la plantilla (`activity_1_template`) al nuevo proyecto.
-- [ ] Hacer el primer commit con el mensaje "First commit".
+## 2. Docker (20% de la nota)
+- [x] Añadir los requisitos (requirements) necesarios al proyecto (`fastapi`, `pydantic`, `black`, `ruff`, etc).
+- [x] Añadir tantos *targets* en el Dockerfile como consideres que debe tener un proyecto cloud escalable (hemos creado la base y el entorno `-dev`).
 
-### 2. Docker (20%)
-- [ ] Añadir los requerimientos necesarios al proyecto (`requirements.txt` o `pyproject.toml`).
-- [ ] Configurar el `Dockerfile` añadiendo los *targets* (etapas multi-stage) necesarios para un proyecto cloud escalable.
+## 3. Docker Compose (25% de la nota)
+- [x] Modificar el `docker-compose.yml` para usar los *targets* creados previamente.
+- [x] Modificar el `docker-compose.yml` para usar un archivo de variables de entorno (`env_file`).
+- [x] Modificar el `docker-compose.yml` para mapear el puerto del proyecto del 80 al puerto deseado (usando `8000:80`).
+- [x] Incluir un target en el docker-compose para formatear el código con el comando exacto: `entrypoint: sh -c "black --config .black . && ruff check --fix"`. *(Asegurado que instala las versiones correctas: black 24.1.0 y ruff 0.1.14)*.
 
-### 3. Docker Compose (25%)
-- [ ] Modificar `docker-compose.yml` para usar el *target* adecuado del `Dockerfile`.
-- [ ] Modificar `docker-compose.yml` para utilizar un archivo de variables de entorno (`.env`).
-- [ ] Mapear el puerto del proyecto del 80 al deseado (por ejemplo, `8080:80` o `8000:80`).
-- [ ] Incluir un servicio/target en el `docker-compose` para formatear el código. Comando:
-      `entrypoint: sh -c "black --config .black . && ruff check --fix"`
-      *(Requiere instalar `black` 24.1.0 y `ruff` 0.1.14)*.
+## 4. Project Setup FastAPI (30% de la nota)
+- [x] Crear dos aplicaciones (módulos) separadas llamadas "authentication" y "files".
+- [x] Crear *routers* dentro de ambas aplicaciones.
+- [x] Importar los nuevos *routers* desde el archivo principal (`main.py`).
+- [x] Crear los siguientes *endpoints* en los routers (solo que devuelvan 200 OK en Swagger, sin lógica de negocio):
+  - **Authentication:** `POST /register`, `POST /login`, `POST /logout`, `GET /introspect`
+  - **Files:** `GET /files`, `POST /files`, `GET /files/{id}`, `POST /files/{id}`, `DELETE /files/{id}`, `POST /files/merge`
 
-### 4. Setup del Proyecto FastAPI (30%)
-- [ ] Crear dos "apps" (módulos/carpetas) separadas: `authentication` y `files`.
-- [ ] Crear *routers* (FastAPI APIRouter) dentro de cada aplicación.
-- [ ] Importar los nuevos *routers* en el archivo principal (`main.py`).
-- [ ] Crear los siguientes *endpoints* (solo devolver 200 OK, sin lógica de negocio, documentados en Swagger):
-  - **Authentication:**
-    - `POST /register`
-    - `POST /login`
-    - `POST /logout`
-    - `GET /introspect`
-  - **Files:**
-    - `GET /files`
-    - `POST /files`
-    - `GET /files/{id}`
-    - `POST /files/{id}`
-    - `DELETE /files/{id}`
-    - `POST /files/merge`
-
-## Entregables Finales
-- Código del proyecto comprimido (.zip).
-- Hash del commit exacto de GitHub entregado a través del campus virtual.
-
----
-**Commit Hash de entrega:** *(Pendiente)*
+## 5. Aspectos formales (Entrega final)
+- [ ] Todo el código del proyecto debe entregarse en formato comprimido (.zip) a través del campus virtual.
+- [ ] Incluir en la caja de texto de la entrega el **hash del commit** de GitHub que corresponde exactamente con la versión del código que va dentro del zip.

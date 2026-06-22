@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lost Key - Reading English</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#stories">Stories Index</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Lost Key</h1>
+            <p>Level: Beginner</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>Vocabulary (Vocabulario)</h2>
+            <ul>
+                <li><strong>Beautiful</strong>: Hermoso/a</li>
+                <li><strong>Afternoon</strong>: Tarde</li>
+                <li><strong>Pillow</strong>: Almohada</li>
+                <li><strong>Downstairs</strong>: Abajo (por las escaleras)</li>
+                <li><strong>Make a cake</strong>: Hacer un pastel</li>
+                <li><strong>Sofa</strong>: Sofá</li>
+                <li><strong>Behind</strong>: Detrás</li>
+                <li><strong>Sad</strong>: Triste</li>
+                <li><strong>Grass</strong>: Césped / Hierba</li>
+                <li><strong>Hug</strong>: Abrazo</li>
+            </ul>
+        </section>
+
+        <article class="story-text">
+            <p>Tom is a young boy. He lives in a big house with a small, beautiful garden. Every afternoon, after school, he likes to play in his bedroom. One day, Tom wants to open his special box of toys, but he cannot find his key. It is a small, silver key. He looks on his bed, under his pillow, and inside his closet. The key is not there.</p>
+            <p>Tom walks downstairs. "Where is my key?" he asks his mother. His mother is in the kitchen. She is making a chocolate cake. She stops mixing and looks at him. "Did you look in the living room?" she asks.</p>
+            <p>Tom goes to the living room. He looks under the sofa and behind the television. He finds an old coin and a blue sock, but no key. He is starting to feel sad. Then, his mother asks, "Did you look in the garden? You played there yesterday."</p>
+            <p>Tom opens the back door and goes to the garden. The sun is shining, and the birds are singing. He sees his dog, Max. Max is sitting on the grass. Max has something in his mouth. It is shiny and silver. It is the key! Max is a good dog. Tom takes the key, smiles, and gives Max a big hug. Tom is very happy.</p>
+        </article>
+
+        <section class="quiz">
+            <h2>Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where does Tom look for the key first?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the garden</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">In his bedroom</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the living room</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What is Tom's mother doing in the kitchen?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Washing the dishes</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Making a chocolate cake</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Sleeping</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. What does Tom find in the living room?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">An old coin and a blue sock</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">His toy box</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The silver key</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. Who has the key?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Tom's mother</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Max, the dog</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Tom's friend</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+</body>
+</html>

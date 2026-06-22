@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Campout - Reading English</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#stories">Stories Index</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Great Campout</h1>
+            <p>Level: A2 (Elementary)</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <p>Last weekend, Sarah and her friends decided to go camping. They packed their bags, cooked some food, and traveled to the mountains. The weather looked beautiful when they arrived. They walked for an hour and reached a clear lake.</p>
+            <p>First, they pitched their tents near the water. Then, they collected wood for a fire. As the sun dropped, the air turned cold. Sarah started the fire, and her friends roasted marshmallows. They talked, laughed, and listened to the sounds of the forest.</p>
+            <p>Suddenly, they noticed a strange noise behind a tree. They stopped talking and looked. It sounded like footsteps. Someone stepped on a branch. They waited in silence. A small deer appeared. It looked at them for a second, turned around, and hopped away. They all breathed a sigh of relief and smiled.</p>
+            <p>They finished their snacks, cleaned the area, and crawled into their sleeping bags. The next morning, they packed everything and returned home. They enjoyed the trip very much and promised to return next summer.</p>
+        </article>
+
+        <section class="quiz">
+            <h2>Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where did Sarah and her friends pitch their tents?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Near a river</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Near the water (lake)</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">On top of a mountain</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What did they do after they collected wood?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They started a fire and roasted marshmallows</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They went to sleep</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They packed their bags</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. What made the strange noise behind the tree?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A bear</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Sarah's friend</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A small deer</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. Which tense is mostly used in this story?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Present Simple</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Past Simple (Regular verbs)</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Future</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: 1, en: "Decided", es: "Decidió / Decidieron" },
+                { id: 2, en: "Packed", es: "Empacaron" },
+                { id: 3, en: "Traveled", es: "Viajaron" },
+                { id: 4, en: "Arrived", es: "Llegaron" },
+                { id: 5, en: "Pitched a tent", es: "Montaron una tienda" },
+                { id: 6, en: "Roasted", es: "Asaron" },
+                { id: 7, en: "Laughed", es: "Rieron" },
+                { id: 8, en: "Appeared", es: "Apareció" },
+                { id: 9, en: "Crawled", es: "Se arrastraron / Gatearon" },
+                { id: 10, en: "Enjoyed", es: "Disfrutaron" }
+            ];
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
