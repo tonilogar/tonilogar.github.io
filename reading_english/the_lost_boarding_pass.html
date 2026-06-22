@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read 'The Lost Boarding Pass', an English story for level B1 practicing the Past Perfect tense and airport vocabulary.">
+    <title>The Lost Boarding Pass - Reading English B1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Lost Boarding Pass</h1>
+            <p>Level: <span class="badge b1">B1</span> | Grammar: Past Perfect | Topic: The Airport</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <!-- Pre-reading Activity -->
+        <section class="activity-section">
+            <h2>1. Before You Read: Vocabulary Match</h2>
+            <p>Match the English words with their Spanish translation before starting the story.</p>
+            <div id="matching-game" class="matching-game-area"></div>
+        </section>
+
+        <!-- Story Text -->
+        <article class="story-text">
+            <h2>2. Read the Story</h2>
+            <p class="instruction-text">Double-click or select any word you don't know to translate and save it!</p>
+            
+            <p>Sarah arrived at London Heathrow Airport at 5:00 AM. She <strong>had prepared</strong> for this important business trip to Tokyo for months. She <strong>had packed</strong> her <em>luggage</em> three days in advance, and she <strong>had printed</strong> all her documents the night before. Everything seemed perfect. She walked confidently toward the <em>check-in desk</em>, relieved that she <strong>had not forgotten</strong> her passport.</p>
+
+            <p>After she <strong>had checked in</strong> her bags, Sarah decided to get some coffee. She found a small café near the <em>security checkpoint</em>. She bought a cappuccino and a croissant. She sat at a corner table and reviewed her presentation on her laptop. By the time she <strong>had finished</strong> her breakfast, the airport <strong>had become</strong> incredibly busy. The quiet morning atmosphere <strong>had completely vanished</strong>.</p>
+
+            <p>She checked the <em>departure boards</em>. Her flight to Tokyo was scheduled for <em>Gate</em> 42. Sarah packed her laptop into her bag and walked toward the security checkpoint. As she reached the front of the line, the security officer asked for her documents. Sarah reached into her coat pocket, but it was empty. She checked her handbag. Nothing. Panic set in. She realized she <strong>had lost</strong> her <em>boarding pass</em>!</p>
+
+            <p>She stepped out of the line and tried to calm down. Where <strong>had she left</strong> it? She thought about every place she <strong>had been</strong> since she <strong>had arrived</strong> at the airport. She knew she <strong>had held</strong> the boarding pass after she left the check-in desk. Then, she <strong>had gone</strong> to the café. She ran back to the café as fast as she could.</p>
+
+            <p>When she arrived, a new customer <strong>had already occupied</strong> her table. She asked the waitress if anyone <strong>had found</strong> a boarding pass. The waitress smiled warmly and reached under the counter. "Yes, a <em>flight attendant</em> <strong>had found</strong> it on the floor ten minutes ago and gave it to me," she said. Sarah sighed with relief. She <strong>had never felt</strong> so happy in her entire life. She thanked the waitress, rushed through the security checkpoint, and managed <em>to board</em> her flight just in time for <em>take-off</em>.</p>
+        </article>
+
+        <!-- Post-reading Activity -->
+        <section class="activity-section">
+            <h2>3. After You Read: Vocabulary Recall</h2>
+            <p>Can you remember the airport vocabulary? Type the English translation for each Spanish word.</p>
+            <div id="recall-test" class="recall-test-area"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+    <script src="js/translator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'boarding pass', es: 'tarjeta de embarque' },
+                { id: '2', en: 'security checkpoint', es: 'control de seguridad' },
+                { id: '3', en: 'luggage', es: 'equipaje' },
+                { id: '4', en: 'check-in desk', es: 'mostrador de facturación' },
+                { id: '5', en: 'gate', es: 'puerta de embarque' },
+                { id: '6', en: 'flight attendant', es: 'auxiliar de vuelo' },
+                { id: '7', en: 'to check in', es: 'facturar' },
+                { id: '8', en: 'to board', es: 'embarcar' },
+                { id: '9', en: 'departure board', es: 'panel de salidas' },
+                { id: '10', en: 'take-off', es: 'despegue' }
+            ];
+
+            initMatchingGame('matching-game', storyVocabulary);
+            initRecallTest('recall-test', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
