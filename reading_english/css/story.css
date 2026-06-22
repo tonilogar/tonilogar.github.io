@@ -309,4 +309,15 @@
         align-items: stretch;
         gap: 0.5rem;
     }
+    .recall-input-container {
+        flex-wrap: wrap;
+    }
+    .recall-input {
+        width: 100%;
+        flex: none;
+        margin-bottom: 0.5rem;
+    }
+    .recall-hint-btn, .recall-check-btn {
+        flex: 1;
+    }
 }
