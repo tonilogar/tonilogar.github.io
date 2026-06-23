@@ -28,22 +28,16 @@
 
     <main class="content story-content">
         <section class="vocabulary">
-            <h2>Vocabulary (Vocabulario)</h2>
-            <ul>
-                <li><strong>Beautiful</strong>: Hermoso/a</li>
-                <li><strong>Afternoon</strong>: Tarde</li>
-                <li><strong>Pillow</strong>: Almohada</li>
-                <li><strong>Downstairs</strong>: Abajo (por las escaleras)</li>
-                <li><strong>Make a cake</strong>: Hacer un pastel</li>
-                <li><strong>Sofa</strong>: Sofá</li>
-                <li><strong>Behind</strong>: Detrás</li>
-                <li><strong>Sad</strong>: Triste</li>
-                <li><strong>Grass</strong>: Césped / Hierba</li>
-                <li><strong>Hug</strong>: Abrazo</li>
-            </ul>
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
         </section>
 
         <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
             <p>Tom is a young boy. He lives in a big house with a small, beautiful garden. Every afternoon, after school, he likes to play in his bedroom. One day, Tom wants to open his special box of toys, but he cannot find his key. It is a small, silver key. He looks on his bed, under his pillow, and inside his closet. The key is not there.</p>
             <p>Tom walks downstairs. "Where is my key?" he asks his mother. His mother is in the kitchen. She is making a chocolate cake. She stops mixing and looks at him. "Did you look in the living room?" she asks.</p>
             <p>Tom goes to the living room. He looks under the sofa and behind the television. He finds an old coin and a blue sock, but no key. He is starting to feel sad. Then, his mother asks, "Did you look in the garden? You played there yesterday."</p>
@@ -51,7 +45,7 @@
         </article>
 
         <section class="quiz">
-            <h2>Comprehension Quiz (Cuestionario)</h2>
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
             <div class="quiz-question">
                 <p>1. Where does Tom look for the key first?</p>
                 <button class="quiz-btn" onclick="checkAnswer(this, false)">In the garden</button>
@@ -77,6 +71,12 @@
                 <button class="quiz-btn" onclick="checkAnswer(this, false)">Tom's friend</button>
             </div>
         </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
     </main>
 
     <footer class="main-footer">
@@ -84,5 +84,24 @@
     </footer>
 
     <script src="js/story.js"></script>
+    <script src="js/translator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'beautiful', es: 'hermoso/a' },
+                { id: '2', en: 'afternoon', es: 'tarde' },
+                { id: '3', en: 'pillow', es: 'almohada' },
+                { id: '4', en: 'downstairs', es: 'abajo' },
+                { id: '5', en: 'make a cake', es: 'hacer un pastel' },
+                { id: '6', en: 'sofa', es: 'sofá' },
+                { id: '7', en: 'behind', es: 'detrás' },
+                { id: '8', en: 'sad', es: 'triste' },
+                { id: '9', en: 'grass', es: 'césped' },
+                { id: '10', en: 'hug', es: 'abrazo' }
+            ];
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
 </body>
 </html>

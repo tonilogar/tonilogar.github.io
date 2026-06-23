@@ -25,16 +25,14 @@
     </header>
 
     <main class="content story-content">
-        <!-- Pre-reading Activity -->
-        <section class="activity-section">
-            <h2>1. Before You Read: Vocabulary Match</h2>
-            <p>Match the English words with their Spanish translation before starting the story.</p>
-            <div id="matching-game" class="matching-game-area"></div>
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
         </section>
 
         <!-- Story Text -->
-        <article class="story-text">
-            <h2>2. Read the Story</h2>
+            <div class="instruction-notice">
             <div class="instruction-notice">
                 💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
             </div>
@@ -50,11 +48,38 @@
             <p>When she arrived, a new customer <strong>had already occupied</strong> her table. She asked the waitress if anyone <strong>had found</strong> a boarding pass. The waitress smiled warmly and reached under the counter. "Yes, a <em>flight attendant</em> <strong>had found</strong> it on the floor ten minutes ago and gave it to me," she said. Sarah sighed with relief. She <strong>had never felt</strong> so happy in her entire life. She thanked the waitress, rushed through the security checkpoint, and managed <em>to board</em> her flight just in time for <em>take-off</em>.</p>
         </article>
 
-        <!-- Post-reading Activity -->
-        <section class="activity-section">
-            <h2>3. After You Read: Vocabulary Recall</h2>
-            <p>Can you remember the airport vocabulary? Type the English translation for each Spanish word.</p>
-            <div id="recall-test" class="recall-test-area"></div>
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. When had Sarah packed her luggage?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The night before</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Three days in advance</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">At the airport</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What did she buy at the café?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A cappuccino and a croissant</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A sandwich and water</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Coffee and a donut</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. What was she missing when she reached security?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Her passport</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Her laptop</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Her boarding pass</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. Who found her boarding pass?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A flight attendant</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The waitress</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Another customer</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
         </section>
     </main>
 
@@ -79,8 +104,8 @@
                 { id: '10', en: 'take-off', es: 'despegue' }
             ];
 
-            initMatchingGame('matching-game', storyVocabulary);
-            initRecallTest('recall-test', storyVocabulary);
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
         });
     </script>
 </body>
