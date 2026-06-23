@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read 'Something Brutal Happened Today', an English story about an urban hero.">
+    <title>Something Brutal - Reading English B1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>Something Brutal Happened Today</h1>
+            <p>Level: B1 | Focus: First Conditional (If + Present, Will + Infinitive)</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Pay attention to the <strong>If</strong> sentences. Double-click any word you don't know to translate and save it!
+            </div>
+            
+            <p>Joan is a nineteen-year-old boy. He moved from Venezuela to Spain last year. He wants to study psychology at the university, and he absolutely loves reading comics. He is a normal teenager who worries about his exams, his future, and paying the rent. But today, something <em>brutal</em> happened to him.</p>
+
+            <p>Joan was walking home from the library. He was carrying a heavy box of psychology books. Suddenly, a car lost control and drove onto the <em>sidewalk</em> at high speed. Joan did not have time to jump. He simply put his hands out to protect himself.</p>
+
+            <p>The car hit his hands and stopped immediately. The metal of the car was completely destroyed, but Joan did not have a single <em>scratch</em> on his body. The driver was shocked, but safe. Joan panicked and ran all the way home, faster than he had ever run before.</p>
+
+            <p>He locked his door and looked at his hands in the mirror. "This is impossible," he thought. "I am a normal student. <strong>If I tell</strong> my friends about this, <strong>they will think</strong> I am completely <em>crazy</em>."</p>
+
+            <p>He sat on his bed and tried to use his psychology knowledge to stay calm. "<strong>If I have</strong> super <em>strength</em>, <strong>my life will change</strong> forever," he reasoned. "<strong>If the government discovers</strong> me, <strong>they will take</strong> me to a secret <em>laboratory</em> for experiments."</p>
+
+            <p>He decided to test his new abilities in secret. He tried <em>to lift</em> his heavy wooden bed with just one hand. It went up easily, as light as a feather! "<strong>If I can do</strong> this, <strong>I will be able to help</strong> many people," he whispered. "But <strong>if I wear</strong> a colorful cape like in the comics, <strong>I will look</strong> ridiculous."</p>
+
+            <p>Joan decided to be practical and subtle. He opened his closet and put on a simple dark <em>hoodie</em>. "<strong>If I hide</strong> my face with this hood, <strong>nobody will know</strong> my secret <em>identity</em>."</p>
+
+            <p>He knew the real world was not a comic book. There were no magical supervillains in his city, just normal people who sometimes needed a silent hero. "<strong>If I am</strong> careful, <strong>I will survive</strong> this," he promised himself. He put on his hoodie and looked at the streets below. His ordinary life was over, but a new, extraordinary chapter had just begun.</p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where is Joan originally from?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Spain</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Venezuela</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Mexico</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What happens if Joan tells his friends about the car accident?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They will be very happy</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They will call the police</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They will think he is completely crazy</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why doesn't Joan want the government to discover him?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because if they discover him, they will take him to a laboratory</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he wants to be famous on the internet</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he doesn't have a passport</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What does Joan decide to wear to hide his identity?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A colorful cape</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A simple dark hoodie</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A superhero mask</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/story.js"></script>
+    <script src="js/translator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'brutal', es: 'brutal' },
+                { id: '2', en: 'sidewalk', es: 'acera' },
+                { id: '3', en: 'scratch', es: 'rasguño' },
+                { id: '4', en: 'crazy', es: 'loco' },
+                { id: '5', en: 'strength', es: 'fuerza' },
+                { id: '6', en: 'government', es: 'gobierno' },
+                { id: '7', en: 'laboratory', es: 'laboratorio' },
+                { id: '8', en: 'to lift', es: 'levantar' },
+                { id: '9', en: 'hoodie', es: 'sudadera' },
+                { id: '10', en: 'identity', es: 'identidad' }
+            ];
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
