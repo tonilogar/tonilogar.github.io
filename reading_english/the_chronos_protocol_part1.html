@@ -25,20 +25,17 @@
     </header>
 
     <main class="content story-content">
-        <div class="instruction-notice">
-            <strong>Before you read:</strong> Match the words on the left with their translations on the right. 
-            When you finish, the story will appear!
-        </div>
-
-        <section id="pre-reading" class="vocabulary">
-            <h2>1. Match the Words</h2>
-            <div class="matching-game-container">
-                <div class="match-column" id="english-words"></div>
-                <div class="match-column" id="spanish-words"></div>
-            </div>
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. When you finish, the story will appear!</p>
+            <div id="pre-vocab"></div>
         </section>
 
-        <section id="story-section" class="story-text" style="display: none;">
+        <article class="story-text" style="display: none;" id="story-section">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
             <h2>The Recruitment</h2>
             
             <p>Jack was a detective. He worked in a very dark city. It rained every day, and the sky was always grey. He was sad. He didn't like his life. He sat in a bar every night and drank coffee.</p>
@@ -106,24 +103,43 @@
             <p>"Okay," Jack said. "I am going to help you. How do we travel to 1912?"</p>
             
             <p>The Monk finally smiled. "Close your eyes."</p>
-        </section>
+        </article>
 
-        <section id="quiz-section" class="quiz" style="display: none;">
-            <h2>2. Reading Comprehension</h2>
-            <div id="quiz-container">
-                <!-- Quiz questions will be injected here via JS -->
+        <section class="quiz" style="display: none;" id="quiz-section">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where was Jack when he met The Monk?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In a sunny park</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">In a dark bar</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In a police station</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. Who are 'The Order'?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A group that wants to control the past and the future</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The people who built the statues</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A group of anarchists</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why must the man board the Titanic?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he is a bad person</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because if he lives, his grandson will destroy freedom</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he wants to travel to America</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What happens to the recruits after the mission?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They become statues</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They forget everything and return to their lives</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They stay in the Chronos Agency</button>
             </div>
         </section>
 
-        <section id="recall-section" class="vocabulary" style="display: none;">
-            <h2>3. Vocabulary Recall</h2>
-            <p style="margin-bottom: 1.5rem; color: #cbd5e1;">Type the English word for each Spanish translation. If you don't remember, use the Hint button.</p>
-            <div id="recall-container" class="recall-list">
-                <!-- Recall inputs will be injected here via JS -->
-            </div>
+        <section class="vocabulary" style="display: none;" id="recall-section">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
         </section>
 
-        <div class="story-navigation">
+        <div class="story-navigation" style="display: none;" id="nav-section">
             <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
             <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
             <a href="the_chronos_protocol_part2.html" class="nav-btn">Next Story ➡</a>
@@ -137,59 +153,40 @@
     <script src="js/translator.js"></script>
     <script src="js/story.js"></script>
     <script>
-        // Initialize the story logic with specific vocabulary and quiz data
         document.addEventListener('DOMContentLoaded', () => {
-            const vocabulary = [
-                { en: "Calm", es: "Tranquilo" },
-                { en: "Universe", es: "Universo" },
-                { en: "Flow", es: "Flujo" },
-                { en: "Freedom", es: "Libertad" },
-                { en: "Statues", es: "Estatuas" },
-                { en: "Tragedy", es: "Tragedia" },
-                { en: "To remember", es: "Recordar" },
-                { en: "To forget", es: "Olvidar" }
+            const storyVocabulary = [
+                { id: '1', en: 'calm', es: 'tranquilo' },
+                { id: '2', en: 'universe', es: 'universo' },
+                { id: '3', en: 'flow', es: 'flujo' },
+                { id: '4', en: 'freedom', es: 'libertad' },
+                { id: '5', en: 'statues', es: 'estatuas' },
+                { id: '6', en: 'tragedy', es: 'tragedia' },
+                { id: '7', en: 'to remember', es: 'recordar' },
+                { id: '8', en: 'to forget', es: 'olvidar' }
             ];
 
-            const quizData = [
-                {
-                    question: "Where was Jack when he met The Monk?",
-                    options: [
-                        "In a sunny park",
-                        "In a dark bar",
-                        "In a police station"
-                    ],
-                    correctIndex: 1
-                },
-                {
-                    question: "Who are 'The Order'?",
-                    options: [
-                        "A group that wants to control the past and the future",
-                        "The people who built the statues",
-                        "A group of anarchists"
-                    ],
-                    correctIndex: 0
-                },
-                {
-                    question: "Why must the man board the Titanic?",
-                    options: [
-                        "Because he is a bad person",
-                        "Because if he lives, his grandson will destroy freedom",
-                        "Because he wants to travel to America"
-                    ],
-                    correctIndex: 1
-                },
-                {
-                    question: "What happens to the recruits after the mission?",
-                    options: [
-                        "They become statues",
-                        "They forget everything and return to their lives",
-                        "They stay in the Chronos Agency"
-                    ],
-                    correctIndex: 1
-                }
-            ];
-
-            initStory(vocabulary, quizData);
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+            
+            // To reveal the story when matching is done:
+            // The existing story.js logic reveals sections with class .story-text and .quiz
+            // We'll let story.js handle it if it does, but just in case, we add an observer or check if the container has class 'completed'
+            
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.target.classList.contains('completed')) {
+                        document.getElementById('story-section').style.display = 'block';
+                        document.getElementById('quiz-section').style.display = 'block';
+                        document.getElementById('recall-section').style.display = 'block';
+                        document.getElementById('nav-section').style.display = 'flex';
+                    }
+                });
+            });
+            
+            const preVocab = document.getElementById('pre-vocab');
+            if(preVocab) {
+                observer.observe(preVocab, { attributes: true, attributeFilter: ['class'] });
+            }
         });
     </script>
 </body>
