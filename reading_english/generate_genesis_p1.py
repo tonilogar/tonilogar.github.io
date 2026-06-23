@@ -22,7 +22,7 @@ html_content = """<!DOCTYPE html>
         </nav>
         <div class="hero story-hero" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95);">
             <h1>The Chronos Genesis: Part 1</h1>
-            <p>Level: B1 (High) | The Monk's Origin Story</p>
+            <p>Level: B1 | The Monk's Origin Story</p>
         </div>
     </header>
 
