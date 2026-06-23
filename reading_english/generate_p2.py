@@ -1,0 +1,152 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Chronos Protocol: Part 2">
+    <title>The Chronos Protocol: Part 2 - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero">
+            <h1>The Chronos Protocol: Part 2</h1>
+            <p>Level: A2+ | Focus: Past Continuous & Prepositions</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
+            <h2>The Iceberg Dilemma</h2>
+            
+            <p>Jack opened his eyes. He was standing on a wooden floor. The air was freezing cold. He looked around. He was on a massive ship. There were rich passengers everywhere. Women were wearing elegant dresses, and men were smoking cigars. A band was playing soft music in the background.</p>
+            
+            <p>He was on the RMS Titanic. It was April 14, 1912.</p>
+            
+            <p>Jack remembered The Monk's voice in his head: <em>"Find Mr. Sterling. He must not leave the ship. He must go down with the ship, or his grandson will destroy the universe."</em></p>
+            
+            <p>Jack started walking along the deck. He was looking for a man with a grey coat. He checked <strong>under</strong> the stairs, <strong>behind</strong> the lifeboats, and <strong>in front of</strong> the main restaurant. There were hundreds of people, but he could not find his target.</p>
+            
+            <p>Suddenly, he saw a man. The man was sitting <strong>on</strong> a bench. He was wearing a grey coat. He was reading a book to a little girl. The girl was laughing happily. Jack walked closer and listened.</p>
+            
+            <p>"And the brave knight saved the princess," the man was saying. He smiled at the little girl. "Did you like the story, my beautiful daughter?"</p>
+            
+            <p>Jack felt a pain in his chest. This was Mr. Sterling. He was not a monster. He was a loving father. He was an innocent man. How could Jack let this innocent man die? It was a terrible choice. It was a heavy dilemma.</p>
+            
+            <p>While Jack was watching them, he noticed two other men. They were standing <strong>behind</strong> Mr. Sterling. They were wearing modern, black suits. They didn't look like passengers from 1912. They were agents of The Order.</p>
+            
+            <p>"They are protecting him," Jack realized. "They traveled back in time to make sure he survives the tragedy."</p>
+            
+            <p>At that exact moment, the ship shook violently. A loud noise echoed across the ocean. The Titanic was hitting the iceberg. Passengers were screaming. People were running everywhere. The band stopped playing.</p>
+            
+            <p>The two agents of The Order moved quickly. One of them took a strange, futuristic weapon from his jacket. They were grabbing Mr. Sterling to take him to a lifeboat. They wanted to save him and change history.</p>
+            
+            <p>Jack couldn't wait. He jumped <strong>over</strong> a table and pushed the first agent. The agent fell <strong>into</strong> the cold water on the deck. The second agent turned around and pointed his weapon at Jack.</p>
+            
+            <p>"You cannot stop the future!" the agent shouted.</p>
+            
+            <p>Jack was hiding <strong>behind</strong> a large metal door. "I am protecting the present," Jack replied. He threw a heavy chair at the agent. The agent dropped his weapon. The ship was slowly sinking. The water was rising fast.</p>
+            
+            <p>Mr. Sterling was holding his daughter tightly. He was very scared. Jack ran towards them. He looked at the little girl, then at Mr. Sterling.</p>
+            
+            <p>"Take your daughter to the lifeboats!" Jack yelled. "But you... you must stay here. If you go with her, The Order will kill you both."</p>
+            
+            <p>Mr. Sterling looked at the strange agents on the floor, and then he looked at Jack. He understood the danger. He kissed his daughter's forehead. He gave the girl to a sailor in a lifeboat. "I love you," he whispered.</p>
+            
+            <p>The little girl was crying while the lifeboat was going down into the dark ocean. Mr. Sterling stayed on the sinking ship. He chose to die so his daughter could live. History was safe.</p>
+            
+            <p>The cold water touched Jack's boots. The mission was over. He closed his eyes, and the sounds of the ocean completely disappeared.</p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. What was Mr. Sterling doing when Jack found him?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He was fighting the agents</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He was reading a book to his daughter</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He was eating in the restaurant</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. Why were the agents of The Order on the ship?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They wanted to protect Mr. Sterling and save him</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They wanted to sink the Titanic</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They wanted to kill Jack</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Where did Jack hide during the fight?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Under the stairs</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">On a lifeboat</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Behind a large metal door</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What did Mr. Sterling finally do?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He gave his daughter to a sailor and stayed on the ship</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He jumped into the ocean with Jack</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He killed the agents and escaped</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+            <a href="the_chronos_protocol_part3.html" class="nav-btn">Next Story ➡</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'iceberg', es: 'iceberg' },
+                { id: '2', en: 'innocent', es: 'inocente' },
+                { id: '3', en: 'dilemma', es: 'dilema' },
+                { id: '4', en: 'weapon', es: 'arma' },
+                { id: '5', en: 'passenger', es: 'pasajero' },
+                { id: '6', en: 'to sink', es: 'hundirse' },
+                { id: '7', en: 'to hide', es: 'esconderse' },
+                { id: '8', en: 'danger', es: 'peligro' }
+            ];
+
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>"""
+
+with open("the_chronos_protocol_part2.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created the_chronos_protocol_part2.html")
