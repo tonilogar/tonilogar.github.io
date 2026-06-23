@@ -1,0 +1,158 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Chronos Genesis: Part 2">
+    <title>The Chronos Genesis: Part 2 - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95);">
+            <h1>The Chronos Genesis: Part 2</h1>
+            <p>Level: B1 | The First Recruit</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. This story uses B1 vocabulary.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> This is a Mega-Story. It is divided into chapters. Take your time. Double-click any word you don't know to save it to your vocabulary!
+            </div>
+            
+            <h2>Chapter I: The Voice of the River</h2>
+            
+            <p>Tenzin was alone. The monastery, which used to be surrounded by the snowy peaks of the Himalayas, was now floating in a dark, endless ocean of stars. This was the quantum void—a place completely outside of time. Here, there was no sunrise, no sunset, and no seasons. Although he was physically alone, his mind was connected to every single moment in the history of the universe.</p>
+            
+            <p>In the center of the main temple, the Chronos Core floated in the air, glowing with a soft golden light. Tenzin spent his days meditating in front of it. He used to meditate to find inner peace, but now he meditated to communicate with space-time itself. Space-time didn't speak with words; it spoke with feelings, visions, and pain. Tenzin could feel the timeline flowing like a massive river. Suddenly, the river cried out. The Order had begun their invisible war.</p>
+            
+            <p>Through the Core, space-time showed Tenzin specific "wounds" in the river. These were "Nexus Points"—critical moments in history. In ancient Rome, an emperor who was supposed to die in battle suddenly survived. In the 20th century, a famous scientist was mysteriously murdered. "They must be attacking the Nexus Points," Tenzin deduced. "If they break these specific events, the entire future will collapse. I must protect these exact moments."</p>
+
+            <h2>Chapter II: The Fallen Legends</h2>
+            
+            <p>Tenzin realized a terrible truth. The universe was too big, and the timeline was too complex for one man to protect. He couldn't be everywhere at once. He needed a team to send on missions. But he asked the Core a critical question: <em>"If I take people from the past to help me, won't I destroy the timeline too?"</em></p>
+            
+            <p>The Core showed him the answer. He couldn't recruit normal people. He had to recruit "Fallen Legends". These were people who were supposed to do great things, but whose destinies had been stolen and ruined by The Order. Because The Order had illegally manipulated their lives, these people were now "ghosts of time". Saving them at the exact moment of their unjust death wouldn't break the timeline; it would balance the universe's karma.</p>
+            
+            <p>Space-time guided Tenzin's mind to Europe in the year 1431. The Kingdom of France was being destroyed by a brutal war. Inside a dark, cold cell in Rouen, a young woman was sitting on the floor. Her name was Valeriane. She used to be a legendary commander, but now, she had been betrayed. The king, who had been manipulated by mysterious advisors in black armor (agents of The Order), had condemned her to burn. She was a perfect Fallen Legend.</p>
+            
+            <p>"She must be terrified," Tenzin whispered. "She might have won the war if The Order hadn't interfered. Space-time is bleeding here. I must recruit her."</p>
+
+            <h2>Chapter III: The Execution</h2>
+            
+            <p>It was a rainy morning in Rouen. The sky was grey, and the streets were filled with angry people. Valeriane was tied to a large wooden post in the center of the square. A heavy silence fell over the crowd as the executioner prepared his torch. Valeriane didn't cry. She held her head high, accepting her fate with an honor that impressed Tenzin deeply.</p>
+            
+            <p>The executioner threw the burning torch onto the wood. The flames started to grow quickly.</p>
+            
+            <p>At that exact moment, Tenzin stepped out of a portal. He raised his hand. Suddenly, the rain stopped falling. The drops of water hung frozen in the air like tiny glass beads. The flames stopped moving. The executioner, the soldiers, and the angry crowd were completely paralyzed. Time had stopped.</p>
+            
+            <p>Tenzin walked through the frozen crowd until he stood in front of Valeriane. He touched the ropes that tied her hands, and they immediately fell to the ground. Valeriane gasped for air. She looked around, absolutely shocked. "Am I dead?" she asked. "Are you an angel?"</p>
+            
+            <p>"I am not an angel," Tenzin replied softly. "My name is Tenzin. You were supposed to die today, Valeriane. Your king was poisoned by lies, and your enemies have stolen your future. But your spirit is too valuable to be burned."</p>
+
+            <h2>Chapter IV: The Oath</h2>
+            
+            <p>Valeriane looked at the frozen flames just centimeters from her feet. "If I am not dead, what is happening? Why has the world stopped?"</p>
+            
+            <p>"Because I stopped it," Tenzin explained. "There is a war much bigger than the one you fought for your king. It is an invisible war for the freedom of time itself. A group called The Order is trying to enslave the universe. I need people to fight them. I need soldiers who have lost everything but their honor."</p>
+            
+            <p>He pointed toward the portal behind him, which showed the shining stars of the quantum void. "I can't save you in this timeline. If you stay here, history will break. I am offering you a choice. You can stay and die as a hero in the flames... or you can come with me, and become the first Keeper of Chronos."</p>
+            
+            <p>Valeriane looked at the king's castle in the distance. She used to believe in kings and countries, but she now realized that true freedom was much larger than France. She picked up a sword that had been dropped by a frozen soldier.</p>
+            
+            <p>"My king betrayed me," Valeriane said, her voice full of determination. "But I will never betray humanity. I accept your oath, Tenzin."</p>
+            
+            <p>Tenzin smiled. For the first time since the monastery had arrived in the void, he didn't feel alone. Valeriane stepped through the portal, leaving the year 1431 behind forever. The rain started falling again, and the flames consumed the empty wooden post. The first legend had been born.</p>
+            
+            <p><strong>[End of Part 2]</strong></p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where was the monastery floating now?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the middle of the ocean</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">In the quantum void, outside of time</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In ancient Rome</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. How did Tenzin know which people to recruit?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He looked for the strongest soldiers in history books</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Space-time showed him "Fallen Legends" whose destinies were ruined by The Order</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He recruited anyone who wanted to travel in time</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why did The Order want Valeriane to be executed?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because if she survived, she would inspire a revolution</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because she had stolen the Chronos Core</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because she used to be an angel</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What did Valeriane choose to do at the end?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">She chose to stay in 1431 and fight the king</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">She accepted Tenzin's offer to become the first Keeper</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">She asked Tenzin to kill the executioner</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+            <a href="the_lost_boarding_pass.html" class="nav-btn">Next Story ➡</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'invisible', es: 'invisible' },
+                { id: '2', en: 'betrayal', es: 'traición' },
+                { id: '3', en: 'execution', es: 'ejecución' },
+                { id: '4', en: 'disease', es: 'enfermedad' },
+                { id: '5', en: 'oath', es: 'juramento' },
+                { id: '6', en: 'sword', es: 'espada' },
+                { id: '7', en: 'flames', es: 'llamas' },
+                { id: '8', en: 'dictator', es: 'dictador' }
+            ];
+
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>"""
+
+with open("the_chronos_genesis_part2.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created the_chronos_genesis_part2.html")
