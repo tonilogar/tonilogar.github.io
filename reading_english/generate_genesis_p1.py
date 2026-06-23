@@ -1,0 +1,172 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Chronos Genesis: Part 1">
+    <title>The Chronos Genesis: Part 1 - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95);">
+            <h1>The Chronos Genesis: Part 1</h1>
+            <p>Level: B1 (High) | The Monk's Origin Story</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. This story uses B1 vocabulary.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> This is a Mega-Story. It is divided into chapters. Take your time. Double-click any word you don't know to save it to your vocabulary!
+            </div>
+            
+            <h2>Chapter I: The Silent Monastery</h2>
+            
+            <p>Tenzin had been living in a remote monastery in the Himalayas since he was a young boy. For over forty years, he had meditated in the freezing cold, seeking absolute peace and understanding. He was respected by all the other monks because he possessed a mind that was entirely detached from worldly desires. However, despite his profound calmness, Tenzin had always felt that something was wrong with the universe. Sometimes, during his deep meditations, he heard a strange echo—a sound of glass breaking in the distance.</p>
+            
+            <p>It was December 31, 1999. The rest of the world was celebrating the new millennium, but the monastery was completely silent. Tenzin had been sitting in the main courtyard for three hours. The snow was falling softly.</p>
+            
+            <p>Suddenly, the sky tore open. It wasn't a storm, and it wasn't an earthquake. The fabric of reality had literally fractured. A blinding flash of purple light illuminated the mountains, and a deafening explosion echoed through the valley. A large metallic object, which was shaped like a silver sphere, crashed directly into the center of the ancient courtyard. The impact was so powerful that several stone walls were immediately destroyed.</p>
+            
+            <p>The other monks ran out of their rooms, terrified. Tenzin, however, did not run. He slowly stood up and walked toward the burning sphere. He knew that the echo he had heard for decades had finally arrived.</p>
+
+            <h2>Chapter II: The Time Traveler</h2>
+            
+            <p>The door of the sphere opened with a hiss of steam. A man crawled out onto the snow. He was wearing a dark suit made of a material that Tenzin had never seen before. The man, whose face was covered in blood, looked desperately at Tenzin.</p>
+            
+            <p>"Are you Tenzin?" the stranger asked in a weak voice. He spoke perfectly, though his accent was incredibly strange.</p>
+            
+            <p>"I am," Tenzin replied calmly. "Who are you, and where have you come from?"</p>
+            
+            <p>"I haven't come from a 'where'," the man coughed. "I have come from a 'when'. I am from the 25th century. My name is Dr. Aris. I am the scientist who discovered the Chronos Particle. I am the man who invented time travel."</p>
+            
+            <p>Dr. Aris collapsed on the snow. Tenzin knelt beside him and tried to help, but the scientist shook his head. "It is too late for me. I have been bleeding since I escaped. Listen to me carefully. If I hadn't invented the machine, the universe wouldn't be in this terrible danger. I made a catastrophic mistake."</p>
+            
+            <p>Tenzin listened without judging. "What has happened?"</p>
+            
+            <p>"A faction of scientists... they call themselves 'The Order'. They realized that if they could control time, they could eliminate all suffering, all wars, and all diseases. They want to rewrite the entire history of humanity to create a perfect utopia."</p>
+            
+            <p>"A world without suffering sounds like a good thing," Tenzin observed thoughtfully.</p>
+            
+            <p>"It is a trap!" Dr. Aris shouted, grabbing Tenzin's robes. "If they rewrite history to erase pain, they will also erase free will. Humanity will become a machine. A perfect cage is still a cage. The universe must be allowed to flow naturally, with its chaos, its tragedies, and its triumphs."</p>
+
+            <h2>Chapter III: The Heavy Burden</h2>
+            
+            <p>Dr. Aris opened a small compartment in his suit and took out a glowing, transparent crystal. It pulsed with an intense, warm energy. "This is the Chronos Core. It is the heart of the timeline. If The Order finds it, they will lock the universe forever."</p>
+            
+            <p>"Why have you brought it to me?" Tenzin asked.</p>
+            
+            <p>"Because I searched all possible timelines," the dying scientist explained. "I needed a mind that was completely free of ego. If an ambitious man touches this core, the power will corrupt him instantly. You are the only human being in history who does not want to be a god. You must protect it."</p>
+            
+            <p>Tenzin looked at the glowing crystal. He understood the terrible karma of this responsibility. As a Buddhist monk, his goal was to escape the cycle of existence. If he accepted the Core, he would be tied to the universe forever. He would have to intervene, make painful choices, and carry the weight of billions of lives.</p>
+            
+            <p>"If I protect this," Tenzin whispered, "I will have to dirty my own soul to keep the universe clean."</p>
+            
+            <p>"Yes," Dr. Aris nodded sadly. "It is a dirty job... but someone has to do it."</p>
+            
+            <p>Tenzin closed his eyes. He felt a deep, overwhelming compassion for the universe. He reached out and touched the Chronos Core.</p>
+
+            <h2>Chapter IV: The Birth of Chronos</h2>
+            
+            <p>The moment Tenzin's fingers touched the crystal, his mind expanded beyond human limits. He could see the dinosaurs roaming the Earth; he could see the construction of the pyramids; he could see distant galaxies dying in the far future. Past, present, and future were happening at the exact same time. The pain was unimaginable, but his forty years of meditation allowed him to stay perfectly calm.</p>
+            
+            <p>The Order had already tracked Dr. Aris's ship. Black portals began to open in the sky above the monastery, and heavily armed soldiers started to drop down into the snow.</p>
+            
+            <p>Tenzin didn't panic. He was no longer just a monk; he was the First Keeper. He raised his hands, using the power of the Core. He didn't attack the soldiers. Instead, he separated the entire monastery from the Earth. The courtyard, the statues, and the temples began to float.</p>
+            
+            <p>With a final push of energy, Tenzin pulled the monastery outside of time and space. The snowy mountains disappeared, replaced by the endless, beautiful stars of the quantum void.</p>
+            
+            <p>Dr. Aris smiled peacefully and closed his eyes for the last time. Tenzin was alone in the void. The monastery had become the Chronos Agency. He walked slowly toward the main hall, looking at the stars. The universe was wild, chaotic, and beautiful. And he would protect its freedom, no matter the cost.</p>
+            
+            <p><strong>[End of Part 1. The story of The Monk continues...]</strong></p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. How long had Tenzin been living in the monastery?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Since the 25th century</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Since he was a young boy</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">For only three hours</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What did Dr. Aris say would happen if he hadn't invented time travel?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He would have become a monk</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Order would have killed Tenzin</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">The universe wouldn't be in terrible danger</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why did Dr. Aris choose Tenzin to protect the Chronos Core?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because Tenzin was completely free of ego</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because Tenzin was a great warrior</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because Tenzin knew how to build a time machine</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What did Tenzin do to save the monastery from The Order?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He destroyed the soldiers using the crystal</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He pulled the entire monastery outside of time and space</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He gave the Core to the soldiers</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+            <a href="the_lost_boarding_pass.html" class="nav-btn">Next Story ➡</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'monastery', es: 'monasterio' },
+                { id: '2', en: 'earthquake', es: 'terremoto' },
+                { id: '3', en: 'stranger', es: 'desconocido' },
+                { id: '4', en: 'disease', es: 'enfermedad' },
+                { id: '5', en: 'freedom', es: 'libertad' },
+                { id: '6', en: 'burden', es: 'carga' },
+                { id: '7', en: 'to bleed', es: 'sangrar' },
+                { id: '8', en: 'void', es: 'vacío' }
+            ];
+
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>"""
+
+with open("the_chronos_genesis_part1.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created the_chronos_genesis_part1.html")
