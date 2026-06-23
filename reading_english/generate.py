@@ -29,11 +29,11 @@ html_content = """<!DOCTYPE html>
     <main class="content story-content">
         <section class="vocabulary">
             <h2>1. Match the Words (Pre-reading)</h2>
-            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. When you finish, the story will appear!</p>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. When you finish, you can read the story below!</p>
             <div id="pre-vocab"></div>
         </section>
 
-        <article class="story-text" style="display: none;" id="story-section">
+        <article class="story-text">
             <div class="instruction-notice">
                 💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
             </div>
@@ -107,7 +107,7 @@ html_content = """<!DOCTYPE html>
             <p>The Monk finally smiled. "Close your eyes."</p>
         </article>
 
-        <section class="quiz" style="display: none;" id="quiz-section">
+        <section class="quiz">
             <h2>2. Comprehension Quiz (Cuestionario)</h2>
             <div class="quiz-question">
                 <p>1. Where was Jack when he met The Monk?</p>
@@ -135,16 +135,16 @@ html_content = """<!DOCTYPE html>
             </div>
         </section>
 
-        <section class="vocabulary" style="display: none;" id="recall-section">
+        <section class="vocabulary">
             <h2>3. Vocabulary Recall (Post-reading)</h2>
             <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
             <div id="post-vocab"></div>
         </section>
 
-        <div class="story-navigation" style="display: none;" id="nav-section">
+        <div class="story-navigation">
             <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
             <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
-            <a href="the_lost_boarding_pass.html" class="nav-btn">Next Story ➡</a>
+            <a href="the_chronos_protocol_part2.html" class="nav-btn">Next Story ➡</a>
         </div>
     </main>
 
@@ -169,26 +169,6 @@ html_content = """<!DOCTYPE html>
 
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
-            
-            // To reveal the story when matching is done:
-            // The existing story.js logic reveals sections with class .story-text and .quiz
-            // We'll let story.js handle it if it does, but just in case, we add an observer or check if the container has class 'completed'
-            
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.target.classList.contains('completed')) {
-                        document.getElementById('story-section').style.display = 'block';
-                        document.getElementById('quiz-section').style.display = 'block';
-                        document.getElementById('recall-section').style.display = 'block';
-                        document.getElementById('nav-section').style.display = 'flex';
-                    }
-                });
-            });
-            
-            const preVocab = document.getElementById('pre-vocab');
-            if(preVocab) {
-                observer.observe(preVocab, { attributes: true, attributeFilter: ['class'] });
-            }
         });
     </script>
 </body>
