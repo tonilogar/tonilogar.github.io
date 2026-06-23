@@ -5,8 +5,8 @@ html_content = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Reading English - The Chronos Genesis: Part 2">
-    <title>The Chronos Genesis: Part 2 - Reading English</title>
+    <meta name="description" content="Reading English - The Chronos Genesis: Part 3">
+    <title>The Chronos Genesis: Part 3 - Reading English</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/story.css">
@@ -21,7 +21,7 @@ html_content = """<!DOCTYPE html>
             </ul>
         </nav>
         <div class="hero story-hero" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95);">
-            <h1>The Chronos Genesis: Part 2</h1>
+            <h1>The Chronos Genesis: Part 3</h1>
             <p>Level: B1 | The First Recruit</p>
         </div>
     </header>
@@ -152,7 +152,7 @@ html_content = """<!DOCTYPE html>
 </body>
 </html>"""
 
-with open("the_chronos_genesis_part2.html", "w", encoding="utf-8") as f:
+with open("the_chronos_genesis_part3.html", "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print("Created the_chronos_genesis_part2.html")
+print("Created the_chronos_genesis_part3.html")
