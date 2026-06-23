@@ -22,6 +22,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 /* Typography */
@@ -182,6 +183,21 @@ p {
         gap: 1.5rem;
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .story-item {
+        padding: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    .story-arrow {
+        align-self: flex-end;
+    }
+    .story-path {
+        font-size: 0.95rem; /* Make the description text slightly larger on mobile */
+    }
+    .story-info h3 {
+        font-size: 1.35rem; /* Make the title slightly larger on mobile */
     }
 }
 
