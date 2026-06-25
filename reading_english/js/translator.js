@@ -31,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = selection.toString().trim();
 
             if (!text || text.split(/\s+/).length > 4) {
-                // If no text or more than 4 words, ignore to prevent cheating
+                // If no text or more than 4 words, ignore to prevent cheating.
+                // BUT don't remove if it's currently showing a translated result.
+                if (tooltip && tooltip.dataset.state === 'translated') {
+                    return;
+                }
                 removeTooltip();
                 return;
             }
@@ -88,7 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const translation = data.responseData.translatedText;
                 
                 // Show translation AND automatically save it
-                tooltip.innerHTML = `<span style="color: #4ade80;">${translation} ✓</span>`;
+                tooltip.dataset.state = 'translated';
+                tooltip.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <span style="color: #4ade80;">${translation} ✓</span>
+                        <span id="close-tooltip-btn" style="cursor: pointer; font-weight: bold; font-size: 1.2rem; line-height: 1; margin-left: 10px; color: #fff;">&times;</span>
+                    </div>
+                `;
+                
+                document.getElementById('close-tooltip-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    removeTooltip();
+                });
                 
                 saveToVocabulary(text, translation);
 
