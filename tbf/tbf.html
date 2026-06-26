@@ -94,7 +94,7 @@
     <p>Para facilitar la lectura a evaluadores y personas no especialistas en Sistemas de Información Geográfica (GIS) se definen los siguientes términos clave utilizados en este documento:</p>
     <ul>
       <li><strong>Sentinel-2:</strong> Misión de satélites ópticos de alta resolución (10 metros) perteneciente al programa europeo Copernicus.</li>
-      <li><strong>Sen2Cor:</strong> Algoritmo oficial de la Agencia Espacial Europea (ESA) utilizado para procesar imágenes satelitales y eliminar efectos atmosféricos (incluye un detector de nubes básico que este proyecto pretende mejorar).</li>
+      <li><strong>Sen2Cor:</strong> Software de la Agencia Espacial Europea (ESA) para la corrección admosferica (incluye un detector de nubes básico que este proyecto pretende mejorar).</li>
       <li><strong>Tiling:</strong> Técnica geoespacial que consiste en "trocear" imágenes satelitales gigantes en cuadrados más pequeños para que el ordenador pueda procesarlos sin saturar la memoria RAM.</li>
       <li><strong>OOM:</strong> <em>Out of Memory</em> (Fuera de memoria). Colapso del ordenador por intentar cargar demasiados datos gráficos a la vez.</li>
       <li><strong>COG:</strong> <em>Cloud Optimized GeoTIFF</em>. Formato de imagen satelital optimizado para ser consultado y procesado de forma rápida y directa en la nube.</li>
@@ -105,30 +105,32 @@
       <li><strong>ESA:</strong> <em>European Space Agency</em> (Agencia Espacial Europea).</li>
       <li><strong>ACA:</strong> Agencia Catalana del Agua.</li>
       <li><strong>ICGC:</strong> Instituto Cartográfico y Geológico de Cataluña.</li>
+      <li><strong>DEM:</strong> <em>Digital Elevation Model</em> (Modelo Digital de Elevaciones). Representación en 3D del relieve terrestre.</li>
+      <li><strong>U-Net:</strong> Arquitectura de red neuronal convolucional diseñada para la segmentación semántica de imágenes (asignación de clases píxel a píxel).</li>
     </ul>
 
     <hr>
 
     <h3 id="e1-titulo">1. Título propuesto</h3>
-    <p><em>Plataforma Geoespacial Escalable para la Monitorización y Procesamiento de Datos Satelitales (Copernicus Sentinel-2): Detección de nubes mediante modelos de machine learning especializados por estacionalidad (nieve vs. sin nieve) en Cataluña.</em></p>
+    <p><em>Plataforma Web GIS de Datos Sentinel-2: Detección de nubes mediante modelo de Machine Learning en Cataluña.</em></p>
 
     <h3 id="e1-objetivos">2. Objetivos del TFB</h3>
-    <p>Desarrollar un entorno escalable (pipeline geoespacial) para imágenes Sentinel-2, diseñado para integrar y ejecutar modelos de machine learning, el cual detectara las nubes en imágenes Sentinel-2 sobre el territorio de Cataluña (órbitas R008 y R051) en diferentes periodos "con nieve o sin nieve".</p>
+    <p>Desarrollar un entorno escalable (pipeline geoespacial) para imágenes Sentinel-2, diseñado para integrar y ejecutar un modelo de Machine Learning que detectará las nubes sobre el territorio de Cataluña (órbitas R008 y R051).</p>
     <ul>
-      <li>1. Construir la infraestructura tecnológica completa: Repositorio, servidor online, prácticas DevOps, frontend, backend y bases de datos, para integrar la API de Copernicus para la visualización <em>on the fly</em> en una plataforma Web interactiva.</li>
-      <li>2. Identificar, seleccionar y extraer las fuentes de datos satelitales (Copernicus Sentinel-2), diseñando y desarrollando procesos ETL (Extract, Transform, Load) para su armonización y preparación.</li>
-      <li>3. Entrenar dos arquitecturas de redes neuronales convolucionales (tipo U-Net) especializadas en cada dominio temporal, con el fin de maximizar la capacidad algorítmica de separar nubes reales de la nieve topográfica.</li>
-      <li>4. Evaluar el rendimiento empírico de ambos modelos frente a los falsos positivos más críticos del procesador estándar Sen2Cor: la nieve de los Pirineos y la superficie del agua profunda (Delta del Ebro y Mar Mediterráneo).</li>
-      <li>5. Diseñar una arquitectura de base de datos orientada a la nube basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
+      <li>1. Identificar, seleccionar y extraer las fuentes de datos satelitales (Copernicus Sentinel-2), diseñando y desarrollando procesos ETL (Extract, Transform, Load) para su armonización y preparación.</li>
+      <li>2. Diseñar una arquitectura de base de datos orientada a la nube basada en Cloud Optimized GeoTIFF (COG) y PMTiles.</li>
+      <li>3. Entrenar una red neuronal convolucional única (tipo U-Net) integrando datos multiespectrales y topográficos (DEM), con el fin de maximizar la capacidad algorítmica de separar nubes reales de la nieve topográfica.</li>
+      <li>4. Evaluar el rendimiento empírico del modelo frente a los falsos positivos más críticos del procesador estándar Sen2Cor: la nieve de los Pirineos y la superficie del agua profunda (Delta del Ebro y Mar Mediterráneo).</li>
+      <li>5. Construir la infraestructura tecnológica completa (repositorio, servidor online, prácticas DevOps, frontend y backend) para integrar la API de Copernicus y permitir la visualización dinámica (<em>on the fly</em>) de imágenes Sentinel-2 en una plataforma Web interactiva.</li>
     </ul>
 
     <h3 id="e1-justificacion">3. Breve justificación de la propuesta</h3>
     <ul>
-      <li><strong>Problema que resuelve:</strong> La generación de mosaicos cartográficos limpios a partir de satélites se ve constantemente truncada por las nubes. Los procesadores estándar actuales (como el algoritmo Sen2Cor de la ESA) cometen graves errores ópticos: confunden habitualmente el agua oscura profunda del mar con sombras de nubes, y la nieve de los Pirineos con nubosidad espesa. Este TFB soluciona este problema mediante Inteligencia Artificial adaptativa.</li>
-      <li><strong>Valor aportado y Alineación Estratégica:</strong> Al crear modelos "especialistas" (un modelo experto en escenarios con nieve y otro para escenarios sin nieve) concretamente en Cataluña, se elimina la generalización estadística. El mismo trabajo se puede aplicar a los nuevos satelites catalanes.</li>
+      <li><strong>Problema que resuelve:</strong> La generación de mosaicos cartográficos limpios a partir de satélites se ve constantemente truncada por las nubes. Los procesadores estándar actuales (como el algoritmo Sen2Cor de la ESA) cometen graves errores ópticos: confunden habitualmente el agua oscura profunda del mar con sombras de nubes, y la nieve de los Pirineos con nubosidad espesa. Este TFB soluciona este problema mediante un modelo único de Inteligencia Artificial adaptativa (robusto a la orografía), centrándose en una zona concreta: Cataluña.</li>
+      <li><strong>Valor aportado y Alineación Estratégica:</strong> Al crear un modelo regional robusto enfocado concretamente en Cataluña, integrando variables físicas y de relieve, se elimina la generalización estadística global de los procesadores estándar. La misma metodología escalable se podrá aplicar en el futuro a los nuevos satélites catalanes.</li>
       <li><strong>Códigos UNESCO:</strong>
         <ul>
-          <li><strong>1207.94 (Aprendizaje automático):</strong> Justificado por el entrenamiento de modelos de Inteligencia Artificial (Redes Neuronales U-Net) para la segmentación semántica de imágenes satelitales.</li>
+          <li><strong>1207.94 (Aprendizaje automático):</strong> Justificado por el entrenamiento de un modelo de Deep Learning (Redes Neuronales U-Net) para la segmentación semántica de imágenes satelitales.</li>
           <li><strong>1203.93 (Cloud Computing):</strong> Aplicado en el diseño y despliegue del entorno escalable (pipeline geoespacial) y la infraestructura de procesamiento online.</li>
           <li><strong>1203.96 (Bases de Datos):</strong> Requerido para la orquestación y estructuración de la arquitectura orientada a la nube mediante formatos optimizados (Cloud Optimized GeoTIFF y PMTiles).</li>
         </ul>
@@ -154,8 +156,8 @@
 
     <h3 id="e1-alcance">5. Alcance previo</h3>
     <ul>
-      <li><strong>Alcance positivo (Qué se hará):</strong> Desarrollo web interactivo, Extracción de series temporales Copernicus Sentinel-2 (órbitas R008 y R051) sobre Cataluña. Entrenamiento de dos redes neuronales de segmentación semántica (Deep Learning) basadas en estacionalidad. Pruebas de validación en zonas conflictivas (Pirineos y costa).</li>
-      <li><strong>Alcance negativo (Qué NO se hará):</strong> No se desarrollarán modelos para predecir el clima o predecir el movimiento de las nubes en el futuro. Tampoco se utilizarán otras constelaciones de satélites (como Sentinel-1 radar o Landsat) ajenas a Sentinel-2. El objetivo es puramente de segmentación binaria espacial (nube/no-nube).Solo es aplicable a Cataluña.</li>
+      <li><strong>Alcance positivo (Qué se hará):</strong> Desarrollo de una plataforma Web GIS interactiva. Diseño de una arquitectura Cloud y pipeline de datos geoespaciales. Extracción de series temporales Copernicus Sentinel-2 (órbitas R008 y R051) sobre Cataluña. Entrenamiento de una red neuronal de segmentación semántica (Deep Learning) integrando datos satelitales y topográficos. Pruebas de validación empírica en zonas conflictivas (Pirineos y costa).</li>
+      <li><strong>Alcance negativo (Qué NO se hará):</strong> No se desarrollarán modelos para predecir el clima o el movimiento de las nubes en el futuro. Tampoco se utilizarán otras constelaciones de satélites (como Sentinel-1 radar o Landsat) ajenas a Sentinel-2. El objetivo es puramente de segmentación binaria espacial (nube/no-nube). Solo es aplicable a Cataluña.</li>
     </ul>
 
     <h3 id="e1-competencias">6. Competencias que desarrollar</h3>
@@ -199,8 +201,8 @@
         </thead>
         <tbody>
           <tr><td style="padding: 8px;">1</td><td style="padding: 8px;">Imágenes multiespectrales Copernicus Sentinel-2 (Órbitas R008 y R051 sobre Cataluña).</td><td style="padding: 8px;"><code>.COG</code> / <code>.pmtiles</code></td><td style="padding: 8px;">ESA (<a href="https://dataspace.copernicus.eu/">Copernicus Data Space</a>)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
-          <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">Máscaras vectoriales de Mar y masas de agua (e.g., MASCARA_CATALUNYA_700) para forzar la exclusión del agua durante el entrenamiento.</td><td style="padding: 8px;"><code>.gpkg</code> / <code>.shp</code></td><td style="padding: 8px;">ICGC (<a href="https://www.icgc.cat/es/Geoinformacion-y-mapas/Datos-y-productos/Geoinformacion-geologica-y-geofisica/Cartografia-hidrogeologica/Cartografia-hidrogeologica-continua-escala-125000">Cartografía Hidrogeológica</a>)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
-          <tr><td style="padding: 8px;">3</td><td style="padding: 8px;">Máscaras de validación generadas mediante el algoritmo original Sen2Cor para servir de línea base estadística.</td><td style="padding: 8px;"><code>.COG</code></td><td style="padding: 8px;">ESA (<a href="https://dataspace.copernicus.eu/">Copernicus Data Space</a>)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
+          <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">Máscaras de validación generadas mediante el algoritmo original Sen2Cor para servir de línea base estadística.</td><td style="padding: 8px;"><code>.COG</code></td><td style="padding: 8px;">ESA (<a href="https://dataspace.copernicus.eu/">Copernicus Data Space</a>)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
+          <tr><td style="padding: 8px;">3</td><td style="padding: 8px;">Modelo Digital de Elevaciones (DEM) de Cataluña para la discriminación topográfica de la cota de nieve y sombras orográficas.</td><td style="padding: 8px;"><code>.COG</code></td><td style="padding: 8px;">ICGC (<a href="https://www.icgc.cat/">Elevaciones</a>)</td><td style="padding: 8px;">Sí</td><td style="padding: 8px;">Sí</td></tr>
         </tbody>
       </table>
     </div>
@@ -215,79 +217,40 @@
     </ul>
 
     <h3 id="e1-cronograma">9. Planificación y cronograma de trabajo</h3>
-    <p>La planificación de este proyecto se basa en las fechas académicas oficiales y se alinea con los 5 objetivos técnicos planteados: Construcción de la infraestructura tecnológica (Obj. 1), Procesos ETL y obtención de datos (Obj. 2), Entrenamiento de modelos U-Net (Obj. 3), Evaluación frente a Sen2Cor (Obj. 4) y Arquitectura orientada a la nube (Obj. 5).</p>
-
-    <h4>Fase 1: Planificación y Propuesta Inicial</h4>
+    
+    <h4>Fase 1: Planificación y Propuesta Inicial (25/05/2026 – 28/06/2026)</h4>
     <ul>
-      <li><strong>Fechas:</strong> 25/05/2026 – 28/06/2026</li>
-      <li><strong>Hitos Académicos:</strong>
-        <ul>
-          <li>VC de PLANIFICACIÓN: 25/05/2026 - 31/05/2026</li>
-          <li>1ª Tutoría: 01/06/2026 - 21/06/2026</li>
-          <li><strong>Entrega 1: PROPUESTA INICIAL (22/06/2026 - 28/06/2026)</strong></li>
-        </ul>
-      </li>
-      <li><strong>Tareas Técnicas:</strong>
-        <ul>
-          <li>Fundamentación teórica y definición de la arquitectura de infraestructura tecnológica (Obj. 1).</li>
-          <li>Análisis inicial y evaluación de las fuentes de datos satelitales para los procesos ETL (Obj. 2).</li>
-        </ul>
-      </li>
+      <li>T1.1. Asistencia a Videoconferencia de planificación (25/05 - 31/05) y 1ª Tutoría (01/06 - 21/06).</li>
+      <li>T1.2. Fundamentación teórica y definición de la arquitectura de infraestructura tecnológica (Obj. 5).</li>
+      <li>T1.3. Análisis inicial y evaluación de las fuentes de datos satelitales para los procesos ETL (Obj. 1).</li>
+      <li>T1.4. Redactar Entregable 1: PROPUESTA INICIAL (22/06 - 28/06).</li>
     </ul>
 
-    <h4>Fase 2: Infraestructura, ETL y Metodología</h4>
+    <h4>Fase 2: Infraestructura, ETL y Metodología (29/06/2026 – 26/07/2026)</h4>
     <ul>
-      <li><strong>Fechas:</strong> 29/06/2026 – 26/07/2026</li>
-      <li><strong>Hitos Académicos:</strong>
-        <ul>
-          <li>2ª Tutoría: 29/06/2026 - 19/07/2026</li>
-          <li><strong>Entrega 2: DESARROLLO DEL MARCO TEÓRICO Y METODOLOGÍA (60% del avance) (20/07/2026 - 26/07/2026)</strong></li>
-        </ul>
-      </li>
-      <li><strong>Tareas Técnicas:</strong>
-        <ul>
-          <li>Construcción de la infraestructura: repositorio, servidor online, prácticas DevOps y BD (Obj. 1).</li>
-          <li>Extracción y armonización de Copernicus Sentinel-2 mediante el desarrollo de procesos ETL (Obj. 2).</li>
-          <li>Diseño de la arquitectura de base de datos en la nube basada en formatos COG y PMTiles (Obj. 5).</li>
-        </ul>
-      </li>
+      <li>T2.1. 2ª Tutoría (29/06 - 19/07).</li>
+      <li>T2.2. Construcción de la infraestructura: repositorio, servidor online, prácticas DevOps y Web (Obj. 5).</li>
+      <li>T2.3. Extracción y armonización de Copernicus Sentinel-2 mediante el desarrollo de procesos ETL (Obj. 1).</li>
+      <li>T2.4. Diseño de la arquitectura de base de datos en la nube basada en formatos COG y PMTiles (Obj. 2).</li>
+      <li>T2.5. Redactar Entregable 2: DESARROLLO DEL MARCO TEÓRICO Y METODOLOGÍA (60% del avance) (20/07 - 26/07).</li>
     </ul>
 
-    <h4>Fase 3: Entrenamiento Machine Learning y Evaluación</h4>
+    <h4>Fase 3: Entrenamiento Machine Learning y Evaluación (27/07/2026 – 06/09/2026)</h4>
     <ul>
-      <li><strong>Fechas:</strong> 27/07/2026 – 06/09/2026</li>
-      <li><strong>Hitos Académicos:</strong>
-        <ul>
-          <li>3ª Tutoría: 27/07/2026 - 30/08/2026</li>
-          <li><strong>Entrega 3: ENTREGA COMPLETA DEL TFT (100% del avance) (31/08/2026 - 06/09/2026)</strong></li>
-        </ul>
-      </li>
-      <li><strong>Tareas Técnicas:</strong>
-        <ul>
-          <li>Entrenamiento de las dos redes neuronales convolucionales (tipo U-Net) por estacionalidad (Obj. 3).</li>
-          <li>Evaluación empírica de falsos positivos en los Pirineos y masas de agua profunda frente a Sen2Cor (Obj. 4).</li>
-          <li>Integración de la visualización <em>on the fly</em> en el frontend de la plataforma web interactiva.</li>
-        </ul>
-      </li>
+      <li>T3.1. 3ª Tutoría (27/07 - 30/08).</li>
+      <li>T3.2. Entrenamiento de la red neuronal convolucional (tipo U-Net) integrando DEM y bandas infrarrojas (Obj. 3).</li>
+      <li>T3.3. Evaluación empírica de falsos positivos en los Pirineos y masas de agua profunda frente a Sen2Cor (Obj. 4).</li>
+      <li>T3.4. Integración de la visualización <em>on the fly</em> en el frontend de la plataforma web interactiva.</li>
+      <li>T3.5. Documentación Entregable 3: ENTREGA COMPLETA DEL TFT (100% del avance) (31/08 - 06/09).</li>
     </ul>
 
-    <h4>Fase 4: Revisión, Depósito Final y Defensa</h4>
+    <h4>Fase 4: Revisión, Depósito Final y Defensa (14/09/2026 – 25/10/2026)</h4>
     <ul>
-      <li><strong>Fechas:</strong> 14/09/2026 – 25/10/2026</li>
-      <li><strong>Hitos Académicos:</strong>
-        <ul>
-          <li><strong>Entrega 4: DEPÓSITO FINAL EN 1ª DEFENSA (14/09/2026 - 20/09/2026)</strong></li>
-          <li>VC informativa sobre defensas: 28/09/2026 - 04/11/2026</li>
-          <li>Entrega PPT defensa: 05/10/2026 - 11/10/2026</li>
-          <li><strong>Primera defensa: 12/10/2026 - 25/10/2026</strong></li>
-        </ul>
-      </li>
-      <li><strong>Tareas Técnicas:</strong>
-        <ul>
-          <li>Síntesis visual de la plataforma geoespacial en la presentación de defensa.</li>
-          <li>Preparación de material interactivo de mapas web para la exposición oral.</li>
-        </ul>
-      </li>
+      <li>T4.1. Redactar Entregable 4: DEPÓSITO FINAL EN 1ª DEFENSA (14/09 - 20/09).</li>
+      <li>T4.2. Asistencia a Videoconferencia informativa sobre defensas (28/09 - 04/11).</li>
+      <li>T4.3. Síntesis visual y generación de presentación (Entrega material de defensa: 05/10 - 11/10).</li>
+      <li>T4.4. Preparación de material interactivo de mapas web para la exposición oral.</li>
+      <li>T4.5. Primera defensa ante Tribunal (12/10 - 25/10).</li>
     </ul>
 
     <h4>Resumen del Cronograma</h4>
@@ -301,14 +264,59 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td style="padding: 8px;"><strong>25/05 - 28/06</strong></td><td style="padding: 8px;"><strong>Entrega 1: Propuesta Inicial</strong></td><td style="padding: 8px;">Diseño de Infraestructura (Obj. 1) e inicio ETL (Obj. 2).</td></tr>
-          <tr><td style="padding: 8px;"><strong>29/06 - 26/07</strong></td><td style="padding: 8px;"><strong>Entrega 2: Metodología (60%)</strong></td><td style="padding: 8px;">Full Stack y DevOps (Obj. 1), Procesos ETL (Obj. 2) y Arquitectura COG/PMTiles (Obj. 5).</td></tr>
-          <tr><td style="padding: 8px;"><strong>27/07 - 06/09</strong></td><td style="padding: 8px;"><strong>Entrega 3: Entrega Completa (100%)</strong></td><td style="padding: 8px;">Entrenamiento U-Net (Obj. 3) y Evaluación empírica Sen2Cor (Obj. 4).</td></tr>
-          <tr><td style="padding: 8px;"><strong>14/09 - 20/09</strong></td><td style="padding: 8px;"><strong>Entrega 4: Depósito Final</strong></td><td style="padding: 8px;">Corrección de formato y revisiones finales previas al tribunal.</td></tr>
-          <tr><td style="padding: 8px;"><strong>05/10 - 25/10</strong></td><td style="padding: 8px;"><strong>Primera Defensa ante Tribunal</strong></td><td style="padding: 8px;">Generación de presentación (PPT) y preparación de oratoria.</td></tr>
+          <tr><td style="padding: 8px;"><strong>25/05 - 28/06</strong></td><td style="padding: 8px;"><strong>Entrega 1: Propuesta Inicial</strong></td><td style="padding: 8px;">T1.2, T1.3 (Diseño de Infraestructura e inicio ETL).</td></tr>
+          <tr><td style="padding: 8px;"><strong>29/06 - 26/07</strong></td><td style="padding: 8px;"><strong>Entrega 2: Metodología (60%)</strong></td><td style="padding: 8px;">T2.2, T2.3, T2.4 (Full Stack, ETL y Arq. BD).</td></tr>
+          <tr><td style="padding: 8px;"><strong>27/07 - 06/09</strong></td><td style="padding: 8px;"><strong>Entrega 3: Entrega Completa (100%)</strong></td><td style="padding: 8px;">T3.2, T3.3 (Entrenamiento U-Net y Eval. Sen2Cor).</td></tr>
+          <tr><td style="padding: 8px;"><strong>14/09 - 20/09</strong></td><td style="padding: 8px;"><strong>Entrega 4: Depósito Final</strong></td><td style="padding: 8px;">T4.1 (Revisiones finales previas al tribunal).</td></tr>
+          <tr><td style="padding: 8px;"><strong>05/10 - 25/10</strong></td><td style="padding: 8px;"><strong>Primera Defensa ante Tribunal</strong></td><td style="padding: 8px;">T4.3, T4.4 (Generación PPT y preparación oral).</td></tr>
         </tbody>
       </table>
     </div>
+
+    <h4 id="e1-gantt">9.1 Diagrama de Gantt</h4>
+    <div class="mermaid" style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+gantt
+    title Planificación TFB - Detección de Nubes (Sentinel-2)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%y
+
+    section Fase 1
+    T1.1 Videoconferencia y 1ª Tutoría       :a1, 2026-05-25, 2026-06-21
+    T1.2 Fundamentación e Infraestructura    :a2, 2026-05-25, 2026-06-14
+    T1.3 Análisis datos y ETL                :a3, 2026-06-15, 2026-06-28
+    T1.4 Entregable 1 (Propuesta)            :a4, 2026-06-22, 2026-06-28
+
+    section Fase 2
+    T2.1 2ª Tutoría                          :b1, 2026-06-29, 2026-07-19
+    T2.2 Infraestructura DevOps y BD         :b2, 2026-06-29, 2026-07-12
+    T2.3 Procesos ETL Sentinel-2             :b3, 2026-07-06, 2026-07-26
+    T2.4 Diseño BD (COG/PMTiles)             :b4, 2026-07-13, 2026-07-26
+    T2.5 Entregable 2 (Metodología)          :b5, 2026-07-20, 2026-07-26
+
+    section Fase 3
+    T3.1 3ª Tutoría                          :c1, 2026-07-27, 2026-08-30
+    T3.2 Entrenamiento U-Net                 :c2, 2026-07-27, 2026-08-23
+    T3.3 Evaluación frente a Sen2Cor         :c3, 2026-08-17, 2026-09-06
+    T3.4 Integración Web on the fly          :c4, 2026-08-24, 2026-09-06
+    T3.5 Entregable 3 (Entrega Completa)     :c5, 2026-08-31, 2026-09-06
+
+    section Fase 4
+    T4.1 Entregable 4 (Depósito Final)       :d1, 2026-09-14, 2026-09-20
+    T4.2 Videoconferencia Defensas           :d2, 2026-09-28, 2026-10-04
+    T4.3 Presentación Visual                 :d3, 2026-10-05, 2026-10-11
+    T4.4 Material Interactivo Web            :d4, 2026-10-05, 2026-10-11
+    T4.5 Primera Defensa                     :d5, 2026-10-12, 2026-10-25
+    </div>
+
+    <h3 id="e1-bibliografia">10. Bibliografía</h3>
+    <ul>
+      <li>Baetens, L., Desjardins, C., & Hagolle, O. (2019). Validation of Copernicus Sentinel-2 Cloud Masks Obtained from MAJA, Sen2Cor, and FMask Processors Using Reference Cloud Masks Generated with a Supervised Active Learning Procedure. <em>Remote Sensing, 11</em>(4), 433. <a href="https://doi.org/10.3390/rs11040433" target="_blank">https://doi.org/10.3390/rs11040433</a></li>
+      <li>European Space Agency [ESA]. (2026). <em>Copernicus Open Access Hub - Sentinel-2 Data Access</em>. Recuperado el 25 de junio de 2026, de <a href="https://scihub.copernicus.eu/" target="_blank">https://scihub.copernicus.eu/</a></li>
+      <li>Hollstein, A., Segl, K., Guanter, L., Kneubühler, M., & Legleiter, C. (2016). Ready-to-Use Methods for the Detection of Clouds, Cirrus, Snow, Shadow, Water and Clear Sky Pixels in Sentinel-2 MSI Images. <em>Remote Sensing, 8</em>(8), 666. <a href="https://doi.org/10.3390/rs8080666" target="_blank">https://doi.org/10.3390/rs8080666</a></li>
+      <li>Institut Cartogràfic i Geològic de Catalunya [ICGC]. (2026). <em>Models d'Elevacions del Terreny de Catalunya</em>. Recuperado el 25 de junio de 2026, de <a href="https://www.icgc.cat/" target="_blank">https://www.icgc.cat/</a></li>
+      <li>Ronneberger, O., Fischer, P., & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation. <em>Medical Image Computing and Computer-Assisted Intervention – MICCAI 2015</em>, 234–241. <a href="https://doi.org/10.1007/978-3-319-24574-4_28" target="_blank">https://doi.org/10.1007/978-3-319-24574-4_28</a></li>
+      <li>Wieland, M., Li, Y., & Martinis, S. (2019). Multi-sensor cloud and cloud shadow segmentation with a convolutional neural network. <em>Remote Sensing of Environment, 230</em>, 111203. <a href="https://doi.org/10.1016/j.rse.2019.05.022" target="_blank">https://doi.org/10.1016/j.rse.2019.05.022</a></li>
+    </ul>
 
     <a class="back" href="#indice">↑ Volver al índice</a>
   </article>
@@ -348,5 +356,9 @@
   </footer>
 
   <script src="js/app.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
 </body>
 </html>
