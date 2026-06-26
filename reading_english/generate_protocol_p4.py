@@ -1,0 +1,155 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Chronos Protocol: Part 4">
+    <title>The Chronos Protocol: Part 4 - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95);">
+            <h1>The Chronos Protocol: Part 4</h1>
+            <p>Level: B2 | The Gallery of Lost Time (Passive Voice)</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. This story introduces the Passive Voice.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Pay attention to the Grammar. The <strong>Passive Voice</strong> is used when the action is more important than who did it (e.g., "The painting was stolen").
+            </div>
+            
+            <h2>Chapter I: The Stolen Masterpiece</h2>
+            
+            <p>The Infinite Museum was hidden in the darkest corner of the quantum void. It was not built by human hands; it was constructed by <em>The Order</em> to store stolen moments. In this terrifying gallery, entire timelines were frozen, framed, and hung on the cold, metallic walls like paintings. The museum was heavily guarded by silent soldiers in black armor. It was a monument to cosmic control.</p>
+            
+            <p>A specific "masterpiece" had recently been stolen from the year 2025: a three-dimensional memory of the London Ashes. The temporal canvas was brought to the central exhibition room. It was observed by a man who was completely consumed by grief—Dr. Victor Kaelen. He stood in the shadows, watching the fiery explosion replay endlessly inside the glass frame.</p>
+            
+            <h2>Chapter II: The Ambush</h2>
+            
+            <p>Kaelen’s obsession was well known. He was blinded by his desire to resurrect his dead daughter, Maya. Suddenly, the glass ceiling of the museum was shattered. The alarm was activated immediately, flashing red across the gallery.</p>
+            
+            <p>Jack, Elara, and Tenzin dropped into the room like ghosts. Jack raised his heavy weapon. "The building is surrounded, Victor," Jack lied smoothly, his gritty voice echoing in the large hall.</p>
+            
+            <p>Before the soldiers could react, Kaelen was quickly disarmed by Elara. He was pushed aggressively to his knees.</p>
+            
+            <p>"You are captured, Victor," Tenzin said softly. The Monk’s voice was filled with deep Buddhist compassion, which contrasted sharply with the violent reality of the room. "Your ego is an anchor. It pulls you into the darkness. A life cannot be resurrected by destroying the universe's natural flow."</p>
+
+            <h2>Chapter III: The Voice in the Canvas</h2>
+            
+            <p>"Shut up, monk!" Kaelen spat, his face twisted in pain. "My daughter was murdered! This chaotic timeline must be erased and rewritten!"</p>
+            
+            <p>"You are trapped in the grand illusion of death," Tenzin explained calmly, walking toward the glowing exhibit. "Energy is never destroyed; it is only transformed."</p>
+            
+            <p>Tenzin placed his hand on the stolen temporal canvas. The frozen memory of the explosion began to vibrate. Suddenly, a frequency was emitted from the painting. It was not just an echo. A voice was projected directly into their minds. It was the vast, infinite voice of space-time itself... but it carried a familiar tone.</p>
+            
+            <p><em>"Daddy... you are hurting the river."</em></p>
+            
+            <p>Kaelen froze. The voice was recognized instantly. It was Maya.</p>
+            
+            <p>"When the first Chronos Particle was detonated years ago," Tenzin whispered, "her consciousness was absorbed by the quantum fabric. She was not erased. She became the river of time. The universe is being protected by her, Victor. She is space-time."</p>
+
+            <h2>Chapter IV: The Fall of the Architect</h2>
+            
+            <p>Kaelen’s brilliant mind was shattered. The terrible truth was finally understood: by trying to control and lock the timeline, his own daughter was being tortured by him. His desperate attachment was the real weapon that was hurting her.</p>
+            
+            <p>Before a single word could be spoken, the gallery doors were blown open. Fifty elite soldiers of <em>The Order</em> marched in. However, their futuristic rifles were not pointed at Tenzin or Jack; they were pointed directly at Kaelen.</p>
+            
+            <p>"Dr. Kaelen," a cold, robotic voice announced from the soldiers' comms. "Your emotional weakness has been analyzed. You are no longer needed by The Order. You have been replaced by the Grand Algorithm. You will be executed immediately."</p>
+            
+            <p>Kaelen looked at the glowing canvas, tears falling down his tired face. The illusion of his control was broken. He had lost his army, his power, and his title. But in that absolute emptiness, his ego was finally dissolved.</p>
+            
+            <p>He slowly picked up a dropped rifle from the floor and stood next to The Monk. "I am going to help you," Kaelen told Jack and Tenzin, a bloody smile forming on his face. "Let's burn this museum down."</p>
+
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. Where was the Infinite Museum built?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">In the center of London</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">In the darkest corner of the quantum void</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Inside the Chronos Agency</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What object was stolen and exhibited in the museum?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A temporal canvas showing the London Ashes</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A painting by a famous artist</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Chronos Particle</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. What was revealed about Kaelen's daughter, Maya?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">She was kidnapped by Jack</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">She was living in a different timeline</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Her consciousness was absorbed by the quantum fabric</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. Why was Kaelen condemned to be executed by his own soldiers?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because his emotional weakness had been analyzed and he was replaced</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he gave the canvas to Tenzin</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because he tried to escape the museum</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+            <a href="index.html" class="nav-btn">Back to Index ➡</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'masterpiece', es: 'obra maestra' },
+                { id: '2', en: 'canvas', es: 'lienzo' },
+                { id: '3', en: 'exhibition', es: 'exposición' },
+                { id: '4', en: 'stolen', es: 'robado' },
+                { id: '5', en: 'grief', es: 'duelo' },
+                { id: '6', en: 'consciousness', es: 'conciencia' },
+                { id: '7', en: 'attachment', es: 'apego' },
+                { id: '8', en: 'to be replaced', es: 'ser reemplazado' }
+            ];
+
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>"""
+
+with open("the_chronos_protocol_part4.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created the_chronos_protocol_part4.html")
