@@ -1,6 +1,6 @@
 # Propuesta del Trabajo Final de Bàtxelor (TFB)
 
-> **🌍 Disponible Online:** Página web del proyecto: [https://tonilogar.github.io/tbf/tbf.html#e1-titulo](https://tonilogar.github.io/tbf/tbf.html#e1-titulo)
+> **🌍 Disponible Online:** Página web del proyecto: [https://tonilogar.github.io/tfb/tfb.html#e1-titulo](https://tonilogar.github.io/tfb/tfb.html#e1-titulo)
 
 ## Índice de Acrónimos y Glosario Técnico
 
