@@ -1,6 +1,6 @@
 # Propuesta del Trabajo Final de Bàtxelor (TFB)
 
-> **🌍 Disponible Online:** Puedes consultar esta propuesta de forma interactiva en la página web del proyecto: [https://tonilogar.github.io/tbf/tbf.html#e1-titulo](https://tonilogar.github.io/tbf/tbf.html#e1-titulo)
+> **🌍 Disponible Online:** Página web del proyecto: [https://tonilogar.github.io/tbf/tbf.html#e1-titulo](https://tonilogar.github.io/tbf/tbf.html#e1-titulo)
 
 ## Índice de Acrónimos y Glosario Técnico
 
@@ -168,7 +168,7 @@ gantt
 
     section Fase 4
     T4.1 Entregable 4 (Depósito Final)       :d1, 2026-09-14, 2026-09-20
-    T4.2 Videoconferencia Defensas           :d2, 2026-09-28, 2026-10-04
+    T4.2 Videoconferencia Defensas           :d2, 2026-09-28, 2026-11-04
     T4.3 Presentación Visual                 :d3, 2026-10-05, 2026-10-11
     T4.4 Material Interactivo Web            :d4, 2026-10-05, 2026-10-11
     T4.5 Primera Defensa                     :d5, 2026-10-12, 2026-10-25
