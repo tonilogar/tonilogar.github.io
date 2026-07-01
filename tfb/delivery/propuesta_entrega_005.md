@@ -4,7 +4,7 @@
 
 # <span style="color: #FFC000;">Propuesta del Trabajo Final de Bàtxelor (TFB)</span>
 
-> **🌍 Disponible Online:** Página web del proyecto: [https://tonilogar.github.io/tfb/tfb.html#e1-titulo](https://tonilogar.github.io/tfb/tfb.html#e1-titulo)
+Página web del proyecto: [https://tonilogar.github.io/tfb/tfb.html#e1-titulo](https://tonilogar.github.io/tfb/tfb.html#e1-titulo)
 
 ## <span style="color: #FFC000;">Índice de Acrónimos y Glosario Técnico</span>
 
