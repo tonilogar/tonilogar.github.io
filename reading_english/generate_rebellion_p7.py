@@ -1,0 +1,150 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Chronos Rebellion: Part 7">
+    <title>The Chronos Rebellion: Part 7 - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #431407, #f59e0b);">
+            <h1>The Chronos Rebellion: Part 7</h1>
+            <p>Level: C1 | The Lotus and the Void (Cleft Sentences)</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation. <strong>Warning: Deep philosophical themes.</strong></p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Grammar Tip:</strong> This chapter uses <strong>Cleft Sentences</strong> (e.g., <em>It was his ego that... / What Tenzin feared was...</em>). These structures are used in C1 to emphasize a specific part of a sentence, creating a dramatic and poetic rhythm.
+            </div>
+            
+            <h2>Chapter I: The Ultimate Temptation</h2>
+            
+            <p>For years, Tenzin had fought the Grand Algorithm to protect humanity. He lived by a strict code of detachment. But tonight, standing in front of the quantum portal, his hands were shaking. <strong>What he wanted to do was</strong> completely selfish. He wanted to travel to India, 500 BCE, to meditate with his master: Siddhartha Gautama, the Buddha.</p>
+            
+            <p>Jack, smoking a cigar in the shadows, watched him closely. "You're breaking your own rules, monk," Jack said. "Changing history is dangerous. What if you step on a butterfly and accidentally delete Buddhism?"</p>
+            
+            <p>Tenzin closed his eyes. <strong>It was his own ego that</strong> was poisoning him. The fundamental teaching of his religion was to destroy desires, yet his desire to meet the historical Buddha was burning him alive. "I am not going to change history," Tenzin whispered. "I just need one day of peace." He typed the coordinates and stepped into the golden light.</p>
+
+            <h2>Chapter II: The Laughing Master</h2>
+            
+            <p>He arrived in a beautiful, green forest in ancient India. <strong>It was under a massive Bodhi tree that</strong> he finally found him. Tenzin immediately fell to his knees in profound respect, expecting an aura of divine seriousness. Instead, Siddhartha was loudly chewing on a mango. </p>
+            
+            <p>"You have terrible posture for a monk," the Buddha said, laughing warmly. "And your clothes smell like metal and... future storms."</p>
+            
+            <p>Tenzin froze. <strong>What surprised him most was</strong> the casual, almost sarcastic humor of the awakened one. Siddhartha didn't look like a god; he looked like a man who found the universe incredibly funny. "Sit down, traveler," the Buddha said, offering him half the mango. "Your mind is louder than a battlefield."</p>
+
+            <h2>Chapter III: The Danger of Truth</h2>
+            
+            <p>As they ate in silence, Tenzin felt a terrifying urge to confess everything. <strong>It was the heavy burden of the war that</strong> was crushing his soul. He wanted to tell the Buddha about the Grand Algorithm, the quantum portals, the wars of the future, and the technological prison of humanity.</p>
+            
+            <p>Siddhartha looked deep into Tenzin's eyes. His smile faded slightly, replaced by an infinite, ancient wisdom. "I can see the invisible gears of time spinning in your eyes, my friend," Buddha whispered. "I know you carry secrets from a world that has not yet been born. If you wish to reveal them, I will listen."</p>
+            
+            <p>Tenzin opened his mouth, but Siddhartha gently raised a hand. "But remember this," the Buddha warned kindly. "<strong>What shatters a man's mind is not</strong> the lie, but the truth he is not ready to hear. If you explain the future to the present, you might destroy the natural evolution of their souls. Ignorance is a source of suffering, yes... but absolute revelation can be a fatal poison."</p>
+
+            <h2>Chapter IV: The Defeat of Ego</h2>
+            
+            <p>Tenzin closed his mouth. The Buddha was right. <strong>It was not wisdom that</strong> drove Tenzin to confess; it was his ego wanting validation from his master. By revealing the future, he would irreversibly corrupt the timeline and possibly drive the ancient world into apocalyptic madness.</p>
+            
+            <p>Instead of speaking, Tenzin simply smiled, closed his eyes, and began to meditate. They sat together under the Bodhi tree for twenty-four hours. No words were spoken. No timelines were broken.</p>
+            
+            <p>When Tenzin finally returned to the Chronos base, Jack was still smoking his cigar. "So?" Jack asked. "Did you find enlightenment, or did you accidentally erase Asia?"</p>
+            
+            <p>Tenzin walked past him, feeling lighter than air. <strong>What he brought back from the past was not</strong> a weapon or a tactical advantage against the Algorithm. It was absolute, unbreakable peace. The ego was dead.</p>
+            
+            <p><strong>[End of Part 7. The Rebellion continues...]</strong></p>
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            <div class="quiz-question">
+                <p>1. What was Tenzin's selfish desire (his ego)?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He wanted to use time travel to meet Siddhartha Gautama (the Buddha).</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He wanted to destroy the Grand Algorithm by himself.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He wanted to show Jack how powerful meditation is.</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What surprised Tenzin the most when he met the Buddha?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Buddha was floating in the air.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Buddha was crying about the future.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">The Buddha's casual, sarcastic humor and the fact that he was eating a mango.</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Why did the Buddha warn Tenzin about revealing the truth of the future?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because telling a truth the world isn't ready for can be a fatal poison that shatters minds.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because the Grand Algorithm was listening to them.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because the Buddha already knew the future and found it boring.</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What did Tenzin and the Buddha do for 24 hours?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They discussed advanced quantum physics.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They sat together in complete silence and meditated.</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They built a new temporal shield.</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+            <a href="index.html" class="nav-btn">Back to Index ➡</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [
+                { id: '1', en: 'selfish', es: 'egoísta' },
+                { id: '2', en: 'detachment', es: 'desapego' },
+                { id: '3', en: 'to chew', es: 'masticar' },
+                { id: '4', en: 'burden', es: 'carga' },
+                { id: '5', en: 'gears', es: 'engranajes' },
+                { id: '6', en: 'to shatter', es: 'hacer añicos' },
+                { id: '7', en: 'fatal', es: 'mortal' },
+                { id: '8', en: 'enlightenment', es: 'iluminación' },
+                { id: '9', en: 'to erase', es: 'borrar' },
+                { id: '10', en: 'unbreakable', es: 'inquebrantable' }
+            ];
+
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>"""
+
+with open("the_chronos_rebellion_part7.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created the_chronos_rebellion_part7.html")
