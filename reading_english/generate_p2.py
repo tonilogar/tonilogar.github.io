@@ -139,6 +139,7 @@ html_content = """<!DOCTYPE html>
                 { id: '8', en: 'danger', es: 'peligro' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

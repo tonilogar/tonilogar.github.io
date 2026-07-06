@@ -135,6 +135,7 @@ html_content = """<!DOCTYPE html>
                 { id: '10', en: 'grave', es: 'tumba' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

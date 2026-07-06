@@ -137,6 +137,7 @@ html_content = """<!DOCTYPE html>
                 { id: '10', en: 'unbreakable', es: 'inquebrantable' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

@@ -135,6 +135,7 @@ html_content = """<!DOCTYPE html>
                 { id: '8', en: 'ruler', es: 'gobernante' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

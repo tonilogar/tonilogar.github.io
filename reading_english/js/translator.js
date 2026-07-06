@@ -85,11 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
     async function performTranslation(text) {
         try {
             tooltip.innerHTML = 'Translating... ⏳';
-            const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|es`);
-            const data = await res.json();
+            let translation = null;
+
+            // 1. Smart Dictionary (Story Context)
+            if (window.currentStoryVocabulary) {
+                const found = window.currentStoryVocabulary.find(v => v.en.toLowerCase() === text.toLowerCase());
+                if (found) {
+                    translation = found.es;
+                }
+            }
+
+            // 2. Fallback to Google Translate Free API
+            if (!translation) {
+                const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${encodeURIComponent(text)}`);
+                const data = await res.json();
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    translation = data[0][0][0];
+                }
+            }
             
-            if (data && data.responseData && data.responseData.translatedText) {
-                const translation = data.responseData.translatedText;
+            if (translation) {
                 
                 // Show translation AND automatically save it
                 tooltip.dataset.state = 'translated';

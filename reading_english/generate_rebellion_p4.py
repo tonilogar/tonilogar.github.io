@@ -147,6 +147,7 @@ html_content = """<!DOCTYPE html>
                 { id: '10', en: 'to flourish', es: 'florecer' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

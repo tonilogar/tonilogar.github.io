@@ -143,6 +143,7 @@ html_content = """<!DOCTYPE html>
                 { id: '10', en: 'to dissolve', es: 'disolverse' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

@@ -159,6 +159,7 @@ html_content = """<!DOCTYPE html>
                 { id: '8', en: 'void', es: 'vacío' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

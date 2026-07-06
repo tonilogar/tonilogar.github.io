@@ -139,6 +139,7 @@ html_content = """<!DOCTYPE html>
                 { id: '10', en: 'dysfunctional', es: 'disfuncional' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

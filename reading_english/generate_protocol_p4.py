@@ -142,6 +142,7 @@ html_content = """<!DOCTYPE html>
                 { id: '8', en: 'to be replaced', es: 'ser reemplazado' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });

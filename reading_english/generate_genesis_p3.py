@@ -145,6 +145,7 @@ html_content = """<!DOCTYPE html>
                 { id: '8', en: 'dictator', es: 'dictador' }
             ];
 
+            window.currentStoryVocabulary = storyVocabulary;
             initMatchingGame('pre-vocab', storyVocabulary);
             initRecallTest('post-vocab', storyVocabulary);
         });
