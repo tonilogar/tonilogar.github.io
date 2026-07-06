@@ -110,7 +110,7 @@ html_content = """<!DOCTYPE html>
         <div class="story-navigation">
             <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
             <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
-            <a href="index.html" class="nav-btn">Back to Index ➡</a>
+            <a href="the_chronos_rebellion_part7.html" class="nav-btn">Next Story ➡</a>
         </div>
     </main>
 
