@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Tower of Babel">
+    <title>The Tower of Babel - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #b45309, #d97706);">
+            <h1>The Tower of Babel</h1>
+            <p>Level: B2 | Focus: Vocabulario: Construcción y Ambición • Gramática: Purpose Clauses</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
+            <h2>The City in the Clouds</h2>
+            
+            
+            <p>Many years after the Great Flood, the descendants of Noah multiplied and spread out. At that time, the whole world had only one language and a common speech. As people moved eastward, they found a wide plain in the land of Shinar and decided to settle there.</p>
+
+            <p>The people became highly ambitious. They said to each other, "Come, let's make bricks and bake them thoroughly so that we can build a great city for ourselves." They wanted to construct a massive tower that would reach to the heavens in order to make a name for themselves and avoid being scattered over the face of the whole earth.</p>
+
+            <p>Driven by pride, they worked tirelessly. They used brick instead of stone, and tar for mortar. The tower grew taller every day, becoming a monument to human arrogance. They believed they didn't need God, thinking they could achieve divinity through their own engineering.</p>
+
+            <p>But the Lord came down to see the city and the tower the people were building. He observed their arrogance and realized that, since they spoke the same language, this was only the beginning of what they would try to do. Nothing they planned would be impossible for them if their pride was left unchecked.</p>
+
+            <p>To stop their arrogant rebellion, God said, "Let us go down and confuse their language so they will not understand each other." Suddenly, the workers could no longer communicate. A request for a brick was answered with a bucket of water. Confusion spread rapidly across the construction site.</p>
+
+            <p>Unable to understand one another, they were forced to stop building the city. Frustrated and divided, the people scattered from there over all the earth, just as they had originally feared. The abandoned city was called Babel, because it was there that the Lord confused the language of the whole world.</p>
+        
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            
+            <div class="quiz-question">
+                <p>1. What did all people share at the beginning of the story?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The same religion</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">One common language</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The same king</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. Why did the people want to build the tower?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">To make a name for themselves and reach the heavens</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">To escape another flood</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">To communicate with aliens</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. What material did they use for construction?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Wood and nails</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Stone and mud</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Bricks and tar</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. How did God stop the construction?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He sent a thunderstorm</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">He confused their language</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">He destroyed the tower with an earthquake</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [{"id": "1", "en": "descendants", "es": "descendientes"}, {"id": "2", "en": "ambitious", "es": "ambicioso"}, {"id": "3", "en": "brick", "es": "ladrillo"}, {"id": "4", "en": "tar", "es": "alquitrán"}, {"id": "5", "en": "arrogance", "es": "arrogancia"}, {"id": "6", "en": "rebellion", "es": "rebelión"}, {"id": "7", "en": "to confuse", "es": "confundir"}, {"id": "8", "en": "scattered", "es": "disperso"}];
+
+            window.currentStoryVocabulary = storyVocabulary;
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>

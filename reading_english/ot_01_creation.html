@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - The Creation and the Garden of Eden">
+    <title>The Creation and the Garden of Eden - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #b45309, #d97706);">
+            <h1>The Creation and the Garden of Eden</h1>
+            <p>Level: B2 | Focus: Vocabulario: Creación y Naturaleza • Gramática: Passive Voice</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
+            <h2>The Beginning of Everything</h2>
+            
+            
+            <p>In the beginning, the universe was entirely dark and empty. There was no sound, no light, and no life. Then, God spoke, and light was created. The darkness was separated from the light, creating the first day and night.</p>
+
+            <p>Over the next few days, the world was carefully designed. The sky was formed to separate the waters, and dry land was gathered together. Soon, the earth was covered with lush green plants, tall trees, and colorful flowers. The sun, moon, and stars were placed in the sky to mark the seasons and illuminate the world.</p>
+
+            <p>Then, the oceans were filled with swimming creatures, and the sky was filled with flying birds. The land was populated with wild animals of every shape and size. Finally, God created humanity. The first man, Adam, was formed from the dust of the ground, and the breath of life was breathed into him. Later, the first woman, Eve, was created to be his partner.</p>
+
+            <p>Adam and Eve were placed in a magnificent paradise called the Garden of Eden. They were given permission to eat from any tree in the garden, except one: the Tree of the Knowledge of Good and Evil. They were warned that if they ate its fruit, they would certainly die.</p>
+
+            <p>Life in the garden was peaceful until a cunning serpent approached Eve. "Did God really say you must not eat from any tree?" the serpent asked deceptively. He convinced her that the fruit would make her as wise as God. Tempted by the beautiful fruit and the promise of wisdom, Eve ate it and gave some to Adam, who also ate.</p>
+
+            <p>Suddenly, their innocence was lost. They realized they were naked and hid from God out of shame. Because the one rule of the garden had been broken, they were expelled from Eden forever. An angel with a flaming sword was placed at the entrance to ensure they could never return.</p>
+        
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            
+            <div class="quiz-question">
+                <p>1. What was created on the first day?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The sun and moon</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Light</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Animals</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. From what was the first man formed?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">From water</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">From a tree</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">From the dust of the ground</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. Which tree were they forbidden to eat from?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Tree of Life</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">The Tree of the Knowledge of Good and Evil</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The Apple Tree</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. Why were they expelled from the garden?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because they broke the only rule</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because the garden was too small</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because they wanted to leave</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [{"id": "1", "en": "to design", "es": "diseñar"}, {"id": "2", "en": "lush", "es": "exuberante"}, {"id": "3", "en": "to populate", "es": "poblar"}, {"id": "4", "en": "dust", "es": "polvo"}, {"id": "5", "en": "forbidden", "es": "prohibido"}, {"id": "6", "en": "cunning", "es": "astuto"}, {"id": "7", "en": "innocence", "es": "inocencia"}, {"id": "8", "en": "to expel", "es": "expulsar"}];
+
+            window.currentStoryVocabulary = storyVocabulary;
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reading English - Noah's Ark and the Great Flood">
+    <title>Noah's Ark and the Great Flood - Reading English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <header class="main-header story-header">
+        <nav class="navbar">
+            <div class="logo">Reading English</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Stories</a></li>
+                <li><a href="my_vocabulary.html">My Vocabulary</a></li>
+            </ul>
+        </nav>
+        <div class="hero story-hero" style="background: linear-gradient(135deg, #b45309, #d97706);">
+            <h1>Noah's Ark and the Great Flood</h1>
+            <p>Level: B2 | Focus: Vocabulario: Clima y Supervivencia • Gramática: Reported Speech</p>
+        </div>
+    </header>
+
+    <main class="content story-content">
+        <section class="vocabulary">
+            <h2>1. Match the Words (Pre-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Click an English word, then click its Spanish translation.</p>
+            <div id="pre-vocab"></div>
+        </section>
+
+        <article class="story-text">
+            <div class="instruction-notice">
+                💡 <strong>Tip:</strong> Double-click or select any word you don't know to translate and save it to <a href="my_vocabulary.html">My Vocabulary</a>!
+            </div>
+            
+            <h2>The Great Rain</h2>
+            
+            
+            <p>Generations after the first humans, the world had become full of corruption and violence. God saw how wicked the human race had become and regretted having made them. He decided to send a devastating flood to wipe out everything on the earth. However, there was one righteous man who still found favor in God's eyes: Noah.</p>
+
+            <p>God commanded Noah to build a massive wooden ark. He explained that a flood was coming and told Noah that he must bring his family inside to survive. God also instructed him to bring two of all living creatures, male and female, along with enough food for everyone.</p>
+
+            <p>The neighbors laughed at Noah. They told him that he was crazy and that it was never going to rain that much. But Noah ignored them. He said that he was following God's instructions. It took many years, but Noah and his sons eventually finished the colossal ship.</p>
+
+            <p>When the ark was ready, Noah, his family, and the animals went inside, and God shut the door. Seven days later, the sky turned completely black. The springs of the great deep burst forth, and the floodgates of the heavens were opened. It rained endlessly for forty days and forty nights.</p>
+
+            <p>The waters rose higher and higher, eventually covering even the tallest mountains. Every living thing on the dry land perished, but the ark floated safely on the surface of the raging waters. Noah's family and the animals were secure inside, just as God had promised.</p>
+
+            <p>Months later, the rain stopped, and the waters slowly began to recede. The ark came to rest on the mountains of Ararat. Noah sent out a dove, and when it returned with a fresh olive leaf in its beak, he knew the earth was finally drying. When they stepped out of the ark, they saw a brilliant rainbow across the sky. God promised that He would never again destroy the earth with a flood, and the rainbow would be the eternal sign of that covenant.</p>
+        
+        </article>
+
+        <section class="quiz">
+            <h2>2. Comprehension Quiz (Cuestionario)</h2>
+            
+            <div class="quiz-question">
+                <p>1. Why did God decide to flood the earth?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because it was too hot</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">Because humans had become violent and wicked</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">Because He wanted to make new animals</button>
+            </div>
+            <div class="quiz-question">
+                <p>2. What did Noah's neighbors think of him?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They thought he was a genius</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">They thought he was crazy</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">They helped him build the ark</button>
+            </div>
+            <div class="quiz-question">
+                <p>3. How long did it rain?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">For a week</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">For a year</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">For forty days and forty nights</button>
+            </div>
+            <div class="quiz-question">
+                <p>4. What did the rainbow symbolize?</p>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">The end of winter</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">A promise never to flood the earth again</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A path to heaven</button>
+            </div>
+        </section>
+
+        <section class="vocabulary">
+            <h2>3. Vocabulary Recall (Post-reading)</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">Test your memory. Type the translation in the box.</p>
+            <div id="post-vocab"></div>
+        </section>
+
+        <div class="story-navigation">
+            <a href="index.html" class="nav-btn secondary">⬅ All Stories</a>
+            <a href="my_vocabulary.html" class="nav-btn secondary">📖 My Vocabulary</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Reading English. All rights reserved.</p>
+    </footer>
+
+    <script src="js/translator.js"></script>
+    <script src="js/story.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyVocabulary = [{"id": "1", "en": "wicked", "es": "malvado"}, {"id": "2", "en": "righteous", "es": "justo"}, {"id": "3", "en": "ark", "es": "arca"}, {"id": "4", "en": "to perish", "es": "perecer"}, {"id": "5", "en": "to recede", "es": "retroceder / disminuir"}, {"id": "6", "en": "dove", "es": "paloma"}, {"id": "7", "en": "rainbow", "es": "arcoíris"}, {"id": "8", "en": "covenant", "es": "pacto"}];
+
+            window.currentStoryVocabulary = storyVocabulary;
+            initMatchingGame('pre-vocab', storyVocabulary);
+            initRecallTest('post-vocab', storyVocabulary);
+        });
+    </script>
+</body>
+</html>
